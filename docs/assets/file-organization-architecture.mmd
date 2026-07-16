@@ -1,8 +1,13 @@
 flowchart TD
-  I[00-inbox\nmetadata-only intake] --> A[10-active\ncurrent work]
-  I --> R[20-reference\ndurable inputs]
-  A --> O[30-output\nderived deliverables]
-  A --> X[40-archive\nclosed work]
-  P[90-private-local\nexcluded from Git] -. never publish .-> I
-  M[organization-plan.json\npreview manifest] --> A
-  V[Sanitized GPT-first visual\nSVG/Mermaid fallback] --> M
+  C[Current architecture\nall non-protected files] --> I[Isolated copy]
+  I --> B[Off-root recoverable backup]
+  B --> O[Organize eligible files]
+  O --> R[Repair verified references]
+  R --> G[Restore canonical Git layout]
+  G --> V[Full architecture and interface validation]
+  V -->|pass| P[Replace active architecture]
+  V -->|fail| F[Repair in isolated copy]
+  F --> O
+  P --> Q[Pre-Git proof gate]
+  X[.git .codex credentials\nexternal backups] -. always excluded .-> I
+  S[Sanitized GPT-first concept image\nMermaid for deterministic flow] --> I

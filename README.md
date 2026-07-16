@@ -4,7 +4,7 @@ English counterpart: [README.en.md](README.en.md)
 
 每次系统迭代都会同时检查两个 README、[更新日志 / Changelog](CHANGELOG.md) 和适用说明文件是否与实际实现一致。知识、经验或工作流存在三个及以上非线性关系且图片能明显提高理解时，优先使用经过脱敏的 GPT 生图；仅在生图不可用、结构简单或确定时使用 SVG/Mermaid 回退。
 
-全局文件整理采用“先备份、再检查、后整理、再验证”的受控循环：每次全局迭代、项目初始化和实质性后续工作都会自动处理 `00-inbox` 中可安全分类的文件。每项移动或重命名前均在项目根目录外创建可校验备份，分析文本配置与引用、仅精确改写受支持引用并运行项目配置的验证命令；没有计划移动时不会产生无意义备份。源码、运行时、`.git`、`.codex`、凭据和未知入口不自动移动。分类法仍可按证据保留、精炼、增加、合并、拆分、弃用或移除。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
+全局文件整理采用“隔离复制、先备份、全量整理、修复引用、恢复 Git 形态、完整验证、成功后替换”的事务循环。默认检查项目根目录下所有非备份、非受保护文件，而不只是 `00-inbox`；`.git`、`.codex`、凭据和外部备份根始终排除。整理只在隔离副本中发生，任何错误都会先在副本中修复并重新验证，未完成全部验证绝不替换当前系统。Git 前完整迭代会自动执行该链路，复核门禁只接受已验证且已替换的证明。分类法仍可按证据保留、精炼、增加、合并、拆分、弃用或移除。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
 
 ![隐私安全的文件整理示意图](docs/assets/file-organization-concept.png)
 

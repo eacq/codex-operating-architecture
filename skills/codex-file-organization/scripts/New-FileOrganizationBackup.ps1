@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $source = (Resolve-Path -LiteralPath $Root).Path.TrimEnd('\\')
 $backup = [IO.Path]::GetFullPath($BackupRoot).TrimEnd('\\')
-# Add the separator before comparison: F:\codex-backup is a sibling, not a child of F:\codex.
+# Add the separator before comparison so a same-prefix sibling is not mistaken for a child.
 if ($backup.Equals($source, [StringComparison]::OrdinalIgnoreCase) -or $backup.StartsWith($source + '\\', [StringComparison]::OrdinalIgnoreCase)) { throw 'BackupRoot must be outside the selected root.' }
 $protected = '(^|\\)(\.git|\.codex|\.env[^\\]*|\.sandbox-secrets|private-skill-config)(\\|$)|(^|\\)(auth\.json)$'
 $files = if ($RelativePaths.Count -gt 0) {
@@ -18,7 +18,7 @@ $files = if ($RelativePaths.Count -gt 0) {
     if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) { throw "Backup candidate is missing: $_" }
     Get-Item -LiteralPath $candidate
   })
-} else { @(Get-ChildItem -LiteralPath $source -File -Recurse -Force | Where-Object { $_.FullName -notmatch $protected }) }
+} else { @(Get-ChildItem -LiteralPath $source -File -Recurse -Force | Where-Object { $_.FullName.Substring($source.Length).TrimStart('\\') -notmatch $protected }) }
 $manifest = [ordered]@{
   schema_version = 1
   source = 'user-selected-root'
@@ -31,6 +31,18 @@ $manifest = [ordered]@{
 }
 if ($Apply) {
   New-Item -ItemType Directory -Force -Path $backup | Out-Null
+  $reportedGitRoot = (& git -C $source rev-parse --show-toplevel 2>$null).Trim()
+  $normalizedGitRoot = if ($reportedGitRoot) { [IO.Path]::GetFullPath(($reportedGitRoot -replace '/','\\')).TrimEnd('\\') } else { '' }
+  $isGitRoot = $normalizedGitRoot.Equals($source, [StringComparison]::OrdinalIgnoreCase)
+  if ($files.Count -gt 1000 -and $isGitRoot) {
+    $bundle = Join-Path $backup ('file-organization-backup-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.bundle')
+    & git -C $source bundle create $bundle --all
+    if ($LASTEXITCODE -ne 0) { throw 'Git bundle backup failed.' }
+    $manifest.backup_type = 'git-bundle'
+    $manifest.archive_sha256 = (Get-FileHash -LiteralPath $bundle -Algorithm SHA256).Hash.ToLowerInvariant()
+    $manifest | ConvertTo-Json -Depth 4
+    exit 0
+  }
   $name = 'file-organization-backup-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.zip'
   $archive = Join-Path $backup $name
   $staging = Join-Path $backup ('.staging-' + [guid]::NewGuid().ToString('N'))

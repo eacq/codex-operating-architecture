@@ -1,5 +1,23 @@
 # Changelog / 更新日志
 
+## 1.0.1.3 - 2026-07-16
+
+### English
+
+- Make global self-iteration transactional: isolated copy, recoverable off-root backup, full eligible-file organization, verified reference repair, canonical Git-layout restoration, full validation, and replace only after success.
+- Repair the discovered scaling and recovery failures, including large archive timeout, quadratic reference scans, path normalization, line-ending drift, stale-reference checks, moved restore tools, and incomplete untracked restoration.
+- Make validation select the first PyYAML-capable runtime from explicit configuration, the repository foundation environment, or portable system Python; remove the machine-specific runtime fallback from isolated iteration.
+- Make the complete pre-Git iteration own the isolated replacement workflow; the later integration gate now verifies the replacement proof without reorganizing the active repository.
+- Synchronize the bilingual README, file-organization contract, workflow knowledge and experience, architecture diagram, changelog, and release notes with the verified behavior.
+
+### 中文对照
+
+- 将全局自身迭代改为事务式流程：隔离复制、根目录外可恢复备份、全量合格文件整理、已验证引用修复、Git 规范布局恢复、完整验证，并且仅在成功后替换。
+- 修复本次暴露的扩展性与恢复错误，包括大归档超时、二次复杂度引用扫描、路径规范化、换行漂移、陈旧引用检查、恢复工具被移动以及未跟踪文件恢复不完整。
+- 验证入口会从显式配置、仓库基础运行时和可移植系统 Python 中选择首个支持 PyYAML 的运行时；隔离迭代不再包含机器专属运行时回退路径。
+- 由 Git 前完整迭代统一负责隔离替换；后续集成门禁只验证替换证明，不再整理当前仓库。
+- 同步更新中英 README、文件整理契约、工作流知识与经验、架构图、更新日志和发行说明，使其与验证后的实际行为一致。
+
 ## 1.0.1.2 - 2026-07-16
 
 ### English

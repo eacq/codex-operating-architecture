@@ -7,13 +7,15 @@ param(
 $ErrorActionPreference='Stop'
 $root=(Resolve-Path -LiteralPath $Root).Path
 $protected='(^|\\)(\.git|\.codex|\.env[^\\]*|\.sandbox-secrets|private-skill-config)(\\|$)|(^|\\)(auth\.json)$'
+$buckets = @('00-inbox','10-active','20-reference','30-output','40-archive','90-private-local')
 $files = @($ManagedRoots | ForEach-Object {
   $managed = Join-Path $root $_
-  if (Test-Path -LiteralPath $managed) { Get-ChildItem -LiteralPath $managed -File -Recurse -Force | Where-Object { $_.FullName -notmatch $protected } }
+  if (Test-Path -LiteralPath $managed) { Get-ChildItem -LiteralPath $managed -File -Recurse -Force | Where-Object { $relative=$_.FullName.Substring($root.Length).TrimStart('\\'); $relative -notmatch $protected -and $relative -notmatch '^(00-inbox|10-active|20-reference|30-output|40-archive|90-private-local)(\\|$)' } }
 })
 $rows=@(foreach($file in $files){
   $bucket=if($file.Extension -in '.md','.pdf','.docx','.txt'){ '20-reference' }elseif($file.Extension -in '.png','.jpg','.jpeg','.svg','.mmd'){ '30-output/assets' }elseif($file.Extension -in '.zip','.7z','.bak'){ '40-archive' }else{'00-inbox'}
-  [ordered]@{source=$file.FullName.Substring($root.Length).TrimStart('\'); proposed=Join-Path $bucket $file.Name; reason='extension-and-lifecycle'; privacy='uninspected-metadata-only'}
+  $source=$file.FullName.Substring($root.Length).TrimStart('\\')
+  [ordered]@{source=$source; proposed=Join-Path $bucket $source; reason='extension-and-lifecycle'; privacy='uninspected-metadata-only'}
 })
 $plan=[ordered]@{schema_version=4;root='user-selected-root';managed_roots=$ManagedRoots;items=$rows;generated_at=[DateTime]::UtcNow.ToString('o')}
 if($OutputPath){

@@ -45,8 +45,8 @@ $workflowProbe = & (Join-Path $root 'skills/codex-knowledge-system/scripts/New-W
 if ($workflowProbe.knowledge_status -ne 'candidate-for-linked-knowledge' -or $workflowProbe.experience_status -ne 'candidate-for-verified-experience') { throw 'Workflow learning did not route to both knowledge and experience candidates.' }
 $visualProbe = & (Join-Path $root 'skills/codex-image-workflow/scripts/New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized global iteration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
 if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Global iteration visual integration probe failed.' }
-$organizationProbe = & (Join-Path $root 'skills/codex-file-organization/scripts/Invoke-FileOrganizationLifecycle.ps1') -ProjectRoot $root -Phase global-iteration -Apply | ConvertFrom-Json
-if ($organizationProbe.result -ne 'passed' -or -not $organizationProbe.inventory.metadata_only) { throw 'Global iteration file-organization and backup integration probe failed.' }
+$isolatedIteration = & (Join-Path $root 'scripts/Invoke-IsolatedGlobalExperienceIteration.ps1') -RepositoryRoot $root -Apply -Replace | ConvertFrom-Json
+if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced) { throw 'Isolated global iteration did not validate and replace the active architecture.' }
 
 $record = [ordered]@{
     schema_version = 1
@@ -65,9 +65,9 @@ $record = [ordered]@{
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
         visual_decision = $visualProbe.action
-        file_organization = [ordered]@{ result = $organizationProbe.result; item_count = $organizationProbe.inventory.item_count; backup_readiness = $organizationProbe.backup_readiness; moved = $organizationProbe.organization.moved; metadata_only = $organizationProbe.inventory.metadata_only }
+        file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced }
     }
-    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','file-organization and backup integration','robustness and economy review')
+    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','isolated backup-organize-restore-validate-replace iteration','robustness and economy review')
     result = 'passed'
     completed_at = [DateTime]::UtcNow.ToString('o')
 }

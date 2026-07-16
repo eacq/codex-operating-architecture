@@ -18,7 +18,7 @@ Inspect remotes and authentication separately. A missing remote is not an auth f
 
 Before every non-merge commit, update `CHANGELOG.md` and run
 `scripts/Test-GitPublicationMetadata.ps1 -RepositoryRoot <root> -Staged`.
-First run `scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -RepositoryRoot <root> -Staged -Apply`, then `scripts/Test-ExperienceIterationGate.ps1 -RepositoryRoot <root> -Staged -Apply`; the metadata gate rejects any Git action whose staged paths were not covered by a current full experience iteration and cross-module integration review.
+First run `scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -RepositoryRoot <root> -Staged -Apply`, which must complete the isolated backup-organize-restore-validate-replace workflow, then run `scripts/Test-ExperienceIterationGate.ps1 -RepositoryRoot <root> -Staged -Apply`; the review gate reads the validated replacement proof without moving the active repository and rejects any Git action whose staged paths were not covered by the current full experience iteration and cross-module integration review.
 
 ## Failure recovery
 
