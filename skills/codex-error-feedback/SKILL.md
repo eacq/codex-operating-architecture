@@ -29,6 +29,10 @@ module behaves unexpectedly. User wording is evidence, not proof of cause.
    Do not install software, alter credentials, delete data, or make external
    changes without the normal authorization boundary. If a repair is unsafe or
    unverified, record the blocker and stop rather than claiming success.
+   For a failed global iteration, first verify that the active tree was unchanged
+   or restored from the exact pre-iteration snapshot. If rollback is verified,
+   repair the owning error and rerun the complete iteration from the beginning;
+   if rollback failed, report a critical blocker and do not continue mutation.
 5. Close the same report after the attempt:
 
    ```powershell

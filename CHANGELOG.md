@@ -1,5 +1,21 @@
 # Changelog / 更新日志
 
+## 1.0.3.0 - 2026-07-16
+
+### English
+
+- Add an exact off-root pre-iteration rollback snapshot for all replaceable tracked and untracked files, with directory inventory and SHA-256 verification.
+- On post-replacement failure, restore modified/deleted files, remove iteration-added non-protected files, refresh global interfaces, record the failure, and require owner repair plus a complete rerun.
+- Treat rollback failure as a critical blocker; pre-replacement failures leave the active system unchanged and clear transient pending state while retaining the failure record.
+- Add fixture and real fault-injection verification, rollback-aware Git gates, bilingual documentation, workflow knowledge/experience, and an updated deterministic architecture diagram.
+
+### 中文对照
+
+- 为所有可能被替换的受跟踪和未跟踪文件加入根目录外精确迭代前快照，并保存目录清单与 SHA-256 校验。
+- 替换后失败时，恢复被修改或删除的文件、移除迭代新增的非受保护文件、刷新全局接口、记录失败，并要求修复责任模块后完整重跑。
+- 回退失败属于严重阻断；替换前失败时当前系统保持不变，清除临时等待状态但保留失败记录。
+- 加入夹具与真实故障注入验证、支持回退证明的 Git 门禁、中英说明、工作流知识/经验和更新后的确定性架构图。
+
 ## 1.0.2.0 - 2026-07-16
 
 ### English

@@ -46,7 +46,7 @@ if ($workflowProbe.knowledge_status -ne 'candidate-for-linked-knowledge' -or $wo
 $visualProbe = & (Join-Path $root 'skills/codex-image-workflow/scripts/New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized global iteration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
 if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Global iteration visual integration probe failed.' }
 $isolatedIteration = & (Join-Path $root 'scripts/Invoke-IsolatedGlobalExperienceIteration.ps1') -RepositoryRoot $root -Apply -Replace | ConvertFrom-Json
-if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced -or -not $isolatedIteration.post_replacement_validated -or -not $isolatedIteration.lifecycle_written_back) { throw 'Isolated global iteration did not clean, replace, revalidate, and write back the active architecture lifecycle.' }
+if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced -or -not $isolatedIteration.post_replacement_validated -or -not $isolatedIteration.lifecycle_written_back -or -not $isolatedIteration.rollback_ready) { throw 'Isolated global iteration did not establish rollback readiness, clean, replace, revalidate, and write back the active architecture lifecycle.' }
 
 $record = [ordered]@{
     schema_version = 1
@@ -65,9 +65,9 @@ $record = [ordered]@{
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
         visual_decision = $visualProbe.action
-        file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced; post_replacement_validated = $isolatedIteration.post_replacement_validated; lifecycle_written_back = $isolatedIteration.lifecycle_written_back; cleanup = $isolatedIteration.cleanup }
+        file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; rollback_ready = $isolatedIteration.rollback_ready; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced; post_replacement_validated = $isolatedIteration.post_replacement_validated; lifecycle_written_back = $isolatedIteration.lifecycle_written_back; cleanup = $isolatedIteration.cleanup }
     }
-    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','isolated backup-organize-cleanup-restore-validate-replace iteration','post-replacement global validation','lifecycle writeback','robustness and economy review')
+    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','exact pre-iteration rollback readiness','isolated backup-organize-cleanup-restore-validate-replace iteration','post-replacement global validation','lifecycle writeback','robustness and economy review')
     result = 'passed'
     completed_at = [DateTime]::UtcNow.ToString('o')
 }

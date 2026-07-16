@@ -62,4 +62,6 @@ if ($LASTEXITCODE -ne 0) { throw 'Mind-map generation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Image workflow tests failed.' }
 & (Join-Path $root 'skills\codex-file-organization\scripts\Test-FileOrganizationCleanup.ps1')
 if (-not $?) { throw 'File-organization cleanup test failed.' }
-Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, and file-organization cleanup tests validated.'
+& (Join-Path $root 'skills\codex-file-organization\scripts\Test-PreIterationRollback.ps1')
+if (-not $?) { throw 'Pre-iteration rollback test failed.' }
+Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, and rollback tests validated.'
