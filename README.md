@@ -4,6 +4,10 @@ English counterpart: [README.en.md](README.en.md)
 
 每次系统迭代都会同时检查两个 README、[更新日志 / Changelog](CHANGELOG.md) 和适用说明文件是否与实际实现一致。知识、经验或工作流存在三个及以上非线性关系且图片能明显提高理解时，优先使用经过脱敏的 GPT 生图；仅在生图不可用、结构简单或确定时使用 SVG/Mermaid 回退。
 
+全局文件整理采用“先预览、后批准”的元数据计划：`00-inbox`、`10-active`、`20-reference`、`30-output`、`40-archive` 和不进入 Git 的 `90-private-local`。它和工作流一样可基于证据进行保留、精炼、增加、合并、拆分、弃用或移除；每次全局迭代、项目初始化和实质性后续工作都会执行仅元数据的审查。实际移动或重命名必须先完成用户批准的计划，并在项目根目录外建立备份。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
+
+![隐私安全的文件整理示意图](docs/assets/file-organization-concept.png)
+
 ## 迭代说明同步与公开转化
 
 每次已验证的实现迭代都会生成 [Iteration Status](docs/ITERATION-STATUS.md)，记录版本、模块数量和说明门禁。私有 skill、知识与经验只有在具备两个独立已验证证据、完成脱敏和验证后，才能成为公开候选；公开发布仍须单独决策。详见 [Private-to-Public Skill Conversion](docs/PRIVATE-TO-PUBLIC-CONVERSION.md)。
@@ -120,7 +124,7 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 - [更新日志 / Changelog](CHANGELOG.md) 中的用户可读变更说明。
 - 如改变安装、配置、工作流、安全边界或发行体验，同步 README 或对应 docs。
 - 如改变版本号，同步 `VERSION` 和 `docs/release-notes/v<version>.md`。
-- 如变更复杂或影响多个模块，增加或更新一张图来解释问题、解决路径和新架构位置；优先使用 `docs/assets/` 中可版本化的 SVG/Mermaid 派生图。
+- 如变更复杂或影响多个模块，增加或更新一张图来解释问题、解决路径和新架构位置；先使用脱敏 GPT 生图，生图不可用时才使用 `docs/assets/` 中可版本化的 SVG/Mermaid 派生图，并同步图片溯源与 README。
 
 发布规则见 [GitHub Publication Metadata](docs/GITHUB-PUBLISHING.md)。
 

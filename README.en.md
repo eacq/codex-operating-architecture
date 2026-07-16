@@ -18,6 +18,9 @@ This repository is a verified, self-iterating operating architecture for local C
 - Public pushes, tags, and GitHub Releases are never automatic.
 - Public candidate snapshots are checked for private remote identities, private-state paths, local paths, and secret-shaped content before any public push.
 - Complex knowledge, experience, and workflow relationships use a sanitized GPT-first visual decision, with deterministic SVG/Mermaid fallback and lifecycle-aware edit, regenerate, or delete handling.
+- File organization uses a preview-first, metadata-only plan with named lifecycle folders and a protected private-local boundary. Like workflows, its taxonomy can be retained, refined, added, merged, split, deprecated, or removed from evidence. Every global iteration, project initialization, and material follow-up runs the aggregate-only review; a move or rename needs an approved plan and an off-root backup. See [File Organization Architecture](docs/assets/file-organization-architecture.mmd) and [image provenance](docs/assets/file-organization-concept.provenance.md).
+
+![Privacy-safe file organization concept](docs/assets/file-organization-concept.png)
 
 ## Quick start
 

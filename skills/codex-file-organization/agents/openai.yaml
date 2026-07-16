@@ -1,0 +1,4 @@
+interface:
+  display_name: "File Organization"
+  short_description: "Plan safe, privacy-aware file organization."
+  default_prompt: "Organize this project with a preview-first, privacy-safe file plan."

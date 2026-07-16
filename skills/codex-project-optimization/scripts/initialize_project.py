@@ -18,6 +18,7 @@ MANAGED = f"""{BEGIN}
 - At every project entry, invoke `$codex-self-evolution` to route the task and check lifecycle state.
 - On first use, when `.codex/project/state.json` is absent, invoke `$codex-project-optimization` and initialize the project lifecycle before substantial work.
 - Before planning or implementation, read `.codex/project/REQUIREMENTS.md`, `WORKFLOWS.md`, and relevant `EXPERIENCE.md` entries.
+- Run the metadata-only file-organization lifecycle check at initialization and material follow-up work. Any actual file move or rename requires a user-approved plan and a backup outside the project root.
 - After Git initialization, commit, merge, rebase, tag, release, or a complete verified iteration, invoke `$codex-git-operations` and `$codex-experience-capture`.
 - Process `.codex/project/pending-events.jsonl`, then synchronize requirements, workflows, project experience, retrospectives, and lifecycle state.
 - Keep project-specific knowledge in this repository. Promote only verified cross-project rules to the global Codex skills.
@@ -109,6 +110,15 @@ Append after a complete verified iteration.
     "pending-events.jsonl": "",
 }
 
+FILE_ORGANIZATION_POLICY = {
+    "schema_version": 1,
+    "policy": "metadata-first-lifecycle-organization",
+    "buckets": ["00-inbox", "10-active", "20-reference", "30-output", "40-archive", "90-private-local"],
+    "apply_requires": ["explicit-user-approval", "approved-plan", "backup-outside-project-root"],
+    "evolution": ["retain", "refine", "add", "merge", "split", "deprecate", "remove"],
+    "privacy": "Do not store name-bearing plans, private paths, or credentials in Git.",
+}
+
 
 def git_head(root: Path) -> str | None:
     result = subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], capture_output=True, text=True)
@@ -160,6 +170,9 @@ def main() -> int:
     project_dir.mkdir(parents=True, exist_ok=True)
     for name, content in TEMPLATES.items():
         write_if_missing(project_dir / name, content)
+    policy_path = project_dir / "file-organization.json"
+    if not policy_path.exists():
+        policy_path.write_text(json.dumps(FILE_ORGANIZATION_POLICY, indent=2) + "\n", encoding="utf-8")
     update_agents(root / "AGENTS.md")
 
     state_path = project_dir / "state.json"
