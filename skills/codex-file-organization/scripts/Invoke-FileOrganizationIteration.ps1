@@ -11,7 +11,9 @@ $project = Join-Path $root '.codex\project'
 $policyPath = Join-Path $project 'file-organization.json'
 if (-not (Test-Path -LiteralPath $policyPath)) { throw 'File-organization policy is missing.' }
 $policy = Get-Content -LiteralPath $policyPath -Raw -Encoding UTF8 | ConvertFrom-Json
-$plan = & (Join-Path $PSScriptRoot 'New-FileOrganizationPlan.ps1') -Root $root | ConvertFrom-Json
+$managedRoots = @($policy.managed_roots | Where-Object { $_ })
+if ($managedRoots.Count -eq 0) { $managedRoots = @('00-inbox') }
+$plan = & (Join-Path $PSScriptRoot 'New-FileOrganizationPlan.ps1') -Root $root -ManagedRoots $managedRoots | ConvertFrom-Json
 $moves = @($plan.items | Where-Object { $_.source -ne $_.proposed })
 $textExtensions = @('.md','.txt','.json','.yaml','.yml','.toml','.ps1','.py','.js','.ts','.cmd','.bat','.xml')
 $referenceFiles = @(Get-ChildItem -LiteralPath $root -File -Recurse -Force | Where-Object { $_.FullName -notmatch '(^|\\)(\.git|\.codex|\.env[^\\]*|private-skill-config)(\\|$)' -and $textExtensions -contains $_.Extension.ToLowerInvariant() })
@@ -23,7 +25,7 @@ foreach ($move in $moves) {
   }
 }
 $backupRoot = if ($policy.backup_root) { [string]$policy.backup_root } else { Join-Path (Split-Path -Parent $root) ('.' + (Split-Path -Leaf $root) + '-codex-backups') }
-$record = [ordered]@{ schema_version=2; phase=$Phase; managed_root='00-inbox'; planned_moves=$moves.Count; reference_updates=$rewrites.Count; backup='not-needed'; moved=0; result='passed'; completed_at=[DateTime]::UtcNow.ToString('o') }
+$record = [ordered]@{ schema_version=3; phase=$Phase; managed_roots=$managedRoots; planned_moves=$moves.Count; reference_updates=$rewrites.Count; backup='not-needed'; moved=0; result='passed'; completed_at=[DateTime]::UtcNow.ToString('o') }
 if ($Apply -and $moves.Count -gt 0) {
   $backupInputs = @($moves.source + @($rewrites | ForEach-Object { $_.file.Substring($root.Length).TrimStart('\\') }) | Sort-Object -Unique)
   $backup = & (Join-Path $PSScriptRoot 'New-FileOrganizationBackup.ps1') -Root $root -BackupRoot $backupRoot -RelativePaths $backupInputs -Apply | ConvertFrom-Json
@@ -43,6 +45,10 @@ if ($Apply -and $moves.Count -gt 0) {
   }
   foreach ($command in @($policy.validation_commands)) { Invoke-Expression $command; if ($LASTEXITCODE -ne 0) { throw "Configured validation failed: $command" } }
   $record.backup='created'; $record.backup_sha256=$backup.archive_sha256; $record.moved=$moves.Count
+  # This local-only manifest lets the Git boundary restore tracked paths without
+  # exposing names or path references in a repository artifact.
+  [ordered]@{ schema_version=1; moves=@($moves); rewrites=@($rewrites); created_at=[DateTime]::UtcNow.ToString('o') } |
+    ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $project 'file-organization-move-manifest.json') -Encoding UTF8
 }
 if ($Apply) { New-Item -ItemType Directory -Force -Path $project | Out-Null; $record | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $project 'file-organization-iteration.json') -Encoding UTF8 }
 $record | ConvertTo-Json -Depth 5

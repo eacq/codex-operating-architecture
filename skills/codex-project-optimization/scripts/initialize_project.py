@@ -116,6 +116,7 @@ FILE_ORGANIZATION_POLICY = {
     "buckets": ["00-inbox", "10-active", "20-reference", "30-output", "40-archive", "90-private-local"],
     "apply_requires": ["explicit-user-approval", "approved-plan", "backup-outside-project-root"],
     "managed_roots": ["00-inbox"],
+    "credential_reference": {"store": "Windows Credential Manager or DPAPI", "name": "", "purpose": "optional remote backup access; never store the secret here"},
     "backup_root": "",
     "validation_commands": [],
     "evolution": ["retain", "refine", "add", "merge", "split", "deprecate", "remove"],

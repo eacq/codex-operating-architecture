@@ -57,6 +57,7 @@ $plan = [ordered]@{ repository_root = $root; branch = (& git -C $root branch --s
 if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
 if (-not $eligible) { throw ($plan | ConvertTo-Json -Depth 5) }
 if (-not $Message) { $Message = "chore: verified $classification architecture update" }
+& (Join-Path $root 'skills\codex-file-organization\scripts\Restore-GitTrackedWorkspaceLayout.ps1') -ProjectRoot $root | Out-Null
 & git -C $root add -- $selected
 & (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
 & (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
