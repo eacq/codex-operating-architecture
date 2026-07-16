@@ -1,5 +1,21 @@
 # Changelog / 更新日志
 
+## 1.0.2.0 - 2026-07-16
+
+### English
+
+- Add evidence-based cleanup to isolated global iteration: only originally untracked allowlisted temporary/cache artifacts and truly empty non-protected directories are eligible.
+- Copy every file candidate to an off-root quarantine and verify SHA-256 before deletion; recompute and quarantine active candidates after replacement and again after validation instead of propagating stale sandbox hashes.
+- After replacement, validate the active repository twice, refresh and validate the real global skill interfaces, then write aggregate cleanup/replacement evidence and lifecycle state.
+- Extend the pre-Git proof gate, tests, bilingual documentation, deterministic architecture diagram, knowledge, experience, and workflow contracts for the new completion boundary.
+
+### 中文对照
+
+- 为隔离全局迭代加入基于证据的清理：只有原始未跟踪且位于明确临时/缓存白名单中的文件，以及真正为空的非受保护目录才可进入清理。
+- 每个候选文件删除前都复制到根目录外隔离区并校验 SHA-256；替换后及验证后都会重新计算并隔离当前候选，不传播沙箱中的陈旧哈希。
+- 替换后连续验证当前仓库两次，刷新并验证真实全局 Skill 接口，最后写回清理/替换聚合证据和生命周期状态。
+- 扩展 Git 前证明门禁、测试、中英说明、确定性架构图、知识、经验与工作流契约，使其覆盖新的完成边界。
+
 ## 1.0.1.3 - 2026-07-16
 
 ### English

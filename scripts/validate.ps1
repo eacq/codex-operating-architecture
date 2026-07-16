@@ -60,4 +60,6 @@ if ($LASTEXITCODE -ne 0) { throw 'Knowledge graph validation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Mind-map generation failed.' }
 & $python -m unittest discover -s (Join-Path $root 'skills\codex-image-workflow\scripts') -p 'test_*.py'
 if ($LASTEXITCODE -ne 0) { throw 'Image workflow tests failed.' }
-Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, and image workflow tests validated.'
+& (Join-Path $root 'skills\codex-file-organization\scripts\Test-FileOrganizationCleanup.ps1')
+if (-not $?) { throw 'File-organization cleanup test failed.' }
+Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, and file-organization cleanup tests validated.'

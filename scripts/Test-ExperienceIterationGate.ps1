@@ -22,10 +22,10 @@ if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Knowledge/workf
 $proofPath = Join-Path $root '.codex\project\isolated-global-iteration.json'
 if (-not (Test-Path -LiteralPath $proofPath)) { throw 'A validated isolated global-iteration proof is required before the Git gate can pass.' }
 $organizationProbe = Get-Content -LiteralPath $proofPath -Raw -Encoding UTF8 | ConvertFrom-Json
-if ($organizationProbe.result -ne 'completed' -or -not $organizationProbe.validated -or -not $organizationProbe.replaced) { throw 'The isolated file-organization proof is incomplete.' }
+if ($organizationProbe.result -ne 'completed' -or -not $organizationProbe.validated -or -not $organizationProbe.replaced -or -not $organizationProbe.post_replacement_validated -or -not $organizationProbe.lifecycle_written_back) { throw 'The isolated cleanup, replacement, post-validation, and lifecycle proof is incomplete.' }
 $sha = [Security.Cryptography.SHA256]::Create()
 $hash = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes(($paths | Sort-Object) -join "`n"))) -replace '-','').ToLowerInvariant()
 $sha.Dispose()
-$record = [ordered]@{ schema_version=1; staged_paths_sha256=$hash; checks=@('experience iteration','workflow-to-knowledge/experience probe','knowledge/workflow visual-planning probe','isolated file-organization proof','robustness/economy review'); result='passed'; replay_safe=$true; created_at=[DateTime]::UtcNow.ToString('o') }
+$record = [ordered]@{ schema_version=1; staged_paths_sha256=$hash; checks=@('experience iteration','workflow-to-knowledge/experience probe','knowledge/workflow visual-planning probe','isolated cleanup and replacement proof','post-replacement validation proof','lifecycle writeback proof','robustness/economy review'); result='passed'; replay_safe=$true; created_at=[DateTime]::UtcNow.ToString('o') }
 if ($Apply) { $record | ConvertTo-Json | Set-Content (Join-Path $root '.codex\project\git-iteration-gate.json') -Encoding UTF8 }
 $record | ConvertTo-Json

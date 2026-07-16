@@ -1,5 +1,9 @@
 # File-organization concept image / 文件整理示意图溯源
 
+The bitmap remains a privacy-safe conceptual overview. The deterministic Mermaid diagram is authoritative for the expanded cleanup, post-replacement validation, and lifecycle-writeback sequence; no bitmap regeneration is required because the concept image semantics did not change.
+
+位图继续作为隐私安全的概念示意；扩展后的隔离清理、替换后验证和生命周期写回顺序以确定性的 Mermaid 图为准。由于概念图语义未改变，本次无需重新生成位图。
+
 ## English
 
 - Asset: `file-organization-concept.png`.

@@ -4,10 +4,14 @@ flowchart TD
   B --> O[Organize eligible files]
   O --> R[Repair verified references]
   R --> G[Restore canonical Git layout]
-  G --> V[Full architecture and interface validation]
+  G --> D[Quarantine and delete\nproven untracked artifacts]
+  D --> V[Full sandbox validation]
   V -->|pass| P[Replace active architecture]
   V -->|fail| F[Repair in isolated copy]
   F --> O
-  P --> Q[Pre-Git proof gate]
+  P --> A[Validate active repository twice]
+  A --> H[Refresh and validate\nreal global interfaces]
+  H --> W[Write cleanup evidence\nand lifecycle state]
+  W --> Q[Pre-Git proof gate]
   X[.git .codex credentials\nexternal backups] -. always excluded .-> I
   S[Sanitized GPT-first concept image\nMermaid for deterministic flow] --> I
