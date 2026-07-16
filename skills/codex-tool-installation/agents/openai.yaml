@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Tool Installation"
+  short_description: "Install and verify plugins skills and software runtimes"
+  default_prompt: "Use $codex-tool-installation to handle this task with verified reusable practices."

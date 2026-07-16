@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "audience": "codex",
+  "entries": [
+    {
+      "id": "concept-academic-manuscript-revision-boundaries",
+      "name": "Academic Manuscript Revision Boundaries",
+      "path": "30-Knowledge\\Academic Manuscript Revision Boundaries.md",
+      "summary": "Revise a manuscript from argument and paragraph logic to local academic expression, protect evidence-bearing content and Word markup, and use rendered layout QA only after the text revision is meaning-safe.",
+      "source": "codex-text-style;XLW1 verified academic polishing experience",
+      "verified": true
+    },
+    {
+      "id": "concept-experience-error-feedback",
+      "name": "Experience System Error Feedback",
+      "path": "30-Knowledge\\Experience System Error Feedback.md",
+      "summary": "Unexpected experience-system behavior should become a structured error report before it becomes verified experience, knowledge, or a skill change.",
+      "source": "codex-error-feedback",
+      "verified": true
+    },
+    {
+      "id": "concept-experience-knowledge-architecture",
+      "name": "Experience and Knowledge Architecture",
+      "path": "30-Knowledge\\Experience and Knowledge Architecture.md",
+      "summary": "Promote evidence into verified experience, keep Markdown canonical, treat maps and images as derived views, and export only explicit user-learning material to Anki.",
+      "source": "architecture-review-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "concept-header-frame-body-wrap-diagnostic",
+      "name": "Header Frame Body Wrap Diagnostic",
+      "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
+      "summary": "When a locked-template DOCX has a persistent staircase-shaped page-top body exclusion, inspect empty wrapping frames in the active header parts before changing body indentation; treat any repair coordinate as project-local until independently reproduced.",
+      "source": "XLW1 verified error-feedback repair 2026-07-16;codex-exact-word-layout",
+      "verified": false
+    },
+    {
+      "id": "concept-learning-audience-boundary",
+      "name": "Learning Audience Boundary",
+      "path": "30-Knowledge\\Learning Audience Boundary.md",
+      "summary": "Separate Codex-local operating knowledge from user study; send internal rules to the Codex learning index and export only explicitly user-facing recall material to Anki.",
+      "source": "user-correction-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "concept-learning-governance",
+      "name": "Learning Governance",
+      "path": "30-Knowledge\\Learning Governance.md",
+      "summary": "Trigger learning only from a concrete gap plus qualifying evidence; compare project or primary external sources against the current owner, make a reversible tested change, and promote only verified results after architecture and economy review.",
+      "source": "architecture-learning-review-2026-07-16",
+      "verified": true
+    },
+    {
+      "id": "concept-locked-template-docx-package-invariants",
+      "name": "Locked Template DOCX Package Invariants",
+      "path": "30-Knowledge\\Locked Template DOCX Package Invariants.md",
+      "summary": "For a locked-template DOCX, snapshot critical package parts and media, patch the smallest known surface, compare intentional XML changes semantically, and accept only after both hard structural checks and rendered-page review pass.",
+      "source": "codex-exact-word-layout;verified locked-template Word repairs",
+      "verified": true
+    },
+    {
+      "id": "concept-project-creation-capability",
+      "name": "Project Creation Capability",
+      "path": "30-Knowledge\\Project Creation Capability.md",
+      "summary": "A project is created in the experience system when evidence is converted into lifecycle files, project-local skills, storage records, runtime checks, error reports, and verified iteration records.",
+      "source": "xlw1-project-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "concept-provider-boundary",
+      "name": "Provider Capability Boundary",
+      "path": "30-Knowledge\\Provider Capability Boundary.md",
+      "summary": "Route an OpenAI-compatible provider only to chat or embeddings interfaces it actually supports; retain specialized image, audio, full-text, and domain APIs.",
+      "source": "memory-api-routing",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-jme-formatting-guardrails",
+      "name": "XLW1 JME Formatting Guardrails",
+      "path": "30-Knowledge\\XLW1 JME Formatting Guardrails.md",
+      "summary": "In XLW1, preserve black headings, Word-native single-column equations, superscript body citations with baseline references, template first-odd-even header behavior, and ordinary table-cell fonts; validate by Word-to-PDF rendering rather than DOCX inspection alone.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-source-figure-integrity",
+      "name": "XLW1 Source Figure Integrity",
+      "path": "30-Knowledge\\XLW1 Source Figure Integrity.md",
+      "summary": "XLW1 final figures must remain traceable to thesis or author-owned source figures; retain axes, borders, annotations, and experimental traces, and allow only non-substantive clarity improvements such as high-resolution export, mild sharpening, and padding.",
+      "source": "source-xlw1-api-conversation-evidence;thesis_figures_selected_refined/figure_refinement_contract.md",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-template-header-visual-object-fidelity",
+      "name": "XLW1 Template Header and Visual Object Fidelity",
+      "path": "30-Knowledge\\XLW1 Template Header and Visual Object Fidelity.md",
+      "summary": "For XLW1, inspect the supplied JME template's actual header parts and editable table cells before changing typography; use the template's unpublished-manuscript header state and do not alter fonts embedded inside source images.",
+      "source": "source-xlw1-supplied-jme-template",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-version-authority",
+      "name": "XLW1 Version Authority",
+      "path": "30-Knowledge\\XLW1 Version Authority.md",
+      "summary": "For XLW1 manuscript work, identify the source DOCX from the newest explicit user instruction, record its path and SHA-256 before changing it, and write each structural revision to a separately named process-folder output.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "module-academic-text-style",
+      "name": "Academic Text Style Module",
+      "path": "10-Modules\\Academic Text Style Module.md",
+      "summary": "Route academic prose style work to codex-text-style when expression clarity or register must improve without changing the research record.",
+      "source": "F:/codex/skills/codex-text-style/SKILL.md",
+      "verified": true
+    },
+    {
+      "id": "module-exact-word-layout",
+      "name": "Exact Word Layout Module",
+      "path": "10-Modules\\Exact Word Layout Module.md",
+      "summary": "Route fragile locked-template Word layout edits to codex-exact-word-layout when the acceptance criterion is rendered page fidelity rather than simple DOCX text mutation.",
+      "source": "F:/codex/skills/codex-exact-word-layout/SKILL.md",
+      "verified": true
+    },
+    {
+      "id": "module-image-workflow",
+      "name": "Image Workflow Module",
+      "path": "10-Modules\\Image Workflow Module.md",
+      "summary": "Delete a local knowledge image only after upload, HTTPS retrieval, complete reference replacement, quarantine copy, committed manifest, and zero remaining local references all succeed.",
+      "source": "user-request-2026-07-14-image-hosting",
+      "verified": true
+    },
+    {
+      "id": "module-knowledge-system",
+      "name": "Knowledge System Module",
+      "path": "10-Modules\\Knowledge System Module.md",
+      "summary": "Promote knowledge into a global skill only when it is non-trivial, specific, verified, reusable, non-duplicate, and has scope and invalidation conditions.",
+      "source": "user-request-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "portable-path-configuration",
+      "name": "Portable Path Configuration",
+      "path": "30-Knowledge\\Portable Path Configuration.md",
+      "summary": "Git-tracked skills, knowledge records, manifests, and public docs must use logical roots or repository-relative paths; machine-specific roots belong in the local portable profile or environment variables.",
+      "source": "codex-skill-portability",
+      "verified": true
+    },
+    {
+      "id": "project-xlw1-manuscript-knowledge",
+      "name": "XLW1 Manuscript Knowledge Map",
+      "path": "30-Knowledge\\XLW1 Manuscript Knowledge Map.md",
+      "summary": "Route XLW1 requests through its source-authority, JME-formatting, figure-integrity, and refinement-workflow notes before changing the manuscript.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "workflow-academic-research",
+      "name": "Academic Research Workflow",
+      "path": "20-Workflows\\Academic Research Workflow.md",
+      "summary": "Use the codex-text-style academic research workflow submodule to plan multi-step work with source locators and evidence status before specialist reading, writing, code, or figure actions.",
+      "source": "F:/codex/skills/codex-text-style/references/academic-workflow-contract.md",
+      "verified": true
+    },
+    {
+      "id": "workflow-academic-text-style",
+      "name": "Academic Text Style Workflow",
+      "path": "20-Workflows\\Academic Text Style Workflow.md",
+      "summary": "Establish a bounded academic style profile, revise only expression, compare against the source, and report unresolved meaning or evidence risk.",
+      "source": "F:/codex/skills/codex-text-style",
+      "verified": true
+    },
+    {
+      "id": "workflow-exact-word-layout",
+      "name": "Exact Word Layout Workflow",
+      "path": "20-Workflows\\Exact Word Layout Workflow.md",
+      "summary": "For locked-template DOCX layout repairs, preserve the authoritative file, patch only the smallest local OOXML or Word COM surface, then trust rendered page QA over structural checks when they disagree.",
+      "source": "xlw1-jme-layout-iterations;F:/codex/skills/codex-exact-word-layout",
+      "verified": true
+    },
+    {
+      "id": "workflow-integrated-experience-feedback-loop",
+      "name": "Integrated Experience Feedback Loop",
+      "path": "20-Workflows\\Integrated Experience Feedback Loop.md",
+      "summary": "Integrated experience work routes knowledge, generated visuals, hosted images, error reports, and verified lessons through their owning modules instead of merging those modules.",
+      "source": "architecture-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "workflow-local-experience-iteration",
+      "name": "Local Experience Iteration Workflow",
+      "path": "20-Workflows\\Local Experience Iteration Workflow.md",
+      "summary": "Build whole local experience iterations from bounded metadata and verified project artifacts before considering matched raw sessions.",
+      "source": "F:/codex/skills/codex-experience-capture;F:/codex/skills/codex-conversation-continuity",
+      "verified": true
+    },
+    {
+      "id": "workflow-mind-map-knowledge",
+      "name": "Mind Map Knowledge Workflow",
+      "path": "20-Workflows\\Mind Map Knowledge Workflow.md",
+      "summary": "Keep Markdown and typed links canonical; use MindMaster, Mermaid, and exported images only as reproducible derived views.",
+      "source": "user-request-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "workflow-project-creation-from-experience",
+      "name": "Project Creation From Experience Workflow",
+      "path": "20-Workflows\\Project Creation From Experience Workflow.md",
+      "summary": "New project creation should turn folder evidence into lifecycle files, project-local skills, storage indexes, runtime preflight, error feedback, and verified retrospectives before promoting global lessons.",
+      "source": "xlw1-project-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "workflow-xlw1-manuscript-refinement",
+      "name": "XLW1 Manuscript Refinement Workflow",
+      "path": "20-Workflows\\XLW1 Manuscript Refinement Workflow.md",
+      "summary": "Execute XLW1 refinement in the order source authority, structure, technical evidence chain, natural Chinese academic prose, JME formatting, and rendered PDF QA; preserve references and source evidence unless the user explicitly changes them.",
+      "source": "source-xlw1-api-conversation-evidence;$EXTERNAL_WORKSPACE/xlw1/.codex/project/WORKFLOWS.md",
+      "verified": true
+    },
+    {
+      "id": "workflow-zotero",
+      "name": "Zotero Reference Workflow",
+      "path": "20-Workflows\\Zotero Reference Workflow.md",
+      "summary": "Recover the Zotero numeric user ID from /keys/<key> metadata before calling /users/{id}; never record the key itself.",
+      "source": "memory-zotero-api-setup",
+      "verified": true
+    }
+  ]
+}

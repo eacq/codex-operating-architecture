@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Error Feedback"
+  short_description: "Capture unexpected module errors as structured reports"
+  default_prompt: "Use $codex-error-feedback to report unexpected module behavior and feed lessons back into experience."

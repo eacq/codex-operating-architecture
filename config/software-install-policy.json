@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "package_root": "$SOFTWARE_ARCHIVE_ROOT",
+  "install_root": "$SOFTWARE_INSTALL_ROOT",
+  "local_profile": "$CODEX_HOME/private-skill-config/portable-skill.json",
+  "naming": {
+    "allowed": "Unicode letters and numbers plus dot, underscore, and hyphen",
+    "replacement": "-",
+    "case": "preserve user-facing product name"
+  },
+  "requirements": {
+    "keep_downloaded_installer": true,
+    "create_product_subdirectory": true,
+    "notify_before_system_change": true,
+    "verify_actual_install_location": true,
+    "record_install_result": true,
+    "migrate_existing_installations": false
+  },
+  "exceptions_requiring_report_before_install": [
+    "installer does not support a custom location",
+    "Microsoft Store or UWP controls the location",
+    "driver or Windows component requires a system directory",
+    "upgrade must preserve an existing location outside the policy roots"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "name": "office-media-basic",
+      "purpose": "Word, PowerPoint, PDF, and image inspection or text extraction in ordinary Codex projects.",
+      "packages": [
+        {
+          "package": "python-docx",
+          "requirement": "python-docx",
+          "capability": "Read and write DOCX content."
+        },
+        {
+          "package": "python-pptx",
+          "requirement": "python-pptx",
+          "capability": "Read and write PPTX slides and notes when supported."
+        },
+        {
+          "package": "pypdf",
+          "requirement": "pypdf",
+          "capability": "Pure-Python PDF text extraction, split, merge, and metadata operations."
+        },
+        {
+          "package": "pillow",
+          "requirement": "Pillow",
+          "capability": "Image metadata, conversion, resizing, and verification."
+        }
+      ],
+      "promotion_note": "Keep project-local until at least three verified successes across two projects."
+    },
+    {
+      "name": "pdf-layout-advanced",
+      "purpose": "Advanced PDF layout extraction, rendering, page images, and annotation workflows.",
+      "packages": [
+        {
+          "package": "pymupdf",
+          "requirement": "PyMuPDF",
+          "capability": "High-performance PDF rendering, extraction, annotation, redaction, and conversion."
+        }
+      ],
+      "promotion_note": "Treat as optional because it is larger and changes the PDF dependency surface."
+    },
+    {
+      "name": "document-markdown-ai",
+      "purpose": "Convert mixed document formats to Markdown or JSON for knowledge and RAG workflows.",
+      "packages": [
+        {
+          "package": "markitdown",
+          "requirement": "markitdown",
+          "capability": "Convert common Office, PDF, image, and web formats to Markdown."
+        },
+        {
+          "package": "docling",
+          "requirement": "docling",
+          "capability": "Structured document conversion for richer downstream AI pipelines."
+        }
+      ],
+      "promotion_note": "Install only when the project needs this conversion depth; do not put heavy AI document stacks in the base by default."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Learning"
+  short_description: "Study related systems and convert evidence into practices"
+  default_prompt: "Use $codex-learning to handle this task with verified reusable practices."

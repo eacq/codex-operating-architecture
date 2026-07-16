@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Credential Management"
+  short_description: "Handle authentication metadata without exposing secrets"
+  default_prompt: "Use $codex-credential-management to handle this task with verified reusable practices."

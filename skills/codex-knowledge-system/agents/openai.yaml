@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Knowledge System"
+  short_description: "Build linked knowledge workflows with Obsidian and Anki"
+  default_prompt: "Use $codex-knowledge-system to capture and connect this knowledge."

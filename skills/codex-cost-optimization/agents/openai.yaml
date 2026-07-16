@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Cost Optimization"
+  short_description: "Reduce token and API cost without reducing outcome quality"
+  default_prompt: "Use $codex-cost-optimization to handle this task with verified reusable practices."

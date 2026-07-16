@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Architecture Iteration"
+  short_description: "Evolve this modular Codex operating architecture"
+  default_prompt: "Use $codex-architecture-iteration to handle this task with verified reusable practices."

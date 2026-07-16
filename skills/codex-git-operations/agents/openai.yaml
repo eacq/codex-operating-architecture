@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Git Operations"
+  short_description: "Diagnose and perform safe Git and GitHub operations"
+  default_prompt: "Use $codex-git-operations to handle this task with verified reusable practices."

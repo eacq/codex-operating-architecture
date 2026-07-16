@@ -1,0 +1,4 @@
+interface:
+  display_name: "Private Provider Compatibility"
+  short_description: "Diagnose a locally configured OpenAI-compatible provider"
+  default_prompt: "Use $your-api-source to diagnose my locally configured OpenAI-compatible provider without exposing credentials."

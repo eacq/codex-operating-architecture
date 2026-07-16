@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "enabled": true,
+  "provider": "bilibili-article-cover",
+  "provider_status": "unofficial-api-requires-user-session",
+  "credential_file": "$CODEX_HOME/.sandbox-secrets/bilibili-image-bed.dpapi.json",
+  "trigger_mode": "on-demand",
+  "periodic_scan": false,
+  "credential_refresh": "prompt after authentication or upload failure",
+  "auto_replace_markdown_links": true,
+  "delete_local_after_verified_upload": true,
+  "quarantine_root": "$IMAGE_QUARANTINE_ROOT",
+  "quarantine_days": 7,
+  "manifest_root": ".image-hosting/manifests",
+  "allowed_sources": ["user-owned", "generated", "explicitly-open-license"],
+  "forbidden_sources": ["unknown-license", "login-only", "private-third-party", "hotlinked-without-permission"],
+  "remote_verification": {
+    "require_https": true,
+    "require_successful_get": true,
+    "require_bilibili_cdn_host": true
+  }
+}

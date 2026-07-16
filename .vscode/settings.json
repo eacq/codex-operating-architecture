@@ -1,0 +1,24 @@
+{
+  "foam.experimental": false,
+  "foam.files.include": [
+    "knowledge-vault/**/*.md",
+    "knowledge/**/*.md"
+  ],
+  "foam.files.exclude": [
+    "**/.git/**/*",
+    "**/.obsidian/**/*",
+    "**/.image-hosting/**/*",
+    "**/Templates/**/*",
+    "**/__pycache__/**/*"
+  ],
+  "foam.completion.linkFormat": "wikilink",
+  "foam.completion.label": "title",
+  "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited": true,
+  "markdown-preview-enhanced.liveUpdate": true,
+  "markdown-preview-enhanced.scrollSync": true,
+  "markdown-preview-enhanced.enableWikiLinkSyntax": true,
+  "markdown-preview-enhanced.useGitHubStylePipedLink": true,
+  "markdown-preview-enhanced.enableScriptExecution": false,
+  "markdown-preview-enhanced.enableHTML5Embed": false,
+  "markdown-preview-enhanced.previewColorScheme": "systemColorScheme"
+}

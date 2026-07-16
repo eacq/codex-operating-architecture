@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "decision_rules": {
+    "add": "At least two independent use cases and no clear existing owner",
+    "merge": "Substantially overlapping triggers, workflow, and maintained knowledge",
+    "deprecate": "No current evidence, superseded capability, or maintenance cost exceeds value",
+    "delete": "Deprecated for one release and no live references remain"
+  },
+  "latest_review": {
+    "date": "2026-07-16",
+    "decision": "refine-workflow-learning-and-version-governance",
+    "before_modules": 24,
+    "after_modules": 23,
+    "before_words": 4477,
+    "after_words": 5990,
+    "reduction_percent": null,
+    "reason": "Project learning and network learning remain codex-learning subworkflows. Verified workflow changes now enter a hashed workflow-learning record, then evidence-gated knowledge and experience candidates, followed by architecture review. Four-part experience versioning and command-gated private/public releases remain under the existing Git owner. No new module, merge, split, deprecation, or deletion is justified."
+  },
+  "modules": [
+    {"name": "codex-self-evolution", "status": "active", "role": "controller", "evidence": ["module routing and lifecycle decisions"]},
+    {"name": "codex-information-gathering", "status": "active", "evidence": ["repository and history research"]},
+    {"name": "codex-requirement-authoring", "status": "active", "evidence": ["project requirements lifecycle"]},
+    {"name": "codex-task-execution", "status": "active", "evidence": ["implementation and verification"]},
+    {"name": "codex-workflow-design", "status": "active", "evidence": ["repeatable project workflows", "workflow-to-knowledge and experience routing"]},
+    {"name": "codex-credential-management", "status": "active", "evidence": ["Zotero and provider authentication"]},
+    {"name": "codex-git-operations", "status": "active", "evidence": ["GitHub bootstrap and milestones", "four-part experience versioning and command-gated releases"]},
+    {"name": "codex-image-workflow", "status": "active", "evidence": ["Obsidian image hosting and link replacement", "visual knowledge workflow"]},
+    {"name": "codex-tool-installation", "status": "active", "evidence": ["skills, Obsidian, and Anki setup"]},
+    {"name": "codex-experience-capture", "status": "active", "evidence": ["session and project retrospectives"]},
+    {"name": "codex-project-optimization", "status": "active", "evidence": ["project-local requirements and experience"]},
+    {"name": "codex-architecture-iteration", "status": "active", "evidence": ["versioned architecture evolution"]},
+    {"name": "codex-learning", "status": "active", "evidence": ["GitHub pattern comparison", "project-learning and network-learning governance", "evidence-gated user-recognized capability routing"]},
+    {"name": "codex-skill-packaging", "status": "active", "evidence": ["global skill creation and validation"]},
+    {"name": "codex-cost-optimization", "status": "active", "evidence": ["metadata-first history processing"]},
+    {"name": "codex-knowledge-system", "status": "active", "evidence": ["linked paper workflow knowledge", "Anki review export", "MindMaster-compatible derived mind maps with Mermaid fallback", "hashed workflow-learning records"]},
+    {"name": "your-api-source", "status": "active", "evidence": ["private OpenAI-compatible provider recovery", "PPT and paper-tool provider routing", "portable provider diagnostics"]},
+    {"name": "codex-conversation-continuity", "status": "active", "evidence": ["provider switches must preserve local history discovery", "desktop sidebar/provider changes can hide locally stored conversations", "artifact recovery distinguishes user-designated files from incomplete history branches", "compacted API session lineages need bounded inheritance with current pre/post context"]},
+    {"name": "codex-runtime-environments", "status": "active", "evidence": ["canonical Python base and project dependency isolation", "PowerShell and CMD project launchers", "verified dependency-frequency promotion"]},
+    {"name": "codex-error-feedback", "status": "active", "evidence": ["unexpected module behavior needs structured error lists", "failure reports should feed project experience and knowledge candidates"]},
+    {"name": "codex-skill-portability", "status": "active", "evidence": ["shared Git skills need private configuration boundaries", "recipients need first-use provider and software choice without sharing secrets or personal paths"]},
+    {"name": "codex-exact-word-layout", "status": "active", "evidence": ["locked-template Word layout repairs need targeted edits plus rendered QA", "stale pagination controls and column-regime changes can pass structural checks but fail visual page flow"]},
+    {"name": "codex-text-style", "status": "active", "evidence": ["English academic manuscripts need expression-only polishing with protected claims and syntax", "Chinese thesis prose needs restrained academic revision without generic de-AI rewriting", "bilingual academic revision needs explicit preservation of evidence strength and technical meaning", "source-grounded paper/PDF/LaTeX, research-code, and figure planning use the academic workflow submodule before specialist handoffs"]}
+  ]
+}

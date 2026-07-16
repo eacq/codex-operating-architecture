@@ -1,0 +1,1150 @@
+{
+  "nodes": [
+    {
+      "name": "Home",
+      "path": "00-Home\\Home.md",
+      "type": "index",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Experience and Knowledge Architecture",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge Index",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Literature Discovery Workflow",
+        "Mind Map Knowledge Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Portable Path Configuration",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary",
+        "Research Knowledge Module",
+        "Scientific Figure Workflow",
+        "Verified Experience Promotion",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Knowledge System Module",
+      "path": "01-Inbox\\Knowledge System Module.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "README",
+      "path": "01-Inbox\\README.md",
+      "type": "index",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module"
+      ]
+    },
+    {
+      "name": "Academic Text Style Module",
+      "path": "10-Modules\\Academic Text Style Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Workflow",
+        "Exact Word Layout Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Exact Word Layout Module",
+      "path": "10-Modules\\Exact Word Layout Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Image Workflow Module",
+      "path": "10-Modules\\Image Workflow Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ]
+    },
+    {
+      "name": "Knowledge System Module",
+      "path": "10-Modules\\Knowledge System Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Project Knowledge Boundary",
+        "Research Knowledge Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Learning Audience Boundary",
+      "path": "10-Modules\\Learning Audience Boundary.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Research Knowledge Module",
+      "path": "10-Modules\\Research Knowledge Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Academic Research Workflow",
+      "path": "20-Workflows\\Academic Research Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Local Experience Iteration Workflow"
+      ]
+    },
+    {
+      "name": "Academic Text Style Workflow",
+      "path": "20-Workflows\\Academic Text Style Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Academic Writing and Citation Workflow",
+      "path": "20-Workflows\\Academic Writing and Citation Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Exact Word Layout Workflow",
+      "path": "20-Workflows\\Exact Word Layout Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Module",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ]
+    },
+    {
+      "name": "Image Hosting and Cleanup Workflow",
+      "path": "20-Workflows\\Image Hosting and Cleanup Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ]
+    },
+    {
+      "name": "Integrated Experience Feedback Loop",
+      "path": "20-Workflows\\Integrated Experience Feedback Loop.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Literature Discovery Workflow",
+      "path": "20-Workflows\\Literature Discovery Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Local Experience Iteration Workflow",
+      "path": "20-Workflows\\Local Experience Iteration Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop"
+      ]
+    },
+    {
+      "name": "Mind Map Knowledge Workflow",
+      "path": "20-Workflows\\Mind Map Knowledge Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Paper Reading and Evidence Workflow",
+      "path": "20-Workflows\\Paper Reading and Evidence Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "user",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Project Creation From Experience Workflow",
+      "path": "20-Workflows\\Project Creation From Experience Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Knowledge System Module",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Scientific Figure Workflow",
+      "path": "20-Workflows\\Scientific Figure Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Provider Capability Boundary"
+      ]
+    },
+    {
+      "name": "XLW1 Manuscript Refinement Workflow",
+      "path": "20-Workflows\\XLW1 Manuscript Refinement Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    },
+    {
+      "name": "Zotero Reference Workflow",
+      "path": "20-Workflows\\Zotero Reference Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow"
+      ]
+    },
+    {
+      "name": "Academic Manuscript Revision Boundaries",
+      "path": "30-Knowledge\\Academic Manuscript Revision Boundaries.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Academic Writing and Citation Workflow",
+        "Exact Word Layout Workflow"
+      ]
+    },
+    {
+      "name": "Experience and Knowledge Architecture",
+      "path": "30-Knowledge\\Experience and Knowledge Architecture.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Experience System Error Feedback",
+      "path": "30-Knowledge\\Experience System Error Feedback.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Header Frame Body Wrap Diagnostic",
+      "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
+      "type": "concept",
+      "status": "candidate",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ]
+    },
+    {
+      "name": "Learning Audience Boundary",
+      "path": "30-Knowledge\\Learning Audience Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "both",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Learning Governance",
+      "path": "30-Knowledge\\Learning Governance.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Locked Template DOCX Package Invariants",
+      "path": "30-Knowledge\\Locked Template DOCX Package Invariants.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Module",
+        "Exact Word Layout Workflow",
+        "Header Frame Body Wrap Diagnostic",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Portable Path Configuration",
+      "path": "30-Knowledge\\Portable Path Configuration.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge Tooling",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary"
+      ]
+    },
+    {
+      "name": "Project Creation Capability",
+      "path": "30-Knowledge\\Project Creation Capability.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Project Creation From Experience Workflow",
+        "Project Knowledge Boundary"
+      ]
+    },
+    {
+      "name": "Project Knowledge Boundary",
+      "path": "30-Knowledge\\Project Knowledge Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Provider Capability Boundary",
+      "path": "30-Knowledge\\Provider Capability Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Literature Discovery Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Verified Experience Promotion",
+      "path": "30-Knowledge\\Verified Experience Promotion.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Project Knowledge Boundary"
+      ]
+    },
+    {
+      "name": "XLW1 JME Formatting Guardrails",
+      "path": "30-Knowledge\\XLW1 JME Formatting Guardrails.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ]
+    },
+    {
+      "name": "XLW1 Manuscript Knowledge Map",
+      "path": "30-Knowledge\\XLW1 Manuscript Knowledge Map.md",
+      "type": "project",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Project Knowledge Boundary",
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    },
+    {
+      "name": "XLW1 Source Figure Integrity",
+      "path": "30-Knowledge\\XLW1 Source Figure Integrity.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow"
+      ]
+    },
+    {
+      "name": "XLW1 Template Header and Visual Object Fidelity",
+      "path": "30-Knowledge\\XLW1 Template Header and Visual Object Fidelity.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ]
+    },
+    {
+      "name": "XLW1 Version Authority",
+      "path": "30-Knowledge\\XLW1 Version Authority.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow"
+      ]
+    },
+    {
+      "name": "Codex Knowledge Map",
+      "path": "40-Maps\\Codex Knowledge Map.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Knowledge Tooling",
+      "path": "90-Sources\\Knowledge Tooling.md",
+      "type": "source",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Mind Map Knowledge Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "XLW1 API Conversation Evidence",
+      "path": "90-Sources\\XLW1 API Conversation Evidence.md",
+      "type": "source",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Academic Research Workflow",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Research Workflow",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Research Workflow",
+      "Local Experience Iteration Workflow"
+    ],
+    [
+      "Academic Text Style Module",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Text Style Module",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Academic Text Style Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Academic Text Style Workflow",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Text Style Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Exact Word Layout Module",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Exact Word Layout Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "Home",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Home",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Home",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Home",
+      "Image Workflow Module"
+    ],
+    [
+      "Home",
+      "Knowledge Index"
+    ],
+    [
+      "Home",
+      "Knowledge System Module"
+    ],
+    [
+      "Home",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Home",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Home",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Home",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Home",
+      "Portable Path Configuration"
+    ],
+    [
+      "Home",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Home",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Home",
+      "Research Knowledge Module"
+    ],
+    [
+      "Home",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Home",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Home",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Image Workflow Module"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Image Workflow Module",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Image Workflow Module",
+      "Knowledge System Module"
+    ],
+    [
+      "Image Workflow Module",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Image Workflow Module"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Knowledge System Module"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Knowledge System Module",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Knowledge System Module",
+      "Image Workflow Module"
+    ],
+    [
+      "Knowledge System Module",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Knowledge System Module",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Knowledge System Module",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Knowledge System Module",
+      "Research Knowledge Module"
+    ],
+    [
+      "Knowledge System Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Knowledge Tooling",
+      "Knowledge System Module"
+    ],
+    [
+      "Knowledge Tooling",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Knowledge Tooling",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Knowledge Tooling",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Learning Governance",
+      "Knowledge System Module"
+    ],
+    [
+      "Learning Governance",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Local Experience Iteration Workflow",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Local Experience Iteration Workflow",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Header Frame Body Wrap Diagnostic"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Image Workflow Module"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Portable Path Configuration",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Portable Path Configuration",
+      "Knowledge Tooling"
+    ],
+    [
+      "Portable Path Configuration",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Portable Path Configuration",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Project Creation Capability",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Project Creation Capability",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Project Creation Capability",
+      "Project Creation From Experience Workflow"
+    ],
+    [
+      "Project Creation Capability",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Project Knowledge Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Project Knowledge Boundary",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "README",
+      "Knowledge System Module"
+    ],
+    [
+      "Research Knowledge Module",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Research Knowledge Module",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Scientific Figure Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Scientific Figure Workflow",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Verified Experience Promotion",
+      "Knowledge System Module"
+    ],
+    [
+      "Verified Experience Promotion",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Paper Reading and Evidence Workflow"
+    ]
+  ]
+}

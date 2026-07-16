@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Image Workflow"
+  short_description: "Find create host link and safely retire knowledge images"
+  default_prompt: "Use $codex-image-workflow to manage images for this knowledge workflow."

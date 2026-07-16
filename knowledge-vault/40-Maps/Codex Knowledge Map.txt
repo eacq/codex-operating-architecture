@@ -1,0 +1,202 @@
+Codex Knowledge System
+	concept
+		Academic Manuscript Revision Boundaries [Codex]
+			-> Academic Text Style Module
+			-> Academic Text Style Workflow
+			-> Academic Writing and Citation Workflow
+			-> Exact Word Layout Workflow
+		Experience System Error Feedback [Codex]
+			-> Experience and Knowledge Architecture
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Experience and Knowledge Architecture [Codex]
+			-> Image Hosting and Cleanup Workflow
+			-> Knowledge System Module
+			-> Learning Audience Boundary
+			-> Mind Map Knowledge Workflow
+			-> Verified Experience Promotion
+		Header Frame Body Wrap Diagnostic [Codex]
+			-> Exact Word Layout Workflow
+			-> Verified Experience Promotion
+			-> XLW1 JME Formatting Guardrails
+		Learning Audience Boundary [Codex + User Anki]
+			-> Experience and Knowledge Architecture
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Learning Governance [Codex]
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Locked Template DOCX Package Invariants [Codex]
+			-> Exact Word Layout Module
+			-> Exact Word Layout Workflow
+			-> Header Frame Body Wrap Diagnostic
+			-> Verified Experience Promotion
+		Portable Path Configuration [Codex]
+			-> Image Hosting and Cleanup Workflow
+			-> Knowledge Tooling
+			-> Project Knowledge Boundary
+			-> Provider Capability Boundary
+		Project Creation Capability [Codex]
+			-> Experience System Error Feedback
+			-> Experience and Knowledge Architecture
+			-> Project Creation From Experience Workflow
+			-> Project Knowledge Boundary
+		Project Knowledge Boundary
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Provider Capability Boundary [Codex]
+			-> Literature Discovery Workflow
+			-> Scientific Figure Workflow
+			-> Zotero Reference Workflow
+		Verified Experience Promotion
+			-> Knowledge System Module
+			-> Project Knowledge Boundary
+		XLW1 JME Formatting Guardrails [Codex]
+			-> XLW1 API Conversation Evidence
+			-> XLW1 Manuscript Refinement Workflow
+			-> XLW1 Source Figure Integrity
+		XLW1 Source Figure Integrity [Codex]
+			-> XLW1 API Conversation Evidence
+			-> XLW1 JME Formatting Guardrails
+			-> XLW1 Manuscript Refinement Workflow
+		XLW1 Template Header and Visual Object Fidelity [Codex]
+			-> XLW1 JME Formatting Guardrails
+			-> XLW1 Manuscript Knowledge Map
+			-> XLW1 Manuscript Refinement Workflow
+			-> XLW1 Source Figure Integrity
+		XLW1 Version Authority [Codex]
+			-> XLW1 API Conversation Evidence
+			-> XLW1 Manuscript Knowledge Map
+			-> XLW1 Manuscript Refinement Workflow
+	index
+		Home
+			-> Academic Writing and Citation Workflow
+			-> Experience and Knowledge Architecture
+			-> Image Hosting and Cleanup Workflow
+			-> Image Workflow Module
+			-> Knowledge Index
+			-> Knowledge System Module
+			-> Learning Audience Boundary
+			-> Literature Discovery Workflow
+			-> Mind Map Knowledge Workflow
+			-> Paper Reading and Evidence Workflow
+			-> Portable Path Configuration
+			-> Project Knowledge Boundary
+			-> Provider Capability Boundary
+			-> Research Knowledge Module
+			-> Scientific Figure Workflow
+			-> Verified Experience Promotion
+			-> Zotero Reference Workflow
+		README
+			-> Knowledge System Module
+	module
+		Academic Text Style Module [Codex]
+			-> Academic Text Style Workflow
+			-> Exact Word Layout Module
+			-> Verified Experience Promotion
+		Exact Word Layout Module [Codex]
+			-> Exact Word Layout Workflow
+			-> Verified Experience Promotion
+		Image Workflow Module [Codex]
+			-> Image Hosting and Cleanup Workflow
+			-> Knowledge System Module
+			-> Scientific Figure Workflow
+		Knowledge System Module [Codex]
+			-> Experience and Knowledge Architecture
+			-> Image Workflow Module
+			-> Learning Audience Boundary
+			-> Mind Map Knowledge Workflow
+			-> Project Knowledge Boundary
+			-> Research Knowledge Module
+			-> Verified Experience Promotion
+		Research Knowledge Module
+			-> Academic Writing and Citation Workflow
+			-> Literature Discovery Workflow
+			-> Paper Reading and Evidence Workflow
+			-> Provider Capability Boundary
+			-> Scientific Figure Workflow
+			-> Zotero Reference Workflow
+	project
+		XLW1 Manuscript Knowledge Map [Codex]
+			-> Project Knowledge Boundary
+			-> XLW1 API Conversation Evidence
+			-> XLW1 JME Formatting Guardrails
+			-> XLW1 Manuscript Refinement Workflow
+			-> XLW1 Source Figure Integrity
+			-> XLW1 Version Authority
+	source
+		Knowledge Tooling
+			-> Knowledge System Module
+			-> Mind Map Knowledge Workflow
+			-> Paper Reading and Evidence Workflow
+			-> Verified Experience Promotion
+		XLW1 API Conversation Evidence
+			-> XLW1 JME Formatting Guardrails
+			-> XLW1 Manuscript Knowledge Map
+			-> XLW1 Manuscript Refinement Workflow
+			-> XLW1 Source Figure Integrity
+			-> XLW1 Version Authority
+	untyped
+		Knowledge System Module
+		Learning Audience Boundary
+	workflow
+		Academic Research Workflow [Codex]
+			-> Academic Text Style Module
+			-> Academic Text Style Workflow
+			-> Local Experience Iteration Workflow
+		Academic Text Style Workflow [Codex]
+			-> Academic Text Style Module
+			-> Verified Experience Promotion
+		Academic Writing and Citation Workflow
+			-> Paper Reading and Evidence Workflow
+			-> Scientific Figure Workflow
+			-> Zotero Reference Workflow
+		Exact Word Layout Workflow [Codex]
+			-> Exact Word Layout Module
+			-> Verified Experience Promotion
+			-> XLW1 JME Formatting Guardrails
+		Image Hosting and Cleanup Workflow
+			-> Experience and Knowledge Architecture
+			-> Image Workflow Module
+			-> Knowledge System Module
+			-> Scientific Figure Workflow
+		Integrated Experience Feedback Loop [Codex]
+			-> Experience System Error Feedback
+			-> Image Hosting and Cleanup Workflow
+			-> Image Workflow Module
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Literature Discovery Workflow
+			-> Paper Reading and Evidence Workflow
+			-> Provider Capability Boundary
+			-> Zotero Reference Workflow
+		Local Experience Iteration Workflow [Codex]
+			-> Experience and Knowledge Architecture
+			-> Integrated Experience Feedback Loop
+		Mind Map Knowledge Workflow [Codex]
+			-> Image Hosting and Cleanup Workflow
+			-> Image Workflow Module
+			-> Knowledge System Module
+			-> Verified Experience Promotion
+		Paper Reading and Evidence Workflow [User Anki]
+			-> Academic Writing and Citation Workflow
+			-> Scientific Figure Workflow
+			-> Zotero Reference Workflow
+		Project Creation From Experience Workflow [Codex]
+			-> Experience System Error Feedback
+			-> Knowledge System Module
+			-> Project Knowledge Boundary
+			-> Verified Experience Promotion
+		Scientific Figure Workflow
+			-> Academic Writing and Citation Workflow
+			-> Provider Capability Boundary
+		XLW1 Manuscript Refinement Workflow [Codex]
+			-> XLW1 API Conversation Evidence
+			-> XLW1 JME Formatting Guardrails
+			-> XLW1 Manuscript Knowledge Map
+			-> XLW1 Source Figure Integrity
+			-> XLW1 Version Authority
+		Zotero Reference Workflow [Codex]
+			-> Academic Writing and Citation Workflow
+			-> Literature Discovery Workflow
+			-> Paper Reading and Evidence Workflow

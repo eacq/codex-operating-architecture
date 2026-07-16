@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "promotion_policy": {
+    "minimum_successes": 3,
+    "minimum_projects": 2
+  },
+  "events": []
+}

@@ -1,0 +1,17 @@
+.history-cache/
+*.tmp
+*.log
+secrets.*
+.env
+knowledge-vault/.obsidian/plugins/
+knowledge-vault/50-Learning/user-anki-import.tsv
+knowledge-vault/.obsidian/appearance.json
+knowledge-vault/.obsidian/workspace*.json
+**/__pycache__/
+*.pyc
+.runtime/
+.codex/
+**/.codex/runtime/env/
+**/.codex/runtime/secrets/*.dpapi
+private-skill-config/
+**/portable-skill.json

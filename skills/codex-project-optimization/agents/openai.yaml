@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Project Optimization"
+  short_description: "Improve projects using their logs evidence and history"
+  default_prompt: "Use $codex-project-optimization to handle this task with verified reusable practices."

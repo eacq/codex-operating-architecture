@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "provider": {
+    "display_name": "test-provider",
+    "base_url": "",
+    "auth_preference": "both",
+    "api_key_environment_variable": "TEST_API_KEY",
+    "preferred_model": "test-model"
+  },
+  "software": {
+    "archive_root": "",
+    "install_root": "",
+    "selected_tools": ["test-tool"]
+  },
+  "notes": "Local-only choices. Do not put secrets, tokens, cookies, or account data here."
+}

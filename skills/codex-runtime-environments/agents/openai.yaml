@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Runtime Environments"
+  short_description: "Manage isolated Python and shell environments"
+  default_prompt: "Use $codex-runtime-environments to initialize and track this project runtime."
