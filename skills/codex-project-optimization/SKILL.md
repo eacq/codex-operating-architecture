@@ -19,4 +19,4 @@ python scripts/initialize_project.py --project-root <project-root> --install-git
 
 Replace generated unknowns only with evidence. Preserve existing files and hooks. At lifecycle triggers, reconcile project documents before any global promotion.
 
-Initialization also creates `.codex/project/file-organization.json`. Run `codex-file-organization/scripts/Invoke-FileOrganizationLifecycle.ps1 -Phase project-initialization -Apply` after initialization and at material follow-up work. This is an aggregate, metadata-only check; no file reorganization happens without the separate backup and explicit-approval gate.
+Initialization also creates `.codex/project/file-organization.json`. Run `codex-file-organization/scripts/Invoke-FileOrganizationLifecycle.ps1 -Phase project-initialization -Apply` after initialization and at material follow-up work. It automatically archives and safely processes eligible `00-inbox` items before validating affected configuration/reference changes; source and runtime paths stay outside the automatic managed scope.

@@ -115,6 +115,9 @@ FILE_ORGANIZATION_POLICY = {
     "policy": "metadata-first-lifecycle-organization",
     "buckets": ["00-inbox", "10-active", "20-reference", "30-output", "40-archive", "90-private-local"],
     "apply_requires": ["explicit-user-approval", "approved-plan", "backup-outside-project-root"],
+    "managed_roots": ["00-inbox"],
+    "backup_root": "",
+    "validation_commands": [],
     "evolution": ["retain", "refine", "add", "merge", "split", "deprecate", "remove"],
     "privacy": "Do not store name-bearing plans, private paths, or credentials in Git.",
 }
@@ -173,6 +176,8 @@ def main() -> int:
     policy_path = project_dir / "file-organization.json"
     if not policy_path.exists():
         policy_path.write_text(json.dumps(FILE_ORGANIZATION_POLICY, indent=2) + "\n", encoding="utf-8")
+    for bucket in FILE_ORGANIZATION_POLICY["buckets"]:
+        (root / bucket).mkdir(exist_ok=True)
     update_agents(root / "AGENTS.md")
 
     state_path = project_dir / "state.json"

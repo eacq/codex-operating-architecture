@@ -46,7 +46,7 @@ if ($workflowProbe.knowledge_status -ne 'candidate-for-linked-knowledge' -or $wo
 $visualProbe = & (Join-Path $root 'skills/codex-image-workflow/scripts/New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized global iteration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
 if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Global iteration visual integration probe failed.' }
 $organizationProbe = & (Join-Path $root 'skills/codex-file-organization/scripts/Invoke-FileOrganizationLifecycle.ps1') -ProjectRoot $root -Phase global-iteration -Apply | ConvertFrom-Json
-if ($organizationProbe.result -ne 'passed' -or -not $organizationProbe.inventory.metadata_only -or $organizationProbe.apply_performed) { throw 'Global iteration file-organization and backup integration probe failed.' }
+if ($organizationProbe.result -ne 'passed' -or -not $organizationProbe.inventory.metadata_only) { throw 'Global iteration file-organization and backup integration probe failed.' }
 
 $record = [ordered]@{
     schema_version = 1
@@ -65,7 +65,7 @@ $record = [ordered]@{
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
         visual_decision = $visualProbe.action
-        file_organization = [ordered]@{ result = $organizationProbe.result; item_count = $organizationProbe.inventory.item_count; backup_readiness = $organizationProbe.backup_readiness; metadata_only = $organizationProbe.inventory.metadata_only }
+        file_organization = [ordered]@{ result = $organizationProbe.result; item_count = $organizationProbe.inventory.item_count; backup_readiness = $organizationProbe.backup_readiness; moved = $organizationProbe.organization.moved; metadata_only = $organizationProbe.inventory.metadata_only }
     }
     checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','file-organization and backup integration','robustness and economy review')
     result = 'passed'

@@ -4,7 +4,7 @@ English counterpart: [README.en.md](README.en.md)
 
 每次系统迭代都会同时检查两个 README、[更新日志 / Changelog](CHANGELOG.md) 和适用说明文件是否与实际实现一致。知识、经验或工作流存在三个及以上非线性关系且图片能明显提高理解时，优先使用经过脱敏的 GPT 生图；仅在生图不可用、结构简单或确定时使用 SVG/Mermaid 回退。
 
-全局文件整理采用“先预览、后批准”的元数据计划：`00-inbox`、`10-active`、`20-reference`、`30-output`、`40-archive` 和不进入 Git 的 `90-private-local`。它和工作流一样可基于证据进行保留、精炼、增加、合并、拆分、弃用或移除；每次全局迭代、项目初始化和实质性后续工作都会执行仅元数据的审查。实际移动或重命名必须先完成用户批准的计划，并在项目根目录外建立备份。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
+全局文件整理采用“先备份、再检查、后整理、再验证”的受控循环：每次全局迭代、项目初始化和实质性后续工作都会自动处理 `00-inbox` 中可安全分类的文件。每项移动或重命名前均在项目根目录外创建可校验备份，分析文本配置与引用、仅精确改写受支持引用并运行项目配置的验证命令；没有计划移动时不会产生无意义备份。源码、运行时、`.git`、`.codex`、凭据和未知入口不自动移动。分类法仍可按证据保留、精炼、增加、合并、拆分、弃用或移除。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
 
 ![隐私安全的文件整理示意图](docs/assets/file-organization-concept.png)
 

@@ -20,7 +20,7 @@ if ($workflowProbe.knowledge_status -ne 'candidate-for-linked-knowledge' -or $wo
 $visualProbe = & (Join-Path $root 'skills\codex-image-workflow\scripts\New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized integration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
 if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Knowledge/workflow visual-planning integration probe failed.' }
 $organizationProbe = & (Join-Path $root 'skills\codex-file-organization\scripts\Invoke-FileOrganizationLifecycle.ps1') -ProjectRoot $root -Phase global-iteration -Apply | ConvertFrom-Json
-if ($organizationProbe.result -ne 'passed' -or -not $organizationProbe.inventory.metadata_only -or $organizationProbe.apply_performed) { throw 'File organization integration probe failed.' }
+if ($organizationProbe.result -ne 'passed' -or -not $organizationProbe.inventory.metadata_only) { throw 'File organization integration probe failed.' }
 $sha = [Security.Cryptography.SHA256]::Create()
 $hash = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes(($paths | Sort-Object) -join "`n"))) -replace '-','').ToLowerInvariant()
 $sha.Dispose()

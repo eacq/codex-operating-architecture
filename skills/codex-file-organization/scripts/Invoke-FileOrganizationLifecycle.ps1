@@ -12,6 +12,7 @@ $project = Join-Path $root '.codex\project'
 $policyPath = Join-Path $project 'file-organization.json'
 $backupPath = Join-Path $project 'file-organization-backup.json'
 $planner = Join-Path $PSScriptRoot 'New-FileOrganizationPlan.ps1'
+$iterator = Join-Path $PSScriptRoot 'Invoke-FileOrganizationIteration.ps1'
 
 # The raw plan remains in memory. The lifecycle record intentionally preserves
 # aggregate counts only, so a global iteration cannot publish local names/paths.
@@ -24,11 +25,12 @@ foreach ($item in @($plan.items)) {
 }
 $policyReady = Test-Path -LiteralPath $policyPath
 $backupReady = Test-Path -LiteralPath $backupPath
+$iteration = if ($policyReady) { & $iterator -ProjectRoot $root -Phase $Phase -Apply:$Apply | ConvertFrom-Json } else { $null }
 $record = [ordered]@{
   schema_version = 1
   phase = $Phase
   policy = if ($policyReady) { 'present' } else { 'missing' }
-  backup_readiness = if ($backupReady) { 'recorded' } else { 'required-before-apply' }
+  backup_readiness = if ($iteration -and $iteration.backup -eq 'created') { 'created-before-change' } elseif ($backupReady) { 'recorded' } else { 'not-needed-without-planned-move' }
   inventory = [ordered]@{ item_count = @($plan.items).Count; bucket_counts = $counts; metadata_only = $true }
   integration = [ordered]@{
     workflow = 'organization decisions require workflow-learning review'
@@ -37,8 +39,9 @@ $record = [ordered]@{
     visual = 'GPT-first when nonlinear topology materially improves understanding'
     backup = 'explicit backup outside selected root before any apply'
   }
-  apply_performed = $false
-  result = if ($policyReady) { 'passed' } else { 'policy-bootstrap-required' }
+  organization = if ($iteration) { $iteration } else { [ordered]@{ result='policy-bootstrap-required' } }
+  apply_performed = [bool]($iteration -and $iteration.moved -gt 0)
+  result = if ($policyReady -and $iteration.result -eq 'passed') { 'passed' } else { 'policy-bootstrap-required' }
   reviewed_at = [DateTime]::UtcNow.ToString('o')
 }
 if ($Apply) {
