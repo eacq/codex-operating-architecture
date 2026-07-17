@@ -28,6 +28,8 @@ Every private or public experience-system release refreshes both README files, t
 - `public` is the reviewed public-release remote and is used only after explicit release authorization.
 - Public release checks reject private remote identities, local paths, credentials, tokens, and private-state paths before any public push.
 
+OfficeCLI installed locally is routed by `codex-office-cli` for ordinary `.docx`, `.xlsx`, and `.pptx` structured reads, edits, validation, render previews, and optional MCP use. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
+
 ## 为什么使用
 
 - 自动进入项目生命周期：首次使用项目时建立需求、工作流、经验、复盘和状态文件。

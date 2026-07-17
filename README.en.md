@@ -15,6 +15,7 @@ This repository is a verified, self-iterating operating architecture for local C
 - Experience, knowledge, and user study material are separated.
 - Secrets, raw session history, browser state, and local machine paths do not enter Git.
 - When `codebase-memory-mcp` is installed locally, repository orientation should start from graph indexing and structural search, then read only the source files needed to verify cited evidence. The global lifecycle entry proactively runs fast `index_repository` when MCP tools are exposed and the project is a source repository; if the current task does not expose MCP, record that gap and fall back to local file evidence. Graph search routes evidence; final claims still require source-file verification.
+- When OfficeCLI is installed locally, ordinary `.docx`, `.xlsx`, and `.pptx` automation routes through `codex-office-cli` for structured JSON reads, edits, validation, render previews, and optional MCP use. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
 - A verified iteration may use the private auto-Git gate only with scoped paths, private-origin confirmation, bilingual GitHub metadata, validation, and a semantic-version decision.
 - Public pushes, tags, and GitHub Releases are never automatic.
 - Public candidate snapshots are checked for private remote identities, private-state paths, local paths, and secret-shaped content before any public push.

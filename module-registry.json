@@ -8,13 +8,13 @@
   },
   "latest_review": {
     "date": "2026-07-18",
-    "decision": "allow-parent-skill-refinement-and-apply-to-self-evolution-controller",
+    "decision": "add-officecli-as-cross-format-office-automation-owner",
     "before_modules": 25,
-    "after_modules": 25,
+    "after_modules": 26,
     "before_words": 841,
     "after_words": 413,
     "reduction_percent": 50.9,
-    "reason": "Parent-skill refinement keeps a broad mother skill as the public routing surface while moving long verified gates into owner-internal subskills. codex-self-evolution now retains routing and safety boundaries while global iteration and publication gates carry detailed procedures."
+    "reason": "OfficeCLI adds a separate cross-format Office document automation and MCP surface for docx, xlsx, and pptx. Existing exact Word layout and runtime owners remain narrower."
   },
   "modules": [
     {"name": "codex-self-evolution", "status": "active", "role": "controller", "evidence": ["module routing and lifecycle decisions", "continuous diagnosis for complete global iteration failures", "parent-skill refinement keeps the mother controller concise while internal subskills own global iteration and publication gates", "MCP startup preflight warms codebase-memory-mcp at source-repository entry when exposed"]},
@@ -28,6 +28,7 @@
     {"name": "academic-figure-optimizer", "status": "active", "evidence": ["user-supplied v1.0.0 skill package passed package validation", "classified under Scientific Figure Workflow for data-faithful local rendering, arbitrary supported dimensions, and raster/vector export"]},
     {"name": "codex-file-organization", "status": "active", "evidence": ["global experience iteration organization audit", "project initialization and ongoing-work organization lifecycle", "backup-before-apply and privacy-preserving file taxonomy evolution", "continuous fail-repair-retest probe target"]},
     {"name": "codex-tool-installation", "status": "active", "evidence": ["skills, Obsidian, and Anki setup"]},
+    {"name": "codex-office-cli", "status": "active", "evidence": ["OfficeCLI v1.0.137 installed as a checksum-verified local single-binary tool", "smoke test verified docx, pptx, xlsx JSON operations", "MCP server command documented for Codex config"]},
     {"name": "codex-experience-capture", "status": "active", "evidence": ["session and project retrospectives", "local experience iteration and workflow-learning now packaged as owner-internal subskills"]},
     {"name": "codex-project-optimization", "status": "active", "evidence": ["project-local requirements and experience"]},
     {"name": "codex-architecture-iteration", "status": "active", "evidence": ["versioned architecture evolution"]},

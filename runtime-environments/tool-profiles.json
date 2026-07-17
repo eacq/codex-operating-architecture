@@ -56,6 +56,18 @@
         }
       ],
       "promotion_note": "Install only when the project needs this conversion depth; do not put heavy AI document stacks in the base by default."
+    },
+    {
+      "name": "officecli-agentic-office",
+      "purpose": "Use the external OfficeCLI single-binary tool for agentic Word, Excel, and PowerPoint creation, structured inspection, validation, rendering, and batch edits.",
+      "external_tools": [
+        {
+          "tool": "officecli",
+          "requirement": "OfficeCLI binary installed through codex-tool-installation",
+          "capability": "Create, read, modify, validate, render, merge, batch-edit, and expose MCP operations for .docx, .xlsx, and .pptx."
+        }
+      ],
+      "promotion_note": "Keep the binary in the local software install root; record version and SHA-256, and do not install OfficeCLI into a Python base environment."
     }
   ]
 }

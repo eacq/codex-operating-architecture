@@ -8,6 +8,7 @@
 - 私有或公开 release 都应刷新用户可见说明面：通过发布门禁自动更新两个 README、版本发布说明和视觉计划；当变更跨越重要实现、工作流、知识、安装或发布面时，生成可版本化的 Mermaid 高亮图。视觉内容默认使用脱敏仓库级标签，只有在另行证明有必要且隐私安全时才升级为 GPT 图片请求。
 - codebase-memory-mcp 适合作为仓库级取证路由层：先索引并读取 schema/architecture/search/trace 结果，再打开被引用的源文件核验。单次图谱搜索失败不能作为缺失证明；在本架构仓库中，`search_code` 能找到 `search_graph` BM25 未命中的发布流程文本，说明图谱工具应组合使用并记录覆盖限制。
 - 对 MCP 的“启动自动调用”应落在全局生命周期入口，而不是只依赖本地 config.toml。`codebase-memory-mcp` 在 Codex 配置中暴露工具，`codex-self-evolution` 在项目入口负责主动运行 fast `index_repository` 预热；若当前任务未暴露 MCP，则记录不可用并回退到本地文件取证。
+- OfficeCLI 这类单二进制 Office 工具适合受控安装到本地软件根并由全局 skill 路由，而不是运行上游自动安装器去改 PATH 和多个 agent 目录。普通 Word/Excel/PowerPoint 结构化读写、验证、渲染和 JSON 错误恢复走 `codex-office-cli`；锁模板 Word 分页/页眉/节结构仍由 `codex-exact-word-layout` 持有。
 
 - Every verified implementation iteration should regenerate a bilingual status document and verify its changelog, README, and version-note dependencies before private commit. Private skills, knowledge, and experience become public candidates only with two independent verified evidence sources, a sanitization audit, local-only preservation of original non-secret configuration, and a separate release decision.
 
