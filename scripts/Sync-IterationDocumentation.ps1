@@ -26,10 +26,10 @@ $english = @(
     '',
     "- Current architecture version: $version",
     "- Registered active modules: $(@($registry.modules).Count)",
-    '- Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note.',
+    '- Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note and an exact-version `CHANGELOG.md` section.',
     '- Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.'
 )
-$zhTemplate = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('IyMg5Lit5paHCgotIOW9k+WJjeaetuaehOeJiOacrO+8mnswfQotIOW3suazqOWGjOa0u+WKqOaooeWdl+aVsO+8mnsxfQotIOivtOaYjumXqOemge+8muavj+asoeW3sumqjOivgeeahOWunueOsOi/reS7o+mDveW/hemhu+abtOaWsOacrOeKtuaAgeaWh+S7tuOAgUNIQU5HRUxPRy5tZOOAgeS4reaWhyBSRUFETUUg5LiOIFJFQURNRS5lbi5tZO+8m+eJiOacrOWPmOWMlui/mOW/hemhu+abtOaWsOWvueW6lOeahOWPjOivreWPkeW4g+ivtOaYjuOAggotIOWFrOW8gOi9rOWMlumXqOemge+8muWFrOW8gCBza2lsbCDku4Xkv53nlZnpgJrnlKjlt6XkvZzmtYHjgILmjqXmlLbogIXnmoTmnI3liqHllYbjgIHot6/lvoTjgIHova/ku7blkozpnZ7np5jlr4blgY/lpb3lv4Xpobvkv53nlZnlnKjmnKzlnLDnp4HmnInphY3nva7kuK3jgII='))
+$zhTemplate = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('IyMg5Lit5paHCgotIOW9k+WJjeaetuaehOeJiOacrO+8mnswfQotIOW3suazqOWGjOa0u+WKqOaooeWdl+aVsO+8mnsxfQotIOivtOaYjumXqOemge+8muavj+asoeW3sumqjOivgeeahOWunueOsOi/reS7o+mDveW/hemhu+abtOaWsOacrOeKtuaAgeaWh+S7tuOAgUNIQU5HRUxPRy5tZOOAgeS4reaWhyBSRUFETUUg5LiOIFJFQURNRS5lbi5tZO+8m+eJiOacrOWPmOWMlui/mOW/hemhu+abtOaWsOWvueW6lOeahOWPjOivreWPkeW4g+ivtOaYju+8jOW5tuehruS/nSBDSEFOR0VMT0cubWQg5a2Y5Zyo6K+l57K+56Gu54mI5pys55qE5p2h55uu44CCCi0g5YWs5byA6L2s5YyW6Zeo56aB77ya5YWs5byAIHNraWxsIOS7heS/neeVmemAmueUqOW3peS9nOa1geOAguaOpeaUtuiAheeahOacjeWKoeWVhuOAgei3r+W+hOOAgei9r+S7tuWSjOmdnuenmOWvhuWBj+WlveW/hemhu+S/neeVmeWcqOacrOWcsOengeaciemFjee9ruS4reOAgg=='))
 $status = (@($english) + @('') + @($zhTemplate -f $version, @($registry.modules).Count)) -join [Environment]::NewLine
 if ($Apply) { Set-Content -LiteralPath $statusPath -Value $status -Encoding UTF8 }
 [ordered]@{

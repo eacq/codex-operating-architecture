@@ -43,6 +43,10 @@ Set-Location <architecture-root>
 
 Read [Verified Private Auto-Git](docs/AUTO-GIT-PRIVATE.md), [GitHub Publication Metadata](docs/GITHUB-PUBLISHING.md), and [Dual Repository Release Flow](docs/DUAL-REPOSITORY-RELEASE.md). These GitHub-facing guides contain Chinese counterparts in the same files.
 
+When `VERSION` changes, the metadata gate requires a matching section in
+`CHANGELOG.md` for that exact version, not only that the file was included in
+the staged paths.
+
 ## Iteration synchronization and public conversion
 
 Every verified implementation iteration generates [Iteration Status](docs/ITERATION-STATUS.md), which records version, module count, and the required documentation gate. Private skills, knowledge, and experience can become public candidates only after two independent verified evidence sources, sanitization, validation, and a separate release decision. See [Private-to-Public Skill Conversion](docs/PRIVATE-TO-PUBLIC-CONVERSION.md).

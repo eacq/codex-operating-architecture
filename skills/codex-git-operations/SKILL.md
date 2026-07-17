@@ -18,6 +18,8 @@ Inspect remotes and authentication separately. A missing remote is not an auth f
 
 Before every non-merge commit, update `CHANGELOG.md` and run
 `scripts/Test-GitPublicationMetadata.ps1 -RepositoryRoot <root> -Staged`.
+When auto-Git changes `VERSION`, generate or verify the matching changelog
+section with `skills/codex-git-operations/scripts/Update-ExperienceChangelog.ps1`.
 First run `scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -RepositoryRoot <root> -Staged -Apply`, which must prove exact pre-iteration rollback readiness and complete isolated organization, cleanup, replacement, post-replacement validation, and lifecycle writeback. Any failed attempt must restore/verify the prior tracked and untracked worktree, repair the owning error, discard stale staged proof, and rerun completely before Git resumes. Then run `scripts/Test-ExperienceIterationGate.ps1 -RepositoryRoot <root> -Staged -Apply`; the review gate reads that proof without mutating the active repository.
 
 ## Failure recovery

@@ -33,6 +33,8 @@ if ($Apply) {
             @("# v$($versionPlan.version)", '', '## English', '', "Verified automatic $ChangeClass iteration.", '', "## Chinese / $chineseHeading", '', $chineseBody) | Set-Content -LiteralPath $autoNotePath -Encoding UTF8
         }
         $selected = @($selected + 'VERSION' + $autoNote | Sort-Object -Unique)
+        & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $selected -ChangeClass $ChangeClass -Apply | Out-Null
+        $selected = @($selected + 'CHANGELOG.md' | Sort-Object -Unique)
     }
     $syncScript = Join-Path $root 'scripts\Sync-IterationDocumentation.ps1'
     & $syncScript -RepositoryRoot $root -ChangedPaths $selected -Apply | Out-Null

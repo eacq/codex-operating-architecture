@@ -61,6 +61,10 @@ if ($changed -contains 'VERSION') {
     if ($changed -notcontains $releaseNote) {
         throw "Version change requires staged release note: $releaseNote"
     }
+    $changelog = (& git -C $root show ':CHANGELOG.md') -join "`n"
+    if ($changelog -notmatch "(?m)^##\s+$([regex]::Escape($version))\b") {
+        throw "Version change requires a CHANGELOG.md section for $version."
+    }
 }
 
 Write-Output "Git publication metadata and bilingual GitHub documentation validated for $($changed.Count) changed paths."

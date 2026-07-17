@@ -1,4 +1,32 @@
-# Changelog / 更新日志
+﻿# Changelog / 更新日志
+
+## 1.0.5.1 - 2026-07-18
+
+### English
+
+- Record verified automatic Refinement iteration updates for the scoped changed paths.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+
+## 1.0.5.0 - 2026-07-18
+
+### English
+
+- Add parent-skill refinement packaging so broad owner skills can stay concise while detailed gates move into owner-internal subskills.
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+- Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Install the academic figure optimizer as a data-faithful figure-rendering skill with publication-format checks.
+- Add continuous diagnosis support for safe fail-repair-retest global iteration workflows.
+- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+- 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+- 安装并记录学术图形优化能力，保持数据、尺寸、格式与质量检查边界。
 
 ## 1.0.4.0 - 2026-07-16
 
@@ -87,3 +115,5 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
+

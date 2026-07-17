@@ -125,7 +125,7 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 
 - [更新日志 / Changelog](CHANGELOG.md) 中的用户可读变更说明。
 - 如改变安装、配置、工作流、安全边界或发行体验，同步 README 或对应 docs。
-- 如改变版本号，同步 `VERSION` 和 `docs/release-notes/v<version>.md`。
+- 如改变版本号，同步 `VERSION`、`docs/release-notes/v<version>.md`，并确保 `CHANGELOG.md` 存在该精确版本的条目。
 - 如变更复杂或影响多个模块，增加或更新一张图来解释问题、解决路径和新架构位置；先使用脱敏 GPT 生图，生图不可用时才使用 `docs/assets/` 中可版本化的 SVG/Mermaid 派生图，并同步图片溯源与 README。
 
 发布规则见 [GitHub Publication Metadata](docs/GITHUB-PUBLISHING.md)。

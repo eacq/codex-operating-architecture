@@ -7,8 +7,15 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
-$gitArgs = if ($Staged) { @('diff','--cached','--name-only') } else { @('diff','--name-only') }
-$paths = @(& git -C $root @gitArgs | Where-Object { $_ } | Sort-Object -Unique)
+$paths = if ($Staged) {
+    @(& git -C $root diff --cached --name-only)
+} else {
+    @(
+        & git -C $root diff --name-only
+        & git -C $root ls-files --others --exclude-standard
+    )
+}
+$paths = @($paths | Where-Object { $_ } | Sort-Object -Unique)
 if ($paths.Count -eq 0) { throw 'A complete global iteration requires changed paths to assess.' }
 
 function Get-Sha256([string[]]$Values) {
