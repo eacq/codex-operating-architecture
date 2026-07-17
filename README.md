@@ -14,6 +14,8 @@ English counterpart: [README.en.md](README.en.md)
 
 每次已验证的实现迭代都会生成 [Iteration Status](docs/ITERATION-STATUS.md)，记录版本、模块数量和说明门禁。私有 skill、知识与经验只有在具备两个独立已验证证据、完成脱敏和验证后，才能成为公开候选；公开发布仍须单独决策。详见 [Private-to-Public Skill Conversion](docs/PRIVATE-TO-PUBLIC-CONVERSION.md)。
 
+明确的“同步经验系统”请求走私有发布门禁，不只是提交和推送：`Invoke-ExperienceRelease.ps1 -Mode Private` 会在私有 `origin` 仓库发布 GitHub Release，Git 标签为 `private-vP.R`，Release 标题为 `vP.R`。
+
 面向本地 Codex 的可迭代经验与知识架构：用 1 个总控 skill 调度 22 个功能模块 skill，让项目启动、需求整理、执行验证、经验沉淀、知识图谱、图片工作流和 Git 发布形成闭环。
 
 ![Codex operating architecture](docs/assets/readme-architecture.svg)

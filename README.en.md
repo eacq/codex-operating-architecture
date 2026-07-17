@@ -41,6 +41,11 @@ Set-Location <architecture-root>
 .\skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1 -Paths <iteration-paths>
 ```
 
+An explicit "sync experience system" request uses the private release gate,
+not only a commit and push: `Invoke-ExperienceRelease.ps1 -Mode Private`
+publishes a GitHub Release in the private `origin` repository with a
+`private-vP.R` tag and a `vP.R` release title.
+
 Read [Verified Private Auto-Git](docs/AUTO-GIT-PRIVATE.md), [GitHub Publication Metadata](docs/GITHUB-PUBLISHING.md), and [Dual Repository Release Flow](docs/DUAL-REPOSITORY-RELEASE.md). These GitHub-facing guides contain Chinese counterparts in the same files.
 
 When `VERSION` changes, the metadata gate requires a matching section in
