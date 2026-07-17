@@ -50,6 +50,18 @@ try {
     if ($entries[0].origin_project -ne 'fixture-project' -or $entries[0].experience_system_causality -ne 'partial') {
         throw 'Global inbox entry did not preserve routing metadata.'
     }
+    $reportMetadata = 'fixture-report.json'
+    @(
+        @{ report_metadata = $reportMetadata; recorded_at = '2026-01-01T00:00:00Z'; severity = 'high'; status = 'observed'; experience_system_causality = 'verified' },
+        @{ report_metadata = $reportMetadata; recorded_at = '2026-01-01T00:01:00Z'; severity = 'high'; status = 'fixed'; experience_system_causality = 'verified' }
+    ) | ForEach-Object { ($_ | ConvertTo-Json -Compress) | Add-Content -LiteralPath $inbox -Encoding UTF8 }
+    $latest = @(Get-Content -LiteralPath $inbox -Encoding UTF8 |
+        Where-Object { $_.Trim() } |
+        ForEach-Object { $_ | ConvertFrom-Json } |
+        Where-Object { $_.report_metadata -eq $reportMetadata } |
+        Sort-Object -Property recorded_at |
+        Select-Object -Last 1)
+    if ($latest[0].status -ne 'fixed') { throw 'Append-only inbox latest status was not selected.' }
     Write-Host 'Global error-feedback inbox test passed.'
 }
 finally {

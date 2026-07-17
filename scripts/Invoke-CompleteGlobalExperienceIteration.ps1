@@ -48,9 +48,18 @@ if (Test-Path -LiteralPath $incomingFeedbackPath) {
         Where-Object { $_.Trim() } |
         ForEach-Object { $_ | ConvertFrom-Json })
 }
+$latestIncomingFeedback = @()
+$incomingWithKey = @($incomingFeedback | Where-Object { $_.report_metadata })
+$incomingWithoutKey = @($incomingFeedback | Where-Object { -not $_.report_metadata })
+if ($incomingWithKey.Count -gt 0) {
+    $latestIncomingFeedback = @($incomingWithKey |
+        Group-Object -Property report_metadata |
+        ForEach-Object { $_.Group | Sort-Object -Property recorded_at | Select-Object -Last 1 })
+}
+$incomingFeedbackForBlocking = @($incomingWithoutKey + $latestIncomingFeedback)
 $blockingErrors = @($errorReports | Where-Object { $_.severity -in @('high','critical') -and $_.status -notin @('fixed','verified') })
 $unresolvedGitErrors = @($errorReports | Where-Object { $_.module -eq 'codex-git-operations' -and $_.status -notin @('fixed','verified') })
-$blockingIncomingFeedback = @($incomingFeedback | Where-Object {
+$blockingIncomingFeedback = @($incomingFeedbackForBlocking | Where-Object {
     $_.severity -in @('high','critical') -and
     $_.status -notin @('fixed','verified') -and
     $_.experience_system_causality -in @('suspected','partial','primary','verified')

@@ -1,5 +1,19 @@
 ﻿# Changelog / 更新日志
 
+## 1.2.0.0 - 2026-07-18
+
+### English
+
+- Publish the verified Codebase Graph Evidence workflow and `codex-information-gathering` subskill through the private experience-system release channel.
+- Fix private release sync so release-scoped context paths can remain broad while the commit step receives only actually changed or untracked files.
+- Fix the global incoming error-feedback gate to evaluate the latest append-only status per report instead of blocking on stale earlier entries.
+
+### Chinese / 中文
+
+- 通过 private 经验系统发布通道同步已验证的 Codebase Graph Evidence 工作流与 `codex-information-gathering` 子 skill。
+- 修复 private release 同步：发布范围路径可以保持完整，提交步骤只接收实际变化或未跟踪文件。
+- 修复全局 incoming error-feedback 门禁：按每个报告的最新 append-only 状态判断，避免被旧状态误阻塞。
+
 ## 1.1.2.0 - 2026-07-18
 
 ### English
@@ -8,7 +22,6 @@
 - Add an owner-internal `codex-information-gathering` subskill for codebase graph evidence.
 - Add a Codebase Graph Evidence workflow and update Codebase Memory MCP knowledge with observed strengths and limits.
 - Record that graph evidence routes repository investigation but final behavior or absence claims still require source-file verification.
-
 ### Chinese / 中文
 
 - 在 Codex 内验证 `codebase-memory-mcp` MCP 工具，包括索引、schema、架构概览、图谱搜索、代码搜索、调用追踪、片段读取和 Cypher 查询路径。
@@ -157,6 +170,8 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
+
 
 
 

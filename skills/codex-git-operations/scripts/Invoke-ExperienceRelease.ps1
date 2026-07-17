@@ -52,11 +52,17 @@ if (-not (Test-Path -LiteralPath $releaseNotePath)) {
 $allPaths = @($Paths + 'VERSION' + $releaseNote + 'docs/ITERATION-STATUS.md' + 'CHANGELOG.md' | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null
-$allChanged = @(& git -C $root diff --name-only; & git -C $root diff --cached --name-only; & git -C $root ls-files --others --exclude-standard | Sort-Object -Unique)
+$allChanged = @(
+    & git -C $root diff --name-only
+    & git -C $root diff --cached --name-only
+    & git -C $root ls-files --others --exclude-standard
+) | Sort-Object -Unique
 $unselected = @($allChanged | Where-Object { $_ -notin $allPaths })
 if ($unselected.Count -gt 0) { throw "Release retry path set is incomplete after repair; recompute it and include: $($unselected -join ', ')" }
+$commitPaths = @($allChanged | Where-Object { $_ -in $allPaths })
+if ($commitPaths.Count -eq 0) { throw 'Release produced no changed or untracked paths to commit.' }
 $commitScript = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1'
-& $commitScript -RepositoryRoot $root -Paths $allPaths -Apply -PreserveVersion -Message "release: experience system $($versionPlan.version)"
+& $commitScript -RepositoryRoot $root -Paths $commitPaths -Apply -PreserveVersion -Message "release: experience system $($versionPlan.version)"
 if ($LASTEXITCODE -ne 0) { throw 'Private release commit/push failed.' }
 if ($Mode -eq 'Private') {
     & git -C $root tag -a $releaseTag -m $versionPlan.release_tag
