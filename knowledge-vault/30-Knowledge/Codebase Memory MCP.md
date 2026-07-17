@@ -15,9 +15,9 @@ repository orientation. It builds a persistent graph of files, sections,
 functions, classes, routes, imports, calls, and related structural entities, then
 serves graph search and architecture queries to MCP clients.
 
-It connects [[Experience and Knowledge Architecture]],
-[[Integrated Experience Feedback Loop]], and [[Verified Experience Promotion]]
-through evidence-first repository learning.
+It connects [[Codebase Graph Evidence Workflow]],
+[[Experience and Knowledge Architecture]], [[Integrated Experience Feedback Loop]],
+and [[Verified Experience Promotion]] through evidence-first repository learning.
 
 ## Installed role
 
@@ -46,6 +46,16 @@ installed as a static binary, and run with a local cache. `F:\codex` was indexed
 as `codex-operating-architecture` in fast mode, producing 1145 nodes and 1156
 edges. `get_architecture` and `search_graph` returned architecture and
 experience-system nodes tied to the current Git head.
+
+Follow-up MCP validation from inside Codex confirmed that the configured MCP
+server exposes `index_repository`, `get_graph_schema`, `get_architecture`,
+`search_graph`, `search_code`, `trace_path`, `query_graph`, and
+`get_code_snippet`. The refreshed architecture index at commit
+`e9090e4edb57bcbc1f7bfc38b17849fcde2f408a` produced 1152 nodes and 1162 edges.
+`search_code` found release workflow policy text that BM25 `search_graph` did
+not, while `trace_path` and `get_code_snippet` worked for indexed PowerShell
+functions. Routine repository learning should therefore combine graph tools with
+source-file reads instead of treating a single graph search mode as exhaustive.
 
 ## Boundary
 

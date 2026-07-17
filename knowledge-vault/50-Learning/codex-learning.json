@@ -211,6 +211,14 @@
       "verified": true
     },
     {
+      "id": "workflow-codebase-graph-evidence",
+      "name": "Codebase Graph Evidence Workflow",
+      "path": "20-Workflows\\Codebase Graph Evidence Workflow.md",
+      "summary": "For repository-scale learning, use codebase-memory-mcp to route evidence first, then verify every claim against cited source files before editing or reporting.",
+      "source": "codebase-memory-mcp-validation-2026-07-18",
+      "verified": true
+    },
+    {
       "id": "workflow-exact-word-layout",
       "name": "Exact Word Layout Workflow",
       "path": "20-Workflows\\Exact Word Layout Workflow.md",

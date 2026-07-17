@@ -5,6 +5,7 @@
 - GitHub 文档的双语门禁在 Windows 上不得依赖控制台代码页或乱码文本匹配；应使用 Unicode 码点构造中文标记并检查实际暂存内容。该规则经完整 `v1.0` 私有同步与公开发布验证。
 - 已验证的工作流变更应生成带哈希、关联 owner 与证据计数的学习记录；该记录同时进入知识和经验候选队列，经过证据门槛后才允许由架构迭代决定精炼、合并、拆分、增加或废弃，不能将工作流原文无条件提升为全局规则。
 - 经验版本采用 `P.R.A.B` 四段格式：`P` 仅由公开仓库 release 决定，`R` 仅由私有仓库 release 决定，`A` 由经验系统的自动功能提交递增，`B` 由自动修复提交递增。只有明确的“同步经验系统”才创建私有 release；只有明确的“发布经验系统”才创建公开 release。
+- codebase-memory-mcp 适合作为仓库级取证路由层：先索引并读取 schema/architecture/search/trace 结果，再打开被引用的源文件核验。单次图谱搜索失败不能作为缺失证明；在本架构仓库中，`search_code` 能找到 `search_graph` BM25 未命中的发布流程文本，说明图谱工具应组合使用并记录覆盖限制。
 
 - Every verified implementation iteration should regenerate a bilingual status document and verify its changelog, README, and version-note dependencies before private commit. Private skills, knowledge, and experience become public candidates only with two independent verified evidence sources, a sanitization audit, local-only preservation of original non-secret configuration, and a separate release decision.
 

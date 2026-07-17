@@ -19,3 +19,6 @@ description: Gather and rank evidence from local files, repositories, Codex memo
 7. Record source paths, commands, dates, and confidence.
 
 Use `rg` for text and structured parsers for structured data. Stop gathering when success criteria can be decided reliably. Never expose credentials while searching.
+
+For repository-scale graph evidence with `codebase-memory-mcp`, read
+[subskills/codebase-graph-evidence/SKILL.md](subskills/codebase-graph-evidence/SKILL.md).

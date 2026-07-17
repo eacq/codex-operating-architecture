@@ -1,5 +1,21 @@
 ﻿# Changelog / 更新日志
 
+## 1.1.2.0 - 2026-07-18
+
+### English
+
+- Validate live `codebase-memory-mcp` MCP tools inside Codex, including indexing, schema, architecture, graph search, code search, trace, snippet, and Cypher query paths.
+- Add an owner-internal `codex-information-gathering` subskill for codebase graph evidence.
+- Add a Codebase Graph Evidence workflow and update Codebase Memory MCP knowledge with observed strengths and limits.
+- Record that graph evidence routes repository investigation but final behavior or absence claims still require source-file verification.
+
+### Chinese / 中文
+
+- 在 Codex 内验证 `codebase-memory-mcp` MCP 工具，包括索引、schema、架构概览、图谱搜索、代码搜索、调用追踪、片段读取和 Cypher 查询路径。
+- 为 `codex-information-gathering` 新增代码图谱取证 owner 内部子 skill。
+- 新增 Codebase Graph Evidence 工作流，并更新 Codebase Memory MCP 知识笔记中的工具优势与限制。
+- 记录图谱证据用于路由仓库调查，最终行为或缺失结论仍必须核验源文件。
+
 ## 1.1.1.0 - 2026-07-18
 
 ### English
@@ -141,6 +157,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

@@ -6,6 +6,7 @@ Codex Knowledge System
 			-> Academic Writing and Citation Workflow
 			-> Exact Word Layout Workflow
 		Codebase Memory MCP [Codex]
+			-> Codebase Graph Evidence Workflow
 			-> Experience and Knowledge Architecture
 			-> Integrated Experience Feedback Loop
 			-> Knowledge System Module
@@ -177,6 +178,11 @@ Codex Knowledge System
 			-> Paper Reading and Evidence Workflow
 			-> Scientific Figure Workflow
 			-> Zotero Reference Workflow
+		Codebase Graph Evidence Workflow [Codex]
+			-> Codebase Memory MCP
+			-> Experience and Knowledge Architecture
+			-> Project Knowledge Boundary
+			-> Verified Experience Promotion
 		Exact Word Layout Workflow [Codex]
 			-> Exact Word Layout Module
 			-> Verified Experience Promotion

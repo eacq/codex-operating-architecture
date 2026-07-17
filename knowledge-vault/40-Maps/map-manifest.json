@@ -214,6 +214,21 @@
       "codex_learning": false
     },
     {
+      "id": "workflow-codebase-graph-evidence",
+      "name": "Codebase Graph Evidence Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Codebase Graph Evidence Workflow.md",
+      "links": [
+        "Codebase Memory MCP",
+        "Experience and Knowledge Architecture",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "workflow-exact-word-layout",
       "name": "Exact Word Layout Workflow",
       "type": "workflow",
@@ -394,6 +409,7 @@
       "type": "concept",
       "path": "30-Knowledge/Codebase Memory MCP.md",
       "links": [
+        "Codebase Graph Evidence Workflow",
         "Experience and Knowledge Architecture",
         "Integrated Experience Feedback Loop",
         "Knowledge System Module",

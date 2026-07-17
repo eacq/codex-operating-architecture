@@ -48,6 +48,7 @@ mindmap
       Academic Research Workflow Codex
       Academic Text Style Workflow Codex
       Academic Writing and Citation Workflow
+      Codebase Graph Evidence Workflow Codex
       Exact Word Layout Workflow Codex
       Image Hosting and Cleanup Workflow
       Integrated Experience Feedback Loop Codex
