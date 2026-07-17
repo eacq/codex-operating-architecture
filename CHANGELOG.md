@@ -4,13 +4,15 @@
 
 ### English
 
-- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
-- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+- Add an owner-internal MCP startup preflight under `codex-self-evolution`.
+- Require source-repository project entry to proactively run fast `index_repository` when `codebase-memory-mcp` tools are exposed.
+- Update global AGENTS guidance, README files, MCP graph evidence workflow, Codebase Memory MCP knowledge, and the experience ledger with the startup preflight rule and fallback boundary.
 
 ### Chinese / 中文
 
-- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
-- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+- 在 `codex-self-evolution` 下新增 owner 内部 MCP 启动预热子 skill。
+- 要求源码仓库项目入口在 `codebase-memory-mcp` 工具已暴露时主动运行 fast `index_repository`。
+- 同步更新全局 AGENTS、双语 README、MCP 图谱取证工作流、Codebase Memory MCP 知识和经验账本，记录启动预热规则与不可用时的回退边界。
 
 ## 1.2.0.0 - 2026-07-18
 
