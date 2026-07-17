@@ -389,6 +389,21 @@
       "codex_learning": true
     },
     {
+      "id": "concept-codebase-memory-mcp",
+      "name": "Codebase Memory MCP",
+      "type": "concept",
+      "path": "30-Knowledge/Codebase Memory MCP.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "concept-experience-knowledge-architecture",
       "name": "Experience and Knowledge Architecture",
       "type": "concept",

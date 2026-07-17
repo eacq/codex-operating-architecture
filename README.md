@@ -30,6 +30,7 @@ English counterpart: [README.en.md](README.en.md)
 
 - 自动进入项目生命周期：首次使用项目时建立需求、工作流、经验、复盘和状态文件。
 - 经验不再只留在聊天里：验证后的规则进入 skill、经验账本或 Obsidian 知识库。
+- 代码库学习优先使用结构化证据：安装并配置 `codebase-memory-mcp` 后，Codex 可先索引项目图谱，再按图谱结果读取必要源文件。
 - Codex 学习和用户 Anki 分开：Codex 自己要记的规则不强迫用户背。
 - 可移植发行：Git 中只保留通用流程，provider、路径、账号、软件选择和凭据留在本地 profile。
 - 图片和导图可追溯：Mermaid/MindMaster/SVG/图床图片都是派生视图，Markdown 和 manifest 保持权威。

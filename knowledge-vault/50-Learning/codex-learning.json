@@ -11,6 +11,14 @@
       "verified": true
     },
     {
+      "id": "concept-codebase-memory-mcp",
+      "name": "Codebase Memory MCP",
+      "path": "30-Knowledge\\Codebase Memory MCP.md",
+      "summary": "Use codebase-memory-mcp as a local structural codebase index before broad repository reading; verify graph results against source files before making behavior claims.",
+      "source": "codebase-memory-mcp-v0.9.0-install-2026-07-18",
+      "verified": true
+    },
+    {
       "id": "concept-experience-error-feedback",
       "name": "Experience System Error Feedback",
       "path": "30-Knowledge\\Experience System Error Feedback.md",

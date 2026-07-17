@@ -5,6 +5,11 @@ Codex Knowledge System
 			-> Academic Text Style Workflow
 			-> Academic Writing and Citation Workflow
 			-> Exact Word Layout Workflow
+		Codebase Memory MCP [Codex]
+			-> Experience and Knowledge Architecture
+			-> Integrated Experience Feedback Loop
+			-> Knowledge System Module
+			-> Verified Experience Promotion
 		Experience Knowledge Subskill Refinement [Codex]
 			-> Experience and Knowledge Architecture
 			-> Integrated Experience Feedback Loop

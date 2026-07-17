@@ -320,6 +320,19 @@
       ]
     },
     {
+      "name": "Codebase Memory MCP",
+      "path": "30-Knowledge\\Codebase Memory MCP.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
       "name": "Experience and Knowledge Architecture",
       "path": "30-Knowledge\\Experience and Knowledge Architecture.md",
       "type": "concept",
@@ -659,6 +672,22 @@
     [
       "Academic Writing and Citation Workflow",
       "Zotero Reference Workflow"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Knowledge System Module"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Verified Experience Promotion"
     ],
     [
       "Exact Word Layout Module",

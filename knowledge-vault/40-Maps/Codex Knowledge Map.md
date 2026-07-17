@@ -7,6 +7,7 @@ mindmap
   root((Codex Knowledge System))
     concept
       Academic Manuscript Revision Boundaries Codex
+      Codebase Memory MCP Codex
       Experience Knowledge Subskill Refinement Codex
       Experience System Error Feedback Codex
       Experience and Knowledge Architecture Codex

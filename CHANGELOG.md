@@ -1,5 +1,21 @@
 ﻿# Changelog / 更新日志
 
+## 1.1.1.0 - 2026-07-18
+
+### English
+
+- Install `codebase-memory-mcp` as a local MCP-backed codebase memory engine for graph-first repository orientation.
+- Add `codex-information-gathering` guidance to index repositories, query graph evidence, and verify cited source files before behavior claims.
+- Record a verified Codebase Memory MCP knowledge note and local installation evidence, including checksum, cache, and privacy boundaries.
+- Verify the architecture repository index in fast mode with 1145 nodes and 1156 edges at the current private-release head.
+
+### Chinese / 中文
+
+- 安装 `codebase-memory-mcp` 作为本地 MCP 代码库记忆引擎，用于图谱优先的仓库理解。
+- 为 `codex-information-gathering` 增加先索引、再查询图谱证据、最后核验源文件的取证规则。
+- 记录已验证的 Codebase Memory MCP 知识笔记和本机安装证据，包括校验和、缓存与隐私边界。
+- 使用 fast 模式验证规范架构仓库索引，在当前私有发布 head 上得到 1145 个节点和 1156 条边。
+
 ## 1.1.0.0 - 2026-07-18
 
 ### English
@@ -125,6 +141,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

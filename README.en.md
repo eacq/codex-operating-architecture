@@ -14,6 +14,7 @@ This repository is a verified, self-iterating operating architecture for local C
 - Project facts remain project-local; only verified cross-project rules are promoted.
 - Experience, knowledge, and user study material are separated.
 - Secrets, raw session history, browser state, and local machine paths do not enter Git.
+- When `codebase-memory-mcp` is installed locally, repository orientation should start from graph indexing and structural search, then read only the source files needed to verify cited evidence.
 - A verified iteration may use the private auto-Git gate only with scoped paths, private-origin confirmation, bilingual GitHub metadata, validation, and a semantic-version decision.
 - Public pushes, tags, and GitHub Releases are never automatic.
 - Public candidate snapshots are checked for private remote identities, private-state paths, local paths, and secret-shaped content before any public push.

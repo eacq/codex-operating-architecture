@@ -18,7 +18,7 @@
   },
   "modules": [
     {"name": "codex-self-evolution", "status": "active", "role": "controller", "evidence": ["module routing and lifecycle decisions", "continuous diagnosis for complete global iteration failures", "parent-skill refinement keeps the mother controller concise while internal subskills own global iteration and publication gates"]},
-    {"name": "codex-information-gathering", "status": "active", "evidence": ["repository and history research"]},
+    {"name": "codex-information-gathering", "status": "active", "evidence": ["repository and history research", "codebase-memory-mcp graph indexing and structural search verified on the architecture repository"]},
     {"name": "codex-requirement-authoring", "status": "active", "evidence": ["project requirements lifecycle"]},
     {"name": "codex-task-execution", "status": "active", "evidence": ["implementation and verification"]},
     {"name": "codex-workflow-design", "status": "active", "evidence": ["repeatable project workflows", "workflow-to-knowledge and experience routing"]},
