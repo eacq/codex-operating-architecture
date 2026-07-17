@@ -22,6 +22,14 @@ Create a top-level skill only when the trigger, workflow, maintained knowledge,
 artifacts, and safety boundary do not fit an existing owner. Otherwise add a
 subskill-style contract to the owner and route from the parent `SKILL.md`.
 
+External skills may be installed, but never by raw copying alone. First classify
+the candidate as: learn-only, owner-reference, owner-internal subskill,
+project-local skill, or global top-level skill. Install only when the candidate
+has clear necessity, reusable value, compatibility with this architecture's
+privacy and verification rules, and a validation path. Adapt names, triggers,
+profiles, safety boundaries, and docs to the local owner model instead of
+preserving upstream structure merely because it exists.
+
 Edit only `$ARCHITECTURE_ROOT\skills`. Global paths are junction interfaces installed by `install-global.ps1`; use copy mode only as a recorded filesystem exception.
 
 Read [references/subskill-contract.md](references/subskill-contract.md) before

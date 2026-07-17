@@ -64,9 +64,27 @@ returned status `indexed` with 1165 nodes and 1173 edges. This verifies the MCP
 server is exposed and callable at task time. The lifecycle controller now
 requires this preflight at source-repository entry when the tool is available.
 
+On 2026-07-18, `DeusData/codebase-memory-mcp` was re-reviewed from upstream
+source at commit `e678b2b6acb02bc1ab84a854f2df0e1d092f2cc0`. A fast MCP index of
+the upstream repository as `deusdata-codebase-memory-mcp` produced 14485 nodes
+and 67778 edges, with graph schema labels dominated by functions, files,
+modules, variables, fields, sections, routes, classes, folders, interfaces, and
+methods. Source and test searches confirmed implementation paths for
+`CBM_ALLOWED_ROOT`, `.codebase-memory/graph.db.zst`, `auto_index`, and
+`CBM_DIAGNOSTICS`.
+
+This changes the local operating emphasis from "use a graph if present" to
+"index first, inspect schema/architecture, record coverage limits, then verify
+against source." Security and portability guidance should mention allowed-root
+configuration in less-trusted contexts, keep graph databases local by default,
+and treat diagnostics as user-controlled support artifacts rather than durable
+knowledge.
+
 ## Boundary
 
 The tool reads local source and writes local index/config files. Do not commit
 its cache databases, generated graph artifacts, local MCP paths, or machine
 installation records. Restart Codex tasks after MCP config changes so the server
-is loaded by the client.
+is loaded by the client. If a project explicitly wants to share a graph artifact,
+require a separate privacy review and reproducibility reason before committing
+`.codebase-memory/graph.db.zst`.

@@ -25,5 +25,5 @@ owner-internal subskills.
 Promote a subskill only when independent evidence shows a separate trigger,
 artifact set, maintained knowledge base, and safety boundary.
 
-Links: [[Subskill Packaging Boundary]], [[Experience and Knowledge Architecture]],
+Links: [[Global Experience System]], [[Subskill Packaging Boundary]], [[Experience and Knowledge Architecture]],
 [[Knowledge System Module]], [[Integrated Experience Feedback Loop]].

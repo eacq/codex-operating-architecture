@@ -11,6 +11,13 @@ For a whole local experience pass, read
 [subskills/local-experience-iteration/SKILL.md](subskills/local-experience-iteration/SKILL.md).
 It owns source order, evidence thresholds, catalog refresh, and classification.
 
+When the user names the "global experience system" or asks to refine,
+merge, split, or encapsulate experience, skill, knowledge, and workflow
+learning together, read
+[subskills/global-experience-system/SKILL.md](subskills/global-experience-system/SKILL.md).
+It owns the system boundary and handoff order without replacing the
+specialist owners.
+
 For workflow-derived learning, read
 [subskills/workflow-learning/SKILL.md](subskills/workflow-learning/SKILL.md).
 It owns `workflow-learning.json` consumption and the handoff to architecture

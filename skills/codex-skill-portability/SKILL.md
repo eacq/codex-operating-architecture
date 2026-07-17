@@ -39,6 +39,25 @@ paths into a shared skill or Git history.
 5. Validate the skill, profile template, audit output, and a clean first-use
    run. Promote only repeatable portability lessons to experience.
 
+## Compatibility installation
+
+When importing or learning from an external skill, do not preserve its upstream
+shape by default. Decide the compatible local form first:
+
+- `learn-only`: record the pattern as knowledge or candidate experience.
+- `owner-reference`: add a concise rule or reference under an existing owner.
+- `owner-subskill`: package a distinct mode under the existing owner when it
+  shares artifacts and safety boundaries.
+- `project-local skill`: keep project-specific workflow in that project.
+- `global skill`: use only when no current owner fits and the registry evidence
+  threshold is met.
+
+Every installed form must remove or isolate private paths, provider assumptions,
+account choices, credentials, install locations, and upstream tool-specific
+commands that do not apply locally. The result does not need to be the upstream
+"best" shape; it must be the best fit for this architecture and the user's
+actual workflow.
+
 ## Private-to-public conversion
 
 Use `scripts/Convert-PrivateSkillToPublic.ps1` only when the candidate has two independent verified use cases and no unresolved private-only purpose. Its default mode creates a read-only conversion plan. With `-Apply`, it creates a sanitized public candidate, re-audits it, writes a generic public profile template, and copies the original non-secret provider/software preferences only to `~/.codex/private-skill-config/converted-skills/`. Never copy secrets, cookies, account identity, browser state, raw history, or private evidence. The global controller must route the result through documentation synchronization, knowledge/experience review, validation, and the private auto-Git gate before a later explicit public release.

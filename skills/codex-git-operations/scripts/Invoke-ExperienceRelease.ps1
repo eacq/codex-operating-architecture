@@ -50,17 +50,15 @@ if (-not (Test-Path -LiteralPath $releaseNotePath)) {
     @("# v$($versionPlan.version) / $($versionPlan.release_tag)", '', '## English', '', "Verified $Mode experience-system release.", '', "## Chinese / $chineseHeading", '', $chineseBody) | Set-Content -LiteralPath $releaseNotePath -Encoding UTF8
 }
 $releaseReadmeVisuals = & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1') -RepositoryRoot $root -Version $versionPlan.version -Mode $Mode -ReleaseNote $releaseNote -ChangedPaths $Paths -Apply | ConvertFrom-Json
-$allPaths = @($Paths + @($releaseReadmeVisuals.generated_paths) + 'VERSION' + $releaseNote + 'docs/ITERATION-STATUS.md' + 'CHANGELOG.md' | Sort-Object -Unique)
+$generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $releaseNote, 'docs/ITERATION-STATUS.md', 'CHANGELOG.md')
+$allPaths = @($Paths + $generatedPaths | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null
-$allChanged = @(
-    & git -C $root diff --name-only
-    & git -C $root diff --cached --name-only
-    & git -C $root ls-files --others --exclude-standard
-) | Sort-Object -Unique
-$unselected = @($allChanged | Where-Object { $_ -notin $allPaths })
+$pathSet = & (Join-Path $root 'skills\codex-git-operations\scripts\Resolve-ExperienceReleasePathSet.ps1') -RepositoryRoot $root -Paths $Paths -GeneratedPaths $generatedPaths | ConvertFrom-Json
+$allPaths = @($pathSet.all_paths)
+$unselected = @($pathSet.unselected_paths)
 if ($unselected.Count -gt 0) { throw "Release retry path set is incomplete after repair; recompute it and include: $($unselected -join ', ')" }
-$commitPaths = @($allChanged | Where-Object { $_ -in $allPaths })
+$commitPaths = @($pathSet.commit_paths)
 if ($commitPaths.Count -eq 0) { throw 'Release produced no changed or untracked paths to commit.' }
 $commitScript = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1'
 & $commitScript -RepositoryRoot $root -Paths $commitPaths -Apply -PreserveVersion -Message "release: experience system $($versionPlan.version)"

@@ -30,7 +30,12 @@ If no condition holds, record no learning action and continue the task. Learning
 1. State the gap, currency risk, evaluation rubric, and source class before browsing. Prefer primary documentation, standards, original research, and maintained upstream repositories.
 2. Compare at least one authoritative source with the current local contract. Record date, URL/source, what is adopted, rejected, or deferred, and why.
 3. Inherit principles critically: reject vendor-specific lock-in, unsafe autonomy, untestable claims, and guidance that conflicts with local privacy, confirmation, or evidence rules.
-4. Convert an adopted idea into a small reversible change plus an acceptance test. A source alone is a candidate, never a verified experience.
+4. Decide whether to install anything. Learning does not forbid installation,
+   but an external skill must pass a necessity, value, compatibility, and
+   verification gate before installation. Prefer adapting the useful behavior
+   into an existing owner, subskill, reference, or local profile; install only
+   when that form is still the best fit for the user's workflow.
+5. Convert an adopted idea into a small reversible change plus an acceptance test. A source alone is a candidate, never a verified experience.
 
 ## 4. Architecture, knowledge, and experience handoff
 

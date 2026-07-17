@@ -1,14 +1,41 @@
 ﻿# Changelog / 更新日志
 
+## 1.4.0.0 - 2026-07-18
+
+### English
+
+- Add parent-skill refinement packaging so broad owner skills can stay concise while detailed gates move into owner-internal subskills.
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+- Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+- 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+
 ## 1.3.1.0 - 2026-07-18
 
 ### English
 
 - Record verified automatic Feature iteration updates for the scoped changed paths.
+- Define the global experience system as a coordinated loop across self-evolution, experience capture, error feedback, knowledge, and architecture iteration, packaged as an owner-internal experience-capture mode rather than a new top-level skill.
+- Learn from `mattpocock/skills` and refine `codex-skill-packaging` with invocation-load, information-hierarchy, completion-criterion, and pruning rules without importing the upstream skill set.
+- Clarify external skill learning: installation is allowed when necessary and valuable, but must be adapted through the experience system's compatibility, privacy, profile, and validation gates instead of raw copying.
+- Relearn `mattpocock/skills` together with `DeusData/codebase-memory-mcp`: external skill repositories are now treated as graph-indexed source evidence when MCP is available, and Codebase Memory guidance records allowed-root, graph artifact, auto-index, and diagnostics boundaries.
+- Repair experience-system private sync by moving release path-set resolution into a tested helper; the gate now recomputes actual changed/untracked paths after generated release artifacts and blocks any unselected dirty path.
+- Refine `codex-office-cli` with the verified OfficeCLI MCP delivery gate: load the per-format OfficeCLI skill when MCP is exposed, use installed `help` as schema authority, and verify save/issues/validate before handoff.
 
 ### Chinese / 中文
 
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 将“全局经验系统”定义为 self-evolution、experience capture、error feedback、knowledge 与 architecture iteration 的协同闭环，并封装为 experience-capture 内部模式，而不是新增顶层 skill。
+- 学习 `mattpocock/skills`，将调用负载、信息层级、完成标准和剪枝规则吸收到 `codex-skill-packaging`，但不导入上游整套 skill。
+- 澄清外部 skill 学习规则：必要且有价值时可以安装，但必须经过经验系统的兼容性、隐私、profile 与验证门禁适配，不能原样照抄。
+- 重新联动学习 `mattpocock/skills` 与 `DeusData/codebase-memory-mcp`：当 MCP 可用时，外部 skill 仓库按图谱索引的源码证据处理，并在 Codebase Memory 指南中记录 allowed-root、图谱 artifact、auto-index 与 diagnostics 边界。
+- 修复经验系统私有同步：将 release 路径集解析拆为带测试的 helper，生成 release artifact 后重新计算实际 changed/untracked 路径，并阻断任何未纳入 scope 的脏文件。
+- 精炼 `codex-office-cli`：在 MCP 暴露时先读取 OfficeCLI 自带格式指南，以已安装 `help` 为 schema 权威，并在交付前验证 save/issues/validate 门禁。
 
 ## 1.3.0.0 - 2026-07-18
 
@@ -214,8 +241,6 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
-
-
 
 
 

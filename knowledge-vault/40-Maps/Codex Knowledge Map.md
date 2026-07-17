@@ -11,10 +11,12 @@ mindmap
       Experience Knowledge Subskill Refinement Codex
       Experience System Error Feedback Codex
       Experience and Knowledge Architecture Codex
+      Global Experience System Codex
       Header Frame Body Wrap Diagnostic Codex
       Learning Audience Boundary Codex + User Anki
       Learning Governance Codex
       Locked Template DOCX Package Invariants Codex
+      Matt Pocock Skills Network Learning Codex
       Mother Skill Refinement Codex
       Portable Path Configuration Codex
       Project Creation Capability Codex

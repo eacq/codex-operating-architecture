@@ -10,7 +10,7 @@ codex_learning: Promote evidence into verified experience, keep Markdown canonic
 
 # Experience and Knowledge Architecture
 
-This overview connects [[Verified Experience Promotion]], [[Knowledge System Module]], [[Learning Audience Boundary]], [[Mind Map Knowledge Workflow]], and [[Image Hosting and Cleanup Workflow]].
+This overview connects [[Global Experience System]], [[Verified Experience Promotion]], [[Knowledge System Module]], [[Learning Audience Boundary]], [[Mind Map Knowledge Workflow]], and [[Image Hosting and Cleanup Workflow]].
 
 ![Codex experience and knowledge architecture](https://article.biliimg.com/bfs/new_dyn/6ac19d8ea7bdab76894510f076d5f046687543502.png)
 

@@ -353,6 +353,7 @@
       "status": "active",
       "learning_audience": "codex",
       "links": [
+        "Global Experience System",
         "Image Hosting and Cleanup Workflow",
         "Knowledge System Module",
         "Learning Audience Boundary",
@@ -368,6 +369,7 @@
       "learning_audience": "codex",
       "links": [
         "Experience and Knowledge Architecture",
+        "Global Experience System",
         "Integrated Experience Feedback Loop",
         "Knowledge System Module",
         "Subskill Packaging Boundary"
@@ -383,6 +385,19 @@
         "Experience and Knowledge Architecture",
         "Knowledge System Module",
         "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Global Experience System",
+      "path": "30-Knowledge\\Global Experience System.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Local Experience Iteration Workflow"
       ]
     },
     {
@@ -431,6 +446,18 @@
         "Exact Word Layout Workflow",
         "Header Frame Body Wrap Diagnostic",
         "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Matt Pocock Skills Network Learning",
+      "path": "30-Knowledge\\Matt Pocock Skills Network Learning.md",
+      "type": "concept",
+      "status": "candidate",
+      "learning_audience": "codex",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Global Experience System",
+        "Subskill Packaging Boundary"
       ]
     },
     {
@@ -749,6 +776,10 @@
     ],
     [
       "Experience Knowledge Subskill Refinement",
+      "Global Experience System"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
       "Integrated Experience Feedback Loop"
     ],
     [
@@ -773,6 +804,10 @@
     ],
     [
       "Experience and Knowledge Architecture",
+      "Global Experience System"
+    ],
+    [
+      "Experience and Knowledge Architecture",
       "Image Hosting and Cleanup Workflow"
     ],
     [
@@ -790,6 +825,22 @@
     [
       "Experience and Knowledge Architecture",
       "Verified Experience Promotion"
+    ],
+    [
+      "Global Experience System",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Global Experience System",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Global Experience System",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Global Experience System",
+      "Local Experience Iteration Workflow"
     ],
     [
       "Header Frame Body Wrap Diagnostic",
@@ -1034,6 +1085,18 @@
     [
       "Locked Template DOCX Package Invariants",
       "Verified Experience Promotion"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Subskill Packaging Boundary"
     ],
     [
       "Mind Map Knowledge Workflow",

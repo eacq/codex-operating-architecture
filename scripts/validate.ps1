@@ -68,6 +68,8 @@ if (-not $?) { throw 'Pre-iteration rollback test failed.' }
 if (-not $?) { throw 'Continuous iteration diagnosis test failed.' }
 & (Join-Path $root 'scripts\Test-ReleaseReadmeAndVisuals.ps1')
 if (-not $?) { throw 'Release README and visual refresh test failed.' }
+& (Join-Path $root 'scripts\Test-ExperienceReleasePathSet.ps1')
+if (-not $?) { throw 'Experience release path-set test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackUtf8Input.ps1')
 if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')

@@ -13,6 +13,7 @@ Codex Knowledge System
 			-> Verified Experience Promotion
 		Experience Knowledge Subskill Refinement [Codex]
 			-> Experience and Knowledge Architecture
+			-> Global Experience System
 			-> Integrated Experience Feedback Loop
 			-> Knowledge System Module
 			-> Subskill Packaging Boundary
@@ -21,11 +22,17 @@ Codex Knowledge System
 			-> Knowledge System Module
 			-> Verified Experience Promotion
 		Experience and Knowledge Architecture [Codex]
+			-> Global Experience System
 			-> Image Hosting and Cleanup Workflow
 			-> Knowledge System Module
 			-> Learning Audience Boundary
 			-> Mind Map Knowledge Workflow
 			-> Verified Experience Promotion
+		Global Experience System [Codex]
+			-> Experience Knowledge Subskill Refinement
+			-> Experience System Error Feedback
+			-> Experience and Knowledge Architecture
+			-> Local Experience Iteration Workflow
 		Header Frame Body Wrap Diagnostic [Codex]
 			-> Exact Word Layout Workflow
 			-> Verified Experience Promotion
@@ -42,6 +49,10 @@ Codex Knowledge System
 			-> Exact Word Layout Workflow
 			-> Header Frame Body Wrap Diagnostic
 			-> Verified Experience Promotion
+		Matt Pocock Skills Network Learning [Codex]
+			-> Experience Knowledge Subskill Refinement
+			-> Global Experience System
+			-> Subskill Packaging Boundary
 		Mother Skill Refinement [Codex]
 			-> Experience Knowledge Subskill Refinement
 			-> Experience and Knowledge Architecture

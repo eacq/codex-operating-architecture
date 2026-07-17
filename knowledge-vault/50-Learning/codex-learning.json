@@ -43,6 +43,14 @@
       "verified": true
     },
     {
+      "id": "concept-global-experience-system",
+      "name": "Global Experience System",
+      "path": "30-Knowledge\\Global Experience System.md",
+      "summary": "Treat the global experience system as a coordinated loop across existing owners; refine it with handoff artifacts and owner-internal subskills before adding a top-level module.",
+      "source": "codex-global-experience-system-refinement-2026-07-18",
+      "verified": true
+    },
+    {
       "id": "concept-header-frame-body-wrap-diagnostic",
       "name": "Header Frame Body Wrap Diagnostic",
       "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
@@ -73,6 +81,14 @@
       "summary": "For a locked-template DOCX, snapshot critical package parts and media, patch the smallest known surface, compare intentional XML changes semantically, and accept only after both hard structural checks and rendered-page review pass.",
       "source": "codex-exact-word-layout;verified locked-template Word repairs",
       "verified": true
+    },
+    {
+      "id": "concept-matt-pocock-skills-network-learning",
+      "name": "Matt Pocock Skills Network Learning",
+      "path": "30-Knowledge\\Matt Pocock Skills Network Learning.md",
+      "summary": "Matt Pocock skills reinforce skill economy through invocation load, information hierarchy, explicit completion criteria, repo-local setup documents, and feedback loops; external skills can be installed only after necessity, value, compatibility, and verification are established.",
+      "source": "https://github.com/mattpocock/skills;commit=9603c1cc8118d08bc1b3bf34cf714f62178dea3b",
+      "verified": false
     },
     {
       "id": "concept-mother-skill-refinement",

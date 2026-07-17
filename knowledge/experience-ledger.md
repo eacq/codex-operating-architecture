@@ -2,13 +2,16 @@
 
 ## 已验证经验
 
+- “全局经验系统”是跨 owner 的协调闭环，而不是新的顶层 skill。入口由 `codex-self-evolution` 识别，系统边界由 `codex-experience-capture` 的内部模式承载；错误先进入 `codex-error-feedback`，概念和 workflow-learning 记录进入 `codex-knowledge-system`，owner 合并/拆分/封装决策进入 `codex-architecture-iteration`。精炼优先使用交接件和 owner 内 subskill，只有独立触发、产物、知识库与安全边界被两次验证后才新增顶层模块。
 - GitHub 文档的双语门禁在 Windows 上不得依赖控制台代码页或乱码文本匹配；应使用 Unicode 码点构造中文标记并检查实际暂存内容。该规则经完整 `v1.0` 私有同步与公开发布验证。
 - 已验证的工作流变更应生成带哈希、关联 owner 与证据计数的学习记录；该记录同时进入知识和经验候选队列，经过证据门槛后才允许由架构迭代决定精炼、合并、拆分、增加或废弃，不能将工作流原文无条件提升为全局规则。
 - 经验版本采用 `P.R.A.B` 四段格式：`P` 仅由公开仓库 release 决定，`R` 仅由私有仓库 release 决定，`A` 由经验系统的自动功能提交递增，`B` 由自动修复提交递增。只有明确的“同步经验系统”才创建私有 release；只有明确的“发布经验系统”才创建公开 release。
 - 私有或公开 release 都应刷新用户可见说明面：通过发布门禁自动更新两个 README、版本发布说明和视觉计划；当变更跨越重要实现、工作流、知识、安装或发布面时，生成可版本化的 Mermaid 高亮图。视觉内容默认使用脱敏仓库级标签，只有在另行证明有必要且隐私安全时才升级为 GPT 图片请求。
+- 经验系统同步失败后的重试不能复用旧路径清单。`Invoke-ExperienceRelease.ps1` 在生成 release note、README 最新发布块、changelog、visual plan 和 iteration status 后，应通过独立 path-set helper 重新读取当前 changed/untracked 文件：release scope 可以保留上下文路径，提交层只接收实际变化路径，任何 scope 外脏文件都必须以精确路径阻断同步。该规则由 `Test-ExperienceReleasePathSet.ps1` 覆盖。
 - codebase-memory-mcp 适合作为仓库级取证路由层：先索引并读取 schema/architecture/search/trace 结果，再打开被引用的源文件核验。单次图谱搜索失败不能作为缺失证明；在本架构仓库中，`search_code` 能找到 `search_graph` BM25 未命中的发布流程文本，说明图谱工具应组合使用并记录覆盖限制。
 - 对 MCP 的“启动自动调用”应落在全局生命周期入口，而不是只依赖本地 config.toml。`codebase-memory-mcp` 在 Codex 配置中暴露工具，`codex-self-evolution` 在项目入口负责主动运行 fast `index_repository` 预热；若当前任务未暴露 MCP，则记录不可用并回退到本地文件取证。
-- OfficeCLI 这类单二进制 Office 工具适合受控安装到本地软件根并由全局 skill 路由，而不是运行上游自动安装器去改 PATH 和多个 agent 目录。普通 Word/Excel/PowerPoint 结构化读写、验证、渲染和 JSON 错误恢复走 `codex-office-cli`；锁模板 Word 分页/页眉/节结构仍由 `codex-exact-word-layout` 持有。
+- codebase-memory-mcp 的上游源码复核应进入图谱取证边界：在非完全受信环境配置时使用 `CBM_ALLOWED_ROOT` 或等效 allowed-root 限制；`.codebase-memory/graph.db.zst` 默认是本地派生索引，不提交进 Git，除非有明确团队共享、隐私审计和可复现理由；`CBM_DIAGNOSTICS` 仅作为用户可选择分享的本地诊断材料，不作为长期知识记录。该规则由上游 commit `e678b2b6acb02bc1ab84a854f2df0e1d092f2cc0` 的源码/测试命中与本机 MCP fast index 复核支持。
+- OfficeCLI 这类单二进制 Office 工具适合受控安装到本地软件根并由全局 skill 路由，而不是运行上游自动安装器去改 PATH 和多个 agent 目录。普通 Word/Excel/PowerPoint 结构化读写、验证、渲染和 JSON 错误恢复走 `codex-office-cli`；锁模板 Word 分页/页眉/节结构仍由 `codex-exact-word-layout` 持有。MCP 暴露时，先用 `load_skill <format>` 读取 OfficeCLI 自带的版本配套格式指南，再以 `help` 作为 schema 权威；交付前至少执行 `save`、`validate --json`、`view issues --json`、占位符扫描和可用的视觉检查。该模式经 OfficeCLI 1.0.137 的 CLI 与 MCP 双路径验证，当前证据支持精炼父 skill 和测试门禁，不支持拆成多个全局 Office skill。
 
 - Every verified implementation iteration should regenerate a bilingual status document and verify its changelog, README, and version-note dependencies before private commit. Private skills, knowledge, and experience become public candidates only with two independent verified evidence sources, a sanitization audit, local-only preservation of original non-secret configuration, and a separate release decision.
 
@@ -96,6 +99,11 @@
 - 导图 PNG 只在确实提高理解密度或节省空间时进入按需图床流程；不得创建定期扫描或在远程验证前删除本地文件。
 - Anki 卡片来自源笔记中的高价值回忆问题，不对导图节点做机械式全量制卡。
 - B 站文章封面接口当前可能返回 `article.biliimg.com`；远程校验白名单需覆盖 `.biliimg.com`、`.hdslb.com` 和 `.bilibili.com`，但仍必须要求 HTTPS 与成功 GET。上传成功后若域名校验失败，流程必须保留原图且不得替换 Markdown。
+
+## 候选经验
+
+- Network learning candidate: `mattpocock/skills` reinforces skill economy rules that fit `codex-skill-packaging`: split by invocation only for autonomous reach, split by sequence only after sharpening completion criteria, keep branch-specific reference behind direct pointers, and prune duplicate/no-op/negative guidance. External skill installation is not forbidden, but each candidate must prove necessity, value, compatibility with local privacy/profile/validation rules, and a removal or revision path. Current source is one upstream repository plus local validation, so keep as candidate until reused independently.
+- Combined network-learning candidate: treat external skill repositories as evidence-bearing codebases when tooling is available. Use codebase-memory-mcp to index, inspect schema/architecture, and route to source files; then apply skill-economy gates from `mattpocock/skills` and the Codex owner-boundary rules before deciding between learn-only, owner reference, owner subskill, project-local skill, or global skill. Keep as candidate until this combined workflow is reused on another external skill or MCP/tooling source.
 
 ## 候选经验格式
 

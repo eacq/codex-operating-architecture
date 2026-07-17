@@ -28,8 +28,11 @@ subskills.
    workflows, experience, retrospectives, pending events, state, and file
    organization. For complete global iterations, read
    [subskills/global-iteration-gate/SKILL.md](subskills/global-iteration-gate/SKILL.md).
-5. Route reusable outcomes to `codex-experience-capture`; route linked concepts
-   to `codex-knowledge-system`. After learning or workflow changes, require
+5. Treat an explicit request about the "global experience system" as a
+   coordinated `codex-experience-capture` system pass, not as permission to add
+   a new top-level owner. Route reusable outcomes to
+   `codex-experience-capture`; route linked concepts to
+   `codex-knowledge-system`. After learning or workflow changes, require
    `codex-architecture-iteration` to review owner overlap and economy.
 6. Route unexpected module behavior to `codex-error-feedback` before promoting
    it as experience or changing a skill. Cross-project failures with suspected

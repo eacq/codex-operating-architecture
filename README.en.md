@@ -14,8 +14,10 @@ This repository is a verified, self-iterating operating architecture for local C
 - Project facts remain project-local; only verified cross-project rules are promoted.
 - Experience, knowledge, and user study material are separated.
 - Secrets, raw session history, browser state, and local machine paths do not enter Git.
-- When `codebase-memory-mcp` is installed locally, repository orientation should start from graph indexing and structural search, then read only the source files needed to verify cited evidence. The global lifecycle entry proactively runs fast `index_repository` when MCP tools are exposed and the project is a source repository; if the current task does not expose MCP, record that gap and fall back to local file evidence. Graph search routes evidence; final claims still require source-file verification.
-- When OfficeCLI is installed locally, ordinary `.docx`, `.xlsx`, and `.pptx` automation routes through `codex-office-cli` for structured JSON reads, edits, validation, render previews, and optional MCP use. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
+- The global experience system is a coordinated loop across self-evolution, experience capture, error feedback, knowledge, and architecture iteration. It is refined through handoff artifacts and owner-internal subskills before adding new top-level modules.
+- External skill repositories are learned through dated network-learning records and mapped onto existing owners first. Installation is allowed when a skill is necessary and valuable, but the installed form must be adapted through local privacy, profile, owner, and validation gates instead of raw upstream copying. When `codebase-memory-mcp` is exposed, treat external skill repositories as source repositories too: index, inspect schema and architecture, verify source files, then choose learn-only, owner reference, owner subskill, project-local skill, or global skill.
+- When `codebase-memory-mcp` is installed locally, repository orientation should start from graph indexing and structural search, then read only the source files needed to verify cited evidence. The global lifecycle entry proactively runs fast `index_repository` when MCP tools are exposed and the project is a source repository; if the current task does not expose MCP, record that gap and fall back to local file evidence. Graph search routes evidence; final claims still require source-file verification. Record coverage limits, keep `.codebase-memory/graph.db.zst` local by default, and use an allowed-root boundary in less-trusted configurations.
+- When OfficeCLI is installed locally, ordinary `.docx`, `.xlsx`, and `.pptx` automation routes through `codex-office-cli` for structured JSON reads, edits, validation, render previews, and optional MCP use. When MCP is exposed, agents load the OfficeCLI per-format guide before mutation and still treat installed `help` as schema authority. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
 - A verified iteration may use the private auto-Git gate only with scoped paths, private-origin confirmation, bilingual GitHub metadata, validation, and a semantic-version decision.
 - Public pushes, tags, and GitHub Releases are never automatic.
 - Public candidate snapshots are checked for private remote identities, private-state paths, local paths, and secret-shaped content before any public push.
@@ -47,6 +49,11 @@ An explicit "sync experience system" request uses the private release gate,
 not only a commit and push: `Invoke-ExperienceRelease.ps1 -Mode Private`
 publishes a GitHub Release in the private `origin` repository with a
 `private-vP.R` tag and a `vP.R` release title.
+After the release note, README latest-release blocks, changelog, visual plan,
+and iteration status are regenerated, the sync gate recomputes the current
+changed/untracked path set. The commit step receives only real changed paths,
+and any dirty path outside the release scope blocks the sync with an exact path
+list.
 
 Every private or public experience-system release refreshes both README files,
 the matching release note, and a release visual plan; important multi-area
@@ -71,11 +78,12 @@ Read the user-facing [Changelog / 更新日志](CHANGELOG.md) for every release 
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.3.0.0`
+- Version: `1.4.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.3.0.0.md](docs/release-notes/v1.3.0.0.md)
-- Highlights: Release documentation, Knowledge and experience, Automation gates, Skill architecture
-- Visual: [docs/assets/release-v1.3.0.0-highlights.mmd](docs/assets/release-v1.3.0.0-highlights.mmd)
+- Release note: [docs/release-notes/v1.4.0.0.md](docs/release-notes/v1.4.0.0.md)
+- Highlights: Release documentation, Knowledge and experience, Skill architecture, Automation gates, Lifecycle controller
+- Visual: [docs/assets/release-v1.4.0.0-highlights.mmd](docs/assets/release-v1.4.0.0-highlights.mmd)
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->
+
 

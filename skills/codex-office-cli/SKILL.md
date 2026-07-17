@@ -62,6 +62,35 @@ Codex exposes newly configured MCP servers only after a new task or restart. If
 the OfficeCLI MCP tool is not exposed in the current task, use the local CLI
 path directly and record that the MCP surface was unavailable.
 
+When the MCP tool is exposed and the task will create or mutate a document,
+first run the MCP command `load_skill <format>` for the target family:
+`word`, `pptx`, or `excel`. The loaded OfficeCLI per-format skill is a
+version-paired build and delivery guide; the installed CLI `help` output remains
+the schema authority when the two differ. Keep these per-format guides in the
+OfficeCLI MCP surface rather than splitting global Codex skills per file type
+unless repeated evidence shows a separate owner, artifact, and safety boundary.
+
+## Delivery Gate
+
+For any Office document delivered to the user, use a real QA loop rather than a
+single command success:
+
+1. Run `officecli save <file>` before any non-OfficeCLI reader or handoff.
+2. Run `officecli validate <file> --json` and reject schema failures.
+3. Run `officecli view <file> issues --json`; resolve real content, overflow,
+   placeholder, or accessibility issues. Format-specific advisory warnings may
+   be documented only when they do not apply to the requested document type.
+4. Scan `officecli view <file> text` or outline output for placeholder leaks
+   such as `{{...}}`, `<TODO>`, `xxxx`, `lorem`, or literal shell escapes.
+5. When layout matters, use the strongest available visual check:
+   `view <file> screenshot` or `view <file> html` for Word, screenshot/SVG for
+   PowerPoint, and issues/text checks for Excel unless a visual dashboard is the
+   deliverable. If screenshots cannot render, state that the document was not
+   visually verified.
+
+For three or more mutations on one file, prefer `batch` or a resident
+`open`/`save` session so the disk state and follow-up reads are intentional.
+
 ## Verification
 
 After installation or upgrade, run:

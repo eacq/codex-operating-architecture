@@ -15,6 +15,7 @@ English counterpart: [README.en.md](README.en.md)
 每次已验证的实现迭代都会生成 [Iteration Status](docs/ITERATION-STATUS.md)，记录版本、模块数量和说明门禁。私有 skill、知识与经验只有在具备两个独立已验证证据、完成脱敏和验证后，才能成为公开候选；公开发布仍须单独决策。详见 [Private-to-Public Skill Conversion](docs/PRIVATE-TO-PUBLIC-CONVERSION.md)。
 
 明确的“同步经验系统”请求走私有发布门禁，不只是提交和推送：`Invoke-ExperienceRelease.ps1 -Mode Private` 会在私有 `origin` 仓库发布 GitHub Release，Git 标签为 `private-vP.R`，Release 标题为 `vP.R`。
+同步入口会在生成 release note、README 最新发布块、changelog、视觉计划和 iteration status 后重新计算实际 changed/untracked 路径；提交阶段只接收真实变化路径，若工作树还有未纳入 scope 的脏文件会精确报出并停止，避免使用过期同步计划。
 
 面向本地 Codex 的可迭代经验与知识架构：用 1 个总控 skill 调度 22 个功能模块 skill，让项目启动、需求整理、执行验证、经验沉淀、知识图谱、图片工作流和 Git 发布形成闭环。
 
@@ -22,19 +23,23 @@ English counterpart: [README.en.md](README.en.md)
 
 Every private or public experience-system release refreshes both README files, the matching release note, and a release visual plan; important multi-area changes also generate a versioned Mermaid highlight diagram under `docs/assets/`.
 
+“全局经验系统”是 self-evolution、experience capture、error feedback、knowledge 与 architecture iteration 的协同闭环。它优先通过交接件和 owner 内部 subskill 精炼，不把一次系统性整理直接升级为新的顶层模块。
+
+外部 skill 仓库先通过带日期和来源的 network-learning 记录学习，并优先映射到现有 owner。必要且有价值的 skill 可以安装，但安装形态必须经过本地隐私、profile、owner 与验证门禁适配，不能原样照抄上游结构。若 `codebase-memory-mcp` 可用，外部 skill 仓库也按源码仓库处理：先索引、看 schema/architecture、再读源文件核验，最后才决定 learn-only、owner reference、owner subskill、project-local skill 或 global skill。
+
 ## Repository channels
 
 - `origin` is a local-only private working remote for normal updates.
 - `public` is the reviewed public-release remote and is used only after explicit release authorization.
 - Public release checks reject private remote identities, local paths, credentials, tokens, and private-state paths before any public push.
 
-OfficeCLI installed locally is routed by `codex-office-cli` for ordinary `.docx`, `.xlsx`, and `.pptx` structured reads, edits, validation, render previews, and optional MCP use. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
+OfficeCLI installed locally is routed by `codex-office-cli` for ordinary `.docx`, `.xlsx`, and `.pptx` structured reads, edits, validation, render previews, and optional MCP use. When the MCP surface is exposed, agents load the OfficeCLI per-format guide before mutation and still treat installed `help` as schema authority. Locked-template Word pagination and journal-format repairs still route to `codex-exact-word-layout`.
 
 ## 为什么使用
 
 - 自动进入项目生命周期：首次使用项目时建立需求、工作流、经验、复盘和状态文件。
 - 经验不再只留在聊天里：验证后的规则进入 skill、经验账本或 Obsidian 知识库。
-- 代码库学习优先使用结构化证据：安装并配置 `codebase-memory-mcp` 后，Codex 可先索引项目图谱，再按图谱结果读取必要源文件；图谱搜索用于路由取证，最终结论仍需源文件核验。全局生命周期入口会在 MCP 工具可用且项目是源码仓库时主动运行 fast `index_repository` 预热；若当前任务未暴露 MCP，则记录不可用并回退到本地文件取证。
+- 代码库学习优先使用结构化证据：安装并配置 `codebase-memory-mcp` 后，Codex 可先索引项目图谱，再按图谱结果读取必要源文件；图谱搜索用于路由取证，最终结论仍需源文件核验。全局生命周期入口会在 MCP 工具可用且项目是源码仓库时主动运行 fast `index_repository` 预热；若当前任务未暴露 MCP，则记录不可用并回退到本地文件取证。跨仓学习或配置 MCP 时记录覆盖限制，默认不提交 `.codebase-memory/graph.db.zst`，在非完全受信环境使用 allowed-root 边界。
 - Codex 学习和用户 Anki 分开：Codex 自己要记的规则不强迫用户背。
 - 可移植发行：Git 中只保留通用流程，provider、路径、账号、软件选择和凭据留在本地 profile。
 - 图片和导图可追溯：Mermaid/MindMaster/SVG/图床图片都是派生视图，Markdown 和 manifest 保持权威。
@@ -146,11 +151,12 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.3.0.0`
+- Version: `1.4.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.3.0.0.md](docs/release-notes/v1.3.0.0.md)
-- Highlights: Release documentation, Knowledge and experience, Automation gates, Skill architecture
-- Visual: [docs/assets/release-v1.3.0.0-highlights.mmd](docs/assets/release-v1.3.0.0-highlights.mmd)
+- Release note: [docs/release-notes/v1.4.0.0.md](docs/release-notes/v1.4.0.0.md)
+- Highlights: Release documentation, Knowledge and experience, Skill architecture, Automation gates, Lifecycle controller
+- Visual: [docs/assets/release-v1.4.0.0-highlights.mmd](docs/assets/release-v1.4.0.0-highlights.mmd)
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->
+
 

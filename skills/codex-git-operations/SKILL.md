@@ -25,6 +25,12 @@ First run `scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -RepositoryRoot 
 ## Failure recovery
 
 On any Git-process failure, create or update the redacted `codex-error-feedback` report and resolve every Git-process report to `fixed` or `verified` before retrying. Do not reuse a failed commit, synchronization, or release plan. Recalculate the repaired worktree's complete scoped paths, regenerate changelog/documentation/version artifacts, stage that new set, and rerun full validation, global iteration, integration, metadata, privacy, and visibility checks as applicable. Release automation rejects unselected repaired paths so a stale retry cannot omit a fix.
+For experience-system release sync, `Invoke-ExperienceRelease.ps1` must derive
+the actual commit set through `Resolve-ExperienceReleasePathSet.ps1` after
+release notes, README blocks, changelog, visual plans, and iteration status are
+regenerated. The release scope may include context paths, but the commit step
+receives only currently changed or untracked paths; any dirty path outside the
+scope blocks the sync with the exact missing path list.
 Update `README.md` or the matching `docs/` guide whenever the public workflow,
 installation, configuration, or safety boundary changes. A version/tag/release
 also requires `VERSION` and `docs/release-notes/v<version>.md`. See

@@ -53,7 +53,9 @@ private release gate, and an explicit user command meaning "publish the
 experience system" as the public release gate. Both invoke
 `Invoke-ExperienceRelease.ps1` only after full synchronization,
 workflow-learning review, documentation alignment, scoped-path selection,
-validation, and explicit `-Apply`.
+validation, and explicit `-Apply`. A retry must recompute the release path set
+from the repaired worktree after generated release artifacts are refreshed; do
+not reuse an earlier selected-path list.
 
 ## Public Conversion
 
