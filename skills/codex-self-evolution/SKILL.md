@@ -14,7 +14,11 @@ subskills.
 
 1. Identify the project root and check `.codex/project/state.json`; invoke
    `codex-project-optimization` before substantive work when it is missing.
-   Avoid lifecycle churn for trivial or read-only tasks.
+   For source repositories with `codebase-memory-mcp` exposed in the current
+   Codex task, run the startup preflight in
+   [subskills/mcp-startup-preflight/SKILL.md](subskills/mcp-startup-preflight/SKILL.md)
+   before broad file reading or architecture claims. Avoid lifecycle churn for
+   trivial or read-only tasks.
 2. Read the request and project authority files, then select only the needed
    modules. Open `codex-learning` only for a concrete gap plus qualifying
    evidence.

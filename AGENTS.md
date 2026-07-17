@@ -2,6 +2,7 @@
 ## Codex Project Lifecycle
 
 - At every project entry, invoke `$codex-self-evolution` to route the task and check lifecycle state.
+- When `codebase-memory-mcp` tools are exposed, run the MCP startup preflight for source repositories: refresh the repository graph with fast `index_repository` before broad file reading or architecture claims.
 - On first use, when `.codex/project/state.json` is absent, invoke `$codex-project-optimization` and initialize the project lifecycle before substantial work.
 - Before planning or implementation, read `.codex/project/REQUIREMENTS.md`, `WORKFLOWS.md`, and relevant `EXPERIENCE.md` entries.
 - After Git initialization, commit, merge, rebase, tag, release, or a complete verified iteration, invoke `$codex-git-operations` and `$codex-experience-capture`.

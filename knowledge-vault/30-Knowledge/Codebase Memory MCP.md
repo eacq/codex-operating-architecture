@@ -30,7 +30,8 @@ and [[Verified Experience Promotion]] through evidence-first repository learning
 
 ## Operating rule
 
-1. Index or refresh the current repository before broad file reading.
+1. At project entry, index or refresh the current repository before broad file
+   reading when the MCP tools are exposed in the current Codex task.
 2. Use `list_projects`, `get_architecture`, `get_graph_schema`,
    `search_graph`, `search_code`, or `trace_path` to find likely evidence.
 3. Treat graph output as routing evidence, not final proof.
@@ -56,6 +57,12 @@ server exposes `index_repository`, `get_graph_schema`, `get_architecture`,
 not, while `trace_path` and `get_code_snippet` worked for indexed PowerShell
 functions. Routine repository learning should therefore combine graph tools with
 source-file reads instead of treating a single graph search mode as exhaustive.
+
+After private release `private-v1.2`, startup preflight was verified by calling
+`index_repository` from inside the active Codex task for `F:\codex`; fast mode
+returned status `indexed` with 1165 nodes and 1173 edges. This verifies the MCP
+server is exposed and callable at task time. The lifecycle controller now
+requires this preflight at source-repository entry when the tool is available.
 
 ## Boundary
 

@@ -11,7 +11,9 @@ mapping, impact analysis, dependency/caller discovery, or codebase learning and
 
 ## Evidence Order
 
-1. Refresh the graph for the current repository with `index_repository`.
+1. At project entry, when the MCP tools are exposed and the current project is
+   a source repository, refresh the graph for the current repository with
+   `index_repository` before broad file reading.
    Prefer `mode: fast` for first-pass orientation, large repos, mixed Markdown
    and scripts, or when semantic similarity is not required.
 2. Read `get_graph_schema` and `get_architecture` before making architecture

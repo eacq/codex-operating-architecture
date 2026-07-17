@@ -15,8 +15,11 @@ This workflow connects [[Codebase Memory MCP]], [[Experience and Knowledge Archi
 
 ## Flow
 
-1. Confirm the repository root and current Git head.
-2. Run `index_repository` in fast mode with a stable project name.
+1. At project entry, confirm the repository root and current Git head.
+2. If `codebase-memory-mcp` tools are exposed, run `index_repository` in fast
+   mode with a stable project name before broad file reading. If the MCP tool is
+   unavailable in the current task, record the gap and fall back to local file
+   evidence.
 3. Read `get_graph_schema` and `get_architecture` to understand coverage,
    indexed labels, edge types, hotspots, and exclusions.
 4. Use `search_graph` for symbols, sections, labels, and known qualified-name
@@ -43,3 +46,7 @@ MCP tools verified indexing, schema, architecture overview, text search, graph
 search, caller tracing, and snippet retrieval. `search_code` found release
 workflow policy text that BM25 `search_graph` missed, so the workflow uses both
 tools before source-file verification.
+
+Startup preflight was verified after private release `private-v1.2`: invoking
+`index_repository` in fast mode for `F:\codex` returned status `indexed` with
+1165 nodes and 1173 edges.

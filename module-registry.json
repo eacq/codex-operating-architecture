@@ -17,7 +17,7 @@
     "reason": "Parent-skill refinement keeps a broad mother skill as the public routing surface while moving long verified gates into owner-internal subskills. codex-self-evolution now retains routing and safety boundaries while global iteration and publication gates carry detailed procedures."
   },
   "modules": [
-    {"name": "codex-self-evolution", "status": "active", "role": "controller", "evidence": ["module routing and lifecycle decisions", "continuous diagnosis for complete global iteration failures", "parent-skill refinement keeps the mother controller concise while internal subskills own global iteration and publication gates"]},
+    {"name": "codex-self-evolution", "status": "active", "role": "controller", "evidence": ["module routing and lifecycle decisions", "continuous diagnosis for complete global iteration failures", "parent-skill refinement keeps the mother controller concise while internal subskills own global iteration and publication gates", "MCP startup preflight warms codebase-memory-mcp at source-repository entry when exposed"]},
     {"name": "codex-information-gathering", "status": "active", "evidence": ["repository and history research", "codebase-memory-mcp graph indexing and structural search verified on the architecture repository", "owner-internal codebase graph evidence subskill added after MCP tool validation"]},
     {"name": "codex-requirement-authoring", "status": "active", "evidence": ["project requirements lifecycle"]},
     {"name": "codex-task-execution", "status": "active", "evidence": ["implementation and verification"]},

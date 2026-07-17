@@ -2,6 +2,7 @@
 # Global Codex Project Lifecycle
 
 - At the start of work in any project, invoke `$codex-self-evolution` as the lifecycle controller before selecting narrower skills.
+- During project entry, when `codebase-memory-mcp` tools are exposed and the project is a source repository, invoke the MCP startup preflight: refresh the repository graph with `index_repository` in fast mode before broad file reading or architecture claims. If the MCP tool is unavailable in the current Codex task, record that fact and continue with normal local evidence gathering.
 - Check `<project-root>/.codex/project/state.json`. If it is missing, invoke `$codex-project-optimization` and initialize requirements, workflows, experience, retrospectives, and lifecycle state before substantial project changes.
 - Read project requirements, workflows, and relevant verified experience before planning or implementation. Project facts remain in that project.
 - When the user reports an error, failure, missing behavior, or wrong result, invoke `$codex-error-feedback`: retain the redacted user wording, create a project error report, attempt only a safe targeted repair, verify it, and promote only verified lessons.
