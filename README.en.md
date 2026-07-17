@@ -1,4 +1,4 @@
-# Codex Operating Architecture — English
+﻿# Codex Operating Architecture — English
 
 [中文说明 / Chinese README](README.md)
 
@@ -66,3 +66,15 @@ Every iteration also reviews both README files, the [Changelog / 更新日志](C
 ## Release notes
 
 Read the user-facing [Changelog / 更新日志](CHANGELOG.md) for every release and operational update.
+
+<!-- BEGIN MANAGED BLOCK: latest-release -->
+## Latest Release / 最新发布
+
+- Version: `1.3.0.0`
+- Channel: `Private` / 私有
+- Release note: [docs/release-notes/v1.3.0.0.md](docs/release-notes/v1.3.0.0.md)
+- Highlights: Release documentation, Knowledge and experience, Automation gates, Skill architecture
+- Visual: [docs/assets/release-v1.3.0.0-highlights.mmd](docs/assets/release-v1.3.0.0-highlights.mmd)
+- 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
+<!-- END MANAGED BLOCK: latest-release -->
+

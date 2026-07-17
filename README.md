@@ -1,4 +1,4 @@
-# Codex Operating Architecture
+﻿# Codex Operating Architecture
 
 English counterpart: [README.en.md](README.en.md)
 
@@ -140,3 +140,15 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 普通 skill、模板、脚本和配置处理不需要逐项提示。外部软件、系统组件、运行时或会改变系统环境的依赖安装前，必须先说明对象、来源、范围、目标路径和影响。
 
 软件包默认进入 `$SOFTWARE_ARCHIVE_ROOT`，支持自定义路径的软件进入 `$SOFTWARE_INSTALL_ROOT`。现有软件满足需求时不因版本较旧自动升级。
+
+<!-- BEGIN MANAGED BLOCK: latest-release -->
+## Latest Release / 最新发布
+
+- Version: `1.3.0.0`
+- Channel: `Private` / 私有
+- Release note: [docs/release-notes/v1.3.0.0.md](docs/release-notes/v1.3.0.0.md)
+- Highlights: Release documentation, Knowledge and experience, Automation gates, Skill architecture
+- Visual: [docs/assets/release-v1.3.0.0-highlights.mmd](docs/assets/release-v1.3.0.0-highlights.mmd)
+- 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
+<!-- END MANAGED BLOCK: latest-release -->
+
