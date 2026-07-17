@@ -10,6 +10,7 @@ param(
     [string]$CodeExcerpt = '',
     [string]$Symptom,
     [string]$UserReport = '',
+    [string]$UserReportFile = '',
     [string]$ExpectedResult = '',
     [string]$ActualResult = '',
     [string]$Features = '',
@@ -24,6 +25,14 @@ param(
     [ValidateSet('observed','triaged','fixed','verified','candidate')]
     [string]$Status = 'observed',
     [string]$Trigger = '',
+    [string]$OriginProjectRoot = '',
+    [string]$OriginProjectName = '',
+    [string]$OriginWorkflow = '',
+    [string[]]$GlobalExperienceFunctions = @(),
+    [ValidateSet('none','suspected','partial','primary','verified')]
+    [string]$ExperienceSystemCausality = 'none',
+    [string]$ArchitectureRoot = '',
+    [switch]$MirrorToGlobalExperienceSystem,
     [string]$RepairAttempt = '',
     [string]$RepairResult = '',
     [string]$ReportDirectory = '',
@@ -32,6 +41,11 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($UserReportFile) {
+    if (-not (Test-Path -LiteralPath $UserReportFile -PathType Leaf)) { throw "User report file not found: $UserReportFile" }
+    $UserReport = Get-Content -LiteralPath $UserReportFile -Raw -Encoding UTF8
+}
 
 function Get-SafeFileName([string]$Value) {
     $name = ($Value -replace '[^\p{L}\p{Nd}\._-]+', '-').Trim('-')
@@ -51,6 +65,13 @@ function Redact-Text([string]$Text) {
 
 function Write-Utf8NoBom([string]$Path, [string]$Value) {
     [IO.File]::WriteAllText($Path, $Value, [Text.UTF8Encoding]::new($false))
+}
+
+function Add-Utf8NoBomLine([string]$Path, [string]$Value) {
+    $parent = Split-Path -Parent $Path
+    if ($parent) { New-Item -ItemType Directory -Force -Path $parent | Out-Null }
+    $existing = if (Test-Path -LiteralPath $Path) { [IO.File]::ReadAllText($Path, [Text.UTF8Encoding]::new($false)) } else { '' }
+    [IO.File]::WriteAllText($Path, $existing.TrimEnd() + [Environment]::NewLine + $Value + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
 }
 
 function Get-ReportedIssues([string]$Text) {
@@ -93,7 +114,39 @@ function Add-CandidateLesson([string]$ExperiencePath, [string]$Lesson) {
     return $true
 }
 
+function Get-PathHash([string]$Path) {
+    if (-not $Path) { return '' }
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try {
+        $bytes = [Text.Encoding]::UTF8.GetBytes($Path)
+        return (([BitConverter]::ToString($sha.ComputeHash($bytes))) -replace '-','').ToLowerInvariant()
+    }
+    finally { $sha.Dispose() }
+}
+
+function Resolve-ArchitectureRoot([string]$RequestedRoot, [string]$CurrentRoot) {
+    foreach ($candidate in @($RequestedRoot, $env:ARCHITECTURE_ROOT, $CurrentRoot, 'F:\codex') | Where-Object { $_ }) {
+        try {
+            $full = [IO.Path]::GetFullPath($candidate).TrimEnd('\')
+            if ((Test-Path -LiteralPath (Join-Path $full 'module-registry.json')) -and (Test-Path -LiteralPath (Join-Path $full 'skills\codex-self-evolution\SKILL.md'))) {
+                return $full
+            }
+        } catch {
+        }
+    }
+    return ''
+}
+
+function Write-GlobalExperienceInbox([string]$ArchitectureRoot, [hashtable]$Entry) {
+    if (-not $ArchitectureRoot) { return $false }
+    $inbox = Join-Path $ArchitectureRoot '.codex\project\incoming-error-feedback.jsonl'
+    $json = ($Entry | ConvertTo-Json -Depth 6 -Compress)
+    Add-Utf8NoBomLine $inbox $json
+    return $true
+}
+
 $root = [IO.Path]::GetFullPath($ProjectRoot).TrimEnd('\')
+$resolvedArchitectureRoot = Resolve-ArchitectureRoot $ArchitectureRoot $root
 if ($ReportDirectory) {
     $reportDir = [IO.Path]::GetFullPath($ReportDirectory)
     $jsonPath = Join-Path $reportDir 'report.json'
@@ -107,6 +160,7 @@ if ($ReportDirectory) {
     $Verification = if ($Verification) { Redact-Text $Verification } else { [string]$existing.verification }
     $existing.status = $Status
     $existing.verification = $Verification
+    if ($ExperienceSystemCausality -ne 'none') { $existing | Add-Member -NotePropertyName experience_system_causality -NotePropertyValue $ExperienceSystemCausality -Force }
     $existing | Add-Member -NotePropertyName repair_attempt -NotePropertyValue $RepairAttempt -Force
     $existing | Add-Member -NotePropertyName repair_result -NotePropertyValue $RepairResult -Force
     $existing | Add-Member -NotePropertyName updated_at -NotePropertyValue ([DateTime]::UtcNow.ToString('o')) -Force
@@ -132,7 +186,30 @@ $Verification
     $existingMarkdown = Get-Content -LiteralPath $reportPath -Raw -Encoding UTF8
     $existingMarkdown = [regex]::Replace($existingMarkdown, '(?m)^Status:\s*.*$', "Status: $Status", 1)
     Write-Utf8NoBom $reportPath ($existingMarkdown.TrimEnd() + "`r`n" + $update.TrimStart() + [Environment]::NewLine)
-    [pscustomobject]@{ report = $reportPath; metadata = $jsonPath; experience_candidates_updated = $false; updated_existing_report = $true }
+    $mirrored = $false
+    if (($MirrorToGlobalExperienceSystem -or $ExperienceSystemCausality -ne 'none') -and $resolvedArchitectureRoot) {
+        $entry = [ordered]@{
+            schema_version = 1
+            recorded_at = [DateTime]::UtcNow.ToString('o')
+            report_metadata = $jsonPath
+            origin_project = if ($existing.origin_project.name) { $existing.origin_project.name } else { Split-Path -Leaf $root }
+            origin_project_hash = if ($existing.origin_project.path_hash) { $existing.origin_project.path_hash } else { Get-PathHash $root }
+            origin_workflow = $existing.origin_workflow
+            module = $existing.module
+            component = $existing.component
+            severity = $existing.severity
+            status = $Status
+            experience_system_causality = if ($ExperienceSystemCausality -ne 'none') { $ExperienceSystemCausality } else { $existing.experience_system_causality }
+            global_experience_functions = @($existing.global_experience_functions)
+            symptom = $existing.symptom
+            actual_result = $existing.actual_result
+            repair_attempt = $RepairAttempt
+            repair_result = $RepairResult
+            verification = $Verification
+        }
+        $mirrored = Write-GlobalExperienceInbox $resolvedArchitectureRoot $entry
+    }
+    [pscustomobject]@{ report = $reportPath; metadata = $jsonPath; experience_candidates_updated = $false; updated_existing_report = $true; global_inbox_updated = $mirrored }
     return
 }
 
@@ -164,6 +241,7 @@ if (-not $ReusableLesson) {
 
 $CodeExcerpt = Redact-Text $CodeExcerpt
 $Trigger = Redact-Text $Trigger
+$OriginWorkflow = Redact-Text $OriginWorkflow
 $UserReport = Redact-Text $UserReport
 $ExpectedResult = Redact-Text $ExpectedResult
 $ActualResult = Redact-Text $ActualResult
@@ -172,6 +250,9 @@ $Features = Redact-Text $Features
 $SuspectedCauses = Redact-Text $SuspectedCauses
 $Solutions = Redact-Text $Solutions
 $reportedIssues = @(Get-ReportedIssues $UserReport | ForEach-Object { Redact-Text $_ })
+$originName = if ($OriginProjectName) { Redact-Text $OriginProjectName } elseif ($OriginProjectRoot) { Split-Path -Leaf ([IO.Path]::GetFullPath($OriginProjectRoot).TrimEnd('\')) } else { Split-Path -Leaf $root }
+$originHash = Get-PathHash $(if ($OriginProjectRoot) { [IO.Path]::GetFullPath($OriginProjectRoot).TrimEnd('\') } else { $root })
+$globalFunctions = @($GlobalExperienceFunctions | Where-Object { $_ } | ForEach-Object { Redact-Text $_ } | Select-Object -Unique)
 
 $reportPath = Join-Path $reportDir 'report.md'
 $jsonPath = Join-Path $reportDir 'report.json'
@@ -189,6 +270,13 @@ Status: $Status
 ## Trigger
 
 $Trigger
+
+## Origin And Global Experience Causality
+
+Origin project: $originName
+Origin workflow: $OriginWorkflow
+Global experience functions: $($globalFunctions -join ', ')
+Experience-system causality: $ExperienceSystemCausality
 
 ## User-Reported Problem
 
@@ -252,6 +340,13 @@ Write-Utf8NoBom $reportPath ($markdown + [Environment]::NewLine)
     confidence = $Confidence
     status = $Status
     trigger = $Trigger
+    origin_project = [ordered]@{
+        name = $originName
+        path_hash = $originHash
+    }
+    origin_workflow = $OriginWorkflow
+    global_experience_functions = $globalFunctions
+    experience_system_causality = $ExperienceSystemCausality
     reusable_lesson = $ReusableLesson
     promotion_status = 'candidate'
 } | ConvertTo-Json -Depth 5 | ForEach-Object { Write-Utf8NoBom $jsonPath ($_ + [Environment]::NewLine) }
@@ -262,8 +357,31 @@ if ($UpdateExperienceCandidates) {
     $experienceUpdated = Add-CandidateLesson $experiencePath $ReusableLesson
 }
 
+$mirrored = $false
+if (($MirrorToGlobalExperienceSystem -or $ExperienceSystemCausality -ne 'none') -and $resolvedArchitectureRoot) {
+    $entry = [ordered]@{
+        schema_version = 1
+        recorded_at = [DateTime]::UtcNow.ToString('o')
+        report_metadata = $jsonPath
+        origin_project = $originName
+        origin_project_hash = $originHash
+        origin_workflow = $OriginWorkflow
+        module = $Module
+        component = $Component
+        severity = $Severity
+        status = $Status
+        experience_system_causality = $ExperienceSystemCausality
+        global_experience_functions = $globalFunctions
+        symptom = $Symptom
+        actual_result = $ActualResult
+        reusable_lesson = $ReusableLesson
+    }
+    $mirrored = Write-GlobalExperienceInbox $resolvedArchitectureRoot $entry
+}
+
 [pscustomobject]@{
     report = $reportPath
     metadata = $jsonPath
     experience_candidates_updated = $experienceUpdated
+    global_inbox_updated = $mirrored
 }

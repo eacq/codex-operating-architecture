@@ -25,7 +25,10 @@ This workflow connects [[Knowledge System Module]], [[Image Workflow Module]],
    original, and retain migration manifests.
 5. If any module behaves unexpectedly, create an [[Experience System Error Feedback]]
    report before promoting the event.
-6. Promote only verified, reusable outcomes through [[Verified Experience Promotion]].
+6. If the failure occurred in another project but is plausibly caused in part by
+   a global experience-system capability, mirror a redacted summary into the
+   global incoming error-feedback inbox.
+7. Promote only verified, reusable outcomes through [[Verified Experience Promotion]].
 
 ## Refinement rule
 

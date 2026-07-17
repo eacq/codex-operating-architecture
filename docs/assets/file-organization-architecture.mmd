@@ -8,16 +8,17 @@ flowchart TD
   D --> V[Full sandbox validation]
   V -->|pass| B2[Exact pre-iteration snapshot\ntracked + untracked + SHA-256]
   B2 --> P[Replace active architecture]
-  V -->|fail| F[Repair in isolated copy]
-  F --> O
+  V -->|fail| E[Record owned failure evidence]
+  E --> F[Explicit safe owner repair]
+  F -->|continuous diagnosis reruns full probe| I
   P --> A[Validate active repository twice]
   A --> H[Refresh and validate\nreal global interfaces]
   H --> W[Write cleanup evidence\nand lifecycle state]
   W --> Q[Pre-Git proof gate]
   P -->|failure after replacement| RB[External exact rollback]
   RB --> RV[Restore and hash-verify\nrefresh global interfaces]
-  RV --> ER[Record error and repair owner]
-  ER --> I
+  RV --> ER[Record owned error]
+  ER --> F
   RB -->|rollback failure| CE[Critical error\nstop all mutation]
   X[.git .codex credentials\nexternal backups] -. always excluded .-> I
   S[Sanitized GPT-first concept image\nMermaid for deterministic flow] --> I

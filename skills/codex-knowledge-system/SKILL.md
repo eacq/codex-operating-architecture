@@ -17,9 +17,11 @@ Treat `$ARCHITECTURE_ROOT\knowledge-vault` as the canonical linked vault.
 6. Invoke `codex-image-workflow` only when a visual materially improves understanding; prefer Mermaid for structure. When a generated bitmap is useful in the vault, record prompt provenance, then host and clean it through the image workflow only after remote verification and manifests succeed.
 7. Run `scripts/build_knowledge.py` and `scripts/build_mindmaps.py`; resolve link, ID, audience, provenance, and duplicate errors before promotion.
 
-For private knowledge or experience conversion, use `scripts/Convert-PrivateKnowledgeToPublic.ps1` first in read-only mode. Apply mode requires two independent verified evidence paths and creates only a sanitized public candidate; it refuses raw history, credential-state markers, personal paths, endpoints, and secret-like values. Then validate links/builds and route the candidate through `codex-experience-capture`, documentation synchronization, and private auto-Git. A candidate is not a public release.
+For private knowledge or experience conversion, read
+[subskills/private-public-conversion/SKILL.md](subskills/private-public-conversion/SKILL.md).
 
-Treat verified workflow changes as knowledge inputs. `scripts/New-WorkflowLearningRecord.ps1` records workflow hash, related module owners, evidence count, knowledge/experience candidate state, and required architecture action without retaining raw workflow payloads. Use its record to route evidence-backed workflow knowledge to notes and workflow experience to the experience ledger.
+For verified workflow changes, read
+[subskills/workflow-learning-record/SKILL.md](subskills/workflow-learning-record/SKILL.md).
 
 Read [references/knowledge-workflow.md](references/knowledge-workflow.md) for schemas, routing, tools, learning outputs, maps, and image provenance.
 

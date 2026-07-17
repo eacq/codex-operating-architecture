@@ -25,7 +25,9 @@
       "type": "index",
       "path": "00-Home/Home.md",
       "links": [
+        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
+        "Experience Knowledge Subskill Refinement",
         "Experience and Knowledge Architecture",
         "Image Hosting and Cleanup Workflow",
         "Image Workflow Module",
@@ -34,6 +36,7 @@
         "Learning Audience Boundary",
         "Literature Discovery Workflow",
         "Mind Map Knowledge Workflow",
+        "Mother Skill Refinement",
         "Paper Reading and Evidence Workflow",
         "Portable Path Configuration",
         "Project Knowledge Boundary",
@@ -70,6 +73,19 @@
       "codex_learning": false
     },
     {
+      "id": "module-academic-figure-optimizer",
+      "name": "Academic Figure Optimizer Module",
+      "type": "module",
+      "path": "10-Modules/Academic Figure Optimizer Module.md",
+      "links": [
+        "Image Workflow Module",
+        "Scientific Figure Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "module-academic-text-style",
       "name": "Academic Text Style Module",
       "type": "module",
@@ -102,6 +118,7 @@
       "type": "module",
       "path": "10-Modules/Image Workflow Module.md",
       "links": [
+        "Academic Figure Optimizer Module",
         "Image Hosting and Cleanup Workflow",
         "Knowledge System Module",
         "Scientific Figure Workflow"
@@ -318,6 +335,7 @@
       "type": "workflow",
       "path": "20-Workflows/Scientific Figure Workflow.md",
       "links": [
+        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
         "Provider Capability Boundary"
       ],
@@ -381,6 +399,21 @@
         "Learning Audience Boundary",
         "Mind Map Knowledge Workflow",
         "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-experience-knowledge-subskill-refinement",
+      "name": "Experience Knowledge Subskill Refinement",
+      "type": "concept",
+      "path": "30-Knowledge/Experience Knowledge Subskill Refinement.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Subskill Packaging Boundary"
       ],
       "learning_audience": "codex",
       "user_anki": false,
@@ -457,6 +490,21 @@
       "codex_learning": true
     },
     {
+      "id": "concept-mother-skill-refinement",
+      "name": "Mother Skill Refinement",
+      "type": "concept",
+      "path": "30-Knowledge/Mother Skill Refinement.md",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "portable-path-configuration",
       "name": "Portable Path Configuration",
       "type": "concept",
@@ -508,6 +556,20 @@
         "Literature Discovery Workflow",
         "Scientific Figure Workflow",
         "Zotero Reference Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-subskill-packaging-boundary",
+      "name": "Subskill Packaging Boundary",
+      "type": "concept",
+      "path": "30-Knowledge/Subskill Packaging Boundary.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
       ],
       "learning_audience": "codex",
       "user_anki": false,

@@ -8,13 +8,25 @@ description: Extract user-reported errors and capture unexpected behavior from C
 Use this skill whenever the user describes a problem or an experience-system
 module behaves unexpectedly. User wording is evidence, not proof of cause.
 
+For cross-project failures caused in part by a global experience-system
+capability, read [subskills/global-inbox/SKILL.md](subskills/global-inbox/SKILL.md).
+For file-organization and global-iteration debugging, read
+[subskills/continuous-diagnosis-feedback/SKILL.md](subskills/continuous-diagnosis-feedback/SKILL.md).
+Read [references/report-schema.md](references/report-schema.md) for fields,
+command parameters, promotion rules, and the schema contract.
+
 ## Workflow
 
 1. Extract every error claim from the user's message. Preserve it in
    `-UserReport`; do not replace the user's symptom with an inferred cause.
+   If a multilingual report crosses a shell boundary that may recode arguments,
+   write it to a local UTF-8 file and pass `-UserReportFile` instead; the file is
+   evidence input and must not be committed.
 2. Identify the likely owning module, then gather minimal evidence: expected and
    actual result, command/output, changed files, code path, and verification.
    Redact secrets and private raw-session content.
+   If the failure crosses a project boundary, record source workflow, involved
+   global function(s), and causality strength.
 3. Create the initial report before repair:
 
    ```powershell
@@ -63,7 +75,8 @@ Required:
 Optional:
 
 - severity, confidence, trigger, environment, related files, regression risk,
-  owner module, invalidation conditions, and promotion status.
+  owner module, source workflow, global function list, causality strength,
+  invalidation conditions, and promotion status.
 
 Read [references/report-schema.md](references/report-schema.md) before changing
 the schema or promotion rules.

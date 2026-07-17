@@ -13,6 +13,7 @@ verified: true
 - [[Knowledge System Module]]
 - [[Research Knowledge Module]]
 - [[Image Workflow Module]]
+- [[Academic Figure Optimizer Module]]
 
 ## Research workflows
 
@@ -29,6 +30,8 @@ verified: true
 - [[Experience and Knowledge Architecture]]
 - [[Learning Audience Boundary]]
 - [[Verified Experience Promotion]]
+- [[Experience Knowledge Subskill Refinement]]
+- [[Mother Skill Refinement]]
 - [[Provider Capability Boundary]]
 - [[Project Knowledge Boundary]]
 - [[Portable Path Configuration]]

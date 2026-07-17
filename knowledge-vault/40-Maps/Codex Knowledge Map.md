@@ -7,16 +7,19 @@ mindmap
   root((Codex Knowledge System))
     concept
       Academic Manuscript Revision Boundaries Codex
+      Experience Knowledge Subskill Refinement Codex
       Experience System Error Feedback Codex
       Experience and Knowledge Architecture Codex
       Header Frame Body Wrap Diagnostic Codex
       Learning Audience Boundary Codex + User Anki
       Learning Governance Codex
       Locked Template DOCX Package Invariants Codex
+      Mother Skill Refinement Codex
       Portable Path Configuration Codex
       Project Creation Capability Codex
       Project Knowledge Boundary
       Provider Capability Boundary Codex
+      Subskill Packaging Boundary Codex
       Verified Experience Promotion
       XLW1 JME Formatting Guardrails Codex
       XLW1 Source Figure Integrity Codex
@@ -26,6 +29,7 @@ mindmap
       Home
       README
     module
+      Academic Figure Optimizer Module Codex
       Academic Text Style Module Codex
       Exact Word Layout Module Codex
       Image Workflow Module Codex

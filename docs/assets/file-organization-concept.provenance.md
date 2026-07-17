@@ -1,6 +1,6 @@
 # File-organization concept image / 文件整理示意图溯源
 
-The bitmap remains a privacy-safe conceptual overview. The deterministic Mermaid diagram is authoritative for exact rollback, repair/rerun, cleanup, post-replacement validation, and lifecycle writeback; no bitmap regeneration is required because the concept image semantics did not change.
+The bitmap remains a privacy-safe conceptual overview. The deterministic Mermaid diagram is authoritative for exact rollback, continuous fail-repair-retest diagnosis, cleanup, post-replacement validation, and lifecycle writeback; no bitmap regeneration is required because the bitmap's category/backup semantics did not change. The new diagnostic control flow is precise procedural state, so the updated Mermaid source is clearer and more maintainable than regenerating the conceptual GPT bitmap.
 
 位图继续作为隐私安全的概念示意；精确回退、修复后重跑、隔离清理、替换后验证和生命周期写回顺序以确定性的 Mermaid 图为准。由于概念图语义未改变，本次无需重新生成位图。
 

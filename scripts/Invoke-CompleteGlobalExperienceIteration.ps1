@@ -34,10 +34,23 @@ if (-not (Test-Path -LiteralPath (Join-Path $root 'knowledge/experience-ledger.m
 & (Join-Path $root 'scripts/Test-ReadmeIterationAlignment.ps1') -RepositoryRoot $root | Out-Null
 
 $errorReports = @(Get-ChildItem -LiteralPath (Join-Path $root '.codex/errors') -Filter report.json -Recurse -File | ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8 | ConvertFrom-Json })
+$incomingFeedbackPath = Join-Path $root '.codex/project/incoming-error-feedback.jsonl'
+$incomingFeedback = @()
+if (Test-Path -LiteralPath $incomingFeedbackPath) {
+    $incomingFeedback = @(Get-Content -LiteralPath $incomingFeedbackPath -Encoding UTF8 |
+        Where-Object { $_.Trim() } |
+        ForEach-Object { $_ | ConvertFrom-Json })
+}
 $blockingErrors = @($errorReports | Where-Object { $_.severity -in @('high','critical') -and $_.status -notin @('fixed','verified') })
 $unresolvedGitErrors = @($errorReports | Where-Object { $_.module -eq 'codex-git-operations' -and $_.status -notin @('fixed','verified') })
+$blockingIncomingFeedback = @($incomingFeedback | Where-Object {
+    $_.severity -in @('high','critical') -and
+    $_.status -notin @('fixed','verified') -and
+    $_.experience_system_causality -in @('suspected','partial','primary','verified')
+})
 if ($blockingErrors.Count -gt 0) { throw "Global iteration has $($blockingErrors.Count) unresolved high-severity error report(s)." }
 if ($unresolvedGitErrors.Count -gt 0) { throw "Git recovery is incomplete: $($unresolvedGitErrors.Count) Git-process error report(s) must be fixed or verified before any Git action." }
+if ($blockingIncomingFeedback.Count -gt 0) { throw "Global iteration has $($blockingIncomingFeedback.Count) unresolved incoming cross-project error feedback item(s) attributed to the experience system." }
 
 $pendingPath = Join-Path $root '.codex/project/pending-events.jsonl'
 $pendingEvents = if (Test-Path -LiteralPath $pendingPath) { @((Get-Content -LiteralPath $pendingPath -Encoding UTF8 | Where-Object { $_.Trim() })).Count } else { 0 }
@@ -46,7 +59,7 @@ if ($workflowProbe.knowledge_status -ne 'candidate-for-linked-knowledge' -or $wo
 $visualProbe = & (Join-Path $root 'skills/codex-image-workflow/scripts/New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized global iteration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
 if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Global iteration visual integration probe failed.' }
 $isolatedIteration = & (Join-Path $root 'scripts/Invoke-IsolatedGlobalExperienceIteration.ps1') -RepositoryRoot $root -Apply -Replace | ConvertFrom-Json
-if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced -or -not $isolatedIteration.post_replacement_validated -or -not $isolatedIteration.lifecycle_written_back -or -not $isolatedIteration.rollback_ready) { throw 'Isolated global iteration did not establish rollback readiness, clean, replace, revalidate, and write back the active architecture lifecycle.' }
+if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced -or -not $isolatedIteration.post_replacement_validated -or -not $isolatedIteration.lifecycle_written_back -or -not $isolatedIteration.rollback_ready -or -not $isolatedIteration.continuous_diagnosis_supported) { throw 'Isolated global iteration did not establish continuous diagnosis, rollback readiness, clean replacement, revalidation, and lifecycle writeback.' }
 
 $record = [ordered]@{
     schema_version = 1
@@ -58,6 +71,8 @@ $record = [ordered]@{
         lifecycle_authority = 'validated'
         pending_events = $pendingEvents
         error_reports_reviewed = $errorReports.Count
+        incoming_error_feedback_reviewed = $incomingFeedback.Count
+        unresolved_incoming_experience_system_errors = $blockingIncomingFeedback.Count
         unresolved_high_severity_errors = $blockingErrors.Count
         unresolved_git_process_errors = $unresolvedGitErrors.Count
         conversation_catalog = 'release-safe-metadata-only'
@@ -65,9 +80,9 @@ $record = [ordered]@{
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
         visual_decision = $visualProbe.action
-        file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; rollback_ready = $isolatedIteration.rollback_ready; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced; post_replacement_validated = $isolatedIteration.post_replacement_validated; lifecycle_written_back = $isolatedIteration.lifecycle_written_back; cleanup = $isolatedIteration.cleanup }
+        file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; continuous_diagnosis_supported = $isolatedIteration.continuous_diagnosis_supported; rollback_ready = $isolatedIteration.rollback_ready; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced; post_replacement_validated = $isolatedIteration.post_replacement_validated; lifecycle_written_back = $isolatedIteration.lifecycle_written_back; cleanup = $isolatedIteration.cleanup }
     }
-    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','exact pre-iteration rollback readiness','isolated backup-organize-cleanup-restore-validate-replace iteration','post-replacement global validation','lifecycle writeback','robustness and economy review')
+    checks = @('global source review','README iteration alignment','all Git-process errors closed','error feedback review','workflow-to-knowledge/experience integration','GPT-first visual decision','continuous iteration diagnosis','exact pre-iteration rollback readiness','isolated backup-organize-cleanup-restore-validate-replace iteration','post-replacement global validation','lifecycle writeback','robustness and economy review')
     result = 'passed'
     completed_at = [DateTime]::UtcNow.ToString('o')
 }

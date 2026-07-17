@@ -27,6 +27,14 @@
       "verified": true
     },
     {
+      "id": "concept-experience-knowledge-subskill-refinement",
+      "name": "Experience Knowledge Subskill Refinement",
+      "path": "30-Knowledge\\Experience Knowledge Subskill Refinement.md",
+      "summary": "Refine the experience and knowledge system by keeping parent skills as routing surfaces and moving long verified mode contracts into owner-internal subskills when ownership and safety boundaries do not change.",
+      "source": "codex-experience-knowledge-refinement-2026-07-18",
+      "verified": true
+    },
+    {
       "id": "concept-header-frame-body-wrap-diagnostic",
       "name": "Header Frame Body Wrap Diagnostic",
       "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
@@ -59,6 +67,14 @@
       "verified": true
     },
     {
+      "id": "concept-mother-skill-refinement",
+      "name": "Mother Skill Refinement",
+      "path": "30-Knowledge\\Mother Skill Refinement.md",
+      "summary": "Refine a broad mother skill by keeping its parent SKILL.md as the discovery and routing surface while moving long gates, recovery flows, release commands, and specialized mode contracts into owner-internal subskills.",
+      "source": "codex-parent-skill-refinement-2026-07-18",
+      "verified": true
+    },
+    {
       "id": "concept-project-creation-capability",
       "name": "Project Creation Capability",
       "path": "30-Knowledge\\Project Creation Capability.md",
@@ -72,6 +88,14 @@
       "path": "30-Knowledge\\Provider Capability Boundary.md",
       "summary": "Route an OpenAI-compatible provider only to chat or embeddings interfaces it actually supports; retain specialized image, audio, full-text, and domain APIs.",
       "source": "memory-api-routing",
+      "verified": true
+    },
+    {
+      "id": "concept-subskill-packaging-boundary",
+      "name": "Subskill Packaging Boundary",
+      "path": "30-Knowledge\\Subskill Packaging Boundary.md",
+      "summary": "Use subskill-style packaging inside an existing owner when a capability needs its own contract or tests but does not justify a new top-level skill; promote it only after independent evidence shows a separate owner boundary.",
+      "source": "codex-skill-packaging-iteration-2026-07-18",
       "verified": true
     },
     {
@@ -104,6 +128,14 @@
       "path": "30-Knowledge\\XLW1 Version Authority.md",
       "summary": "For XLW1 manuscript work, identify the source DOCX from the newest explicit user instruction, record its path and SHA-256 before changing it, and write each structural revision to a separately named process-folder output.",
       "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "module-academic-figure-optimizer",
+      "name": "Academic Figure Optimizer Module",
+      "path": "10-Modules\\Academic Figure Optimizer Module.md",
+      "summary": "Use academic-figure-optimizer for data-faithful scientific figure re-rendering, user-requested or inferred dimensions, publication typography, arbitrary supported raster/vector exports, and layout repair; do not use generative image redraws for quantitative plots.",
+      "source": "user-supplied-skill-package-2026-07-17",
       "verified": true
     },
     {

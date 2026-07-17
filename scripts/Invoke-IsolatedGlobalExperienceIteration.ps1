@@ -3,6 +3,9 @@ param(
   [string]$RepositoryRoot = (Get-Location).Path,
   [switch]$Apply,
   [switch]$Replace,
+  [switch]$ContinuousDiagnosis,
+  [string]$RepairScript = '',
+  [ValidateRange(0, 1000)][int]$MaxRepairAttempts = 0,
   [switch]$InjectPostReplacementFailureForTest
 )
 
@@ -13,6 +16,11 @@ $sandbox = Join-Path $root ".codex\iterations\$stamp"
 $backupRoot = Join-Path (Split-Path -Parent $root) ('.' + (Split-Path -Leaf $root) + '-codex-backups')
 $statePath = Join-Path $root '.codex\project\state.json'
 function Write-Step([string]$Name) { Write-Host "[$([DateTime]::Now.ToString('HH:mm:ss'))] $Name" }
+if ($ContinuousDiagnosis) {
+  & (Join-Path $root 'scripts\Invoke-ContinuousIterationDiagnosis.ps1') -RepositoryRoot $root -Target global-iteration -RepairScript $RepairScript -MaxRepairAttempts $MaxRepairAttempts -Apply:$Apply
+  if (-not $?) { exit 1 }
+  exit 0
+}
 if (-not $Apply) {
   [pscustomobject]@{ sandbox=$sandbox; replacement='blocked-until-Apply'; result='plan-only' } | ConvertTo-Json
   exit 0
@@ -98,6 +106,7 @@ $result = [ordered]@{
   post_replacement_validated = [bool]$Replace
   lifecycle_written_back = [bool]$Replace
   rollback_ready = [bool]($Replace -and $rollbackSnapshot)
+  continuous_diagnosis_supported = (Test-Path -LiteralPath (Join-Path $root 'scripts\Invoke-ContinuousIterationDiagnosis.ps1'))
   cleanup = $null
   result = 'completed'
   completed_at = [DateTime]::UtcNow.ToString('o')
@@ -129,7 +138,8 @@ if ($Replace) {
     phase = 'post-replacement-global-iteration'
     cleanup = $result.cleanup
     replacement = [ordered]@{ validated = $true; applied = $true }
-    rollback = [ordered]@{ ready = $result.rollback_ready; failure_policy = 'restore-repair-rerun-or-critical-error' }
+    rollback = [ordered]@{ ready = $result.rollback_ready; failure_policy = 'restore-continuous-diagnosis-rerun-or-critical-error' }
+    diagnostics = [ordered]@{ continuous_mode = $result.continuous_diagnosis_supported; targets = @('file-organization','global-iteration') }
     validation = [ordered]@{ repository_runs = 2; global_interfaces = 'passed' }
     lifecycle_writeback = 'completed'
     result = 'passed'
@@ -176,7 +186,7 @@ $result | ConvertTo-Json
     rollback_result = $rollbackResult
     rollback_verified = $rollbackVerified
     rollback_failure = $rollbackFailure
-    next_action = if ($rollbackResult -eq 'rollback-failed') { 'stop-and-report-critical-error' } else { 'record-error-repair-owner-and-rerun-complete-iteration' }
+    next_action = if ($rollbackResult -eq 'rollback-failed') { 'stop-and-report-critical-error' } else { 'enter-continuous-diagnosis-repair-owner-and-rerun-complete-probe' }
     failed_at = [DateTime]::UtcNow.ToString('o')
   } | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root '.codex\project\last-iteration-failure.json') -Encoding UTF8
   if (Test-Path -LiteralPath $statePath) {

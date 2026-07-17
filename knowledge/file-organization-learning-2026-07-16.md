@@ -16,6 +16,7 @@
 - For a self-hosting architecture, never reorganize the active tree in place. Use an isolated copy, recoverable backup, full-scope organization, reference repair, canonical-layout restoration, full validation, and replace-on-success transaction. Failed attempts remain repairable evidence and never become the active system.
 - Treat deletion as a stricter subworkflow than movement: require current untracked status, an explicit disposable allowlist or true emptiness, an off-root hash-verified quarantine, fresh candidate discovery after every validation boundary, post-replacement validation, and lifecycle writeback. A name or stale pre-validation hash never authorizes deletion.
 - Git history is insufficient rollback evidence for a self-hosting iteration because it omits uncommitted and untracked state. Create an exact external snapshot before replacement; after failure, restore changed/deleted files, remove iteration-added non-protected files, verify hashes, repair the owner, and rerun from the beginning. A failed rollback is a critical stop condition.
+- A repeated repair loop should be a first-class diagnostic mode rather than informal retries. Each attempt needs target ownership, durable local evidence, an explicit repair action, and a full restart of the selected probe. Continue safe repairs until success, but stop when rollback cannot verify or the next action crosses an authorization boundary.
 
 ### Sources
 
@@ -39,3 +40,4 @@
 - 自托管架构不得原地整理当前目录；应使用“隔离复制、可恢复备份、全量整理、引用修复、规范布局恢复、完整验证、成功后替换”的事务。失败尝试只作为可修复证据保留，不得成为当前系统。
 - 删除应比移动采用更严格的子工作流：必须同时满足当前未跟踪状态、明确的可丢弃白名单或真实空目录、根目录外哈希校验隔离区、每个验证边界后重新发现候选、替换后验证和生命周期写回。仅凭名称或验证前陈旧哈希绝不能授权删除。
 - Git 历史不足以作为自托管迭代的回退证据，因为它不包含未提交和未跟踪状态。替换前必须建立外部精确快照；失败后恢复被修改或删除的文件、移除迭代新增的非受保护文件、校验哈希、修复责任模块并从头重跑。回退失败属于必须停止的严重错误。
+- 重复修复应成为明确的持续诊断模式，而不是非正式重试。每次尝试都要记录目标归属和本地证据，调用显式修复动作，并从头运行所选模块探针；安全修复可持续到成功，但回退无法验证或下一步越过授权边界时必须停止。

@@ -64,4 +64,10 @@ if ($LASTEXITCODE -ne 0) { throw 'Image workflow tests failed.' }
 if (-not $?) { throw 'File-organization cleanup test failed.' }
 & (Join-Path $root 'skills\codex-file-organization\scripts\Test-PreIterationRollback.ps1')
 if (-not $?) { throw 'Pre-iteration rollback test failed.' }
-Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, and rollback tests validated.'
+& (Join-Path $root 'scripts\Test-ContinuousIterationDiagnosis.ps1')
+if (-not $?) { throw 'Continuous iteration diagnosis test failed.' }
+& (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackUtf8Input.ps1')
+if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
+& (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')
+if (-not $?) { throw 'Global error-feedback inbox test failed.' }
+Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, rollback tests, continuous diagnosis tests, UTF-8 error-feedback tests, and global error-feedback inbox tests validated.'

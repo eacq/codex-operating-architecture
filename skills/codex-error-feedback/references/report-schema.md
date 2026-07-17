@@ -9,6 +9,16 @@ agent to reproduce the failure path without reading the raw session.
 - `reported_issues`: error-bearing statements extracted from that wording. They
   are user evidence, not confirmed diagnoses.
 - `expected_result` and `actual_result`: observable success and failure states.
+- `origin_project`: redacted source project label plus a path hash when the
+  report was created outside the global architecture repository.
+- `origin_workflow`: project workflow or process that invoked the global
+  experience-system capability.
+- `global_experience_functions`: global skills, scripts, workflows, or lifecycle
+  gates involved in the failure path.
+- `experience_system_causality`: one of `none`, `suspected`, `partial`,
+  `primary`, or `verified`. Use this only for the part of the cause attributed
+  to the global experience system; project-local facts remain in the source
+  project.
 
 - `id`: stable local identifier inside the report.
 - `module`: owning module or skill.
@@ -43,6 +53,11 @@ agent to reproduce the failure path without reading the raw session.
   that applies beyond one module.
 - Change a shared skill only after the report identifies the owning skill and
   the validation path.
+- When a project outside `$ARCHITECTURE_ROOT` finds that the global experience
+  system is a suspected, partial, primary, or verified cause, mirror a redacted
+  summary into `$ARCHITECTURE_ROOT/.codex/project/incoming-error-feedback.jsonl`.
+  The source project keeps the full local report; the global inbox stores only
+  routing evidence for the next global iteration.
 
 ## Redaction
 

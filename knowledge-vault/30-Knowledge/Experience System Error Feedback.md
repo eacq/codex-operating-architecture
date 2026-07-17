@@ -45,3 +45,18 @@ Reports live under `.codex/errors/`. They should be concise, redacted, and
 machine-readable enough for future agents to query without reading raw sessions.
 Write Markdown and JSON as UTF-8 without BOM so a strict parser can consume
 the artifacts without environment-specific decoding workarounds.
+
+## Cross-project feedback
+
+When another project or workflow calls a global experience-system skill,
+script, workflow, or lifecycle gate and the failure is plausibly caused in part
+by that global capability, keep the full report in the source project and
+mirror only a redacted routing summary to
+`$ARCHITECTURE_ROOT/.codex/project/incoming-error-feedback.jsonl`.
+
+The summary records the source project label and path hash, source workflow,
+global functions involved, owning module, severity, status, causality strength,
+symptom, actual result, and reusable lesson. A global iteration reads this inbox
+before declaring the experience system clean. Unresolved high or critical items
+with suspected or stronger global causality block the iteration until the owner
+is repaired or the report is closed as fixed or verified.

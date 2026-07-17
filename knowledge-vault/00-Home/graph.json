@@ -7,7 +7,9 @@
       "status": "active",
       "learning_audience": null,
       "links": [
+        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
+        "Experience Knowledge Subskill Refinement",
         "Experience and Knowledge Architecture",
         "Image Hosting and Cleanup Workflow",
         "Image Workflow Module",
@@ -16,6 +18,7 @@
         "Learning Audience Boundary",
         "Literature Discovery Workflow",
         "Mind Map Knowledge Workflow",
+        "Mother Skill Refinement",
         "Paper Reading and Evidence Workflow",
         "Portable Path Configuration",
         "Project Knowledge Boundary",
@@ -42,6 +45,17 @@
       "learning_audience": null,
       "links": [
         "Knowledge System Module"
+      ]
+    },
+    {
+      "name": "Academic Figure Optimizer Module",
+      "path": "10-Modules\\Academic Figure Optimizer Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Workflow Module",
+        "Scientific Figure Workflow"
       ]
     },
     {
@@ -74,6 +88,7 @@
       "status": "active",
       "learning_audience": "codex",
       "links": [
+        "Academic Figure Optimizer Module",
         "Image Hosting and Cleanup Workflow",
         "Knowledge System Module",
         "Scientific Figure Workflow"
@@ -260,6 +275,7 @@
       "status": "active",
       "learning_audience": null,
       "links": [
+        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
         "Provider Capability Boundary"
       ]
@@ -315,6 +331,19 @@
         "Learning Audience Boundary",
         "Mind Map Knowledge Workflow",
         "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Experience Knowledge Subskill Refinement",
+      "path": "30-Knowledge\\Experience Knowledge Subskill Refinement.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Subskill Packaging Boundary"
       ]
     },
     {
@@ -378,6 +407,19 @@
       ]
     },
     {
+      "name": "Mother Skill Refinement",
+      "path": "30-Knowledge\\Mother Skill Refinement.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
       "name": "Portable Path Configuration",
       "path": "30-Knowledge\\Portable Path Configuration.md",
       "type": "concept",
@@ -424,6 +466,18 @@
         "Literature Discovery Workflow",
         "Scientific Figure Workflow",
         "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Subskill Packaging Boundary",
+      "path": "30-Knowledge\\Subskill Packaging Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
       ]
     },
     {
@@ -539,6 +593,14 @@
   ],
   "edges": [
     [
+      "Academic Figure Optimizer Module",
+      "Image Workflow Module"
+    ],
+    [
+      "Academic Figure Optimizer Module",
+      "Scientific Figure Workflow"
+    ],
+    [
       "Academic Manuscript Revision Boundaries",
       "Academic Text Style Module"
     ],
@@ -619,6 +681,22 @@
       "XLW1 JME Formatting Guardrails"
     ],
     [
+      "Experience Knowledge Subskill Refinement",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Subskill Packaging Boundary"
+    ],
+    [
       "Experience System Error Feedback",
       "Experience and Knowledge Architecture"
     ],
@@ -664,7 +742,15 @@
     ],
     [
       "Home",
+      "Academic Figure Optimizer Module"
+    ],
+    [
+      "Home",
       "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Home",
+      "Experience Knowledge Subskill Refinement"
     ],
     [
       "Home",
@@ -697,6 +783,10 @@
     [
       "Home",
       "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Home",
+      "Mother Skill Refinement"
     ],
     [
       "Home",
@@ -745,6 +835,10 @@
     [
       "Image Hosting and Cleanup Workflow",
       "Scientific Figure Workflow"
+    ],
+    [
+      "Image Workflow Module",
+      "Academic Figure Optimizer Module"
     ],
     [
       "Image Workflow Module",
@@ -895,6 +989,22 @@
       "Verified Experience Promotion"
     ],
     [
+      "Mother Skill Refinement",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Verified Experience Promotion"
+    ],
+    [
       "Paper Reading and Evidence Workflow",
       "Academic Writing and Citation Workflow"
     ],
@@ -1004,11 +1114,27 @@
     ],
     [
       "Scientific Figure Workflow",
+      "Academic Figure Optimizer Module"
+    ],
+    [
+      "Scientific Figure Workflow",
       "Academic Writing and Citation Workflow"
     ],
     [
       "Scientific Figure Workflow",
       "Provider Capability Boundary"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Verified Experience Promotion"
     ],
     [
       "Verified Experience Promotion",

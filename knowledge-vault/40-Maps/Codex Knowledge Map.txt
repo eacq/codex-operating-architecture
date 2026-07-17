@@ -5,6 +5,11 @@ Codex Knowledge System
 			-> Academic Text Style Workflow
 			-> Academic Writing and Citation Workflow
 			-> Exact Word Layout Workflow
+		Experience Knowledge Subskill Refinement [Codex]
+			-> Experience and Knowledge Architecture
+			-> Integrated Experience Feedback Loop
+			-> Knowledge System Module
+			-> Subskill Packaging Boundary
 		Experience System Error Feedback [Codex]
 			-> Experience and Knowledge Architecture
 			-> Knowledge System Module
@@ -31,6 +36,11 @@ Codex Knowledge System
 			-> Exact Word Layout Workflow
 			-> Header Frame Body Wrap Diagnostic
 			-> Verified Experience Promotion
+		Mother Skill Refinement [Codex]
+			-> Experience Knowledge Subskill Refinement
+			-> Experience and Knowledge Architecture
+			-> Subskill Packaging Boundary
+			-> Verified Experience Promotion
 		Portable Path Configuration [Codex]
 			-> Image Hosting and Cleanup Workflow
 			-> Knowledge Tooling
@@ -48,6 +58,10 @@ Codex Knowledge System
 			-> Literature Discovery Workflow
 			-> Scientific Figure Workflow
 			-> Zotero Reference Workflow
+		Subskill Packaging Boundary [Codex]
+			-> Experience and Knowledge Architecture
+			-> Knowledge System Module
+			-> Verified Experience Promotion
 		Verified Experience Promotion
 			-> Knowledge System Module
 			-> Project Knowledge Boundary
@@ -70,7 +84,9 @@ Codex Knowledge System
 			-> XLW1 Manuscript Refinement Workflow
 	index
 		Home
+			-> Academic Figure Optimizer Module
 			-> Academic Writing and Citation Workflow
+			-> Experience Knowledge Subskill Refinement
 			-> Experience and Knowledge Architecture
 			-> Image Hosting and Cleanup Workflow
 			-> Image Workflow Module
@@ -79,6 +95,7 @@ Codex Knowledge System
 			-> Learning Audience Boundary
 			-> Literature Discovery Workflow
 			-> Mind Map Knowledge Workflow
+			-> Mother Skill Refinement
 			-> Paper Reading and Evidence Workflow
 			-> Portable Path Configuration
 			-> Project Knowledge Boundary
@@ -90,6 +107,9 @@ Codex Knowledge System
 		README
 			-> Knowledge System Module
 	module
+		Academic Figure Optimizer Module [Codex]
+			-> Image Workflow Module
+			-> Scientific Figure Workflow
 		Academic Text Style Module [Codex]
 			-> Academic Text Style Workflow
 			-> Exact Word Layout Module
@@ -98,6 +118,7 @@ Codex Knowledge System
 			-> Exact Word Layout Workflow
 			-> Verified Experience Promotion
 		Image Workflow Module [Codex]
+			-> Academic Figure Optimizer Module
 			-> Image Hosting and Cleanup Workflow
 			-> Knowledge System Module
 			-> Scientific Figure Workflow
@@ -188,6 +209,7 @@ Codex Knowledge System
 			-> Project Knowledge Boundary
 			-> Verified Experience Promotion
 		Scientific Figure Workflow
+			-> Academic Figure Optimizer Module
 			-> Academic Writing and Citation Workflow
 			-> Provider Capability Boundary
 		XLW1 Manuscript Refinement Workflow [Codex]

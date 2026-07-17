@@ -1,5 +1,23 @@
 # Changelog / 更新日志
 
+## 1.0.4.0 - 2026-07-16
+
+### English
+
+- Add a named continuous-diagnosis mode for file-organization and complete-global-iteration failures.
+- Record every owned probe failure, invoke an explicit safe repair action, and restart the complete selected probe until it passes.
+- Keep unlimited safe repair attempts distinct from safety bypass: rollback failure, repair-action failure, and new-authority boundaries remain blockers.
+- Add owner-routing and fail-repair-retest regression coverage, lifecycle rules, bilingual README/release documentation, linked knowledge and experience, and an updated deterministic workflow diagram.
+- Add a UTF-8 file-input path and regression test so multilingual user error wording survives shell argument encoding boundaries.
+
+### 中文对照
+
+- 为文件整理与完整全局迭代失败新增明确的“持续诊断模式”。
+- 记录每次探针失败及其责任模块，调用显式的安全修复动作，并从头重跑所选完整探针直至通过。
+- 将“不限制安全修复次数”与“绕过安全边界”严格区分：回退失败、修复动作失败以及需要新增授权的操作仍然属于阻断项。
+- 新增责任路由与“失败—修复—复测”回归测试，同步生命周期规则、中英文 README/发布说明、关联知识与经验，并更新确定性工作流图。
+- 新增 UTF-8 文件输入通道与回归测试，避免多语言错误原话在 shell 参数编码边界被损坏。
+
 ## 1.0.3.0 - 2026-07-16
 
 ### English
