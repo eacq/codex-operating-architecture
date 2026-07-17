@@ -13,6 +13,8 @@ The canonical system version has four numeric components: `P.R.A.B`.
 
 Private Git tags use `private-vP.R` so that a private release can coexist locally with the public Git tag `vP.R`; the private GitHub Release title remains `vP.R`.
 
+Both private and public releases refresh the user-facing release surface, not only tags. `Invoke-ExperienceRelease.ps1` regenerates or updates the README latest-release blocks, the versioned release note, a release visual plan, and a deterministic Mermaid highlight diagram when the release has meaningful multi-area impact.
+
 ## 中文
 
 规范系统版本采用四段数字：`P.R.A.B`。

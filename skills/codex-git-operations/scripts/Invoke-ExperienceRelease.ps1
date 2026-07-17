@@ -49,7 +49,8 @@ if (-not (Test-Path -LiteralPath $releaseNotePath)) {
     $chineseBody = (([char[]]@(0x5DF2, 0x9A8C, 0x8BC1, 0x7684) -join '') + " $Mode " + ([char[]]@(0x7ECF, 0x9A8C, 0x7CFB, 0x7EDF, 0x53D1, 0x5E03, 0x3002) -join ''))
     @("# v$($versionPlan.version) / $($versionPlan.release_tag)", '', '## English', '', "Verified $Mode experience-system release.", '', "## Chinese / $chineseHeading", '', $chineseBody) | Set-Content -LiteralPath $releaseNotePath -Encoding UTF8
 }
-$allPaths = @($Paths + 'VERSION' + $releaseNote + 'docs/ITERATION-STATUS.md' + 'CHANGELOG.md' | Sort-Object -Unique)
+$releaseReadmeVisuals = & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1') -RepositoryRoot $root -Version $versionPlan.version -Mode $Mode -ReleaseNote $releaseNote -ChangedPaths $Paths -Apply | ConvertFrom-Json
+$allPaths = @($Paths + @($releaseReadmeVisuals.generated_paths) + 'VERSION' + $releaseNote + 'docs/ITERATION-STATUS.md' + 'CHANGELOG.md' | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null
 $allChanged = @(

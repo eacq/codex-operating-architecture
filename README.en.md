@@ -47,6 +47,10 @@ not only a commit and push: `Invoke-ExperienceRelease.ps1 -Mode Private`
 publishes a GitHub Release in the private `origin` repository with a
 `private-vP.R` tag and a `vP.R` release title.
 
+Every private or public experience-system release refreshes both README files,
+the matching release note, and a release visual plan; important multi-area
+changes also generate a versioned Mermaid highlight diagram under `docs/assets/`.
+
 Read [Verified Private Auto-Git](docs/AUTO-GIT-PRIVATE.md), [GitHub Publication Metadata](docs/GITHUB-PUBLISHING.md), and [Dual Repository Release Flow](docs/DUAL-REPOSITORY-RELEASE.md). These GitHub-facing guides contain Chinese counterparts in the same files.
 
 When `VERSION` changes, the metadata gate requires a matching section in

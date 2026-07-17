@@ -19,7 +19,7 @@ Update the following additional descriptions when their scope changes:
 |---|---|
 | Skill behavior, script usage, install/configuration | `README.md` or the matching `docs/` guide |
 | Clone, portability, provider, software setup | `docs/PORTABLE-SKILL-DISTRIBUTION.md` when applicable |
-| Version/tag/release | `VERSION`, `CHANGELOG.md`, `docs/release-notes/v<version>.md` |
+| Version/tag/release | `VERSION`, `CHANGELOG.md`, `docs/release-notes/v<version>.md`, README latest-release blocks, and `docs/release-visual-plans/v<version>.json` |
 | Security or privacy boundary | Relevant guide plus `CHANGELOG.md` |
 | Multi-module workflow or architecture change | Update or add a visual in `docs/assets/` and reference it from README or the release note |
 
@@ -70,6 +70,8 @@ Every version note should explain what changed, why it matters, how it was
 verified, and whether users need to do anything. When a change affects several
 modules, fixes a confusing workflow, or changes setup/release behavior, include
 a small visual that shows the problem and the resolved path. Prefer a sanitized GPT-generated explanatory image when it materially improves understanding; use versionable SVG or Mermaid when generation is unavailable or the structure is deterministic. Never include private remotes, local paths, credentials, sessions, or user data in image prompts.
+
+Every private and public experience-system release runs `Update-ReleaseReadmeAndVisuals.ps1` through `Invoke-ExperienceRelease.ps1`. The release gate refreshes `README.md` and `README.en.md`, appends a managed README/visual refresh block to `docs/release-notes/v<version>.md`, writes `docs/release-visual-plans/v<version>.json`, and creates `docs/assets/release-v<version>-highlights.mmd` when the scoped change touches important implementation, workflow, setup, knowledge, or release surfaces.
 
 ## 中文对照
 

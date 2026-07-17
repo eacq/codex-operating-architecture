@@ -41,6 +41,8 @@ Use `Get-ExperienceVersion.ps1` as the sole four-part `P.R.A.B` calculator: publ
 
 ## Route and checkpoint
 
+Every private or public release must run `skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1` through `Invoke-ExperienceRelease.ps1`. The release refreshes `README.md`, `README.en.md`, the versioned release note, a release visual plan, and when impact spans important workflow areas, a versioned Mermaid highlight diagram under `docs/assets/`. Keep release visuals sanitized and deterministic unless a separate privacy-safe GPT image request is materially justified.
+
 Select the repository from the changed paths before running Git. Confirm that
 `git rev-parse --show-toplevel` is the owning repository root; if it is an
 accidental parent, another product checkout, or otherwise mismatched, stop and

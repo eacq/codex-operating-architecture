@@ -20,6 +20,8 @@ English counterpart: [README.en.md](README.en.md)
 
 ![Codex operating architecture](docs/assets/readme-architecture.svg)
 
+Every private or public experience-system release refreshes both README files, the matching release note, and a release visual plan; important multi-area changes also generate a versioned Mermaid highlight diagram under `docs/assets/`.
+
 ## Repository channels
 
 - `origin` is a local-only private working remote for normal updates.
