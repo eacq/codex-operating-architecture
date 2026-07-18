@@ -24,13 +24,18 @@ $validator = if ($env:CODEX_SKILL_VALIDATOR) { $env:CODEX_SKILL_VALIDATOR } else
 $env:PYTHONUTF8 = '1'
 if (-not $python) { throw 'No validation Python runtime can import PyYAML. Set CODEX_PYTHON or write a local-only .codex/project/validation-runtime.json python_path.' }
 
-$failed = @()
-Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot '..\skills') -Directory | ForEach-Object {
-    & $python $validator $_.FullName
-    if ($LASTEXITCODE -ne 0) { $failed += $_.Name }
+$batchSkillValidator = Join-Path $PSScriptRoot 'validate_skills.py'
+if (Test-Path -LiteralPath $batchSkillValidator) {
+    & $python $batchSkillValidator (Join-Path $PSScriptRoot '..\skills')
+    if ($LASTEXITCODE -ne 0) { throw 'Skill validation failed.' }
+} else {
+    $failed = @()
+    Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot '..\skills') -Directory | ForEach-Object {
+        & $python $validator $_.FullName
+        if ($LASTEXITCODE -ne 0) { $failed += $_.Name }
+    }
+    if ($failed.Count -gt 0) { throw "Skill validation failed: $($failed -join ', ')" }
 }
-
-if ($failed.Count -gt 0) { throw "Skill validation failed: $($failed -join ', ')" }
 & $python (Join-Path $PSScriptRoot 'index_history.py')
 if ($LASTEXITCODE -ne 0) { throw 'History indexing failed.' }
 & $python (Join-Path $PSScriptRoot 'scan_repository.py')

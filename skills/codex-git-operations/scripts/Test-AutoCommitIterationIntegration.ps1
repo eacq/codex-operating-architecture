@@ -31,4 +31,10 @@ if ($commit -notmatch 'staged-git-paths-only') { throw 'Publication envelope doe
 $metadata = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-GitPublicationMetadata.ps1') -Raw -Encoding UTF8
 if ($metadata -notmatch 'publication-envelope\.json') { throw 'Publication metadata gate does not require the publication envelope.' }
 if ($metadata -notmatch 'local/private-state boundary') { throw 'Publication metadata gate does not verify the publication privacy boundary.' }
+$validate = Get-Content -LiteralPath (Join-Path $root 'scripts\validate.ps1') -Raw -Encoding UTF8
+if ($validate -notmatch 'validate_skills\.py') { throw 'Repository validation does not use the batch skill validator.' }
+$scan = Get-Content -LiteralPath (Join-Path $root 'scripts\scan_repository.py') -Raw -Encoding UTF8
+if ($scan -notmatch 'ls-files') { throw 'Repository scan does not use Git path authority.' }
+if ($scan -notmatch 'iter_filesystem_candidate_files') { throw 'Repository scan does not keep a filesystem fallback.' }
+if ($scan -notmatch 'EXCLUDED') { throw 'Repository scan does not preserve protected-root exclusions.' }
 Write-Host 'Auto-commit iteration integration test passed.'

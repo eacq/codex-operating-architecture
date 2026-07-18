@@ -1,5 +1,15 @@
 ﻿# Changelog / 更新日志
 
+## 1.12.5.0 - 2026-07-19
+
+### English
+
+- Record verified automatic Feature iteration updates for the scoped changed paths.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+
 ## 1.12.4.0 - 2026-07-19
 
 ### English
@@ -174,6 +184,8 @@
 
 ### English
 
+- Speed up repository validation by batching skill frontmatter checks into one Python process while preserving the system quick-validator rules and per-skill output.
+- Speed up repository placeholder/secret scanning by using Git tracked plus non-ignored untracked path authority and a protected-root-pruned filesystem fallback, avoiding traversal of local `.codex` and runtime state.
 - Add a publication envelope for verified private commits: publication gates now bind the staged Git surface, privacy boundary, version, release note, presentation audit, and current complete-iteration proof, so retries can reuse an identical complete proof instead of rerunning replacement.
 - Optimize complete global iteration safety paths by using Git-backed untracked/ignored cleanup discovery, candidate-parent active cleanup, and a privacy-filtered robocopy rollback snapshot with manifest hash verification.
 - Add internal step timing telemetry to complete replacement iterations and make the non-staged publication gate count untracked paths, so optimization can target measured bottlenecks without hiding local files from safety checks.
@@ -196,6 +208,8 @@
 
 ### Chinese / 中文
 
+- 将 skill frontmatter 校验合并到单个 Python 进程中，在保留系统 quick-validator 规则和逐 skill 输出的同时加快仓库验证。
+- 仓库 placeholder/secret 扫描改用 Git tracked 加非 ignored untracked 路径权威，并保留剪枝版文件系统 fallback，避免遍历本地 `.codex` 和 runtime 状态。
 - 为已验证私有提交新增 publication envelope：发布门禁绑定 staged Git 发布面、隐私边界、版本、release note、presentation audit 和当前完整迭代证明；指纹一致的重试可复用完整 proof，不再重复替换。
 - 优化完整全局迭代的安全路径：cleanup 改用 Git 未跟踪/忽略候选发现和候选父目录清理，rollback snapshot 改用隐私过滤后的 robocopy 复制并继续按 manifest 哈希验证。
 - 为完整替换迭代新增内部阶段耗时记录，并让非 staged 发布门禁计入未跟踪路径；后续优化可以针对实测瓶颈，同时避免本地文件被空 diff 掩盖。
@@ -475,6 +489,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

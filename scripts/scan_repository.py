@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -29,11 +30,63 @@ def is_placeholder_credential(match_text: str) -> bool:
     return any(marker in normalized for marker in markers)
 
 
+def iter_git_candidate_files() -> list[Path] | None:
+    try:
+        result = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(ROOT),
+                "-c",
+                "core.quotePath=false",
+                "ls-files",
+                "--cached",
+                "--others",
+                "--exclude-standard",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+    files: list[Path] = []
+    for line in result.stdout.splitlines():
+        relative = Path(line.strip('"'))
+        if not relative.parts or any(part in EXCLUDED for part in relative.parts):
+            continue
+        path = ROOT / relative
+        if path.is_file():
+            files.append(path)
+    return files
+
+
+def iter_filesystem_candidate_files() -> list[Path]:
+    files: list[Path] = []
+    stack = [ROOT]
+    while stack:
+        current = stack.pop()
+        try:
+            for child in current.iterdir():
+                if child.name in EXCLUDED:
+                    continue
+                if child.is_dir():
+                    stack.append(child)
+                elif child.is_file():
+                    files.append(child)
+        except OSError:
+            continue
+    return files
+
+
 def main() -> int:
     findings = []
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or any(part in EXCLUDED for part in path.parts):
-            continue
+    paths = iter_git_candidate_files()
+    if paths is None:
+        paths = iter_filesystem_candidate_files()
+    for path in paths:
         relative = path.relative_to(ROOT)
         if any(relative.parts[index : index + 3] == (".codex", "runtime", "env") for index in range(len(relative.parts) - 2)):
             continue
