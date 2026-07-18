@@ -11,6 +11,14 @@
       "verified": true
     },
     {
+      "id": "concept-baoyu-skills-network-learning",
+      "name": "Baoyu Skills Network Learning",
+      "path": "30-Knowledge\\Baoyu Skills Network Learning.md",
+      "summary": "Review Baoyu skills by individual takeover surface, not as a bundle. Keep browser-cookie, credential, publishing, and multi-provider capabilities out of global installation; trial only a project-local, explicitly authorized diagram workflow after runtime and output validation.",
+      "source": "https://github.com/JimLiu/baoyu-skills;commit=6b7a2e417500561a5ecdd0b168332f4142584617",
+      "verified": false
+    },
+    {
       "id": "concept-codebase-memory-mcp",
       "name": "Codebase Memory MCP",
       "path": "30-Knowledge\\Codebase Memory MCP.md",
@@ -115,6 +123,14 @@
       "verified": true
     },
     {
+      "id": "concept-project-vocabulary-decision-brief",
+      "name": "Project Vocabulary and Decision Brief",
+      "path": "30-Knowledge\\Project Vocabulary and Decision Brief.md",
+      "summary": "For requirement work with repeated domain ambiguity, trial a project-local vocabulary and decision brief under codex-requirement-authoring; validate its effect on one real follow-on workflow before promoting it to a reusable subskill or rule.",
+      "source": "https://github.com/mattpocock/skills;release=v1.1.0;local-gap-review-2026-07-18",
+      "verified": false
+    },
+    {
       "id": "concept-provider-boundary",
       "name": "Provider Capability Boundary",
       "path": "30-Knowledge\\Provider Capability Boundary.md",
@@ -128,6 +144,22 @@
       "path": "30-Knowledge\\Subskill Packaging Boundary.md",
       "summary": "Use subskill-style packaging inside an existing owner when a capability needs its own contract or tests but does not justify a new top-level skill; promote it only after independent evidence shows a separate owner boundary.",
       "source": "codex-skill-packaging-iteration-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-top-level-owner-governance",
+      "name": "Top-Level Owner Governance",
+      "path": "30-Knowledge\\Top-Level Owner Governance.md",
+      "summary": "A top-level owner can evolve only with explicit current-iteration user authority, an evidence-backed boundary comparison, a rollback or migration condition, and validation; otherwise retain the owner and improve it internally.",
+      "source": "authorized-top-level-owner-economy-review-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-visual-format-selection",
+      "name": "Visual Format Selection",
+      "path": "30-Knowledge\\Visual Format Selection.md",
+      "summary": "Select image format from the reader task and delivery constraints before generation or conversion. Mermaid and SVG are conditional structural/editable formats; generated and photographic visuals should normally be PNG or JPG according to transparency, fidelity, and size needs.",
+      "source": "local-image-workflow-refinement-2026-07-18; baoyu-skills-review-2026-07-18",
       "verified": true
     },
     {
@@ -243,11 +275,27 @@
       "verified": true
     },
     {
+      "id": "workflow-content-production",
+      "name": "Content Production Workflow",
+      "path": "30-Knowledge\\Content Production Workflow.md",
+      "summary": "Produce reader-facing content from a source-aware brief through outline, draft, optional asset handoff, and review; keep publication and high-authority external actions separate from drafting.",
+      "source": "local-content-production-refinement-2026-07-18;https://github.com/JimLiu/baoyu-skills;commit=6b7a2e417500561a5ecdd0b168332f4142584617",
+      "verified": true
+    },
+    {
       "id": "workflow-exact-word-layout",
       "name": "Exact Word Layout Workflow",
       "path": "20-Workflows\\Exact Word Layout Workflow.md",
       "summary": "For locked-template DOCX layout repairs, preserve the authoritative file, patch only the smallest local OOXML or Word COM surface, then trust rendered page QA over structural checks when they disagree.",
       "source": "xlw1-jme-layout-iterations;F:/codex/skills/codex-exact-word-layout",
+      "verified": true
+    },
+    {
+      "id": "workflow-global-iteration-candidate-report",
+      "name": "Global Iteration Candidate Report",
+      "path": "30-Knowledge\\Global Iteration Candidate Report.md",
+      "summary": "After a completed global iteration, generate an advisory candidate report so the user can make explicit promotion, test, retirement, or external-authority decisions.",
+      "source": "local-global-experience-system-refinement-2026-07-18",
       "verified": true
     },
     {

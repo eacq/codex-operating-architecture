@@ -1,7 +1,9 @@
 ---
 id: concept-header-frame-body-wrap-diagnostic
 type: concept
-status: candidate
+
+promotion_authority: user-candidate-processing-20260718
+promotion_status: guarded
 source: XLW1 verified error-feedback repair 2026-07-16;codex-exact-word-layout
 verified: false
 learning_audience: codex

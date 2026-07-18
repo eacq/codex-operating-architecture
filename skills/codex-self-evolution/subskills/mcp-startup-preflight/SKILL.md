@@ -19,8 +19,12 @@ invoke the relevant MCP tool before broad repository reading.
 
 1. Confirm the project root. If it is not a source repository, skip MCP graph
    warmup and continue normal lifecycle routing.
-2. If `codebase-memory-mcp` tools are exposed in the current task, call
-   `index_repository` with:
+2. Determine whether `codebase-memory-mcp` is callable in the current task.
+   When the tool surface is deferred or namespaced, inspect the task's callable
+   capability registry before concluding it is unavailable; do not rely only on
+   the initially displayed static tool list. If callable, call
+   `index_repository` with the exact callable-contract key `repo_path` (not
+   `repository_path`) and:
 
    ```text
    repo_path=<project-root>
@@ -30,9 +34,9 @@ invoke the relevant MCP tool before broad repository reading.
 
 3. Treat the result as startup evidence: record project name, status, node and
    edge counts, and visible exclusions when they affect confidence.
-4. Do not block ordinary work only because the MCP tool is not exposed in the
-   current task. Record the missing tool and fall back to `rg`, Git state, and
-   local files.
+4. Do not block ordinary work only after the callable-capability check confirms
+   the MCP tool is unavailable in the current task. Record the missing tool and
+   fall back to `rg`, Git state, and local files.
 5. Do not commit MCP cache databases, `.codebase-memory` artifacts, local
    binary paths, or machine-specific MCP config.
 6. For architecture, ownership, impact, or absence claims, hand off to

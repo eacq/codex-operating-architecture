@@ -1,4 +1,4 @@
 interface:
-  display_name: "Codex Cost Optimization"
-  short_description: "Reduce token and API cost without reducing outcome quality"
-  default_prompt: "Use $codex-cost-optimization to handle this task with verified reusable practices."
+  display_name: "Codex Cost Optimization (Deprecated)"
+  short_description: "Compatibility entry; route resource decisions to self-evolution"
+  default_prompt: "Use $codex-self-evolution and its resource-economy subskill to make a quality-preserving resource decision."

@@ -15,6 +15,13 @@ active repository and global interfaces.
 
 ## Contract
 
+Before starting the transaction, record the outcome-directed iteration contract:
+the target collaboration result, measurable acceptance evidence, affected
+roles/handoffs, resource and authority boundaries, and no-regression checks.
+Do not run a complete replacement merely to create activity; if the contract
+cannot show a concrete system-level improvement, retain the active architecture
+and close as an evidence review.
+
 A global iteration uses the isolated full-scope transaction:
 
 1. Copy the architecture into an isolated sandbox.
@@ -31,11 +38,24 @@ A global iteration uses the isolated full-scope transaction:
 12. Remove validation-regenerated disposable artifacts.
 13. Refresh and validate real global interfaces.
 14. Write lifecycle state and iteration proof.
+15. Generate the current candidate report through
+    `codex-experience-capture/scripts/New-GlobalIterationCandidateReport.ps1`
+    and present its decision-ready summary to the user.
 
 Rollback readiness is mandatory. A post-replacement failure must restore and
 verify the exact pre-iteration state, record the error, repair the owning
 workflow, and rerun from the beginning. Rollback failure blocks mutation and Git
 work.
+
+## Runtime Budget
+
+The complete transaction can outlast an interactive command window. Run one
+controller through a resumable wait path, keep all other writers out of its
+working surface, and inspect lifecycle state plus proof before deciding that a
+caller timeout is a workflow failure. Do not start a duplicate iteration merely
+because its caller stopped waiting. If interruption occurs before an exact
+snapshot completes, verify that replacement never started; if it occurs after
+the snapshot, restore and hash-verify before a clean rerun.
 
 ## Continuous Diagnosis
 
@@ -55,3 +75,9 @@ partially successful iteration as the next probe.
 The proof must show rollback-ready, cleaned, replaced, twice-revalidated,
 interface-validated, lifecycle-written success. Publication gates consume this
 proof and must never reorganize or delete from the active repository.
+
+The candidate report is an advisory post-iteration artifact. It aggregates
+project experience, ledger, linked-knowledge, workflow-learning, and candidate
+error-feedback entries with source, evidence, suggested decision, and authority
+boundary. It never auto-promotes, installs, updates, configures, publishes, or
+deletes a candidate.

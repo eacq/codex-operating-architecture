@@ -2,11 +2,17 @@
 param(
     [string]$RepositoryRoot = (Get-Location).Path,
     [switch]$Staged,
+    [switch]$AutoCommit,
+    [string]$AutoCommitMessage,
     [switch]$Apply
 )
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
+$candidateProcessor = Join-Path $root 'skills\\codex-experience-capture\\scripts\\Process-AuthorizedCandidateRecords.ps1'
+$candidateProcessing = if ($Apply -and (Test-Path -LiteralPath $candidateProcessor)) {
+    & $candidateProcessor -ProjectRoot $root -Apply | ConvertFrom-Json
+} else { $null }
 $paths = if ($Staged) {
     @(& git -C $root diff --cached --name-only)
 } else {
@@ -17,6 +23,7 @@ $paths = if ($Staged) {
 }
 $paths = @($paths | Where-Object { $_ } | Sort-Object -Unique)
 if ($paths.Count -eq 0) { throw 'A complete global iteration requires changed paths to assess.' }
+if ($AutoCommit -and -not $Staged) { throw 'AutoCommit requires -Staged so the exact commit scope is explicit before iteration.' }
 
 function Get-Sha256([string[]]$Values) {
     $sha = [Security.Cryptography.SHA256]::Create()
@@ -95,6 +102,8 @@ $record = [ordered]@{
         experience_ledger = 'validated'
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
+        candidate_report = $isolatedIteration.candidate_report
+        candidate_processing = if ($candidateProcessing) { $candidateProcessing.result } else { 'not-applied' }
         visual_decision = $visualProbe.action
         file_organization = [ordered]@{ result = $isolatedIteration.result; sandbox = $isolatedIteration.sandbox; continuous_diagnosis_supported = $isolatedIteration.continuous_diagnosis_supported; rollback_ready = $isolatedIteration.rollback_ready; validated = $isolatedIteration.validated; replaced = $isolatedIteration.replaced; post_replacement_validated = $isolatedIteration.post_replacement_validated; lifecycle_written_back = $isolatedIteration.lifecycle_written_back; cleanup = $isolatedIteration.cleanup }
     }
@@ -103,4 +112,18 @@ $record = [ordered]@{
     completed_at = [DateTime]::UtcNow.ToString('o')
 }
 if ($Apply) { $record | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $root '.codex/project/global-experience-iteration.json') -Encoding UTF8 }
+if ($Apply -and $AutoCommit) {
+    $allChanged = @(
+        & git -C $root diff --name-only
+        & git -C $root diff --cached --name-only
+        & git -C $root ls-files --others --exclude-standard
+    ) | Where-Object { $_ } | Sort-Object -Unique
+    $outsideScope = @($allChanged | Where-Object { $_ -notin $paths })
+    if ($outsideScope.Count -gt 0) { throw "AutoCommit refused because the verified iteration produced or retained out-of-scope changes: $($outsideScope -join ', ')" }
+    $commitScript = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1'
+    $commitResult = & $commitScript -RepositoryRoot $root -Paths $paths -PreserveVersion -SkipCompleteIteration -CommitOnly -Apply -Message $AutoCommitMessage | ConvertFrom-Json
+    if ($commitResult.decision -ne 'committed-locally-no-push') { throw 'AutoCommit did not produce a local commit.' }
+    $record.auto_commit = [ordered]@{ result = $commitResult.decision; commit = $commitResult.commit; pushed = $false; scope = $paths }
+    $record | ConvertTo-Json -Depth 7 | Set-Content -LiteralPath (Join-Path $root '.codex/project/global-experience-iteration.json') -Encoding UTF8
+}
 $record | ConvertTo-Json -Depth 6

@@ -1,9 +1,15 @@
 ---
 name: codex-cost-optimization
-description: Reduce model tokens, API calls, tool latency, and paid-provider usage while preserving required accuracy, safety, and acceptance quality. Use when designing prompts, selecting models or providers, processing large histories, routing research, or optimizing an expensive recurring workflow.
+description: Deprecated compatibility entry for quality-preserving resource routing. Route new work through codex-self-evolution and its resource-economy subskill.
 ---
 
-# Codex Cost Optimization
+# Codex Cost Optimization (Deprecated)
 
-Set the quality floor first. Search indexes and summaries before raw history; load only task-relevant references. Use scripts for deterministic repeated work. Cache non-sensitive stable results with provenance and expiry. Batch independent reads, stop research when acceptance criteria are decidable, and use expensive models or APIs only where they change the outcome. Never save cost by skipping required verification, security controls, or evidence.
+This compatibility entry is retained for one release while callers migrate to
+`codex-self-evolution` → `resource-economy`. The capability has no independent
+artifact lifecycle or safety boundary: quality-preserving resource decisions
+are part of the controller's collaboration contract.
 
+Do not add new workflow content here. Preserve normal confirmation boundaries
+for paid, public, provider-changing, installation, privileged, destructive, or
+irreversible actions.

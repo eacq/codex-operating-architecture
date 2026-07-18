@@ -1,11 +1,22 @@
 ---
 name: codex-project-optimization
-description: Initialize and improve any project using its requirements, source code, tests, logs, telemetry, documentation, Git history, and prior Codex sessions. Use on first Codex use in a project, when `.codex/project/state.json` is missing, when asked to optimize or document a project, after Git initialization or major Git events, and after a complete verified iteration that must synchronize requirements, workflows, project experience, retrospectives, and global skill candidates.
+description: Own project-local lifecycle initialization and reconciliation. Use on first Codex use when `.codex/project/state.json` is missing, and after a verified iteration or Git lifecycle event that must synchronize requirements, workflows, experience, retrospectives, and pending events. Route general implementation, workflow design, research, and global promotion to their dedicated owners.
 ---
 
-# Codex Project Optimization
+# Codex Project Lifecycle
 
-Before editing, map entry points, data flow, ownership, tests, logs, and relevant history. Rank changes by impact, evidence, risk, and effort; preserve project conventions and unrelated user work. Compare verified results with a baseline and keep project facts in the project.
+This owner establishes and reconciles project-local lifecycle authority. It does
+not own generic project diagnosis, implementation, workflow design, or global
+experience promotion:
+
+- `codex-self-evolution` chooses the smallest owner set at project entry.
+- `codex-information-gathering`, `codex-task-execution`, and
+  `codex-workflow-design` own evidence, changes, and repeatable operating work.
+- `codex-experience-capture` decides whether a project result can become a
+  cross-project lesson.
+
+Preserve project conventions and unrelated user work. Keep project facts in the
+project, and replace initialized unknowns only with local evidence.
 
 ## Project lifecycle
 
@@ -20,3 +31,10 @@ python scripts/initialize_project.py --project-root <project-root> --install-git
 Replace generated unknowns only with evidence. Preserve existing files and hooks. At lifecycle triggers, reconcile project documents before any global promotion.
 
 Initialization also creates `.codex/project/file-organization.json`. Run `codex-file-organization/scripts/Invoke-FileOrganizationLifecycle.ps1 -Phase project-initialization -Apply` after initialization and at material follow-up work. It automatically archives and safely processes eligible `00-inbox` items before validating affected configuration/reference changes; source and runtime paths stay outside the automatic managed scope.
+
+## Reconciliation
+
+At a completed iteration or processed Git event, reconcile project authority
+files and pending events, then hand verified reusable outcomes to
+`codex-experience-capture`. Do not absorb implementation or workflow ownership
+merely because their results are recorded in project lifecycle files.

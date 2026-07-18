@@ -9,6 +9,7 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 $changed = if ($ChangedPaths -and $ChangedPaths.Count -gt 0) { @($ChangedPaths | Sort-Object -Unique) } else { @(& git -C $root diff --name-only; & git -C $root ls-files --others --exclude-standard | Sort-Object -Unique) }
 $registry = Get-Content -LiteralPath (Join-Path $root 'module-registry.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+$activeModuleCount = @($registry.modules | Where-Object { $_.status -eq 'active' }).Count
 $version = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
 $implementation = @($changed | Where-Object { $_ -match '^(skills/|scripts/|config/|module-registry\.json$)' }).Count -gt 0
 $versionChanged = $changed -contains 'VERSION'
@@ -25,16 +26,16 @@ $english = @(
     '## English',
     '',
     "- Current architecture version: $version",
-    "- Registered active modules: $(@($registry.modules).Count)",
+    "- Registered active modules: $activeModuleCount",
     '- Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note and an exact-version `CHANGELOG.md` section.',
     '- Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.'
 )
 $zhTemplate = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('IyMg5Lit5paHCgotIOW9k+WJjeaetuaehOeJiOacrO+8mnswfQotIOW3suazqOWGjOa0u+WKqOaooeWdl+aVsO+8mnsxfQotIOivtOaYjumXqOemge+8muavj+asoeW3sumqjOivgeeahOWunueOsOi/reS7o+mDveW/hemhu+abtOaWsOacrOeKtuaAgeaWh+S7tuOAgUNIQU5HRUxPRy5tZOOAgeS4reaWhyBSRUFETUUg5LiOIFJFQURNRS5lbi5tZO+8m+eJiOacrOWPmOWMlui/mOW/hemhu+abtOaWsOWvueW6lOeahOWPjOivreWPkeW4g+ivtOaYju+8jOW5tuehruS/nSBDSEFOR0VMT0cubWQg5a2Y5Zyo6K+l57K+56Gu54mI5pys55qE5p2h55uu44CCCi0g5YWs5byA6L2s5YyW6Zeo56aB77ya5YWs5byAIHNraWxsIOS7heS/neeVmemAmueUqOW3peS9nOa1geOAguaOpeaUtuiAheeahOacjeWKoeWVhuOAgei3r+W+hOOAgei9r+S7tuWSjOmdnuenmOWvhuWBj+WlveW/hemhu+S/neeVmeWcqOacrOWcsOengeaciemFjee9ruS4reOAgg=='))
-$status = (@($english) + @('') + @($zhTemplate -f $version, @($registry.modules).Count)) -join [Environment]::NewLine
+$status = (@($english) + @('') + @($zhTemplate -f $version, $activeModuleCount)) -join [Environment]::NewLine
 if ($Apply) { Set-Content -LiteralPath $statusPath -Value $status -Encoding UTF8 }
 [ordered]@{
     version = $version
-    registered_modules = @($registry.modules).Count
+    registered_modules = $activeModuleCount
     changed_paths = $changed
     required_paths = $requirements
     missing_paths = $missing

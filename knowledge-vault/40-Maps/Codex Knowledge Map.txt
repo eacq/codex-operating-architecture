@@ -1,10 +1,22 @@
 Codex Knowledge System
+	architecture-governance
+		Top-Level Owner Governance [Codex]
+			-> Experience and Knowledge Architecture
+			-> Global Experience System
+			-> Mother Skill Refinement
 	concept
 		Academic Manuscript Revision Boundaries [Codex]
 			-> Academic Text Style Module
 			-> Academic Text Style Workflow
 			-> Academic Writing and Citation Workflow
 			-> Exact Word Layout Workflow
+		Baoyu Skills Network Learning [Codex]
+			-> Content Production Workflow
+			-> Experience System Error Feedback
+			-> Global Experience System
+			-> Learning Governance
+			-> Subskill Packaging Boundary
+			-> Visual Format Selection
 		Codebase Memory MCP [Codex]
 			-> Codebase Graph Evidence Workflow
 			-> Experience and Knowledge Architecture
@@ -32,7 +44,10 @@ Codex Knowledge System
 			-> Experience Knowledge Subskill Refinement
 			-> Experience System Error Feedback
 			-> Experience and Knowledge Architecture
+			-> Global Iteration Candidate Report
 			-> Local Experience Iteration Workflow
+			-> Top-Level Owner Governance
+			-> Visual Format Selection
 		Header Frame Body Wrap Diagnostic [Codex]
 			-> Exact Word Layout Workflow
 			-> Verified Experience Promotion
@@ -180,8 +195,10 @@ Codex Knowledge System
 			-> XLW1 Source Figure Integrity
 			-> XLW1 Version Authority
 	untyped
+		GitHub README Presentation Network Learning
 		Knowledge System Module
 		Learning Audience Boundary
+		Local Experience Iteration Workflow
 	workflow
 		Academic Research Workflow [Codex]
 			-> Academic Text Style Module
@@ -199,10 +216,19 @@ Codex Knowledge System
 			-> Experience and Knowledge Architecture
 			-> Project Knowledge Boundary
 			-> Verified Experience Promotion
+		Content Production Workflow [Codex]
+			-> Baoyu Skills Network Learning
+			-> Experience System Error Feedback
+			-> Learning Governance
+			-> Visual Format Selection
 		Exact Word Layout Workflow [Codex]
 			-> Exact Word Layout Module
 			-> Verified Experience Promotion
 			-> XLW1 JME Formatting Guardrails
+		Global Iteration Candidate Report [Codex]
+			-> Experience System Error Feedback
+			-> Global Experience System
+			-> Learning Governance
 		Image Hosting and Cleanup Workflow
 			-> Experience and Knowledge Architecture
 			-> Image Workflow Module
@@ -235,10 +261,19 @@ Codex Knowledge System
 			-> Knowledge System Module
 			-> Project Knowledge Boundary
 			-> Verified Experience Promotion
+		Project Vocabulary and Decision Brief [Codex]
+			-> Learning Governance
+			-> Project Creation Capability
+			-> Subskill Packaging Boundary
+			-> Verified Experience Promotion
 		Scientific Figure Workflow
 			-> Academic Figure Optimizer Module
 			-> Academic Writing and Citation Workflow
 			-> Provider Capability Boundary
+		Visual Format Selection [Codex]
+			-> Baoyu Skills Network Learning
+			-> Experience and Knowledge Architecture
+			-> Global Experience System
 		XLW1 Manuscript Refinement Workflow [Codex]
 			-> XLW1 API Conversation Evidence
 			-> XLW1 JME Formatting Guardrails

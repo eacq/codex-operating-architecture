@@ -5,7 +5,7 @@ description: Install, update, configure, and verify Codex skills, plugins, comma
 
 # Codex Tool Installation
 
-1. Distinguish ordinary skill/config file handling from external software or system changes. Notify before the latter, including item, source, scope, paths, and impact.
+1. Distinguish ordinary skill/config file handling from external software or system changes. Before an install, upgrade, or reconfiguration prompted by a newly detected external release, report the item, source, scope, paths, impact, and rollback boundary, then obtain explicit user authorization.
 2. Check existing installations first; preserve working versions and locations unless change is necessary.
 3. Follow a user-selected target after notification; otherwise prefer official sources and repository methods.
 4. Keep provider boundaries explicit. For Python, verify the runtime future Codex tasks actually use, including bundled Python.

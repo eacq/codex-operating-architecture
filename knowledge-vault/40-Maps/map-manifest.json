@@ -404,6 +404,23 @@
       "codex_learning": true
     },
     {
+      "id": "concept-baoyu-skills-network-learning",
+      "name": "Baoyu Skills Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Baoyu Skills Network Learning.md",
+      "links": [
+        "Content Production Workflow",
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance",
+        "Subskill Packaging Boundary",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "concept-codebase-memory-mcp",
       "name": "Codebase Memory MCP",
       "type": "concept",
@@ -414,6 +431,21 @@
         "Integrated Experience Feedback Loop",
         "Knowledge System Module",
         "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-content-production",
+      "name": "Content Production Workflow",
+      "type": "workflow",
+      "path": "30-Knowledge/Content Production Workflow.md",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience System Error Feedback",
+        "Learning Governance",
+        "Visual Format Selection"
       ],
       "learning_audience": "codex",
       "user_anki": false,
@@ -467,6 +499,16 @@
       "codex_learning": true
     },
     {
+      "id": "GitHub README Presentation Network Learning",
+      "name": "GitHub README Presentation Network Learning",
+      "type": "untyped",
+      "path": "30-Knowledge/GitHub README Presentation Network Learning.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
       "id": "concept-global-experience-system",
       "name": "Global Experience System",
       "type": "concept",
@@ -475,7 +517,24 @@
         "Experience Knowledge Subskill Refinement",
         "Experience System Error Feedback",
         "Experience and Knowledge Architecture",
-        "Local Experience Iteration Workflow"
+        "Global Iteration Candidate Report",
+        "Local Experience Iteration Workflow",
+        "Top-Level Owner Governance",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-global-iteration-candidate-report",
+      "name": "Global Iteration Candidate Report",
+      "type": "workflow",
+      "path": "30-Knowledge/Global Iteration Candidate Report.md",
+      "links": [
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance"
       ],
       "learning_audience": "codex",
       "user_anki": false,
@@ -521,6 +580,16 @@
       "learning_audience": "codex",
       "user_anki": false,
       "codex_learning": true
+    },
+    {
+      "id": "Local Experience Iteration Workflow",
+      "name": "Local Experience Iteration Workflow",
+      "type": "untyped",
+      "path": "30-Knowledge/Local Experience Iteration Workflow.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
     },
     {
       "id": "concept-locked-template-docx-package-invariants",
@@ -625,6 +694,21 @@
       "codex_learning": false
     },
     {
+      "id": "concept-project-vocabulary-decision-brief",
+      "name": "Project Vocabulary and Decision Brief",
+      "type": "workflow",
+      "path": "30-Knowledge/Project Vocabulary and Decision Brief.md",
+      "links": [
+        "Learning Governance",
+        "Project Creation Capability",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "concept-provider-boundary",
       "name": "Provider Capability Boundary",
       "type": "concept",
@@ -653,6 +737,20 @@
       "codex_learning": true
     },
     {
+      "id": "concept-top-level-owner-governance",
+      "name": "Top-Level Owner Governance",
+      "type": "architecture-governance",
+      "path": "30-Knowledge/Top-Level Owner Governance.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Mother Skill Refinement"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "concept-experience-promotion",
       "name": "Verified Experience Promotion",
       "type": "concept",
@@ -664,6 +762,20 @@
       "learning_audience": null,
       "user_anki": false,
       "codex_learning": false
+    },
+    {
+      "id": "concept-visual-format-selection",
+      "name": "Visual Format Selection",
+      "type": "workflow",
+      "path": "30-Knowledge/Visual Format Selection.md",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience and Knowledge Architecture",
+        "Global Experience System"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
     },
     {
       "id": "concept-xlw1-jme-formatting-guardrails",

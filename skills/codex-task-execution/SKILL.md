@@ -12,6 +12,24 @@ description: Execute a scoped technical or operational task from requirements th
 5. Verify behavior, not only syntax or installation.
 6. Report changed artifacts, validation, and remaining limitations.
 
+For a compound task, use the smallest logical owner set. Each owner needs a
+bounded scope, named output, shared acceptance criteria, and an isolated write
+surface. Default to a single owner; parallel work is limited to independent
+read-only work or non-overlapping writes and requires a named merge verifier.
+
+For articles, social series, newsletter copy, educational explainers, cover
+briefs, infographics, comics, or slide narratives, route through
+[subskills/content-production/SKILL.md](subskills/content-production/SKILL.md).
+It turns a source-backed brief into a reviewable content package and hands
+visual, Office, citation, and publication work to their existing owners.
+
+For a GitHub profile README or repository homepage that needs a read-only
+audit, a whole-README redesign, or a bounded visual-asset set, route through
+[subskills/github-readme-presentation/SKILL.md](subskills/github-readme-presentation/SKILL.md).
+It adapts the installed `beautify-github-readme` workflow and the
+`beautify-github-profile` reference collection without treating decoration,
+third-party statistics, or publication as defaults.
+
 For explicit durable finish loops, use
 [subskills/persistent-completion-lite/SKILL.md](subskills/persistent-completion-lite/SKILL.md).
 This mode increases persistence through checkpoints and verification, but does

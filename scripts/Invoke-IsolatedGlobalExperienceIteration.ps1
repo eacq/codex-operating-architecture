@@ -155,6 +155,10 @@ if ($Replace) {
     $state.PSObject.Properties.Remove('active_iteration')
     $state | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $statePath -Encoding UTF8
   }
+  $candidateReport = & (Join-Path $root 'skills\codex-experience-capture\scripts\New-GlobalIterationCandidateReport.ps1') -ProjectRoot $root -Apply | ConvertFrom-Json
+  if ($candidateReport.result -ne 'generated') { throw 'Global iteration candidate report generation failed.' }
+  $result | Add-Member -NotePropertyName candidate_report -NotePropertyValue $candidateReport.output -Force
+  $result | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $proofPath -Encoding UTF8
 }
 $result | ConvertTo-Json
 } catch {

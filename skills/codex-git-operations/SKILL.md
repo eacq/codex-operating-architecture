@@ -39,7 +39,7 @@ GitHub-facing description.
 
 ## Verified private auto-Git
 
-Use `scripts/Invoke-VerifiedPrivateCommit.ps1` after a complete verified iteration when a new or materially changed capability, validated repair, cross-module contract, or meaningful documentation update has a scoped path set. The controller recommends `minor` for compatible functionality and `patch` for fixes or documentation; `major`, public pushes, tags, releases, and mixed worktree changes always require separate explicit direction. The script confirms `origin` is private through GitHub CLI, stages only explicit paths, validates metadata, commits, pushes only to `origin`, and stores checkpoints. Read `docs/AUTO-GIT-PRIVATE.md` for the bilingual contract.
+Use `scripts/Invoke-VerifiedPrivateCommit.ps1` after a complete verified iteration when a new or materially changed capability, validated repair, cross-module contract, or meaningful documentation update has a scoped path set. The controller recommends `minor` for compatible functionality and `patch` for fixes or documentation; `major`, public pushes, tags, releases, and mixed worktree changes always require separate explicit direction. `Invoke-CompleteGlobalExperienceIteration.ps1 -Staged -AutoCommit -Apply` may automatically create a local commit only after that same verified iteration proves the exact staged scope; it uses `-CommitOnly`, so it never pushes, tags, or releases. The script confirms `origin` is private through GitHub CLI, stages only explicit paths, validates metadata, commits, and stores checkpoints. Read `docs/AUTO-GIT-PRIVATE.md` for the bilingual contract.
 
 ## Experience version and release commands
 

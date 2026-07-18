@@ -12,6 +12,22 @@ description: Interpret incomplete or conflicting requests and produce precise re
 5. Define observable acceptance criteria, exclusions, risks, and validation.
 6. Keep requirements separate from implementation details unless the detail is a real constraint.
 
+For material or global-system work, create a durable normalized brief with
+`scripts/New-NormalizedRequirementBrief.ps1 -Apply` before implementation. Its
+contract is in [references/normalized-requirement-contract.md](references/normalized-requirement-contract.md).
+The brief distinguishes literal goal, constraints, authority, reversible assumptions,
+exclusions, acceptance criteria, and validation; it does not expand authority.
+
+## Adapted requirement modes
+
+- **Conversation-to-spec:** when the existing user conversation and project evidence
+  already determine the outcome, synthesize them directly into the normalized brief
+  without an interview, issue-tracker publication, or external side effect.
+- **Terminology-and-decision clarification:** use only when repeated domain terms or
+  a consequential decision ambiguity would change implementation or verification.
+  Record concise vocabulary and decision entries in the brief; do not create a global
+  `CONTEXT.md`, automatic ADR, raw conversation capture, or mandatory questioning.
+
 For historical reconstruction, cite the relevant artifact and date. Mark inferred requirements explicitly.
 
 For explicit interview-first clarification, use

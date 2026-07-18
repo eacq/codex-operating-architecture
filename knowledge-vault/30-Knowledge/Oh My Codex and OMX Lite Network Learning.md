@@ -1,7 +1,9 @@
 ---
 id: concept-oh-my-codex-omx-lite-network-learning
 type: concept
-status: candidate
+
+promotion_authority: user-candidate-processing-20260718
+promotion_status: guarded
 source: https://github.com/Yeachan-Heo/oh-my-codex;commit=5319c3d0388b09ad7036e6e3858afd959cfe0eea; https://github.com/IamHBW/omx-lite;commit=7ec85075c648df9b9220b4fc07a6317b967160e3
 verified: false
 learning_audience: codex

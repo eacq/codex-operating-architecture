@@ -24,16 +24,27 @@ subskills.
    evidence.
 3. State material assumptions and acceptance criteria; execute and verify in
    proportion to risk.
+   For self-iteration or structural optimization, first apply
+   [subskills/outcome-directed-iteration/SKILL.md](subskills/outcome-directed-iteration/SKILL.md).
+   It translates the terminal collaboration goal into a small, testable
+   iteration contract and blocks changes whose contribution cannot be stated.
 4. At Git milestones or completed iterations, reconcile project requirements,
    workflows, experience, retrospectives, pending events, state, and file
    organization. For complete global iterations, read
    [subskills/global-iteration-gate/SKILL.md](subskills/global-iteration-gate/SKILL.md).
+   After a completed global iteration, generate and present the advisory
+   candidate report before asking the user for any follow-up decision. It may
+   summarize candidates but never promotes them or expands authority.
 5. Treat an explicit request about the "global experience system" as a
    coordinated `codex-experience-capture` system pass, not as permission to add
    a new top-level owner. Route reusable outcomes to
    `codex-experience-capture`; route linked concepts to
    `codex-knowledge-system`. After learning or workflow changes, require
    `codex-architecture-iteration` to review owner overlap and economy.
+   For a material task spanning user direction, local evidence, and model work,
+   use [subskills/collaborative-operating-model/SKILL.md](subskills/collaborative-operating-model/SKILL.md).
+   It assigns the smallest logical owner set and handoffs; it does not itself
+   authorize or auto-spawn extra agents, models, or external services.
 6. Route unexpected module behavior to `codex-error-feedback` before promoting
    it as experience or changing a skill. Cross-project failures with suspected
    global causality mirror only a redacted summary into the architecture inbox.
@@ -41,6 +52,22 @@ subskills.
    configuration to `codex-skill-portability`.
 8. Invoke `codex-architecture-iteration` only for evidence-backed module,
    parent-skill, subskill, or contract changes.
+   A top-level owner add, merge, split, deprecation, deletion, or material
+   contract revision additionally requires explicit user authorization for that
+   iteration. Without it, limit work to evidence gathering and owner-internal
+   candidates; authorization for one review is not standing permission for a
+   later structural change.
+9. For expensive, recurring, context-heavy, or resource-constrained work, use
+   [subskills/resource-economy/SKILL.md](subskills/resource-economy/SKILL.md).
+   It owns quality-preserving resource routing; the former top-level
+   `codex-cost-optimization` entry is a deprecated compatibility surface.
+
+The terminal direction for self-evolution is not module growth: improve the
+user, local-experience, and model collaboration system so it completes useful
+work with a fixed quality and safety floor while reducing avoidable user effort,
+model/context/tool work, and coordination loss. Every material iteration must
+make its expected contribution and its evidence observable; retain the current
+contract when no evidence-backed improvement remains.
 
 For verified iteration closeout, Git/publication gates, failed Git attempts,
 continuous diagnosis, workflow-learning records, documentation synchronization,

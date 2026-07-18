@@ -55,6 +55,11 @@ command parameters, promotion rules, and the schema contract.
    durable concepts to `codex-knowledge-system`. One-off or uncertain diagnoses
    remain candidates. Do not add an Anki card merely because an error occurred.
 
+   When the same module, component, and symptom recur, run
+   `scripts/Reopen-RepeatedErrorFeedback.ps1` before any new repair. It reopens
+   the original report, increments repeat evidence, and records the prior repair
+   or mitigation as failed rather than leaving it marked resolved.
+
 7. After every verified report, run `Invoke-WorkflowErrorReview.ps1`. It classifies whether to add a preventive gate, reorder/normalize input, remove/simplify a redundant step, or monitor. Change workflow steps only when its evidence threshold is met, then rerun the original failure check and full validation.
 
 ## Report fields

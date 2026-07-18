@@ -1,5 +1,55 @@
 ﻿# Changelog / 更新日志
 
+## 1.4.2.0 - 2026-07-18
+
+### English
+
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+- Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+- 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+
+## Unreleased / 未发布
+
+### English
+
+- Add a verified global-iteration `-AutoCommit` gate: it creates a local commit only after an explicit staged scope, complete iteration proof, metadata validation, and a no-out-of-scope-change check; automatic push, tag, release, and background scheduling remain blocked.
+- Add an automatic advisory candidate report after every completed global experience iteration. It aggregates candidate evidence and authorization boundaries for user review without auto-promoting, installing, updating, configuring, publishing, or deleting anything. The Markdown report is Chinese-primary and appends stable English model-reading fields while preserving source wording for auditability.
+- Promote `content-production` to a formal owner-internal capability under `codex-task-execution`, with source-aware briefs, claim constraints, traceable handoffs, and separate publication authority; efficacy remains measured on real content tasks.
+- Add a source-aware `content-production` subskill under `codex-task-execution`: articles, social series, newsletters, explainers, cover/infographic/comic briefs, and slide narratives now use a brief, evidence constraints, outline, draft, handoff, and review package; publication remains separately authorized.
+- Route reader-facing visuals through the delivery-led format gate and Office deliverables through their existing owners; correct stale SVG/Mermaid fallback wording in file organization and workflow design, with structured error-feedback closure.
+- Add a visual-format selection gate to `codex-image-workflow`: Mermaid/SVG are conditional text or editable-vector choices, while ordinary generated, screenshot, cover, and raster deliveries select PNG or JPG from transparency, fidelity, compatibility, and size needs; every final asset receives final-size render QA.
+- Make self-evolution outcome-directed: material iterations must translate the user/local-experience/model terminal goal into testable capability, collaboration, economy, safety, and evolution checks, with baseline evidence and no-regression proof. Candidates without a demonstrated net contribution stop at evidence review.
+- Deprecate `codex-cost-optimization` as a standalone owner. New resource decisions route through `codex-self-evolution` → `resource-economy`; the old skill remains a one-release compatibility entry while active owner count becomes 25.
+- Refine the authorized top-level `codex-project-optimization` owner into a project-lifecycle initializer and reconciler, with explicit handoffs that prevent overlap with global routing, execution, workflow design, and experience promotion.
+- Add a per-iteration authorization gate for top-level owner optimization. Owner additions, merges, splits, material revisions, deprecations, and deletions now require explicit current user authority, a boundary decision record, rollback or migration conditions, and validation.
+- Clarify the global-iteration runtime budget: one resumable controller owns long isolated transactions; a stopped caller requires lifecycle/proof inspection rather than a duplicate run.
+- Add a collaborative operating model under `codex-self-evolution`: user authority, local experience, and model work now route through a small task contract with role boundaries, resource-aware escalation, isolated writes, and verification handoffs. It does not auto-spawn agents or external services.
+- Refine the MCP startup preflight: when the tool surface is deferred or namespaced, check the task's callable capability registry before treating `codebase-memory-mcp` as unavailable.
+- Require explicit user authorization before a newly detected external MCP, skill, package, or project release is downloaded, upgraded, reconfigured, or substantively re-learned.
+
+### Chinese / 中文
+
+- 增加已验证的全局迭代 `-AutoCommit` 门禁：仅在暂存范围明确、完整迭代证明、元数据校验和无范围外改动均通过后创建本地提交；自动推送、标签、发布和后台调度仍被禁止。
+- 每次完成的全局经验迭代后自动生成候选汇总报告：中文主报告用于用户审阅与授权决策，末尾附字段稳定的英文经验系统附录；保留候选来源原文以便审计，不会自动晋升、安装、更新、配置、发布或删除任何内容。
+- 将 `content-production` 晋升为 `codex-task-execution` 下的正式内部能力：使用来源感知简要包、主张约束、可追溯交接和独立发布授权；实际内容任务继续度量其效果。
+- 在 `codex-task-execution` 下新增来源感知的 `content-production` 内部子流程：文章、社媒系列、简报、科普说明、封面/信息图/漫画简报和幻灯叙事均使用简要包、证据约束、提纲、草稿、交接与复核记录；发布仍须单独授权。
+- 面向读者的视觉经由交付导向格式门，Office 交付继续交给既有 owner；同时修复文件整理与工作流设计中残留的 SVG/Mermaid 兜底表述，并闭合结构化错误反馈。
+- 为 `codex-image-workflow` 增加视觉格式选择门：Mermaid/SVG 仅在文本化或可编辑矢量结构确有优势时使用；普通生成图、截图、封面和栅格交付按透明度、保真度、兼容性和文件大小选择 PNG/JPG，并在最终展示尺寸完成渲染 QA。
+- 将自我迭代改为终极目标导向：物料性迭代必须把用户/本地经验/模型协作的终极目标转化为能力、协作、资源、安全和演进的可检验要求，并保留基线证据和无回归证明；无法显示净贡献的候选止步于证据审查。
+- 弃用独立的 `codex-cost-optimization` owner：新的资源决策改由 `codex-self-evolution` → `resource-economy` 负责；旧 skill 保留一版兼容入口，活跃 owner 数降为 25。
+- 精炼已获授权的顶层 `codex-project-optimization` owner：它现在明确负责项目生命周期初始化和协调，并通过交接避免与全局路由、执行、工作流设计和经验晋升重叠。
+- 为顶层 owner 优化增加按迭代授权门：新增、合并、拆分、实质修改、弃用和删除均需当前用户明确授权、边界决策记录、回滚或迁移条件与验证。
+- 明确全局迭代的运行预算：长时间隔离事务由单一可恢复控制器负责；调用方停止等待后必须先检查生命周期和证明，不能重复启动。
+- 在 `codex-self-evolution` 下新增协作运行模型：用户授权、本地经验与模型工作通过小型任务契约进行路由，明确角色边界、资源升级、隔离写入和验证交接；它不会自动启动代理或外部服务。
+- 精炼 MCP 启动预检：当工具以延迟或命名空间形式暴露时，先检查任务的可调用能力注册表，再判定 `codebase-memory-mcp` 不可用。
+- 对已发现更新的外部 MCP、skill、软件包或项目，在下载、升级、重新配置或实质性重新学习前必须获得用户明确授权。
+
 ## 1.4.1.0 - 2026-07-18
 
 ### English
@@ -259,6 +309,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

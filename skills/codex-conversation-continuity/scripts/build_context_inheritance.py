@@ -147,15 +147,29 @@ def render(args: argparse.Namespace, records: list[dict[str, Any]]) -> str:
 
 """
 
-    # Preserve every context side in the lineage. A shared per-block cap is
-    # safer than consuming the entire budget from newest to oldest and then
-    # silently reducing an older block to its title alone.
-    remaining = max(0, args.max_chars - len(header(len(blocks))))
-    per_block_cap = max(200, remaining // max(1, len(blocks)))
-    body = [block[:per_block_cap].rstrip() for block in blocks if block[:per_block_cap].strip()]
-    omitted = len(blocks) - len(body)
-    result = header(omitted) + "\n\n".join(body).strip() + "\n"
-    return (result[:args.max_chars].rstrip() + "\n")[:args.max_chars]
+    # Allocate before rendering. A final whole-document slice could remove
+    # old blocks while leaving the omission count at zero, which would make
+    # the handoff inaccurate. Keep chronological order and report trailing
+    # blocks that cannot fit.
+    for included in range(len(blocks), -1, -1):
+        omitted = len(blocks) - included
+        prefix = header(omitted)
+        if included == 0:
+            return (prefix.rstrip() + "\n")[:args.max_chars]
+        separator_chars = 2 * (included - 1)
+        available = args.max_chars - len(prefix) - separator_chars - 1
+        if available < included:
+            continue
+        per_block_cap = available // included
+        # A partial heading such as "### His" is not an inherited context
+        # segment.  Count that block as omitted instead of claiming retention.
+        if per_block_cap < 80:
+            continue
+        body = [block[:per_block_cap].rstrip() for block in blocks[:included]]
+        result = prefix + "\n\n".join(body).strip() + "\n"
+        if len(result) <= args.max_chars and len(body) == included:
+            return result
+    return (header(len(blocks)).rstrip() + "\n")[:args.max_chars]
 
 
 def main() -> int:

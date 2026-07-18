@@ -2,6 +2,18 @@
 
 ## 已验证经验
 
+- 正式内容创作能力归属 `codex-task-execution/content-production`：文章、社媒系列、简报、科普说明、封面/信息图/漫画简报和幻灯叙事均先形成来源感知的简要包、主张约束和提纲，再保留草稿、视觉或 Office 交接与复核记录。该能力已完成路由、边界和结构验证；真实读者价值与修订收益仍作为后续内容任务的结果度量。草稿不得越过发布、登录、上传、付费生成、版权复用或安装授权。
+
+- 图像工作流必须在生成、渲染、转换、托管或嵌入前按读者任务选择视觉类别和最终格式，而不是把 SVG/Mermaid 当作通用兜底。小型可编辑结构可保留 Mermaid 或 SVG；带透明背景、文字/线条和无损 QA 的栅格图优先 PNG；不透明的照片化或绘画式交付在压缩不损害语义时可优先 JPG；WebP 只能作为兼容性已验证的派生格式。保留权威原图/源文件，并以最终展示尺寸验证。
+
+- 全局自我迭代的终极目标必须在每个物料性优化前落为五类可检验要求：有用任务的能力结果、用户/本地经验/模型之间的协作交接、在不降低质量门槛下的资源节约、安全与授权边界，以及可反馈/失效/回滚的演进闭环。每轮记录基线、预期可观察贡献与无回归检查；若不能显示净贡献，保留现有架构而不为迭代而迭代。
+
+- 当成本/资源规则没有独立脚本、产物生命周期或安全边界，且已被全局 controller 的协作契约覆盖时，应在用户授权后从顶层 owner 降级为内部资源经济子能力；保留一版兼容入口并把活跃 owner 计数与物理 skill 接口数分开，后续无引用审查和新授权后才能删除。
+
+- 顶层 `codex-project-optimization` 的可复用边界是项目生命周期初始化与协调，而不是泛化的项目诊断、实施、工作流设计或经验晋升。它保留独立的项目本地产物生命周期；经当前迭代用户授权后精炼 owner 契约和显式交接，而不与全局 controller 合并。
+
+- 完整全局迭代是单控制器的长运行事务：调用方超时首先是可观测性事件，而不是再次启动替换的授权。先检查 lifecycle 和 proof；若精确快照尚未完成且不存在 pre-replace bundle，则确认未进入替换；若替换可能已开始，必须用快照哈希恢复后从头重跑。该规则由 2026-07-18 的约 212 秒隔离迭代验证，未引入外部服务或并行 writer。
+
 - “全局经验系统”是跨 owner 的协调闭环，而不是新的顶层 skill。入口由 `codex-self-evolution` 识别，系统边界由 `codex-experience-capture` 的内部模式承载；错误先进入 `codex-error-feedback`，概念和 workflow-learning 记录进入 `codex-knowledge-system`，owner 合并/拆分/封装决策进入 `codex-architecture-iteration`。精炼优先使用交接件和 owner 内 subskill，只有独立触发、产物、知识库与安全边界被两次验证后才新增顶层模块。
 - GitHub 文档的双语门禁在 Windows 上不得依赖控制台代码页或乱码文本匹配；应使用 Unicode 码点构造中文标记并检查实际暂存内容。该规则经完整 `v1.0` 私有同步与公开发布验证。
 - 已验证的工作流变更应生成带哈希、关联 owner 与证据计数的学习记录；该记录同时进入知识和经验候选队列，经过证据门槛后才允许由架构迭代决定精炼、合并、拆分、增加或废弃，不能将工作流原文无条件提升为全局规则。
@@ -15,7 +27,7 @@
 
 - Every verified implementation iteration should regenerate a bilingual status document and verify its changelog, README, and version-note dependencies before private commit. Private skills, knowledge, and experience become public candidates only with two independent verified evidence sources, a sanitization audit, local-only preservation of original non-secret configuration, and a separate release decision.
 
-- Autonomous Git is safe only as a verified private-commit gate: require a completed iteration, explicit separable paths, semantic-version and bilingual GitHub metadata, full validation, and GitHub-CLI confirmation that `origin` is private. Commit and push only those paths to `origin`; never infer approval for public remotes, tags, releases, breaking-major versions, or a mixed worktree.
+- Autonomous Git is safe only as a verified private-commit gate: require a completed iteration, explicit staged paths, semantic-version and bilingual GitHub metadata, full validation, and GitHub-CLI confirmation that `origin` is private. `-AutoCommit` may create a local commit only after the proof confirms no out-of-scope changes; it never automatically pushes. Never infer approval for public remotes, tags, releases, breaking-major versions, or a mixed worktree.
 
 ### 项目生命周期
 
@@ -57,6 +69,7 @@
 
 ### Skill、插件与运行时
 
+- Previously learned or installed MCPs, skills, packages, and projects may be checked read-only only within a user-initiated task; do not create periodic update monitoring. A newly detected release is a candidate, not standing permission: obtain explicit user authorization before download, upgrade, reconfiguration, or substantive re-learning that changes local skills, knowledge, workflows, or configuration.
 - 用户已经指定安装目标时，直接安装该目标并完成验证，不重新展开候选讨论。
 - Python 工作流必须验证未来 Codex 实际使用的运行时；本机优先检查 Codex bundled Python，而不只检查项目 venv。
 - 验证器缺少依赖不等于 skill 本身损坏，应先区分运行时问题与内容问题。
@@ -100,8 +113,13 @@
 - Anki 卡片来自源笔记中的高价值回忆问题，不对导图节点做机械式全量制卡。
 - B 站文章封面接口当前可能返回 `article.biliimg.com`；远程校验白名单需覆盖 `.biliimg.com`、`.hdslb.com` 和 `.bilibili.com`，但仍必须要求 HTTPS 与成功 GET。上传成功后若域名校验失败，流程必须保留原图且不得替换 Markdown。
 
-## 候选经验
+## 已推广的受限经验
 
+> 用户于 2026-07-18 授权推广。以下条目保留原始候选措辞、来源和失效条件，可用于路由与最小范围试验；它们不是已独立验证的强制规则，不解除既有安全、安装、凭据、发布或回滚边界。
+
+- Network learning candidate: `JimLiu/baoyu-skills` (commit `6b7a2e417500561a5ecdd0b168332f4142584617`) should be evaluated skill-by-skill, not installed as a 21-skill bundle. Its selective-installation and visual-workflow confirmation/provenance ideas are useful, but browser/CDP cookie sidecars, credentials, remote publishing, reverse-engineered services, multi-provider image control planes, and dynamic Bun dependencies exceed current global need. Keep `baoyu-diagram` as a project-local trial candidate only; reject `baoyu-format-markdown` as-is because its reviewed implementation overwrites the input path despite an output-oriented workflow description. Revisit only with a named project gap, explicit installation authorization, isolated test output, dependency validation, and removal plan.
+
+- Network relearning candidate: `mattpocock/skills` v1.1.0 reinforces a project-local vocabulary and consequential-decision brief alongside requirements clarification. Map it to `codex-requirement-authoring`, not a new global skill: trial it only where repeated terminology or decision ambiguity demonstrably harms a downstream handoff; require one real verified application plus independent corroboration before promoting it to a subskill or mandatory workflow. Do not introduce a global `CONTEXT.md`, automatic ADR generation, or raw conversation capture.
 - Network learning candidate: `mattpocock/skills` reinforces skill economy rules that fit `codex-skill-packaging`: split by invocation only for autonomous reach, split by sequence only after sharpening completion criteria, keep branch-specific reference behind direct pointers, and prune duplicate/no-op/negative guidance. External skill installation is not forbidden, but each candidate must prove necessity, value, compatibility with local privacy/profile/validation rules, and a removal or revision path. Current source is one upstream repository plus local validation, so keep as candidate until reused independently.
 - Combined network-learning candidate: treat external skill repositories as evidence-bearing codebases when tooling is available. Use codebase-memory-mcp to index, inspect schema/architecture, and route to source files; then apply skill-economy gates from `mattpocock/skills` and the Codex owner-boundary rules before deciding between learn-only, owner reference, owner subskill, project-local skill, or global skill. Keep as candidate until this combined workflow is reused on another external skill or MCP/tooling source.
 - Network learning candidate: `oh-my-codex` and `omx-lite` show that external Codex workflow packages need a takeover-surface comparison before installation. Full runtimes that manage hooks, config, state, worktrees, team sessions, CLI launch policy, and implicit routing should default to learn-only or owner-reference in this Windows Codex Desktop architecture unless an explicit need and rollback/smoke-test path exist. Lite methodology packages can contribute manifest-driven dry-run/check installs, backup-before-copy, size budgets, conflict-marker detection, and explicit-only imported workflows, but still need local owner adaptation rather than raw copying. Keep as candidate until reused on another external package.
@@ -111,7 +129,7 @@
 
 ```text
 标题：
-状态：候选 | 已验证 | 已废弃
+状态：候选 | 已推广（受限） | 已验证 | 已废弃
 触发情境：
 观察与证据：
 采取行动：

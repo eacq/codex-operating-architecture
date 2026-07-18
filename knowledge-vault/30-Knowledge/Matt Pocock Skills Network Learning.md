@@ -1,7 +1,9 @@
 ---
 id: concept-matt-pocock-skills-network-learning
 type: concept
-status: candidate
+
+promotion_authority: user-candidate-processing-20260718
+promotion_status: guarded
 source: https://github.com/mattpocock/skills;commit=9603c1cc8118d08bc1b3bf34cf714f62178dea3b
 verified: false
 learning_audience: codex
@@ -50,6 +52,20 @@ the most suitable local form: learn-only, owner reference, owner subskill,
 project-local skill, or global skill. The installed form should preserve the
 useful behavior while rewriting triggers, setup, profiles, safety boundaries,
 and validation to match the Codex experience system.
+
+## Requirement Workflow Revalidation
+
+On 2026-07-18, the current upstream repository was rechecked. Its engineering
+catalog describes `to-spec` as a conversation-to-spec path and separates it
+from interview-led `grill-with-docs`; its productivity catalog lists `grilling`
+as the reusable clarification discipline. The local adaptation is deliberately
+narrow: `codex-requirement-authoring` now supports conversation-to-spec by
+default and records project-local vocabulary plus consequential decisions only
+when repeated ambiguity changes a downstream handoff. It rejects automatic
+issue publication, `CONTEXT.md`, automatic ADRs, raw conversation capture, and
+mandatory interviewing. The local generator and double architecture validation
+passed; this validates the adaptation, while the broader upstream note remains
+guarded until an independent real project use confirms it.
 
 ## Combined Relearning With Codebase Memory MCP
 

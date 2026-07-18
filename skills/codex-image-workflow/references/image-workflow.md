@@ -2,7 +2,19 @@
 
 ## Visual selection
 
-Use a visual when it reduces reasoning or navigation effort. Prefer, in order: Mermaid or native diagrams with no binary asset; generated user-owned visuals; open-license images with recorded attribution; user-provided images. Avoid decorative images and low-information screenshots.
+Use a visual when it reduces reasoning or navigation effort. Select the visual
+class and file format before choosing a generator: a simple, frequently revised
+text diagram can remain Mermaid; an editable vector diagram can use SVG; a
+generated visual, photo-like cover, screenshot, or rich explanatory image is
+normally raster. Avoid decorative images and low-information screenshots.
+
+Do not default to SVG merely because a visual is conceptual. Use PNG when
+transparency, sharp text/lines, lossless edits, or broad document embedding
+matter. Use JPG for opaque, photo-like or painterly images when a smaller file
+is useful and lossy compression is acceptable. A web-optimized derivative such
+as WebP is optional only when target compatibility is verified; preserve the
+authoritative source or user-provided original. Validate the final rendered
+asset at its delivery size, not only the source prompt or file extension.
 
 ## ChatGPT Plus web generation
 

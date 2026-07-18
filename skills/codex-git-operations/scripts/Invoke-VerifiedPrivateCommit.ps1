@@ -6,6 +6,8 @@ param(
     [ValidateSet('Feature', 'Refinement')]
     [string]$ChangeClass = 'Feature',
     [switch]$PreserveVersion,
+    [switch]$SkipCompleteIteration,
+    [switch]$CommitOnly,
     [switch]$Apply
 )
 
@@ -14,12 +16,15 @@ $root = [IO.Path]::GetFullPath((Resolve-Path -LiteralPath $RepositoryRoot).Path)
 $gitRoot = [IO.Path]::GetFullPath(((& git -C $root rev-parse --show-toplevel).Trim() -replace '/', '\\')).TrimEnd('\\')
 if ($gitRoot -ne $root) { throw "Repository root mismatch: expected '$root', got '$gitRoot'." }
 if ($Apply -and (-not $Paths -or $Paths.Count -eq 0)) { throw 'Apply requires explicit -Paths so unrelated worktree changes cannot be committed.' }
+if ($SkipCompleteIteration -and -not $CommitOnly) { throw 'SkipCompleteIteration is allowed only with CommitOnly; normal private auto-Git must retain the complete iteration gate.' }
 $allChanged = @(& git -C $root diff --name-only; & git -C $root diff --cached --name-only; & git -C $root ls-files --others --exclude-standard | Sort-Object -Unique)
 $selected = if ($Paths -and $Paths.Count -gt 0) { @($Paths) } else { @($allChanged) }
 if ($selected.Count -eq 0) { throw 'No changed paths are available for an auto-Git decision.' }
 $unexpected = @($selected | Where-Object { $_ -notin $allChanged })
 if ($unexpected.Count -gt 0) { throw "Selected paths are not changed or untracked: $($unexpected -join ', ')" }
 if ($Apply) {
+    $outsideSelected = @($allChanged | Where-Object { $_ -notin $selected })
+    if ($outsideSelected.Count -gt 0) { throw "Auto-Git rejects a mixed worktree; unselected changed paths: $($outsideSelected -join ', ')" }
     if (-not $PreserveVersion) {
         $versionAction = if ($ChangeClass -eq 'Feature') { 'AutoFeature' } else { 'AutoFix' }
         $currentVersion = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
@@ -36,9 +41,11 @@ if ($Apply) {
         & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $selected -ChangeClass $ChangeClass -Apply | Out-Null
         $selected = @($selected + 'CHANGELOG.md' | Sort-Object -Unique)
     }
-    $syncScript = Join-Path $root 'scripts\Sync-IterationDocumentation.ps1'
-    & $syncScript -RepositoryRoot $root -ChangedPaths $selected -Apply | Out-Null
-    $selected = @($selected + 'docs/ITERATION-STATUS.md' | Sort-Object -Unique)
+    if (-not $SkipCompleteIteration) {
+        $syncScript = Join-Path $root 'scripts\Sync-IterationDocumentation.ps1'
+        & $syncScript -RepositoryRoot $root -ChangedPaths $selected -Apply | Out-Null
+        $selected = @($selected + 'docs/ITERATION-STATUS.md' | Sort-Object -Unique)
+    }
 }
 $hasImplementation = @($selected | Where-Object { $_ -match '^(skills/|scripts/|config/|codex-provider-switch/|module-registry\.json$)' }).Count -gt 0
 $hasDocs = @($selected | Where-Object { $_ -eq 'README.md' -or $_ -match '^(docs/|CHANGELOG\.md$)' }).Count -gt 0
@@ -61,18 +68,24 @@ if (-not $eligible) { throw ($plan | ConvertTo-Json -Depth 5) }
 if (-not $Message) { $Message = "chore: verified $classification architecture update" }
 & (Join-Path $root 'skills\codex-file-organization\scripts\Restore-GitTrackedWorkspaceLayout.ps1') -ProjectRoot $root | Out-Null
 & git -C $root add -- $selected
-& (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
+if (-not $SkipCompleteIteration) {
+    & (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
+}
 & (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
 & (Join-Path $root 'scripts\Test-GitPublicationMetadata.ps1') -RepositoryRoot $root -Staged
 if ($LASTEXITCODE -ne 0) { throw 'Publication metadata validation failed.' }
 & git -C $root commit -m $Message
 if ($LASTEXITCODE -ne 0) { throw 'Git commit failed.' }
 $commit = (& git -C $root rev-parse HEAD).Trim()
-& git -C $root push origin HEAD
-if ($LASTEXITCODE -ne 0) { throw 'Private origin push failed.' }
+if (-not $CommitOnly) {
+    & git -C $root push origin HEAD
+    if ($LASTEXITCODE -ne 0) { throw 'Private origin push failed.' }
+}
 & git -C $root config codex.route.repo-root $root
 & git -C $root config codex.route.branch $plan.branch
 & git -C $root config codex.last.commit $commit
 & git -C $root config codex.last.version ((Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw).Trim())
 & git -C $root config codex.last.recorded-at ([DateTime]::UtcNow.ToString('o'))
-$plan['commit'] = $commit; $plan['decision'] = 'committed-and-pushed-private-origin'; $plan | ConvertTo-Json -Depth 5
+$plan['commit'] = $commit
+$plan['decision'] = if ($CommitOnly) { 'committed-locally-no-push' } else { 'committed-and-pushed-private-origin' }
+$plan | ConvertTo-Json -Depth 5

@@ -48,6 +48,23 @@ maintained knowledge base, and safety boundary.
 6. Apply the smallest owner-scoped change, then update the ledger, linked
    knowledge, registry evidence, and documentation surfaces that describe the
    changed behavior.
+7. After a completed global iteration, generate the advisory candidate report.
+   Present its Chinese-primary user view with source, evidence, suggested
+   decision, and authority boundary, then append the stable English model view
+   so the user and experience system can consume the same evidence without
+   changing source wording. The user can decide whether to retain, test,
+   promote, retire, or separately authorize an external change.
+   In a Codex chat, render the report directly in the assistant response.
+   Local-file links open source in the right sidebar and do not execute a CMD,
+   so do not promise command launching from a chat click. The local report
+   script and optional `codex-report` handler remain manual compatibility
+   routes for File Explorer or a terminal, not the primary user delivery path.
+8. When an active explicit all-candidate authorization exists, the complete
+   iteration runner consumes it through `Process-AuthorizedCandidateRecords.ps1`:
+   archive source evidence, reclassify durable items as guarded guidance, clear
+   derived pending records, regenerate the report, and mark the authorization
+   consumed. This local processing authorization never covers installation,
+   updates, reconfiguration, credentials, publishing, or destructive action.
 
 ## Economy Rules
 

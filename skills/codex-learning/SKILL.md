@@ -37,6 +37,18 @@ If no condition holds, record no learning action and continue the task. Learning
    when that form is still the best fit for the user's workflow.
 5. Convert an adopted idea into a small reversible change plus an acceptance test. A source alone is a candidate, never a verified experience.
 
+## Update and re-learning authorization
+
+Treat a newly discovered version, release, commit, or capability change in a
+previously learned external MCP, skill, package, or project as a candidate, not
+standing authorization. A user may ask for a read-only version check in a
+specific task, but do not create periodic monitoring. Before downloading,
+installing, upgrading, reconfiguring, or starting a substantive re-learning
+pass that could change local skills, knowledge, workflows, or configuration,
+report the detected change, proposed scope, and rollback boundary and obtain
+explicit user authorization. Prior authorization for an earlier version does
+not authorize a later update.
+
 ## 4. Architecture, knowledge, and experience handoff
 
 After either pass, ask `codex-architecture-iteration` to review the owner relationship: revise an owner first; add a module only with two independent use cases and no clear owner; merge, split, deprecate, or delete only under the registry rules. Then run an economy pass: remove duplicated controller text, keep triggers and safety boundaries, and move durable concepts to the linked knowledge vault.

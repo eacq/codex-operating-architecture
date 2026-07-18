@@ -18,4 +18,4 @@ For explicit reviewed planning, use
 Keep the plan evidence-grounded, critique it once, then hand off to execution
 only after acceptance criteria and verification are clear.
 
-For workflows with non-linear handoffs or three or more decision relationships, request a sanitized GPT-first explanatory visual through `codex-image-workflow`; use Mermaid/SVG only when that is more deterministic or image generation is unavailable. Reassess the visual whenever the workflow changes.
+For workflows with non-linear handoffs or three or more decision relationships, request a sanitized GPT-first explanatory visual through `codex-image-workflow` and select the delivery format before generation. Mermaid is for small reviewable text structures and SVG for genuine editable vector structure; otherwise choose PNG/JPG or a verified WebP derivative according to delivery need. Reassess the visual whenever the workflow changes.
