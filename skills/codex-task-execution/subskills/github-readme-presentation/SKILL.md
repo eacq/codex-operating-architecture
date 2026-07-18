@@ -93,6 +93,21 @@ relationship, and validation in the project audit artifact.
 - Preview at GitHub content width and narrow width. Check contrast, clipped
   text, image alt text, missing assets, links, and file size. In README mode,
   also run the target project's Markdown/readme checks when available.
+- Deliver only raster assets (PNG/JPG/WebP) to reader-facing Markdown. Mermaid
+  and SVG may remain as internal maintainer sources, but never as Markdown
+  display or link targets in a user-facing explanation.
+- Decide whether an image contains text from the reader task, not from a
+  blanket aesthetic preference. Use text-free artwork for a conceptual hero or
+  atmosphere. Add a concise title, labels, legend, or numbered callouts when
+  they make a workflow, comparison, architecture, or decision legible without
+  forcing readers to cross-reference the body. Keep commands, dense prose,
+  accessibility detail, and bilingual explanations in Markdown captions.
+- When an image contains text, the design-system manifest must define its
+  typography, language policy, contrast, spacing, and exact-text review. Reuse
+  the approved palette and component geometry; preview at delivery size and
+  verify that every label is readable, accurate, and not clipped. Regenerate a
+  visual that has garbled, inconsistent, or unsupported text rather than
+  silently shipping it.
 
 ## Handoff
 

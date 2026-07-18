@@ -1,6 +1,6 @@
 ﻿{
     "schema_version":  1,
-    "version":  "1.6.0.0",
+    "version":  "1.7.0.0",
     "mode":  "Private",
     "owner":  "codex-task-execution/github-readme-presentation",
     "upstream_sources":  [
@@ -19,19 +19,28 @@
                          ],
     "mode_selected":  "README release refresh",
     "evidence":  {
-                     "release_note":  "docs/release-notes/v1.6.0.0.md",
+                     "release_note":  "docs/release-notes/v1.7.0.0.md",
                      "changed_paths":  [
+                                           "docs/assets/file-organization-architecture.png",
+                                           "docs/assets/readme-architecture-overview.png",
                                            "docs/assets/readme-collaboration-loop-labeled.png",
                                            "docs/assets/readme-raster-visuals.provenance.md",
+                                           "docs/assets/release-v1.6.0.0-highlights.png",
                                            "docs/readme-design-system.json",
                                            "docs/release-notes/v1.3.0.0.md",
                                            "docs/release-notes/v1.4.0.0.md",
                                            "docs/release-notes/v1.5.0.0.md",
                                            "docs/release-notes/v1.6.0.0.md",
+                                           "docs/release-readme-audits/v1.6.0.0.json",
+                                           "docs/release-visual-plans/v1.3.0.0.json",
+                                           "docs/release-visual-plans/v1.4.0.0.json",
+                                           "docs/release-visual-plans/v1.5.0.0.json",
+                                           "docs/release-visual-plans/v1.6.0.0.json",
                                            "README.en.md",
                                            "README.md",
                                            "scripts/Test-GitPublicationMetadata.ps1",
                                            "scripts/Test-ReaderFacingVisualDelivery.ps1",
+                                           "scripts/Test-ReleaseReadmeAndVisuals.ps1",
                                            "skills/codex-git-operations/scripts/Test-ReleaseReadmeOptimization.ps1",
                                            "skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1",
                                            "skills/codex-task-execution/subskills/github-readme-presentation/SKILL.md"

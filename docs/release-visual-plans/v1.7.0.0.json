@@ -1,8 +1,8 @@
 ﻿{
     "schema_version":  1,
-    "version":  "1.6.0.0",
+    "version":  "1.7.0.0",
     "mode":  "Private",
-    "release_note":  "docs/release-notes/v1.6.0.0.md",
+    "release_note":  "docs/release-notes/v1.7.0.0.md",
     "impact_areas":  [
                          "Release documentation",
                          "Automation gates",

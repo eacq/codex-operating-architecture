@@ -9,6 +9,9 @@ $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 $arguments = if ($Staged) { @('diff', '--cached', '--name-only') } else { @('diff', '--name-only') }
 $changed = @(& git -C $root @arguments | Where-Object { $_ })
 if ($changed.Count -eq 0) { throw 'No changed paths available for publication metadata validation.' }
+$readerVisualValidator = Join-Path $root 'scripts\Test-ReaderFacingVisualDelivery.ps1'
+if (-not (Test-Path -LiteralPath $readerVisualValidator)) { throw 'Reader-facing visual delivery validator is missing.' }
+& $readerVisualValidator -RepositoryRoot $root | Out-Null
 $gate = Join-Path $root '.codex\project\git-iteration-gate.json'
 if (-not (Test-Path -LiteralPath $gate)) { throw 'Complete Test-ExperienceIterationGate.ps1 before any Git commit or update.' }
 $globalIteration = Join-Path $root '.codex\project\global-experience-iteration.json'
@@ -54,7 +57,10 @@ if ($publicWorkflowChange -and -not (Test-Path -LiteralPath (Join-Path $root 'do
 $chineseCounterpart = ([char]0x4E2D).ToString() + ([char]0x6587).ToString() + ([char]0x5BF9).ToString() + ([char]0x7167).ToString()
 $chineseDescription = ([char]0x4E2D).ToString() + ([char]0x6587).ToString() + ([char]0x8BF4).ToString() + ([char]0x660E).ToString()
 $chinese = ([char]0x4E2D).ToString() + ([char]0x6587).ToString()
-$githubDocs = @($changed | Where-Object { $_ -eq 'README.md' -or $_ -like 'docs/*.md' })
+$githubDocs = @($changed | Where-Object {
+    ($_ -eq 'README.md' -or $_ -like 'docs/*.md') -and
+    $_ -notmatch '^docs/(assets/|release-visual-plans/|readme-presentation-audits/|release-readme-audits/)'
+})
 $deleted = @(& git -C $root diff --cached --diff-filter=D --name-only | Where-Object { $_ })
 $githubDocs = @($githubDocs | Where-Object { $_ -notin $deleted })
 foreach ($path in $githubDocs) {

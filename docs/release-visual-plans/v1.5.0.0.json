@@ -6,7 +6,7 @@
     "impact_areas":  [
                          "Skill architecture"
                      ],
-    "visual_action":  "generate-mermaid-release-visual",
+    "visual_action":  "reuse-approved-raster-release-visual",
     "privacy":  "Use sanitized repository-level labels only; never include credentials, private sessions, local user paths, or private payloads.",
-    "layout":  "Keep release highlights scannable: latest release block in README, concise release-note summary, and a Mermaid visual when several areas are affected."
+    "layout":  "Keep release highlights scannable: latest release block in README, concise release-note summary, and an approved PNG visual. Mermaid and SVG are maintainer sources, not reader-facing Markdown visuals."
 }

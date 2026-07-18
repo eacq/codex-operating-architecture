@@ -24,9 +24,19 @@
   "component_rules": [
     "Use Markdown for claims, commands, links, and accessibility text.",
     "Do not add counters, trackers, profile widgets, remote fonts, or unverified badges for decoration.",
-    "Use PNG/JPG/WebP for generated raster composition; retain SVG or Mermaid only when editable structure materially helps.",
+    "Use PNG/JPG/WebP for all reader-facing generated or structural visual delivery; retain SVG or Mermaid only as internal editable sources, never as a Markdown display target.",
     "Re-use approved colors, whitespace, card-like geometry, and visual hierarchy before adding a new treatment."
   ],
+  "in_image_text": {
+    "decision_rule": "Use concise in-image labels, legends, or numbered callouts only when they materially improve a workflow, architecture, comparison, or decision explanation. Keep conceptual hero artwork text-free when labels would not improve comprehension.",
+    "typography": "Use the approved navy, teal, amber, and canvas palette; one restrained sans-serif hierarchy; consistent title, label, and caption sizes; generous whitespace; and high contrast at GitHub content width and narrow width.",
+    "language_policy": "Use one primary language per image. Put bilingual detail, commands, and accessibility explanations in Markdown captions unless a reviewed bilingual visual is materially clearer.",
+    "quality_gate": [
+      "Verify exact displayed wording, readability, contrast, and clipping at delivery size.",
+      "Regenerate images with garbled, inconsistent, unsupported, or low-contrast text.",
+      "Record whether the asset is text-free, labeled, or uses a legend in its provenance."
+    ]
+  },
   "visual_assets": {
     "collaboration_loop": {
       "path": "docs/assets/readme-collaboration-loop.png",
@@ -35,11 +45,24 @@
       "provenance": "docs/assets/readme-collaboration-loop.provenance.md",
       "regenerate_when": "The user-local-workflow-model-validation-learning topology changes materially."
     },
-    "architecture_structure": {
-      "path": "docs/assets/readme-architecture.svg",
-      "format": "SVG",
-      "role": "Editable and reviewable exact structural reference.",
+    "collaboration_loop_labeled": {
+      "path": "docs/assets/readme-collaboration-loop-labeled.png",
+      "format": "PNG",
+      "role": "Labeled reader-facing collaboration role and feedback-loop explanation.",
+      "provenance": "docs/assets/readme-raster-visuals.provenance.md",
+      "regenerate_when": "The role model, in-image labels, or shared typography and palette contract changes materially."
+    },
+    "architecture_overview": {
+      "path": "docs/assets/readme-architecture-overview.png",
+      "format": "PNG",
+      "role": "Reader-facing global architecture overview.",
       "regenerate_when": "The architecture graph or owner relationships change materially."
+    },
+    "file_organization": {
+      "path": "docs/assets/file-organization-architecture.png",
+      "format": "PNG",
+      "role": "Reader-facing transactional file-organization explanation.",
+      "regenerate_when": "The transactional organization or rollback topology changes materially."
     }
   },
   "maintenance": {

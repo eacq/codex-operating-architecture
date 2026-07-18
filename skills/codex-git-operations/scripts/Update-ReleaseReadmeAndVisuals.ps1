@@ -50,7 +50,7 @@ $areas = @(Get-ImpactAreas $paths)
 $visualRequired = $areas.Count -ge 3 -or @($paths | Where-Object { $_ -match '^(skills/|scripts/|config/|AGENTS\.md|module-registry\.json$)' }).Count -gt 0
 $releaseNotePath = Join-Path $root (Normalize-RepoPath $ReleaseNote)
 $releaseNoteRelative = Normalize-RepoPath $ReleaseNote
-$assetRelative = "docs/assets/release-v$Version-highlights.mmd"
+$assetRelative = 'docs/assets/readme-collaboration-loop.png'
 $planRelative = "docs/release-visual-plans/v$Version.json"
 $readmeAuditRelative = "docs/release-readme-audits/v$Version.json"
 $generated = New-Object System.Collections.Generic.List[string]
@@ -72,17 +72,17 @@ $readmeOptimization = [ordered]@{
     evidence = [ordered]@{ release_note = $releaseNoteRelative; changed_paths = $paths; impact_areas = $areas }
     design_system = 'docs/readme-design-system.json'
     reading_order_contract = @('value proposition', 'first successful action', 'collaboration mechanism', 'architecture visual', 'channels and detailed guarantees', 'release evidence')
-    visual_decision = [ordered]@{ action = 'use-approved-release-hero-png-and-editable-architecture-svg'; format = 'PNG + SVG'; raster_asset = 'docs/assets/readme-collaboration-loop.png'; structure_asset = 'docs/assets/readme-architecture.svg'; reason = 'The approved PNG gives first-screen readers a text-free conceptual collaboration loop, while the existing SVG remains the editable evidence-bearing structure. Regenerate the PNG only when the collaboration topology changes materially.' }
+    visual_decision = [ordered]@{ action = 'use-approved-raster-visual-system'; format = 'PNG'; raster_assets = @('docs/assets/readme-collaboration-loop.png','docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview.png','docs/assets/file-organization-architecture.png'); reader_delivery_rule = 'Reader-facing Markdown uses approved PNG assets for reliable rendering. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.'; text_policy = 'Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. When image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review.' }
     decisions = @(
         'Refresh both README language variants with the current release, evidence links, and impact summary.',
         'Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.',
-        'Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default.'
+        'Use an approved raster visual only when the impact is multi-area; select text-free or labeled presentation by reader need, not as decoration.'
     )
     preview_checks = @('GitHub-safe Markdown', 'release-note link', 'both README variants', 'reading-order headings', 'existing architecture visual placement', 'reader-value and dependency review', 'format-selection record')
     publication_boundary = 'This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command.'
 }
 
-$visualAction = if ($visualRequired) { 'generate-mermaid-release-visual' } else { 'no-new-visual-required' }
+$visualAction = if ($visualRequired) { 'reuse-approved-raster-release-visual' } else { 'no-new-visual-required' }
 $visualPlan = [ordered]@{
     schema_version = 1
     version = $Version
@@ -91,7 +91,7 @@ $visualPlan = [ordered]@{
     impact_areas = $areas
     visual_action = $visualAction
     privacy = 'Use sanitized repository-level labels only; never include credentials, private sessions, local user paths, or private payloads.'
-    layout = 'Keep release highlights scannable: latest release block in README, concise release-note summary, and a Mermaid visual when several areas are affected.'
+    layout = 'Keep release highlights scannable: latest release block in README, concise release-note summary, and an approved PNG visual. Use image labels only where they improve comprehension and apply the shared in-image-text rules. Mermaid and SVG are not reader-facing Markdown visuals.'
 }
 
 if ($Apply) {
@@ -103,7 +103,7 @@ if ($Apply) {
 $generated.Add($planRelative)
 $generated.Add($readmeAuditRelative)
 
-if ($visualRequired) {
+if ($false) { # Retained only as disabled historical source-generation code; release delivery never emits Mermaid or SVG.
     $safeAreas = @($areas | ForEach-Object { ($_ -replace '[^\w \-]','').Trim() } | Where-Object { $_ })
     $diagram = New-Object System.Collections.Generic.List[string]
     $diagram.Add('flowchart LR')
@@ -136,6 +136,9 @@ $zhOptimization = Convert-EscapedUnicode 'README \u4f18\u5316\u5df2\u901a\u8fc7\
 $areaText = ($areas -join ', ')
 $visualText = if ($visualRequired) { "Visual: [$assetRelative]($assetRelative)" } else { 'Visual: no new diagram required for this release.' }
 $zhVisualText = if ($visualRequired) { "${zhDiagram}: [$assetRelative]($assetRelative)" } else { $zhVisualNone }
+$releaseAssetRelative = '../assets/readme-collaboration-loop.png'
+$releaseVisualText = if ($visualRequired) { "Visual: [$releaseAssetRelative]($releaseAssetRelative)" } else { 'Visual: no new diagram required for this release.' }
+$releaseZhVisualText = if ($visualRequired) { "${zhDiagram}: [$releaseAssetRelative]($releaseAssetRelative)" } else { $zhVisualNone }
 
 $readmeBlock = @(
     "## Latest Release / $zhLatest",
@@ -154,7 +157,7 @@ foreach ($readme in @('README.md','README.en.md')) {
     $path = Join-Path $root $readme
     $content = Get-Content -LiteralPath $path -Raw -Encoding UTF8
     $updated = Set-ManagedBlock -Content $content -Name 'latest-release' -Lines $readmeBlock
-    if ($Apply) { Set-Content -LiteralPath $path -Value $updated -Encoding UTF8 }
+    if ($Apply) { Set-Content -LiteralPath $path -Value $updated.TrimEnd() -Encoding UTF8 }
     $generated.Add($readme)
 }
 
@@ -166,17 +169,17 @@ if (Test-Path -LiteralPath $releaseNotePath) {
         '',
         '- README.md and README.en.md are refreshed for this release.',
         "- Impact areas: $areaText",
-        "- $visualText",
+        "- $releaseVisualText",
         "- README optimization audit: [$readmeAuditRelative]($readmeAuditRelative)",
         "- $zhOptimization",
         "- $zhReleaseLine",
-        "- $zhVisualText",
+        "- $releaseZhVisualText",
         '',
         '### Impact Areas',
         ''
     ) + $impactLines
     $updatedNote = Set-ManagedBlock -Content $note -Name 'release-readme-visual-refresh' -Lines $noteBlock
-    if ($Apply) { Set-Content -LiteralPath $releaseNotePath -Value $updatedNote -Encoding UTF8 }
+    if ($Apply) { Set-Content -LiteralPath $releaseNotePath -Value $updatedNote.TrimEnd() -Encoding UTF8 }
     $generated.Add($releaseNoteRelative)
 }
 

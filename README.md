@@ -22,11 +22,17 @@ English counterpart: [README.en.md](README.en.md)
 
 ![协作闭环概念图](docs/assets/readme-collaboration-loop.png)
 
-用于逐项核验的可编辑结构图见：[Codex operating architecture](docs/assets/readme-architecture.svg)。
+![协作角色与验证闭环图](docs/assets/readme-collaboration-loop-labeled.png)
+
+图内仅保留统一风格的角色标签；具体权限、流程和双语说明保留在 Markdown 中，便于阅读器、用户和模型可靠检索。
+
+![全局架构总览](docs/assets/readme-architecture-overview.png)
 
 每次系统迭代都会同时检查两个 README、[更新日志 / Changelog](CHANGELOG.md) 和适用说明文件是否与实际实现一致。知识、经验或工作流存在三个及以上非线性关系且图片能明显提高理解时，优先使用经过脱敏的 GPT 生图；先按交付需要选格式，Mermaid 仅用于小型可审查结构，SVG 仅用于确有可编辑矢量价值的图，普通视觉选择 PNG/JPG 等栅格格式而非无条件回退到 SVG。面向读者的内容创作先形成带来源与主张约束的简要包、提纲、草稿和复核记录；草稿完成不等于获得发布、登录、上传或付费生成授权。
 
-全局文件整理采用“隔离复制、备份与整理、验证沙箱、建立精确迭代前快照、替换、当前目录清理、双重全局复验、生命周期写回”的事务循环。迭代前快照保存所有可能被替换的本地文件和 SHA-256，包括未提交内容，但排除 `.git`、`.codex`、凭据和运行时。任何步骤在替换前失败时当前系统保持不变；替换后失败时自动恢复被修改或删除的文件、移除迭代新增文件、逐项复核哈希并刷新真实全局接口。回退成功后记录错误并要求修复根因、从头重新迭代；回退失败则保持未完成状态并报告严重错误。自动清理仍只处理当前未跟踪的白名单临时/缓存文件及空目录，并在删除前进入外部哈希隔离区。Git 门禁只接受同时具备回退就绪、替换、复验和写回证明的结果。详见 [文件整理架构图](docs/assets/file-organization-architecture.mmd) 与 [图片溯源](docs/assets/file-organization-concept.provenance.md)。
+全局文件整理采用“隔离复制、备份与整理、验证沙箱、建立精确迭代前快照、替换、当前目录清理、双重全局复验、生命周期写回”的事务循环。迭代前快照保存所有可能被替换的本地文件和 SHA-256，包括未提交内容，但排除 `.git`、`.codex`、凭据和运行时。任何步骤在替换前失败时当前系统保持不变；替换后失败时自动恢复被修改或删除的文件、移除迭代新增文件、逐项复核哈希并刷新真实全局接口。回退成功后记录错误并要求修复根因、从头重新迭代；回退失败则保持未完成状态并报告严重错误。自动清理仍只处理当前未跟踪的白名单临时/缓存文件及空目录，并在删除前进入外部哈希隔离区。Git 门禁只接受同时具备回退就绪、替换、复验和写回证明的结果。
+
+![事务化文件整理闭环](docs/assets/file-organization-architecture.png)
 
 当错误本身用于测试和排查文件整理模块或全局迭代模块时，可进入“持续诊断模式”：每次失败都记录归属与证据，执行显式的安全修复，再从头复测，直至成功。该模式默认没有人为次数上限，但不会绕过回退校验、凭据、安装、破坏性操作或外部发布边界；回退失败或修复动作失败会立即转为阻断错误。
 
@@ -61,7 +67,7 @@ OfficeCLI installed locally is routed by `codex-office-cli` for ordinary `.docx`
 
 - 自动进入项目生命周期：首次使用项目时建立需求、工作流、经验、复盘和状态文件。
 - 经验不再只留在聊天里：验证后的规则进入 skill、经验账本或 Obsidian 知识库。
-- 物料性任务通过小型协作契约协调用户授权、本地经验和模型执行：先复用本地已验证证据，再在确实影响结果时升级资源，隔离写入并保留验证硬门；角色分配不会自动启动代理或外部服务。见[协作图](docs/assets/collaborative-operating-model.mmd)。
+- 物料性任务通过小型协作契约协调用户授权、本地经验和模型执行：先复用本地已验证证据，再在确实影响结果时升级资源，隔离写入并保留验证硬门；角色分配不会自动启动代理或外部服务。见[协作闭环图](docs/assets/readme-collaboration-loop.png)。
 - 自我迭代和结构优化以终极协作目标为准绳：每轮先落实为能力、协作、资源、安全和演进五项可验证要求，记录基线、预期贡献和无回归检查；不能证明净改进时保留现状，不为迭代而迭代。
 - 完整全局迭代采用串行、可恢复的事务控制：调用方超时后先检查生命周期证据，不能启动重叠的替换任务。
 - 顶层 owner 可以优化，但每次结构性变更都需要当前迭代的明确授权、基于证据的边界决策和验证；授权不会自动延续。
@@ -180,15 +186,12 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.6.0.0`
+- Version: `1.7.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.6.0.0.md](docs/release-notes/v1.6.0.0.md)
+- Release note: [docs/release-notes/v1.7.0.0.md](docs/release-notes/v1.7.0.0.md)
 - Highlights: Release documentation, Automation gates, Skill architecture
-- Visual: [docs/assets/release-v1.6.0.0-highlights.mmd](docs/assets/release-v1.6.0.0-highlights.mmd)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.6.0.0.json](docs/release-readme-audits/v1.6.0.0.json)
+- Visual: [docs/assets/readme-collaboration-loop.png](docs/assets/readme-collaboration-loop.png)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.7.0.0.json](docs/release-readme-audits/v1.7.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->
-
-
-
