@@ -1,0 +1,46 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.5.0.0",
+    "mode":  "Private",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "upstream_sources":  [
+                             {
+                                 "repository":  "oil-oil/beautify-github-readme",
+                                 "license":  "MIT",
+                                 "commit":  "e337ceac3d78cc37315296ee2c3d2a18407d052e",
+                                 "role":  "repository README hierarchy, evidence, and first-use path"
+                             },
+                             {
+                                 "repository":  "rzashakeri/beautify-github-profile",
+                                 "license":  "CC0-1.0",
+                                 "commit":  "34f41124c4b32fa9b4ae9504966a1d0f46080aaf",
+                                 "role":  "profile-component catalog and reader-value review"
+                             }
+                         ],
+    "mode_selected":  "README release refresh",
+    "evidence":  {
+                     "release_note":  "docs/release-notes/v1.5.0.0.md",
+                     "changed_paths":  [
+                                           "skills/codex-git-operations/scripts/Invoke-ExperienceRelease.ps1",
+                                           "skills/codex-git-operations/scripts/Test-ReleaseReadmeOptimization.ps1",
+                                           "skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1",
+                                           "skills/codex-git-operations/SKILL.md"
+                                       ],
+                     "impact_areas":  [
+                                          "Skill architecture"
+                                      ]
+                 },
+    "decisions":  [
+                      "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
+                      "Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default."
+                  ],
+    "preview_checks":  [
+                           "GitHub-safe Markdown",
+                           "release-note link",
+                           "both README variants",
+                           "reader-value and dependency review",
+                           "format-selection record"
+                       ],
+    "publication_boundary":  "This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command."
+}

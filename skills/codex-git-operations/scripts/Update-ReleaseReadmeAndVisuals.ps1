@@ -52,7 +52,32 @@ $releaseNotePath = Join-Path $root (Normalize-RepoPath $ReleaseNote)
 $releaseNoteRelative = Normalize-RepoPath $ReleaseNote
 $assetRelative = "docs/assets/release-v$Version-highlights.mmd"
 $planRelative = "docs/release-visual-plans/v$Version.json"
+$readmeAuditRelative = "docs/release-readme-audits/v$Version.json"
 $generated = New-Object System.Collections.Generic.List[string]
+
+# Every release uses the installed GitHub README/Profile presentation workflow.
+# Keep its upstream provenance and its no-decoration-by-default decision in a
+# durable audit artifact so the release can be verified without inventing facts
+# or silently depending on third-party widgets.
+$readmeOptimization = [ordered]@{
+    schema_version = 1
+    version = $Version
+    mode = $Mode
+    owner = 'codex-task-execution/github-readme-presentation'
+    upstream_sources = @(
+        [ordered]@{ repository = 'oil-oil/beautify-github-readme'; license = 'MIT'; commit = 'e337ceac3d78cc37315296ee2c3d2a18407d052e'; role = 'repository README hierarchy, evidence, and first-use path' },
+        [ordered]@{ repository = 'rzashakeri/beautify-github-profile'; license = 'CC0-1.0'; commit = '34f41124c4b32fa9b4ae9504966a1d0f46080aaf'; role = 'profile-component catalog and reader-value review' }
+    )
+    mode_selected = 'README release refresh'
+    evidence = [ordered]@{ release_note = $releaseNoteRelative; changed_paths = $paths; impact_areas = $areas }
+    decisions = @(
+        'Refresh both README language variants with the current release, evidence links, and impact summary.',
+        'Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.',
+        'Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default.'
+    )
+    preview_checks = @('GitHub-safe Markdown', 'release-note link', 'both README variants', 'reader-value and dependency review', 'format-selection record')
+    publication_boundary = 'This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command.'
+}
 
 $visualAction = if ($visualRequired) { 'generate-mermaid-release-visual' } else { 'no-new-visual-required' }
 $visualPlan = [ordered]@{
@@ -69,8 +94,11 @@ $visualPlan = [ordered]@{
 if ($Apply) {
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-visual-plans') | Out-Null
     $visualPlan | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root $planRelative) -Encoding UTF8
+    New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-readme-audits') | Out-Null
+    $readmeOptimization | ConvertTo-Json -Depth 7 | Set-Content -LiteralPath (Join-Path $root $readmeAuditRelative) -Encoding UTF8
 }
 $generated.Add($planRelative)
+$generated.Add($readmeAuditRelative)
 
 if ($visualRequired) {
     $safeAreas = @($areas | ForEach-Object { ($_ -replace '[^\w \-]','').Trim() } | Where-Object { $_ })
@@ -101,6 +129,7 @@ $zhReadmeLine = Convert-EscapedUnicode '\u4e2d\u6587\uff1a\u672c\u6b21\u53d1\u5e
 $zhReleaseLine = Convert-EscapedUnicode '\u4e2d\u6587\uff1a\u672c\u6b21\u53d1\u5e03\u4f1a\u91cd\u65b0\u540c\u6b65 README\uff0c\u5e76\u5728\u5fc5\u8981\u5904\u751f\u6210\u56fe\u793a\u4e0e\u6392\u7248\u8f85\u52a9\u6750\u6599\u3002'
 $zhVisualNone = Convert-EscapedUnicode '\u56fe\u793a\uff1a\u672c\u6b21\u53d1\u5e03\u65e0\u9700\u65b0\u589e\u56fe\u793a\u3002'
 $zhRefreshHeading = Convert-EscapedUnicode 'README \u4e0e\u56fe\u793a\u5237\u65b0'
+$zhOptimization = Convert-EscapedUnicode 'README \u4f18\u5316\u5df2\u901a\u8fc7\u5df2\u5b89\u88c5\u7684 GitHub README \u4e0e Profile \u5c55\u793a\u5de5\u4f5c\u6d41\u590d\u6838\uff1b\u4e0d\u5f15\u5165\u65e0\u8bc1\u636e\u7684\u6307\u6807\u6216\u8ddf\u8e2a\u7ec4\u4ef6\u3002'
 $areaText = ($areas -join ', ')
 $visualText = if ($visualRequired) { "Visual: [$assetRelative]($assetRelative)" } else { 'Visual: no new diagram required for this release.' }
 $zhVisualText = if ($visualRequired) { "${zhDiagram}: [$assetRelative]($assetRelative)" } else { $zhVisualNone }
@@ -113,6 +142,8 @@ $readmeBlock = @(
     "- Release note: [$releaseNoteRelative]($releaseNoteRelative)",
     "- Highlights: $areaText",
     "- $visualText",
+    "- README optimization: audited with `github-readme-presentation`; provenance: [$readmeAuditRelative]($readmeAuditRelative)",
+    "- $zhOptimization",
     "- $zhReadmeLine"
 )
 
@@ -133,6 +164,8 @@ if (Test-Path -LiteralPath $releaseNotePath) {
         '- README.md and README.en.md are refreshed for this release.',
         "- Impact areas: $areaText",
         "- $visualText",
+        "- README optimization audit: [$readmeAuditRelative]($readmeAuditRelative)",
+        "- $zhOptimization",
         "- $zhReleaseLine",
         "- $zhVisualText",
         '',
@@ -149,6 +182,7 @@ if (Test-Path -LiteralPath $releaseNotePath) {
     mode = $Mode
     visual_required = $visualRequired
     impact_areas = $areas
+    readme_optimization_audit = $readmeAuditRelative
     generated_paths = @($generated | Select-Object -Unique)
     applied = [bool]$Apply
 } | ConvertTo-Json -Depth 5

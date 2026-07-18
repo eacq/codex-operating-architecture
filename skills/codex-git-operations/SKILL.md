@@ -47,7 +47,7 @@ Use `Get-ExperienceVersion.ps1` as the sole four-part `P.R.A.B` calculator: publ
 
 ## Route and checkpoint
 
-Every private or public release must run `skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1` through `Invoke-ExperienceRelease.ps1`. The release refreshes `README.md`, `README.en.md`, the versioned release note, a release visual plan, and when impact spans important workflow areas, a versioned Mermaid highlight diagram under `docs/assets/`. Keep release visuals sanitized and deterministic unless a separate privacy-safe GPT image request is materially justified.
+Every private or public release must run `skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1` through `Invoke-ExperienceRelease.ps1`, then pass `Test-ReleaseReadmeOptimization.ps1`. This is the mandatory release-time application of `github-readme-presentation`, grounded in both installed sources: `oil-oil/beautify-github-readme` for repository hierarchy/evidence/first-use review and `rzashakeri/beautify-github-profile` for reader-value and component-dependency review. It refreshes `README.md`, `README.en.md`, the versioned release note, a durable optimization audit, a release visual plan, and when impact spans important workflow areas, a versioned Mermaid highlight diagram under `docs/assets/`. Keep verified project-native Markdown and claims; never add decorative counters, trackers, widgets, or unverified metrics. Keep release visuals sanitized and deterministic unless a separate privacy-safe GPT image request is materially justified.
 
 Select the repository from the changed paths before running Git. Confirm that
 `git rev-parse --show-toplevel` is the owning repository root; if it is an

@@ -50,6 +50,8 @@ if (-not (Test-Path -LiteralPath $releaseNotePath)) {
     @("# v$($versionPlan.version) / $($versionPlan.release_tag)", '', '## English', '', "Verified $Mode experience-system release.", '', "## Chinese / $chineseHeading", '', $chineseBody) | Set-Content -LiteralPath $releaseNotePath -Encoding UTF8
 }
 $releaseReadmeVisuals = & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1') -RepositoryRoot $root -Version $versionPlan.version -Mode $Mode -ReleaseNote $releaseNote -ChangedPaths $Paths -Apply | ConvertFrom-Json
+$readmeOptimizationCheck = & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ReleaseReadmeOptimization.ps1') -RepositoryRoot $root -Version $versionPlan.version | ConvertFrom-Json
+if ($readmeOptimizationCheck.result -ne 'release-readme-optimization-passed') { throw 'Release README presentation optimization did not pass.' }
 $generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $releaseNote, 'docs/ITERATION-STATUS.md', 'CHANGELOG.md')
 $allPaths = @($Paths + $generatedPaths | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
@@ -76,4 +78,5 @@ if ($Mode -eq 'Private') {
 }
 if ($LASTEXITCODE -ne 0) { throw "$Mode GitHub release failed." }
 $plan['result'] = 'release-created'
+$plan['readme_optimization'] = $readmeOptimizationCheck
 $plan | ConvertTo-Json -Depth 5

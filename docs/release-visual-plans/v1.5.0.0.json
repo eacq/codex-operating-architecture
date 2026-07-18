@@ -1,0 +1,12 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.5.0.0",
+    "mode":  "Private",
+    "release_note":  "docs/release-notes/v1.5.0.0.md",
+    "impact_areas":  [
+                         "Skill architecture"
+                     ],
+    "visual_action":  "generate-mermaid-release-visual",
+    "privacy":  "Use sanitized repository-level labels only; never include credentials, private sessions, local user paths, or private payloads.",
+    "layout":  "Keep release highlights scannable: latest release block in README, concise release-note summary, and a Mermaid visual when several areas are affected."
+}
