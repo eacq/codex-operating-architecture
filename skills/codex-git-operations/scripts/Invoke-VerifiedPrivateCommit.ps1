@@ -84,6 +84,65 @@ $plan = [ordered]@{ repository_root = $root; branch = (& git -C $root branch --s
 if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
 if (-not $eligible) { throw ($plan | ConvertTo-Json -Depth 5) }
 if (-not $Message) { $Message = "chore: verified $classification architecture update" }
+
+function Get-PathSetSha256([string[]]$Values) {
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try {
+        $bytes = [Text.Encoding]::UTF8.GetBytes(($Values | Sort-Object) -join "`n")
+        return (([BitConverter]::ToString($sha.ComputeHash($bytes))) -replace '-', '').ToLowerInvariant()
+    }
+    finally { $sha.Dispose() }
+}
+
+function Get-StagedPublicationPaths {
+    return @(& git -C $root diff --cached --name-only | Where-Object { $_ } | Sort-Object -Unique)
+}
+
+function Test-CurrentCompleteIterationProof([string]$ExpectedHash) {
+    $globalProofPath = Join-Path $root '.codex\project\global-experience-iteration.json'
+    $isolatedProofPath = Join-Path $root '.codex\project\isolated-global-iteration.json'
+    if (-not (Test-Path -LiteralPath $globalProofPath) -or -not (Test-Path -LiteralPath $isolatedProofPath)) { return $false }
+    $head = (& git -C $root rev-parse HEAD).Trim()
+    try {
+        $globalProof = Get-Content -LiteralPath $globalProofPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $isolatedProof = Get-Content -LiteralPath $isolatedProofPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    } catch {
+        return $false
+    }
+    if ($globalProof.result -ne 'passed' -or $globalProof.mode -ne 'complete-replacement') { return $false }
+    if (-not $globalProof.staged -or $globalProof.head_at_start -ne $head -or $globalProof.staged_paths_sha256 -ne $ExpectedHash) { return $false }
+    if ($isolatedProof.result -ne 'completed' -or -not $isolatedProof.validated -or -not $isolatedProof.replaced -or -not $isolatedProof.post_replacement_validated -or -not $isolatedProof.lifecycle_written_back -or -not $isolatedProof.rollback_ready) { return $false }
+    return $true
+}
+
+function Write-PublicationEnvelope([string[]]$StagedPaths, [string]$Hash, [bool]$ReusedProof) {
+    $version = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
+    $releaseNote = "docs/release-notes/v$version.md"
+    $auditPath = "docs/readme-presentation-audits/v$version.json"
+    $envelope = [ordered]@{
+        schema_version = 1
+        head = (& git -C $root rev-parse HEAD).Trim()
+        branch = (& git -C $root branch --show-current).Trim()
+        staged_paths_sha256 = $Hash
+        staged_paths = $StagedPaths
+        version = $version
+        release_note = if ($StagedPaths -contains $releaseNote) { $releaseNote } else { $null }
+        presentation_audit = if ($StagedPaths -contains $auditPath) { $auditPath } else { $null }
+        privacy_boundary = [ordered]@{
+            publication_surface = 'staged-git-paths-only'
+            local_state_excluded = @('.codex','.git','.runtime','.validation-codex-home','.sandbox-secrets','private-skill-config','auth.json','*.dpapi','.env*')
+            scan_rule = 'Publication metadata scans staged publishable files and consumes redacted local lifecycle proofs.'
+        }
+        complete_iteration_proof_reused = $ReusedProof
+        complete_iteration_required_on_miss = $true
+        created_at = [DateTime]::UtcNow.ToString('o')
+        result = 'publication-envelope-ready'
+    }
+    $envelopePath = Join-Path $root '.codex\project\publication-envelope.json'
+    $envelope | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $envelopePath -Encoding UTF8
+    return $envelope
+}
+
 & (Join-Path $root 'skills\codex-file-organization\scripts\Restore-GitTrackedWorkspaceLayout.ps1') -ProjectRoot $root | Out-Null
 $pathspecFile = Join-Path ([IO.Path]::GetTempPath()) ("codex-git-pathspec-" + [guid]::NewGuid().ToString('N') + '.txt')
 try {
@@ -95,7 +154,23 @@ finally {
     if (Test-Path -LiteralPath $pathspecFile) { Remove-Item -LiteralPath $pathspecFile -Force }
 }
 if (-not $SkipCompleteIteration) {
-    & (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
+    $stagedPublicationPaths = Get-StagedPublicationPaths
+    $stagedPublicationHash = Get-PathSetSha256 $stagedPublicationPaths
+    $reusedCompleteProof = Test-CurrentCompleteIterationProof -ExpectedHash $stagedPublicationHash
+    if (-not $reusedCompleteProof) {
+        & (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
+        $stagedPublicationPaths = Get-StagedPublicationPaths
+        $stagedPublicationHash = Get-PathSetSha256 $stagedPublicationPaths
+    }
+    $publicationEnvelope = Write-PublicationEnvelope -StagedPaths $stagedPublicationPaths -Hash $stagedPublicationHash -ReusedProof $reusedCompleteProof
+    $plan['complete_iteration_proof_reused'] = $reusedCompleteProof
+    $plan['publication_envelope'] = $publicationEnvelope
+} else {
+    $stagedPublicationPaths = Get-StagedPublicationPaths
+    $stagedPublicationHash = Get-PathSetSha256 $stagedPublicationPaths
+    $publicationEnvelope = Write-PublicationEnvelope -StagedPaths $stagedPublicationPaths -Hash $stagedPublicationHash -ReusedProof $true
+    $plan['complete_iteration_proof_reused'] = $true
+    $plan['publication_envelope'] = $publicationEnvelope
 }
 & (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
 & (Join-Path $root 'scripts\Test-GitPublicationMetadata.ps1') -RepositoryRoot $root -Staged

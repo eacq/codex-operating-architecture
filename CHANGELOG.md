@@ -1,5 +1,16 @@
 ﻿# Changelog / 更新日志
 
+## 1.12.4.0 - 2026-07-19
+
+### English
+
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+
 ## 1.12.3.0 - 2026-07-19
 
 ### English
@@ -163,6 +174,7 @@
 
 ### English
 
+- Add a publication envelope for verified private commits: publication gates now bind the staged Git surface, privacy boundary, version, release note, presentation audit, and current complete-iteration proof, so retries can reuse an identical complete proof instead of rerunning replacement.
 - Optimize complete global iteration safety paths by using Git-backed untracked/ignored cleanup discovery, candidate-parent active cleanup, and a privacy-filtered robocopy rollback snapshot with manifest hash verification.
 - Add internal step timing telemetry to complete replacement iterations and make the non-staged publication gate count untracked paths, so optimization can target measured bottlenecks without hiding local files from safety checks.
 - Add a candidate-only global iteration fast path for authorized local candidate-record processing: it records timing telemetry and validates candidate handling/global interfaces without replacing the active tree, while Git publication gates still reject candidate-only proof.
@@ -184,6 +196,7 @@
 
 ### Chinese / 中文
 
+- 为已验证私有提交新增 publication envelope：发布门禁绑定 staged Git 发布面、隐私边界、版本、release note、presentation audit 和当前完整迭代证明；指纹一致的重试可复用完整 proof，不再重复替换。
 - 优化完整全局迭代的安全路径：cleanup 改用 Git 未跟踪/忽略候选发现和候选父目录清理，rollback snapshot 改用隐私过滤后的 robocopy 复制并继续按 manifest 哈希验证。
 - 为完整替换迭代新增内部阶段耗时记录，并让非 staged 发布门禁计入未跟踪路径；后续优化可以针对实测瓶颈，同时避免本地文件被空 diff 掩盖。
 - 新增候选记录专用的全局迭代快路径：在已授权且仓库工作树无改动时，只处理本地候选、记录阶段耗时并验证候选处理/全局接口，不替换 active tree；Git 发布门禁仍拒绝 candidate-only 证明。
@@ -462,6 +475,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

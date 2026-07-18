@@ -25,6 +25,15 @@ $globalRecord = Get-Content -LiteralPath $globalIteration -Raw -Encoding UTF8 | 
 if ($globalRecord.result -ne 'passed' -or $globalRecord.head_at_start -ne ((& git -C $root rev-parse HEAD).Trim()) -or $globalRecord.staged_paths_sha256 -ne $actualHash) {
     throw 'Git changes are not covered by a current completed global experience iteration.'
 }
+$publicationEnvelopePath = Join-Path $root '.codex\project\publication-envelope.json'
+if (-not (Test-Path -LiteralPath $publicationEnvelopePath)) { throw 'Publication envelope is missing; rerun the verified private commit controller.' }
+$publicationEnvelope = Get-Content -LiteralPath $publicationEnvelopePath -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($publicationEnvelope.result -ne 'publication-envelope-ready' -or $publicationEnvelope.head -ne ((& git -C $root rev-parse HEAD).Trim()) -or $publicationEnvelope.staged_paths_sha256 -ne $actualHash) {
+    throw 'Publication envelope does not match the current staged publication surface.'
+}
+if ($publicationEnvelope.privacy_boundary.publication_surface -ne 'staged-git-paths-only' -or @($publicationEnvelope.privacy_boundary.local_state_excluded).Count -lt 5) {
+    throw 'Publication envelope does not prove the local/private-state boundary.'
+}
 
 if ($changed -notcontains 'CHANGELOG.md') {
     throw 'Update CHANGELOG.md for every non-merge commit before push.'
