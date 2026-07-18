@@ -67,6 +67,13 @@ replacement copy, active cleanup, each post-replacement validation pass,
 regenerated-artifact cleanup, and global-interface refresh. Use those timings
 to optimize the next bottleneck instead of treating the complete transaction as
 one opaque delay.
+Performance optimizations may narrow file enumeration only when the same
+privacy and rollback boundaries remain explicit: protected roots and
+secret-shaped files stay excluded, cleanup still deletes only untracked
+allowlisted disposable files after quarantine/hash verification, and rollback
+still records and verifies manifest hashes for replaceable tracked,
+untracked, and ignored files. Prefer Git path authority plus filtered copy over
+PowerShell full-tree scans when it preserves those checks.
 
 Rollback readiness is mandatory. A post-replacement failure must restore and
 verify the exact pre-iteration state, record the error, repair the owning

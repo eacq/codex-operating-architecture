@@ -1,5 +1,16 @@
 ﻿# Changelog / 更新日志
 
+## 1.12.3.0 - 2026-07-19
+
+### English
+
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+
 ## 1.12.2.0 - 2026-07-19
 
 ### English
@@ -152,6 +163,7 @@
 
 ### English
 
+- Optimize complete global iteration safety paths by using Git-backed untracked/ignored cleanup discovery, candidate-parent active cleanup, and a privacy-filtered robocopy rollback snapshot with manifest hash verification.
 - Add internal step timing telemetry to complete replacement iterations and make the non-staged publication gate count untracked paths, so optimization can target measured bottlenecks without hiding local files from safety checks.
 - Add a candidate-only global iteration fast path for authorized local candidate-record processing: it records timing telemetry and validates candidate handling/global interfaces without replacing the active tree, while Git publication gates still reject candidate-only proof.
 - Add a scoped GitHub/OpenAI network-proxy workflow for Windows: child-process Git/GitHub proxying can use YouTu on `127.0.0.1:7892` while system proxy and TUN stay off to protect games and other high-volume apps from proxy traffic.
@@ -172,6 +184,7 @@
 
 ### Chinese / 中文
 
+- 优化完整全局迭代的安全路径：cleanup 改用 Git 未跟踪/忽略候选发现和候选父目录清理，rollback snapshot 改用隐私过滤后的 robocopy 复制并继续按 manifest 哈希验证。
 - 为完整替换迭代新增内部阶段耗时记录，并让非 staged 发布门禁计入未跟踪路径；后续优化可以针对实测瓶颈，同时避免本地文件被空 diff 掩盖。
 - 新增候选记录专用的全局迭代快路径：在已授权且仓库工作树无改动时，只处理本地候选、记录阶段耗时并验证候选处理/全局接口，不替换 active tree；Git 发布门禁仍拒绝 candidate-only 证明。
 - 为 Windows 上的 GitHub/OpenAI 网络访问新增受限代理工作流：Git/GitHub 子进程可按需使用 `127.0.0.1:7892` 的 YouTu 本地代理，同时保持系统代理与 TUN 关闭，避免游戏和其它大流量应用消耗代理流量。
@@ -449,6 +462,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

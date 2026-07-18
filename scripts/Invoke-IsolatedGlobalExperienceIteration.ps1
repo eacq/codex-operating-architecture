@@ -112,7 +112,7 @@ if ($Replace) {
   }
   if ($InjectPostReplacementFailureForTest) { throw 'Injected post-replacement failure for rollback verification.' }
   Invoke-Step 'quarantine and delete unnecessary active artifacts' {
-    $script:activeCleanupBefore = & (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $root -BackupRoot $backupRoot -Apply | ConvertFrom-Json
+    $script:activeCleanupBefore = & (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $root -BackupRoot $backupRoot -LightweightDirectoryCleanup -Apply | ConvertFrom-Json
     if ($activeCleanupBefore.result -ne 'completed') { throw 'Pre-validation active cleanup did not complete.' }
   }
   Invoke-Step 'validate replaced global system pass 1' {
@@ -124,7 +124,7 @@ if ($Replace) {
     if (-not $?) { throw 'Second post-replacement global validation failed.' }
   }
   Invoke-Step 'remove validation-regenerated disposable artifacts' {
-    $script:activeCleanupAfter = & (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $root -BackupRoot $backupRoot -Apply | ConvertFrom-Json
+    $script:activeCleanupAfter = & (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $root -BackupRoot $backupRoot -LightweightDirectoryCleanup -Apply | ConvertFrom-Json
     if ($activeCleanupAfter.result -ne 'completed') { throw 'Post-validation active cleanup did not complete.' }
   }
   Invoke-Step 'refresh and validate real global interfaces' {

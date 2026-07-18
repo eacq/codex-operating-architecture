@@ -18,6 +18,10 @@ try {
     if (Test-Path -LiteralPath (Join-Path $fixture 'cache\__pycache__\module.pyc')) { throw 'Cleanup retained an untracked cache file.' }
     if (Test-Path -LiteralPath (Join-Path $fixture 'empty-folder')) { throw 'Cleanup retained an empty directory.' }
     if ($result.files_deleted -ne 2 -or -not $result.quarantine_created -or -not (Test-Path -LiteralPath $result.detail_manifest)) { throw 'Cleanup result or quarantine evidence is incomplete.' }
+    if ($result.candidate_scan -ne 'git-untracked-and-ignored') { throw 'Cleanup did not use Git-backed untracked/ignored candidate discovery.' }
+    Set-Content -LiteralPath (Join-Path $fixture 'remove-again.tmp') -Value 'remove' -Encoding UTF8
+    $lightweight = & (Join-Path $PSScriptRoot 'Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $fixture -BackupRoot $backup -TrackedPathsFile $trackedPath -LightweightDirectoryCleanup -Apply | ConvertFrom-Json
+    if ($lightweight.empty_directory_scan -ne 'candidate-parents-only' -or (Test-Path -LiteralPath (Join-Path $fixture 'remove-again.tmp'))) { throw 'Lightweight cleanup did not use candidate-parent directory cleanup.' }
     Write-Host 'File-organization cleanup isolation test passed.'
 } finally {
     if (Test-Path -LiteralPath $fixture) { Remove-Item -LiteralPath $fixture -Recurse -Force }
