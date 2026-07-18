@@ -29,6 +29,17 @@ mapping, impact analysis, dependency/caller discovery, or codebase learning and
 6. Open the cited source files with normal file reads before final conclusions,
    edits, or negative claims.
 
+## Authority and Confidence
+
+For covered code surfaces, a fresh graph is the preferred first-pass evidence
+for structure, relationships, ownership, and impact because it reduces broad
+reading and makes traversals reproducible. It does not outrank current user
+authority, project lifecycle contracts, source-file content, or behavior proven
+by current execution. State graph project name, refresh mode, node/edge counts,
+and relevant exclusions when relying on it. Treat excluded directories,
+truncation, stale indexes, and graph-search misses as coverage limits rather
+than negative evidence.
+
 ## Boundaries
 
 - Graph output routes attention; it is not final proof.

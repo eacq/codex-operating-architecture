@@ -18,4 +18,10 @@ For explicit reviewed planning, use
 Keep the plan evidence-grounded, critique it once, then hand off to execution
 only after acceptance criteria and verification are clear.
 
+For an accepted design or execution-ready requirement that needs a dependency-
+aware multi-step implementation plan, use
+[subskills/writing-plan-lite/SKILL.md](subskills/writing-plan-lite/SKILL.md).
+It maps verified paths, owners, task boundaries, checks, and authority gates
+into an executable plan without fabricating detail or starting execution.
+
 For workflows with non-linear handoffs or three or more decision relationships, request a sanitized GPT-first explanatory visual through `codex-image-workflow` and select the delivery format before generation. Mermaid is for small reviewable text structures and SVG for genuine editable vector structure; otherwise choose PNG/JPG or a verified WebP derivative according to delivery need. Reassess the visual whenever the workflow changes.

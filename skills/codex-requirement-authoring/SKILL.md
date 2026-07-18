@@ -34,3 +34,11 @@ For explicit interview-first clarification, use
 [subskills/deep-interview-lite/SKILL.md](subskills/deep-interview-lite/SKILL.md).
 Keep the mode lightweight: ask only questions that materially change the result,
 then return an execution-ready brief.
+
+For a creative, feature, or system-design request whose intended result is not
+yet implementation-ready, use
+[subskills/brainstorming-lite/SKILL.md](subskills/brainstorming-lite/SKILL.md).
+It explores the smallest consequential unknowns, compares bounded approaches,
+and forms a validation-aware design before handing off. It is not a mandatory
+pause for a bounded, reversible task that conversation and local evidence
+already specify.

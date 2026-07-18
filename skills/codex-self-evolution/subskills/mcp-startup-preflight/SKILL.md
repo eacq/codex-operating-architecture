@@ -44,6 +44,21 @@ invoke the relevant MCP tool before broad repository reading.
    startup indexing routes evidence but does not replace source-file
    verification.
 
+## Evidence Authority
+
+Treat a fresh `codebase-memory-mcp` graph as the high-priority **structural
+evidence source** for repository orientation, dependency/caller discovery,
+ownership mapping, and impact scoping. Use it before broad unstructured file
+reading when its indexed coverage contains the relevant surface.
+
+It is derived evidence, not a replacement authority: current user direction
+sets intent and permission; project requirements/workflows and current source
+files set the applicable contract and implementation truth; current commands,
+tests, and rendered/runtime checks establish behavior. Record node/edge counts
+and visible exclusions with any material graph-based conclusion. An omitted,
+stale, truncated, or excluded graph surface cannot establish absence; narrow or
+refresh the graph and verify the cited source file instead.
+
 ## Verification
 
 For the architecture repository, a valid startup preflight is:

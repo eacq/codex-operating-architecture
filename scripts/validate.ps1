@@ -76,8 +76,12 @@ if (-not $?) { throw 'Experience release path-set test failed.' }
 if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')
 if (-not $?) { throw 'Global error-feedback inbox test failed.' }
+& (Join-Path $root 'skills\codex-requirement-authoring\scripts\Test-BrainstormingLite.ps1')
+if (-not $?) { throw 'Brainstorming Lite contract test failed.' }
+& (Join-Path $root 'skills\codex-workflow-design\scripts\Test-WritingPlanLite.ps1')
+if (-not $?) { throw 'Writing Plan Lite contract test failed.' }
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-GlobalIterationCandidateReport.ps1')
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-AuthorizedCandidateProcessing.ps1')
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-AutoCommitIterationIntegration.ps1')
 if (-not $?) { throw 'Global iteration candidate report test failed.' }
-Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, rollback tests, continuous diagnosis tests, UTF-8 error-feedback tests, and global error-feedback inbox tests validated.'
+Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, rollback tests, continuous diagnosis tests, error-feedback tests, brainstorming and writing-plan contract tests, and global error-feedback inbox tests validated.'

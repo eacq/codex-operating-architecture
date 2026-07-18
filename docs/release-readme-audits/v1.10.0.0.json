@@ -1,0 +1,83 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.10.0.0",
+    "mode":  "Private",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "upstream_sources":  [
+                             {
+                                 "repository":  "oil-oil/beautify-github-readme",
+                                 "license":  "MIT",
+                                 "commit":  "e337ceac3d78cc37315296ee2c3d2a18407d052e",
+                                 "role":  "repository README hierarchy, evidence, and first-use path"
+                             },
+                             {
+                                 "repository":  "rzashakeri/beautify-github-profile",
+                                 "license":  "CC0-1.0",
+                                 "commit":  "34f41124c4b32fa9b4ae9504966a1d0f46080aaf",
+                                 "role":  "profile-component catalog and reader-value review"
+                             }
+                         ],
+    "mode_selected":  "README release refresh",
+    "evidence":  {
+                     "release_note":  "docs/release-notes/v1.10.0.0.md",
+                     "changed_paths":  [
+                                           "knowledge/network-learning-2026-07-18-superpowers-selective-adaptation.md",
+                                           "module-registry.json",
+                                           "scripts/validate.ps1",
+                                           "skills/codex-error-feedback/SKILL.md",
+                                           "skills/codex-experience-capture/subskills/global-experience-system/SKILL.md",
+                                           "skills/codex-information-gathering/subskills/codebase-graph-evidence/SKILL.md",
+                                           "skills/codex-requirement-authoring/scripts/Test-BrainstormingLite.ps1",
+                                           "skills/codex-requirement-authoring/SKILL.md",
+                                           "skills/codex-requirement-authoring/subskills/brainstorming-lite/SKILL.md",
+                                           "skills/codex-self-evolution/subskills/global-iteration-gate/SKILL.md",
+                                           "skills/codex-self-evolution/subskills/mcp-startup-preflight/SKILL.md",
+                                           "skills/codex-task-execution/SKILL.md",
+                                           "skills/codex-workflow-design/scripts/Test-WritingPlanLite.ps1",
+                                           "skills/codex-workflow-design/SKILL.md",
+                                           "skills/codex-workflow-design/subskills/writing-plan-lite/SKILL.md"
+                                       ],
+                     "impact_areas":  [
+                                          "Knowledge and experience",
+                                          "Skill architecture",
+                                          "Automation gates",
+                                          "Lifecycle controller"
+                                      ]
+                 },
+    "design_system":  "docs/readme-design-system.json",
+    "reading_order_contract":  [
+                                   "value proposition",
+                                   "first successful action",
+                                   "collaboration mechanism",
+                                   "architecture visual",
+                                   "channels and detailed guarantees",
+                                   "release evidence"
+                               ],
+    "visual_decision":  {
+                            "action":  "use-approved-raster-visual-system",
+                            "format":  "PNG",
+                            "raster_assets":  [
+                                                  "docs/assets/readme-collaboration-loop.png",
+                                                  "docs/assets/readme-collaboration-loop-labeled.png",
+                                                  "docs/assets/readme-architecture-overview-labeled.png",
+                                                  "docs/assets/file-organization-architecture-labeled.png"
+                                              ],
+                            "reader_delivery_rule":  "Reader-facing Markdown uses approved PNG assets for reliable rendering. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.",
+                            "text_policy":  "Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. Architecture and transactional workflow explanations require reviewed labeled visuals; when image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review."
+                        },
+    "decisions":  [
+                      "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
+                      "Use an approved raster visual only when the impact is multi-area; select text-free or labeled presentation by reader need, not as decoration."
+                  ],
+    "preview_checks":  [
+                           "GitHub-safe Markdown",
+                           "release-note link",
+                           "both README variants",
+                           "reading-order headings",
+                           "existing architecture visual placement",
+                           "reader-value and dependency review",
+                           "format-selection record"
+                       ],
+    "publication_boundary":  "This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command."
+}

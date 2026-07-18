@@ -42,6 +42,15 @@ A global iteration uses the isolated full-scope transaction:
     `codex-experience-capture/scripts/New-GlobalIterationCandidateReport.ps1`
     and present its decision-ready summary to the user.
 
+When the request is a complete **global experience-system** pass or includes
+authorized candidate processing, enter through
+`scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -Apply`. That outer
+controller consumes the active candidate-processing authorization and records
+the cross-owner evidence before invoking the isolated replacement transaction.
+Use `Invoke-IsolatedGlobalExperienceIteration.ps1` directly only for the
+replacement/rollback transaction itself or its focused diagnosis; it does not
+consume candidate authorization.
+
 Rollback readiness is mandatory. A post-replacement failure must restore and
 verify the exact pre-iteration state, record the error, repair the owning
 workflow, and rerun from the beginning. Rollback failure blocks mutation and Git

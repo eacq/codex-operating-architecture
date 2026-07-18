@@ -12,6 +12,12 @@ description: Execute a scoped technical or operational task from requirements th
 5. Verify behavior, not only syntax or installation.
 6. Report changed artifacts, validation, and remaining limitations.
 
+Before claiming a task is fixed, complete, passing, or ready to publish, run
+the narrowest command that proves the specific claim in the current task and
+read its exit result. A previous validation, an expected result, or a delegated
+report is not proof. This evidence gate complements existing project and Git
+gates; it never authorizes a commit, push, release, or broader action.
+
 For a compound task, use the smallest logical owner set. Each owner needs a
 bounded scope, named output, shared acceptance criteria, and an isolated write
 surface. Default to a single owner; parallel work is limited to independent

@@ -60,7 +60,9 @@ maintained knowledge base, and safety boundary.
    script and optional `codex-report` handler remain manual compatibility
    routes for File Explorer or a terminal, not the primary user delivery path.
 8. When an active explicit all-candidate authorization exists, the complete
-   iteration runner consumes it through `Process-AuthorizedCandidateRecords.ps1`:
+   global-experience controller (`scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -Apply`)
+   consumes it through `Process-AuthorizedCandidateRecords.ps1` before its
+   isolated replacement transaction:
    archive source evidence, reclassify durable items as guarded guidance, clear
    derived pending records, regenerate the report, and mark the authorization
    consumed. This local processing authorization never covers installation,

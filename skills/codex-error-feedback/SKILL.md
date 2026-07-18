@@ -25,6 +25,12 @@ command parameters, promotion rules, and the schema contract.
 2. Identify the likely owning module, then gather minimal evidence: expected and
    actual result, command/output, changed files, code path, and verification.
    Redact secrets and private raw-session content.
+   Before proposing a repair, reproduce when practical, compare the latest
+   relevant change with a working reference, and state one testable root-cause
+   hypothesis. In a multi-component workflow, collect evidence at boundaries
+   before changing multiple layers. If evidence instead shows an external or
+   timing condition, record that limitation and use bounded handling rather
+   than inventing a local root cause.
    If the failure crosses a project boundary, record source workflow, involved
    global function(s), and causality strength.
 3. Create the initial report before repair:
@@ -38,6 +44,10 @@ command parameters, promotion rules, and the schema contract.
    Markdown consumers can read them consistently. Use the report directory
    printed by the command.
 4. Diagnose and attempt the smallest safe repair through the owning module.
+   Change one causal surface at a time; do not bundle opportunistic cleanup
+   into a diagnostic repair. If two safe hypotheses fail, return to evidence
+   gathering; after a third independent failed repair, stop and require an
+   architecture review instead of guessing a fourth change.
    Do not install software, alter credentials, delete data, or make external
    changes without the normal authorization boundary. If a repair is unsafe or
    unverified, record the blocker and stop rather than claiming success.
