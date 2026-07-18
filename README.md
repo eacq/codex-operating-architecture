@@ -1,4 +1,4 @@
-# Codex Operating Architecture
+﻿# Codex Operating Architecture
 
 English counterpart: [README.en.md](README.en.md)
 
@@ -10,7 +10,7 @@ English counterpart: [README.en.md](README.en.md)
 
 面向本地 Codex 的可迭代经验与知识架构：用 1 个总控 skill 调度 22 个功能模块 skill，让项目启动、需求整理、执行验证、经验沉淀、知识图谱、图片工作流和 Git 发布形成闭环。
 
-![Codex operating architecture](docs/assets/readme-architecture.svg)
+![Codex operating architecture](docs/assets/readme-architecture-overview-labeled.png)
 
 ## Repository channels
 
@@ -129,3 +129,16 @@ python .\skills\codex-knowledge-system\scripts\build_mindmaps.py
 普通 skill、模板、脚本和配置处理不需要逐项提示。外部软件、系统组件、运行时或会改变系统环境的依赖安装前，必须先说明对象、来源、范围、目标路径和影响。
 
 软件包默认进入 `$SOFTWARE_ARCHIVE_ROOT`，支持自定义路径的软件进入 `$SOFTWARE_INSTALL_ROOT`。现有软件满足需求时不因版本较旧自动升级。
+
+<!-- BEGIN MANAGED BLOCK: latest-release -->
+## Latest Release / 最新发布
+
+- Version: `1.1`
+- Channel: `Public` / 公开
+- Release note: [docs/release-notes/v1.1.md](docs/release-notes/v1.1.md)
+- Highlights: Resource economy, requirement design, global experience routing, iteration speed
+- Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.1.json](docs/release-readme-audits/v1.1.json)
+- README 优化已通过 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
+<!-- END MANAGED BLOCK: latest-release -->
+

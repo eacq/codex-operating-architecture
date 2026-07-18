@@ -1,0 +1,8 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.1",
+    "mode":  "Public",
+    "release_note":  "docs/release-notes/v1.1.md",
+    "visual_action":  "reuse-approved-raster-release-visual",
+    "privacy":  "sanitized public labels only"
+}

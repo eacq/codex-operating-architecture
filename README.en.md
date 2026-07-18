@@ -1,4 +1,4 @@
-# Codex Operating Architecture — English
+﻿# Codex Operating Architecture — English
 
 [中文说明 / Chinese README](README.md)
 
@@ -48,3 +48,15 @@ Every iteration also reviews both README files, the [Changelog / 更新日志](C
 ## Release notes
 
 Read the user-facing [Changelog / 更新日志](CHANGELOG.md) for every release and operational update.
+
+<!-- BEGIN MANAGED BLOCK: latest-release -->
+## Latest Release / 最新发布
+
+- Version: `1.1`
+- Channel: `Public` / 公开
+- Release note: [docs/release-notes/v1.1.md](docs/release-notes/v1.1.md)
+- Highlights: Resource economy, requirement design, global experience routing, iteration speed
+- Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.1.json](docs/release-readme-audits/v1.1.json)
+- README 优化已通过 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
+<!-- END MANAGED BLOCK: latest-release -->

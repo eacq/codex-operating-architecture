@@ -1,13 +1,17 @@
-# Changelog / 更新日志
+﻿# Changelog / 更新日志
 
-## 1.0 - 2026-07-16
+## 1.1 - 2026-07-19
 
 ### English
 
-- Reset the verified Codex Operating Architecture release line at v1.0.
-- Provide lifecycle routing, linked knowledge and experience capture, GPT-first privacy-safe visual planning, README iteration alignment, and safe public-release checks.
+- Publish the sanitized v1.1 experience-system snapshot.
+- Add autonomous `caveman-lite` presentation compression for low-risk routine progress.
+- Add autonomous `brainstorming-lite` routing for material unresolved experience-system choices.
+- Record verified global-iteration speed optimizations while preserving rollback, validation, and public safety gates.
 
-### 中文对照
+### Chinese / 中文
 
-- 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
-- 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+- 发布已脱敏的 v1.1 经验系统快照。
+- 为低风险例行进度增加自主 `caveman-lite` 表达压缩。
+- 为经验系统关键未决选择增加自主 `brainstorming-lite` 路由。
+- 记录已验证的全局迭代提速，同时保留回滚、验证与公开安全门禁。

@@ -1,0 +1,8 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.1",
+    "mode":  "Public",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "release_note":  "docs/release-notes/v1.1.md",
+    "result":  "public-readme-presentation-reviewed"
+}
