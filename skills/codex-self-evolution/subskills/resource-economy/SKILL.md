@@ -32,16 +32,24 @@ not authorize external services, provider changes, monitoring, or agents.
 
 ## Adaptive concise communication
 
-When the user explicitly requests brevity, lower token use, or the installed
-`caveman` mode, compress only the presentation layer: remove filler and
-repetition while preserving the user's language, claims, commands, paths,
-code, exact errors, authority boundaries, and verification evidence.
+Use the installed `caveman` skill as a presentation-layer compression option,
+not as a reasoning, evidence, or verification shortcut. Preserve the user's
+language, claims, commands, paths, code, exact errors, authority boundaries,
+and verification evidence.
 
-Treat this as opt-in for the current response or session, never as a silent
-replacement for the user's requested report style. Return to ordinary clear
-prose for safety warnings, irreversible-action confirmation, ambiguous
-multi-step procedures, formal reader-facing documents, or any situation where
-compression would obscure order, scope, or accountability. Do not rewrite
-durable memory, source documents, or skills merely to reduce tokens unless the
-user separately authorizes that edit and a before/after review proves no
-semantic loss.
+Autonomously choose `caveman-lite` for routine progress updates, low-risk
+status summaries, and repetitive global-experience-system work when token
+efficiency, context pressure, or long-running iteration overhead is material.
+This autonomous choice is local to the response stream; it does not rewrite
+durable files, change the user's requested document style, or persist as a
+session preference unless the user explicitly asks for caveman mode, brevity,
+or lower token use. Use `full`, `ultra`, or wenyan variants only on explicit
+user request.
+
+Return to ordinary clear prose for safety warnings, irreversible-action
+confirmation, ambiguous multi-step procedures, formal reader-facing documents,
+candidate reports, release notes, error reports, user-facing instructions that
+depend on order, or any situation where compression would obscure scope or
+accountability. Do not rewrite durable memory, source documents, or skills
+merely to reduce tokens unless the user separately authorizes that edit and a
+before/after review proves no semantic loss.

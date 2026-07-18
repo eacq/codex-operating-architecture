@@ -18,6 +18,15 @@ authority, safety, cost, or validation. If the existing conversation and local
 evidence already make a low-risk, reversible task execution-ready, use
 conversation-to-spec instead. Do not turn ordinary vagueness into an interview.
 
+The global experience system may autonomously open this mode when it detects a
+material unresolved choice in a proposed skill, workflow, experience, learning,
+or architecture change. The autonomous path must stay small: identify the
+branch, compare only materially different options, choose a reversible
+recommendation when evidence supports one, and ask the user only at a real
+authority or decision boundary. Do not use autonomous brainstorming to delay
+bounded repairs, obvious documentation updates, validation-only checks, or
+routine candidate reporting.
+
 ## Flow
 
 1. Inspect only the project context needed to identify existing constraints,

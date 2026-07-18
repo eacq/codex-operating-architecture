@@ -1,15 +1,23 @@
 ﻿# Changelog / 更新日志
 
-## 1.13.0.0 - 2026-07-19
+## 1.1.0.0 - 2026-07-19
 
 ### English
 
 - Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Reset current private release metadata and associated user-facing files to `1.1.0.0 / v1.1`.
+- Record the verified global-iteration speed work in the private release summary: protected ignored roots are excluded at the Git pathspec layer before cleanup and rollback candidate collection, candidate report processing prefilters for `status: candidate`, and the full replacement proof remains safety-gated.
+- Allow `resource-economy` to autonomously use `caveman-lite` for low-risk routine chat progress and repetitive global-experience-system work while keeping full clarity for safety, reports, release notes, error feedback, and ordered instructions.
+- Allow the global experience system to autonomously route material unresolved workflow, skill, learning, experience, or architecture choices through `brainstorming-lite` without turning bounded reversible work into mandatory interviews.
 
 ### Chinese / 中文
 
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
 - 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+- 将当前 Private 发布元数据和关联用户可见文件重置并同步为 `1.1.0.0 / v1.1`。
+- 将已验证的全局迭代提速工作纳入 Private 发布摘要：cleanup 与 rollback 候选收集前先在 Git pathspec 层排除受保护 ignored 根，候选报告处理先按 `status: candidate` 预过滤，并继续保留完整替换 proof 的安全门禁。
+- 允许 `resource-economy` 在低风险例行进度与重复性全局经验系统工作中自主使用 `caveman-lite` 压缩聊天表达，同时对安全、报告、release notes、错误反馈和有序操作说明保留完整清晰表达。
+- 允许全局经验系统在工作流、skill、学习、经验或架构变更存在关键未决选择时自主路由到 `brainstorming-lite`，但不把有界可逆工作变成强制访谈。
 
 ## 1.12.6.2 - 2026-07-19
 

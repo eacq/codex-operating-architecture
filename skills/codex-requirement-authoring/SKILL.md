@@ -42,3 +42,10 @@ It explores the smallest consequential unknowns, compares bounded approaches,
 and forms a validation-aware design before handing off. It is not a mandatory
 pause for a bounded, reversible task that conversation and local evidence
 already specify.
+
+When used by the global experience system, `codex-self-evolution` may
+autonomously route to `brainstorming-lite` if a proposed workflow, skill,
+experience, or architecture change has an unresolved choice that affects scope,
+quality, authority, safety, cost, or validation. This is a lightweight design
+gate, not user-interview mode: ask only if the choice cannot be resolved from
+local evidence, and skip it when the task is already execution-ready.

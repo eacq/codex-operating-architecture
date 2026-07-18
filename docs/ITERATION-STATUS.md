@@ -4,14 +4,14 @@
 
 ## English
 
-- Current architecture version: 1.13.0.0
+- Current architecture version: 1.1.0.0
 - Registered active modules: 25
 - Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note and an exact-version `CHANGELOG.md` section.
 - Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.
 
 ## 中文
 
-- 当前架构版本：1.13.0.0
+- 当前架构版本：1.1.0.0
 - 已注册活动模块数：25
 - 说明门禁：每次已验证的实现迭代都必须更新本状态文件、CHANGELOG.md、中文 README 与 README.en.md；版本变化还必须更新对应的双语发布说明，并确保 CHANGELOG.md 存在该精确版本的条目。
 - 公开转化门禁：公开 skill 仅保留通用工作流。接收者的服务商、路径、软件和非秘密偏好必须保留在本地私有配置中。

@@ -71,6 +71,18 @@ maintained knowledge base, and safety boundary.
 ## Economy Rules
 
 - Prefer a handoff artifact over duplicating instructions across owners.
+- For long or repetitive global-experience-system work, ask
+  `codex-self-evolution` -> `resource-economy` to decide whether routine
+  progress and closeout can use autonomous `caveman-lite` presentation
+  compression. Compress chat delivery only; never compress source evidence,
+  candidate reports, release notes, error reports, formal instructions, or
+  ordered safety-critical steps.
+- For proposed workflow, skill, experience, learning, or architecture changes
+  with an unresolved choice that affects scope, quality, authority, safety,
+  cost, or validation, ask `codex-requirement-authoring` to decide whether
+  `brainstorming-lite` should open autonomously. Use it to reach a small
+  validation-aware design; skip it for bounded reversible tasks that local
+  evidence already makes execution-ready.
 - External skill learning may lead to installation, but only after the system
   classifies necessity, reusable value, owner fit, privacy impact, and
   validation. Compatible adaptation is preferred over raw upstream copying.
