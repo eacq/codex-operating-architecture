@@ -23,6 +23,11 @@ $proofPath = Join-Path $root '.codex\project\isolated-global-iteration.json'
 if (-not (Test-Path -LiteralPath $proofPath)) { throw 'A validated isolated global-iteration proof is required before the Git gate can pass.' }
 $organizationProbe = Get-Content -LiteralPath $proofPath -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($organizationProbe.result -ne 'completed' -or -not $organizationProbe.validated -or -not $organizationProbe.replaced -or -not $organizationProbe.post_replacement_validated -or -not $organizationProbe.lifecycle_written_back -or -not $organizationProbe.rollback_ready -or -not $organizationProbe.continuous_diagnosis_supported) { throw 'The isolated continuous-diagnosis, rollback, cleanup, replacement, post-validation, and lifecycle proof is incomplete.' }
+$completeProofPath = Join-Path $root '.codex\project\global-experience-iteration.json'
+if (Test-Path -LiteralPath $completeProofPath) {
+    $completeProof = Get-Content -LiteralPath $completeProofPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($completeProof.mode -eq 'candidate-only') { throw 'Candidate-only global iteration proof cannot satisfy the Git publication gate.' }
+}
 $sha = [Security.Cryptography.SHA256]::Create()
 $hash = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes(($paths | Sort-Object) -join "`n"))) -replace '-','').ToLowerInvariant()
 $sha.Dispose()

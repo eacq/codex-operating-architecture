@@ -51,6 +51,16 @@ Use `Invoke-IsolatedGlobalExperienceIteration.ps1` directly only for the
 replacement/rollback transaction itself or its focused diagnosis; it does not
 consume candidate authorization.
 
+For candidate-record processing with no tracked, staged, or untracked
+repository changes, the outer controller may use
+`Invoke-CompleteGlobalExperienceIteration.ps1 -CandidateOnly -Apply`. This fast
+path archives authorized local candidates, regenerates the advisory report,
+runs candidate-processing validation and global-interface validation, and
+records timing telemetry without replacing the active tree. It never satisfies
+the Git publication gate; any commit, release, owner change, skill/script/docs
+change, or repository artifact change still requires the complete replacement
+proof.
+
 Rollback readiness is mandatory. A post-replacement failure must restore and
 verify the exact pre-iteration state, record the error, repair the owning
 workflow, and rerun from the beginning. Rollback failure blocks mutation and Git
@@ -84,6 +94,8 @@ partially successful iteration as the next probe.
 The proof must show rollback-ready, cleaned, replaced, twice-revalidated,
 interface-validated, lifecycle-written success. Publication gates consume this
 proof and must never reorganize or delete from the active repository.
+Candidate-only proof is local lifecycle evidence only and is rejected by the
+publication gate.
 
 The candidate report is an advisory post-iteration artifact. It aggregates
 project experience, ledger, linked-knowledge, workflow-learning, and candidate

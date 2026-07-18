@@ -1,5 +1,16 @@
 ﻿# Changelog / 更新日志
 
+## 1.12.1.0 - 2026-07-19
+
+### English
+
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+
 ## 1.12.0.0 - 2026-07-19
 
 ### English
@@ -130,6 +141,7 @@
 
 ### English
 
+- Add a candidate-only global iteration fast path for authorized local candidate-record processing: it records timing telemetry and validates candidate handling/global interfaces without replacing the active tree, while Git publication gates still reject candidate-only proof.
 - Add a scoped GitHub/OpenAI network-proxy workflow for Windows: child-process Git/GitHub proxying can use YouTu on `127.0.0.1:7892` while system proxy and TUN stay off to protect games and other high-volume apps from proxy traffic.
 - Add a verified global-iteration `-AutoCommit` gate: it creates a local commit only after an explicit staged scope, complete iteration proof, metadata validation, and a no-out-of-scope-change check; automatic push, tag, release, and background scheduling remain blocked.
 - Add an automatic advisory candidate report after every completed global experience iteration. It aggregates candidate evidence and authorization boundaries for user review without auto-promoting, installing, updating, configuring, publishing, or deleting anything. The Markdown report is Chinese-primary and appends stable English model-reading fields while preserving source wording for auditability.
@@ -148,6 +160,7 @@
 
 ### Chinese / 中文
 
+- 新增候选记录专用的全局迭代快路径：在已授权且仓库工作树无改动时，只处理本地候选、记录阶段耗时并验证候选处理/全局接口，不替换 active tree；Git 发布门禁仍拒绝 candidate-only 证明。
 - 为 Windows 上的 GitHub/OpenAI 网络访问新增受限代理工作流：Git/GitHub 子进程可按需使用 `127.0.0.1:7892` 的 YouTu 本地代理，同时保持系统代理与 TUN 关闭，避免游戏和其它大流量应用消耗代理流量。
 - 增加已验证的全局迭代 `-AutoCommit` 门禁：仅在暂存范围明确、完整迭代证明、元数据校验和无范围外改动均通过后创建本地提交；自动推送、标签、发布和后台调度仍被禁止。
 - 每次完成的全局经验迭代后自动生成候选汇总报告：中文主报告用于用户审阅与授权决策，末尾附字段稳定的英文经验系统附录；保留候选来源原文以便审计，不会自动晋升、安装、更新、配置、发布或删除任何内容。
@@ -423,4 +436,5 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
