@@ -42,6 +42,40 @@ commit, push, PR, or publication authority.
 4. In asset-only mode, write assets below the target project's approved asset
    directory and show rendered previews before suggesting an embed snippet.
 
+## Complex README design system
+
+For a **whole README**, or whenever a README has at least six headings, changes
+three or more top-level sections, or introduces/revises more than one visual,
+this subskill is mandatory rather than optional. Before editing, locate the
+repository's design-system manifest (default:
+`docs/readme-design-system.json`). If absent, create it as part of the README
+work. It must record the approved palette, type/layout direction, component
+rules, reading order, visual assets, each asset's provenance, and the condition
+that requires regeneration or replacement.
+
+Treat that manifest as the source of visual continuity: reuse approved assets
+and tokens first, then make the smallest coherent extension. Do not introduce a
+new palette, card style, badge family, illustration treatment, external widget,
+or image format without updating the manifest and explaining why the existing
+system no longer fits. Store project-bound images in the approved asset
+directory, retain a provenance record alongside every generated image, and
+preview the complete README at GitHub content width and narrow width. Complex
+README work is complete only when the design manifest, Markdown layout, asset
+references, and project checks agree.
+
+## User-facing explanation routing
+
+Do not limit this workflow to files named README. For every main user-facing
+explanation—setup, operating guide, release explanation, changelog, concept
+overview, collaboration contract, safety boundary, or decision guide—assess
+whether presentation work would improve the collaboration between the user,
+local experience system, and model. Use **README** mode when the document is a
+large or complex reader journey; otherwise use **Audit** mode and retain the
+existing structure when no evidence-backed improvement is warranted. Exclude
+only machine manifests, generated plans, raw asset provenance, and similarly
+non-reader-facing records. Record the chosen mode, evidence, design-system
+relationship, and validation in the project audit artifact.
+
 ## Visual and safety gates
 
 - Apply `codex-image-workflow`'s format-selection gate. SVG is appropriate for

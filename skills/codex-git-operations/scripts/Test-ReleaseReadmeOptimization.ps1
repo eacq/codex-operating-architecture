@@ -15,10 +15,31 @@ $sourceNames = @($audit.upstream_sources | ForEach-Object { $_.repository })
 foreach ($requiredSource in @('oil-oil/beautify-github-readme','rzashakeri/beautify-github-profile')) {
     if ($sourceNames -notcontains $requiredSource) { throw "Release README optimization audit is missing required source: $requiredSource" }
 }
-foreach ($readme in @('README.md','README.en.md')) {
+$requiredReadingOrder = @('value proposition', 'first successful action', 'collaboration mechanism', 'architecture visual', 'channels and detailed guarantees', 'release evidence')
+if (@($audit.reading_order_contract).Count -ne $requiredReadingOrder.Count -or @($audit.reading_order_contract | Where-Object { $_ -notin $requiredReadingOrder }).Count -gt 0) { throw 'Release README optimization audit has an invalid reading-order contract.' }
+if ($audit.visual_decision.action -ne 'use-approved-release-hero-png-and-editable-architecture-svg' -or $audit.visual_decision.format -ne 'PNG + SVG') { throw 'Release README optimization audit has an invalid visual decision.' }
+$designSystemRelative = 'docs/readme-design-system.json'
+if ($audit.design_system -ne $designSystemRelative) { throw 'Release README optimization audit does not reference the design system.' }
+$designSystemPath = Join-Path $root $designSystemRelative
+if (-not (Test-Path -LiteralPath $designSystemPath)) { throw "README design system is missing: $designSystemRelative" }
+$designSystem = Get-Content -LiteralPath $designSystemPath -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($designSystem.owner -ne 'codex-task-execution/github-readme-presentation' -or $designSystem.visual_assets.collaboration_loop.path -ne 'docs/assets/readme-collaboration-loop.png') { throw 'README design system is incomplete or incompatible with the release audit.' }
+foreach ($asset in @('docs/assets/readme-collaboration-loop.png','docs/assets/readme-architecture.svg')) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root $asset))) { throw "Release README visual asset is missing: $asset" }
+}
+$zhStart = ([char[]]@(0x4ECE,0x8FD9,0x91CC,0x5F00,0x59CB) -join '')
+$zhLoop = ([char[]]@(0x534F,0x4F5C,0x95ED,0x73AF) -join '')
+$requirements = @{
+    'README.md' = @("## $zhStart","## $zhLoop",'docs/assets/readme-collaboration-loop.png','docs/assets/readme-architecture.svg');
+    'README.en.md' = @('## Start here','## How it works','docs/assets/readme-collaboration-loop.png','docs/assets/readme-architecture.svg')
+}
+foreach ($readme in $requirements.Keys) {
     $content = Get-Content -LiteralPath (Join-Path $root $readme) -Raw -Encoding UTF8
+    foreach ($requiredText in $requirements[$readme]) {
+        if (-not $content.Contains($requiredText)) { throw "Release README layout is missing '$requiredText' from $readme." }
+    }
     if ($content -notmatch '(?s)<!-- BEGIN MANAGED BLOCK: latest-release -->.*?github-readme-presentation.*?<!-- END MANAGED BLOCK: latest-release -->') {
         throw "Release README optimization block is missing from $readme."
     }
 }
-[ordered]@{ version = $Version; audit = $auditRelative; sources = $sourceNames; result = 'release-readme-optimization-passed' } | ConvertTo-Json -Depth 5
+[ordered]@{ version = $Version; audit = $auditRelative; design_system = $designSystemRelative; sources = $sourceNames; result = 'release-readme-optimization-passed' } | ConvertTo-Json -Depth 5

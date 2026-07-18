@@ -18,6 +18,14 @@ This repository is a verified, self-iterating operating architecture for local C
 
 The architecture is intentionally evidence-first: local project authority and deterministic tools come before expensive model or external work; a visual, dependency, publication, or credential step is used only when it materially improves the outcome.
 
+## How it works
+
+The user supplies the outcome and authority; `codex-self-evolution` selects the smallest owner set; project experience, knowledge, and deterministic tools do the reusable work first; model or external resources enter only when they materially improve the result; verification, error feedback, and publication gates then decide what may be retained, committed, or released.
+
+![Collaboration loop concept](docs/assets/readme-collaboration-loop.png)
+
+For the editable, reviewable structure, see the [Codex operating architecture](docs/assets/readme-architecture.svg).
+
 ## Repository channels
 
 - `origin`: private continuous-development repository.
@@ -102,15 +110,17 @@ Read the user-facing [Changelog / 更新日志](CHANGELOG.md) for every release 
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.5.0.0`
+- Version: `1.6.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.5.0.0.md](docs/release-notes/v1.5.0.0.md)
-- Highlights: Skill architecture
-- Visual: [docs/assets/release-v1.5.0.0-highlights.mmd](docs/assets/release-v1.5.0.0-highlights.mmd)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.5.0.0.json](docs/release-readme-audits/v1.5.0.0.json)
+- Release note: [docs/release-notes/v1.6.0.0.md](docs/release-notes/v1.6.0.0.md)
+- Highlights: Release documentation, Automation gates, Skill architecture
+- Visual: [docs/assets/release-v1.6.0.0-highlights.mmd](docs/assets/release-v1.6.0.0-highlights.mmd)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.6.0.0.json](docs/release-readme-audits/v1.6.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->
+
+
 
 
 

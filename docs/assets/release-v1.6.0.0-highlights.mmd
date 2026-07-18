@@ -1,0 +1,11 @@
+﻿flowchart LR
+  release["Release v1.6.0.0"]
+  area1["Release documentation"]
+  release --> area1
+  area2["Automation gates"]
+  release --> area2
+  area3["Skill architecture"]
+  release --> area3
+  release --> readme["README refresh"]
+  release --> note["Release note"]
+  release --> verify["Validation gates"]

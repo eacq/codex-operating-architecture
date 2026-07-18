@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "owner": "codex-task-execution/github-readme-presentation",
+  "purpose": "Preserve a coherent, evidence-first visual and information system for complex repository README work.",
+  "reading_order": [
+    "value proposition",
+    "first successful action",
+    "collaboration mechanism",
+    "architecture visual",
+    "channels and detailed guarantees",
+    "release evidence"
+  ],
+  "layout": {
+    "content_width": "GitHub default content width; verify a narrow viewport too.",
+    "hierarchy": "One H1, action-oriented H2 sections, short lead paragraphs, tables only for repeated choices, and release evidence in a managed block.",
+    "theme": "Evidence-first technical editorial: restrained, readable, and project-native rather than dashboard-like."
+  },
+  "palette": {
+    "navy": "#112A46",
+    "teal": "#0A8F8B",
+    "amber": "#F4A62A",
+    "canvas": "#FBFAF7"
+  },
+  "component_rules": [
+    "Use Markdown for claims, commands, links, and accessibility text.",
+    "Do not add counters, trackers, profile widgets, remote fonts, or unverified badges for decoration.",
+    "Use PNG/JPG/WebP for generated raster composition; retain SVG or Mermaid only when editable structure materially helps.",
+    "Re-use approved colors, whitespace, card-like geometry, and visual hierarchy before adding a new treatment."
+  ],
+  "visual_assets": {
+    "collaboration_loop": {
+      "path": "docs/assets/readme-collaboration-loop.png",
+      "format": "PNG",
+      "role": "First-screen, text-free conceptual collaboration loop.",
+      "provenance": "docs/assets/readme-collaboration-loop.provenance.md",
+      "regenerate_when": "The user-local-workflow-model-validation-learning topology changes materially."
+    },
+    "architecture_structure": {
+      "path": "docs/assets/readme-architecture.svg",
+      "format": "SVG",
+      "role": "Editable and reviewable exact structural reference.",
+      "regenerate_when": "The architecture graph or owner relationships change materially."
+    }
+  },
+  "maintenance": {
+    "complexity_threshold": "Whole README, six or more headings, three or more top-level sections changed, or more than one visual changed.",
+    "required_checks": [
+      "github-readme-presentation README mode",
+      "GitHub-width and narrow-width preview",
+      "asset existence and provenance",
+      "Markdown and project README validation",
+      "design-system manifest update when visual decisions change"
+    ]
+  },
+  "user_facing_explanation_policy": {
+    "applies_to": [
+      "repository introductions",
+      "setup and operating guides",
+      "concept overviews",
+      "collaboration and safety contracts",
+      "decision guides",
+      "changelogs and release notes"
+    ],
+    "route": "Evaluate every changed main user-facing explanation with github-readme-presentation. Use README mode for complex reader journeys and Audit mode otherwise.",
+    "excluded": [
+      "machine manifests",
+      "generated plans",
+      "raw asset provenance"
+    ]
+  }
+}

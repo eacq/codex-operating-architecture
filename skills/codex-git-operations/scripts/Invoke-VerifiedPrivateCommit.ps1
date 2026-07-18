@@ -58,6 +58,11 @@ if ($Apply) {
         & $syncScript -RepositoryRoot $root -ChangedPaths $selected -Apply | Out-Null
         $selected = @($selected + 'docs/ITERATION-STATUS.md' | Sort-Object -Unique)
     }
+    $presentationVersion = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
+    $presentationAudit = & (Join-Path $root 'skills\codex-git-operations\scripts\New-GlobalReadmePresentationAudit.ps1') -RepositoryRoot $root -Version $presentationVersion -ChangedPaths $selected -Apply | ConvertFrom-Json
+    if ($presentationAudit.required) {
+        $selected = @($selected + $presentationAudit.generated_path | Sort-Object -Unique)
+    }
 }
 $hasImplementation = @($selected | Where-Object { $_ -match '^(skills/|scripts/|config/|codex-provider-switch/|module-registry\.json$)' }).Count -gt 0
 $hasDocs = @($selected | Where-Object { $_ -eq 'README.md' -or $_ -match '^(docs/|CHANGELOG\.md$)' }).Count -gt 0

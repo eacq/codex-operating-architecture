@@ -27,6 +27,19 @@ if ($changed -notcontains 'CHANGELOG.md') {
     throw 'Update CHANGELOG.md for every non-merge commit before push.'
 }
 
+$presentationScope = @($changed | Where-Object {
+    $_ -match '^(README(\.en)?\.md|CHANGELOG\.md|docs/.+\.md)$' -and
+    $_ -notmatch '^docs/(assets/|release-visual-plans/|readme-presentation-audits/|release-readme-audits/)'
+})
+if ($presentationScope.Count -gt 0) {
+    $versionForAudit = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
+    $auditPath = "docs/readme-presentation-audits/v$versionForAudit.json"
+    if ($changed -notcontains $auditPath) { throw "Main user-facing explanation changes require the staged presentation audit: $auditPath" }
+    $audit = (& git -C $root show ":$auditPath") -join "`n" | ConvertFrom-Json
+    if ($audit.owner -ne 'codex-task-execution/github-readme-presentation' -or @($audit.upstream_sources).Count -lt 2) { throw 'Global presentation audit does not prove both installed GitHub presentation sources were used.' }
+    foreach ($path in $presentationScope) { if (@($audit.scope) -notcontains $path) { throw "Global presentation audit is missing changed surface: $path" } }
+}
+
 $publicWorkflowChange = $changed | Where-Object {
     $_ -match '^(skills/|scripts/|config/|codex-provider-switch/|VERSION$|README\.md$)'
 }

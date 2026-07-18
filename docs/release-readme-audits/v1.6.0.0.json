@@ -1,0 +1,79 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.6.0.0",
+    "mode":  "Private",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "upstream_sources":  [
+                             {
+                                 "repository":  "oil-oil/beautify-github-readme",
+                                 "license":  "MIT",
+                                 "commit":  "e337ceac3d78cc37315296ee2c3d2a18407d052e",
+                                 "role":  "repository README hierarchy, evidence, and first-use path"
+                             },
+                             {
+                                 "repository":  "rzashakeri/beautify-github-profile",
+                                 "license":  "CC0-1.0",
+                                 "commit":  "34f41124c4b32fa9b4ae9504966a1d0f46080aaf",
+                                 "role":  "profile-component catalog and reader-value review"
+                             }
+                         ],
+    "mode_selected":  "README release refresh",
+    "evidence":  {
+                     "release_note":  "docs/release-notes/v1.6.0.0.md",
+                     "changed_paths":  [
+                                           "docs/assets/readme-collaboration-loop.png",
+                                           "docs/assets/readme-collaboration-loop.provenance.md",
+                                           "docs/assets/release-v1.6.0.0-highlights.mmd",
+                                           "docs/readme-design-system.json",
+                                           "docs/release-notes/v1.6.0.0.md",
+                                           "docs/release-readme-audits/v1.6.0.0.json",
+                                           "docs/release-visual-plans/v1.6.0.0.json",
+                                           "README.en.md",
+                                           "README.md",
+                                           "scripts/Test-GitPublicationMetadata.ps1",
+                                           "skills/codex-git-operations/scripts/Invoke-VerifiedPrivateCommit.ps1",
+                                           "skills/codex-git-operations/scripts/New-GlobalReadmePresentationAudit.ps1",
+                                           "skills/codex-git-operations/scripts/Test-ReleaseReadmeOptimization.ps1",
+                                           "skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1",
+                                           "skills/codex-git-operations/SKILL.md",
+                                           "skills/codex-task-execution/subskills/github-readme-presentation/SKILL.md",
+                                           "VERSION"
+                                       ],
+                     "impact_areas":  [
+                                          "Release documentation",
+                                          "Automation gates",
+                                          "Skill architecture"
+                                      ]
+                 },
+    "design_system":  "docs/readme-design-system.json",
+    "reading_order_contract":  [
+                                   "value proposition",
+                                   "first successful action",
+                                   "collaboration mechanism",
+                                   "architecture visual",
+                                   "channels and detailed guarantees",
+                                   "release evidence"
+                               ],
+    "visual_decision":  {
+                            "action":  "use-approved-release-hero-png-and-editable-architecture-svg",
+                            "format":  "PNG + SVG",
+                            "raster_asset":  "docs/assets/readme-collaboration-loop.png",
+                            "structure_asset":  "docs/assets/readme-architecture.svg",
+                            "reason":  "The approved PNG gives first-screen readers a text-free conceptual collaboration loop, while the existing SVG remains the editable evidence-bearing structure. Regenerate the PNG only when the collaboration topology changes materially."
+                        },
+    "decisions":  [
+                      "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
+                      "Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default."
+                  ],
+    "preview_checks":  [
+                           "GitHub-safe Markdown",
+                           "release-note link",
+                           "both README variants",
+                           "reading-order headings",
+                           "existing architecture visual placement",
+                           "reader-value and dependency review",
+                           "format-selection record"
+                       ],
+    "publication_boundary":  "This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command."
+}

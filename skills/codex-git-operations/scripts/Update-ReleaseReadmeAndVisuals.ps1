@@ -70,12 +70,15 @@ $readmeOptimization = [ordered]@{
     )
     mode_selected = 'README release refresh'
     evidence = [ordered]@{ release_note = $releaseNoteRelative; changed_paths = $paths; impact_areas = $areas }
+    design_system = 'docs/readme-design-system.json'
+    reading_order_contract = @('value proposition', 'first successful action', 'collaboration mechanism', 'architecture visual', 'channels and detailed guarantees', 'release evidence')
+    visual_decision = [ordered]@{ action = 'use-approved-release-hero-png-and-editable-architecture-svg'; format = 'PNG + SVG'; raster_asset = 'docs/assets/readme-collaboration-loop.png'; structure_asset = 'docs/assets/readme-architecture.svg'; reason = 'The approved PNG gives first-screen readers a text-free conceptual collaboration loop, while the existing SVG remains the editable evidence-bearing structure. Regenerate the PNG only when the collaboration topology changes materially.' }
     decisions = @(
         'Refresh both README language variants with the current release, evidence links, and impact summary.',
         'Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.',
         'Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default.'
     )
-    preview_checks = @('GitHub-safe Markdown', 'release-note link', 'both README variants', 'reader-value and dependency review', 'format-selection record')
+    preview_checks = @('GitHub-safe Markdown', 'release-note link', 'both README variants', 'reading-order headings', 'existing architecture visual placement', 'reader-value and dependency review', 'format-selection record')
     publication_boundary = 'This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command.'
 }
 
