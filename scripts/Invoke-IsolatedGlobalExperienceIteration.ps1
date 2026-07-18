@@ -36,6 +36,48 @@ function Invoke-Step {
     })
   }
 }
+function Normalize-GitPath([string]$Path) {
+  return $Path.Trim('"').Replace('\', '/')
+}
+function Test-ProtectedOverlayPath([string]$RelativePath) {
+  return ($RelativePath -match '(^|/)(\.git|\.codex|\.runtime|\.validation-codex-home|\.sandbox-secrets|private-skill-config)(/|$)|(^|/)(auth\.json|.*\.dpapi|\.env($|\.))')
+}
+function Copy-ChangedPathOverlay {
+  param(
+    [Parameter(Mandatory = $true)][string]$SourceRoot,
+    [Parameter(Mandatory = $true)][string]$TargetRoot
+  )
+  $paths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+  foreach ($arguments in @(
+      @('diff', '--name-only'),
+      @('diff', '--cached', '--name-only'),
+      @('ls-files', '--others', '--exclude-standard')
+    )) {
+    foreach ($path in @(& git -C $SourceRoot -c core.quotePath=false @arguments)) {
+      if ($path) { [void]$paths.Add((Normalize-GitPath $path)) }
+    }
+  }
+  $copied = 0
+  $removed = 0
+  foreach ($relative in $paths) {
+    if (-not $relative -or (Test-ProtectedOverlayPath $relative)) { continue }
+    $source = [IO.Path]::GetFullPath((Join-Path $SourceRoot ($relative.Replace('/', '\'))))
+    $target = [IO.Path]::GetFullPath((Join-Path $TargetRoot ($relative.Replace('/', '\'))))
+    if (-not $source.StartsWith($SourceRoot + '\', [StringComparison]::OrdinalIgnoreCase) -or -not $target.StartsWith($TargetRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw "Sandbox overlay path escaped root: $relative" }
+    if ([IO.File]::Exists($source)) {
+      [IO.Directory]::CreateDirectory((Split-Path -Parent $target)) | Out-Null
+      Copy-Item -LiteralPath $source -Destination $target -Force
+      $copied += 1
+    } elseif ([IO.File]::Exists($target)) {
+      [IO.File]::Delete($target)
+      $removed += 1
+    } elseif ([IO.Directory]::Exists($target) -and -not [IO.Directory]::Exists($source)) {
+      Remove-Item -LiteralPath $target -Recurse -Force
+      $removed += 1
+    }
+  }
+  return [pscustomobject]@{ changed_paths = $paths.Count; copied = $copied; removed = $removed }
+}
 if ($ContinuousDiagnosis) {
   & (Join-Path $root 'scripts\Invoke-ContinuousIterationDiagnosis.ps1') -RepositoryRoot $root -Target global-iteration -RepairScript $RepairScript -MaxRepairAttempts $MaxRepairAttempts -Apply:$Apply
   if (-not $?) { exit 1 }
@@ -62,8 +104,7 @@ Invoke-Step 'clone sandbox' {
   & git -c core.autocrlf=false clone --shared --quiet $root $sandbox
   if ($LASTEXITCODE -ne 0) { throw 'Sandbox shared clone failed.' }
   & git -C $sandbox config core.autocrlf false
-  & robocopy $root $sandbox /E /XD .git .codex .runtime .validation-codex-home /XF auth.json *.dpapi | Out-Null
-  if ($LASTEXITCODE -gt 7) { throw "Sandbox copy failed with robocopy exit code $LASTEXITCODE." }
+  $script:sandboxOverlay = Copy-ChangedPathOverlay -SourceRoot $root -TargetRoot $sandbox
   Copy-Item -LiteralPath (Join-Path $root '.codex\project') -Destination (Join-Path $sandbox '.codex\project') -Recurse -Force
   $script:trackedAuthority = Join-Path $sandbox '.codex\project\isolation-source-tracked.txt'
   & git -C $root ls-files | Set-Content -LiteralPath $trackedAuthority -Encoding UTF8

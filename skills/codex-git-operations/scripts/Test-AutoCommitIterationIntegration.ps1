@@ -10,6 +10,8 @@ $isolated = Get-Content -LiteralPath (Join-Path $root 'scripts\Invoke-IsolatedGl
 if ($isolated -notmatch 'step_timings') { throw 'Isolated global iteration does not record internal timing telemetry.' }
 if ($isolated -notmatch 'validate replaced global system pass 1') { throw 'Isolated global iteration does not split post-replacement validation timing.' }
 if ($isolated -notmatch 'LightweightDirectoryCleanup') { throw 'Isolated global iteration does not use lightweight active cleanup.' }
+if ($isolated -notmatch 'Copy-ChangedPathOverlay') { throw 'Isolated global iteration does not use changed-path sandbox overlay.' }
+if ($isolated -match 'robocopy \$root \$sandbox') { throw 'Isolated global iteration still overlays the full active tree into the sandbox.' }
 if ($iteration -notmatch 'AutoCommit requires -Staged') { throw 'AutoCommit does not require an explicit staged scope.' }
 if ($iteration -notmatch '-SkipCompleteIteration -CommitOnly') { throw 'AutoCommit does not reuse the verified iteration proof for local-only commit.' }
 $cleanup = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -Raw -Encoding UTF8
