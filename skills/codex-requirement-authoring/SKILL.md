@@ -14,3 +14,7 @@ description: Interpret incomplete or conflicting requests and produce precise re
 
 For historical reconstruction, cite the relevant artifact and date. Mark inferred requirements explicitly.
 
+For explicit interview-first clarification, use
+[subskills/deep-interview-lite/SKILL.md](subskills/deep-interview-lite/SKILL.md).
+Keep the mode lightweight: ask only questions that materially change the result,
+then return an execution-ready brief.

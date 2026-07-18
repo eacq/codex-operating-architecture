@@ -12,6 +12,11 @@ description: Execute a scoped technical or operational task from requirements th
 5. Verify behavior, not only syntax or installation.
 6. Report changed artifacts, validation, and remaining limitations.
 
+For explicit durable finish loops, use
+[subskills/persistent-completion-lite/SKILL.md](subskills/persistent-completion-lite/SKILL.md).
+This mode increases persistence through checkpoints and verification, but does
+not expand authority or auto-trigger from generic continuation wording.
+
 Do not claim completion while required processes are running. Do not perform destructive or materially broader actions without authorization.
 
 Ordinary in-scope file handling does not require a separate prompt. Notify the user before installing or upgrading external software, runtimes, system components, package managers, or system-changing dependencies. Keep higher-risk confirmation boundaries for destructive, public, paid, privilege-expanding, or irreversible actions.

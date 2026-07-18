@@ -99,6 +99,14 @@
       "verified": true
     },
     {
+      "id": "concept-oh-my-codex-omx-lite-network-learning",
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "path": "30-Knowledge\\Oh My Codex and OMX Lite Network Learning.md",
+      "summary": "Compare external Codex workflow packages by takeover surface before installing. Full runtimes that manage hooks, config, state, worktrees, team sessions, and implicit routing are usually learn-only or owner-reference in this Windows Codex Desktop architecture; lite methodology packages can contribute manifest, dry-run, backup, explicit-invocation, and size-budget gates after local adaptation.",
+      "source": "https://github.com/Yeachan-Heo/oh-my-codex;commit=5319c3d0388b09ad7036e6e3858afd959cfe0eea; https://github.com/IamHBW/omx-lite;commit=7ec85075c648df9b9220b4fc07a6317b967160e3",
+      "verified": false
+    },
+    {
       "id": "concept-project-creation-capability",
       "name": "Project Creation Capability",
       "path": "30-Knowledge\\Project Creation Capability.md",

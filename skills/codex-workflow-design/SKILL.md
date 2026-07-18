@@ -13,4 +13,9 @@ After a verified workflow update, route it through `codex-knowledge-system/scrip
 
 Consume `workflow-error-review.json` before changing a workflow after an error. Add a guard for preventable high-impact failures, reorder only when input/evidence order caused the fault, and remove/simplify only when redundancy is independently demonstrated.
 
+For explicit reviewed planning, use
+[subskills/consensus-plan-lite/SKILL.md](subskills/consensus-plan-lite/SKILL.md).
+Keep the plan evidence-grounded, critique it once, then hand off to execution
+only after acceptance criteria and verification are clear.
+
 For workflows with non-linear handoffs or three or more decision relationships, request a sanitized GPT-first explanatory visual through `codex-image-workflow`; use Mermaid/SVG only when that is more deterministic or image generation is unavailable. Reassess the visual whenever the workflow changes.

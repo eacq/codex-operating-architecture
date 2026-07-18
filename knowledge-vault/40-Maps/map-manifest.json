@@ -567,6 +567,21 @@
       "codex_learning": true
     },
     {
+      "id": "concept-oh-my-codex-omx-lite-network-learning",
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Oh My Codex and OMX Lite Network Learning.md",
+      "links": [
+        "Codebase Memory MCP",
+        "Global Experience System",
+        "Matt Pocock Skills Network Learning",
+        "Subskill Packaging Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "portable-path-configuration",
       "name": "Portable Path Configuration",
       "type": "concept",

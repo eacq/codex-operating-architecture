@@ -58,6 +58,14 @@ commands that do not apply locally. The result does not need to be the upstream
 "best" shape; it must be the best fit for this architecture and the user's
 actual workflow.
 
+For external packages, prefer a manifest-backed compatibility install contract:
+preview with dry-run, back up replaced Codex-home files, verify with a check
+mode, enforce small global guidance and skill-size budgets, and stop when
+orphaned markers from another runtime are found instead of trying to repair a
+mixed hooks/config state blindly. If the upstream package installs into a
+different skill root, translate that root to this architecture's canonical
+`$ARCHITECTURE_ROOT\skills` plus `$CODEX_HOME\skills` discovery interface.
+
 ## Private-to-public conversion
 
 Use `scripts/Convert-PrivateSkillToPublic.ps1` only when the candidate has two independent verified use cases and no unresolved private-only purpose. Its default mode creates a read-only conversion plan. With `-Apply`, it creates a sanitized public candidate, re-audits it, writes a generic public profile template, and copies the original non-secret provider/software preferences only to `~/.codex/private-skill-config/converted-skills/`. Never copy secrets, cookies, account identity, browser state, raw history, or private evidence. The global controller must route the result through documentation synchronization, knowledge/experience review, validation, and the private auto-Git gate before a later explicit public release.

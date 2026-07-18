@@ -58,6 +58,11 @@ Codex Knowledge System
 			-> Experience and Knowledge Architecture
 			-> Subskill Packaging Boundary
 			-> Verified Experience Promotion
+		Oh My Codex and OMX Lite Network Learning [Codex]
+			-> Codebase Memory MCP
+			-> Global Experience System
+			-> Matt Pocock Skills Network Learning
+			-> Subskill Packaging Boundary
 		Portable Path Configuration [Codex]
 			-> Image Hosting and Cleanup Workflow
 			-> Knowledge Tooling

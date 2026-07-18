@@ -30,6 +30,17 @@ privacy and verification rules, and a validation path. Adapt names, triggers,
 profiles, safety boundaries, and docs to the local owner model instead of
 preserving upstream structure merely because it exists.
 
+Before installing an external Codex workflow package, compare its takeover
+surface. Treat full runtimes that manage CLI launch, hooks, config, state
+directories, worktrees, team sessions, MCP/plugin wiring, or implicit keyword
+routing as high-risk: default them to learn-only or owner-reference unless the
+user explicitly needs that runtime and a rollback plus real execution smoke test
+is available. Treat lite methodology packages as extraction candidates: reuse
+manifest, dry-run/check, backup, size-budget, and conflict-marker ideas, but
+rewrite install roots, invocation policy, and validation for this architecture.
+Imported workflows default to explicit invocation until repeated local evidence
+proves implicit routing is safer and more useful.
+
 Edit only `$ARCHITECTURE_ROOT\skills`. Global paths are junction interfaces installed by `install-global.ps1`; use copy mode only as a recorded filesystem exception.
 
 Read [references/subskill-contract.md](references/subskill-contract.md) before

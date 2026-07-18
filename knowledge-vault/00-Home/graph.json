@@ -474,6 +474,19 @@
       ]
     },
     {
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "path": "30-Knowledge\\Oh My Codex and OMX Lite Network Learning.md",
+      "type": "concept",
+      "status": "candidate",
+      "learning_audience": "codex",
+      "links": [
+        "Codebase Memory MCP",
+        "Global Experience System",
+        "Matt Pocock Skills Network Learning",
+        "Subskill Packaging Boundary"
+      ]
+    },
+    {
       "name": "Portable Path Configuration",
       "path": "30-Knowledge\\Portable Path Configuration.md",
       "type": "concept",
@@ -1129,6 +1142,22 @@
     [
       "Mother Skill Refinement",
       "Verified Experience Promotion"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Codebase Memory MCP"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Matt Pocock Skills Network Learning"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Subskill Packaging Boundary"
     ],
     [
       "Paper Reading and Evidence Workflow",

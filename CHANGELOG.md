@@ -1,9 +1,24 @@
 ﻿# Changelog / 更新日志
 
+## 1.4.1.0 - 2026-07-18
+
+### English
+
+- Add parent-skill refinement packaging so broad owner skills can stay concise while detailed gates move into owner-internal subskills.
+- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+
 ## 1.4.0.0 - 2026-07-18
 
 ### English
 
+- Learn from `Yeachan-Heo/oh-my-codex` and `IamHBW/omx-lite`, comparing full runtime takeover against lite methodology packaging before any external skill installation.
+- Refine external package gates with manifest, dry-run/check, backup, size-budget, conflict-marker, explicit-invocation, rollback, and real smoke-test criteria.
+- Install the lightweight external-methodology subset as owner-internal subskills: `deep-interview-lite`, `consensus-plan-lite`, and `persistent-completion-lite`.
 - Add parent-skill refinement packaging so broad owner skills can stay concise while detailed gates move into owner-internal subskills.
 - Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
 - Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
@@ -11,6 +26,9 @@
 
 ### Chinese / 中文
 
+- 学习 `Yeachan-Heo/oh-my-codex` 与 `IamHBW/omx-lite`，在安装任何外部 skill 前先比较“完整运行时接管”与“轻量方法包”的差异。
+- 精炼外部包门禁：manifest、dry-run/check、备份、尺寸预算、冲突标记、显式调用、回滚和真实 smoke test 都进入兼容性判断。
+- 将轻量外部方法子集安装为 owner 内部 subskill：`deep-interview-lite`、`consensus-plan-lite` 与 `persistent-completion-lite`。
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
 - 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
 - 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。

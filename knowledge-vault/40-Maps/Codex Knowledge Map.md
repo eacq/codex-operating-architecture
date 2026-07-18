@@ -18,6 +18,7 @@ mindmap
       Locked Template DOCX Package Invariants Codex
       Matt Pocock Skills Network Learning Codex
       Mother Skill Refinement Codex
+      Oh My Codex and OMX Lite Network Learning Codex
       Portable Path Configuration Codex
       Project Creation Capability Codex
       Project Knowledge Boundary
