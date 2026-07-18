@@ -135,7 +135,9 @@ if (Test-Path -LiteralPath $workflowPath) {
 $errorsRoot = Join-Path $root '.codex\errors'
 if (Test-Path -LiteralPath $errorsRoot) {
     Get-ChildItem -LiteralPath $errorsRoot -Recurse -Filter 'report.json' -File | ForEach-Object {
-        $errorReport = Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+        $rawErrorReport = Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8
+        if ($rawErrorReport -notmatch '"status"\s*:\s*"candidate"') { return }
+        $errorReport = $rawErrorReport | ConvertFrom-Json
         if ($errorReport.status -eq 'candidate') {
             $items += New-CandidateItem 'error-feedback' "Candidate error feedback: $($errorReport.module)" $errorReport.symptom (Get-RelativePath $_.FullName) 'error report status=candidate'
         }

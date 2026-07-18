@@ -17,7 +17,8 @@ if ($isolated -match 'config core\.autocrlf false') { throw 'Isolated global ite
 if ($iteration -notmatch 'AutoCommit requires -Staged') { throw 'AutoCommit does not require an explicit staged scope.' }
 if ($iteration -notmatch '-SkipCompleteIteration -CommitOnly') { throw 'AutoCommit does not reuse the verified iteration proof for local-only commit.' }
 $cleanup = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -Raw -Encoding UTF8
-if ($cleanup -notmatch 'ls-files --others --ignored --exclude-standard') { throw 'Cleanup does not consider ignored disposable cache files.' }
+if ($cleanup -notmatch '--ignored' -or $cleanup -notmatch '--exclude-standard') { throw 'Cleanup does not consider ignored disposable cache files.' }
+if ($cleanup -notmatch '\(exclude\)\.runtime/\*\*' -or $cleanup -notmatch '\(exclude\)\.codex/\*\*') { throw 'Cleanup does not exclude protected roots at the Git pathspec layer.' }
 if ($cleanup -notmatch 'candidate-parents-only') { throw 'Cleanup does not expose candidate-parent directory cleanup telemetry.' }
 $rollback = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\New-PreIterationRollbackSnapshot.ps1') -Raw -Encoding UTF8
 if ($rollback -notmatch 'git-tracked-untracked-ignored') { throw 'Rollback snapshot does not record Git-backed file inventory.' }
@@ -25,6 +26,7 @@ if ($rollback -notmatch 'robocopy-filtered-tree') { throw 'Rollback snapshot doe
 if ($rollback -notmatch 'dotnet-sha256-stream') { throw 'Rollback snapshot does not record the optimized .NET hash engine.' }
 if ($rollback -notmatch 'short-prefix') { throw 'Rollback snapshot does not preserve the short path-budget snapshot naming policy.' }
 if ($rollback -notmatch 'private-skill-config') { throw 'Rollback snapshot does not exclude private local profile roots.' }
+if ($rollback -notmatch '\(exclude\)\.runtime/\*\*' -or $rollback -notmatch '\(exclude\)\.codex/\*\*') { throw 'Rollback snapshot does not exclude protected roots at the Git pathspec layer.' }
 $gate = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -Raw -Encoding UTF8
 if ($gate -notmatch 'Candidate-only global iteration proof cannot satisfy the Git publication gate') { throw 'Git publication gate does not reject candidate-only proof.' }
 if ($gate -notmatch 'ls-files --others --exclude-standard') { throw 'Git publication gate does not consider untracked paths in non-staged mode.' }

@@ -18,6 +18,28 @@ $snapshotExcludeFiles = @('.env', '.env.*', 'auth.json', '*.dpapi')
 function Normalize-GitPath([string]$Path) {
     return $Path.Trim('"').Replace('\', '/')
 }
+function Get-GitOtherPaths([switch]$Ignored) {
+    $arguments = @('ls-files', '--others', '--exclude-standard')
+    if ($Ignored) { $arguments = @('ls-files', '--others', '--ignored', '--exclude-standard') }
+    $pathspec = @(
+        '--',
+        '.',
+        ':(exclude).git/**',
+        ':(exclude).codex/**',
+        ':(exclude).runtime/**',
+        ':(exclude).history-cache/**',
+        ':(exclude).validation-codex-home/**',
+        ':(exclude).sandbox-secrets/**',
+        ':(exclude)private-skill-config/**',
+        ':(exclude)node_modules/**',
+        ':(exclude).venv/**',
+        ':(exclude)venv/**',
+        ':(exclude)vendor/**'
+    )
+    foreach ($path in @(& git -C $root -c core.quotePath=false @arguments @pathspec)) {
+        if ($path) { Normalize-GitPath $path }
+    }
+}
 function Get-RelativePath([string]$Path) {
     return $Path.Substring($root.Length).TrimStart('\').Replace('\', '/')
 }
@@ -59,10 +81,10 @@ try {
     foreach ($path in @(& git -C $root -c core.quotePath=false ls-files --cached)) {
         if ($path) { [void]$relativeFilePaths.Add((Normalize-GitPath $path)) }
     }
-    foreach ($path in @(& git -C $root -c core.quotePath=false ls-files --others --exclude-standard)) {
+    foreach ($path in @(Get-GitOtherPaths)) {
         if ($path) { [void]$relativeFilePaths.Add((Normalize-GitPath $path)) }
     }
-    foreach ($path in @(& git -C $root -c core.quotePath=false ls-files --others --ignored --exclude-standard)) {
+    foreach ($path in @(Get-GitOtherPaths -Ignored)) {
         if ($path) { [void]$relativeFilePaths.Add((Normalize-GitPath $path)) }
     }
     $usedGitFileInventory = $true

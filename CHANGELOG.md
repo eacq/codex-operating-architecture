@@ -1,14 +1,31 @@
 ﻿# Changelog / 更新日志
 
+## 1.13.0.0 - 2026-07-19
+
+### English
+
+- Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+
 ## 1.12.6.2 - 2026-07-19
 
 ### English
 
 - Record verified automatic Refinement iteration updates for the scoped changed paths.
+- Filter protected ignored roots at the Git pathspec layer before rollback snapshot and cleanup candidate collection, while retaining existing protected-path checks.
+- Verify the speed iteration with a complete replacement pass; isolated replacement time measured 76.296s versus the previous 84.469s proof.
+- Speed up candidate-report and authorized-candidate processing by prefiltering error-feedback JSON for `status: candidate` before full JSON parsing.
 
 ### Chinese / 中文
 
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 在 rollback snapshot 与 cleanup 候选收集前，通过 Git pathspec 提前排除受保护 ignored 根，同时保留既有 protected-path 检查。
+- 通过完整替换迭代验证本轮提速；isolated replacement 实测 76.296 秒，上一轮 proof 为 84.469 秒。
+- 在完整 JSON 解析前先以 `status: candidate` 预过滤错误反馈报告，加速候选报告和授权候选处理。
 
 ## 1.12.6.1 - 2026-07-19
 
@@ -527,6 +544,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

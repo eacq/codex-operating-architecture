@@ -20,6 +20,28 @@ function Get-RelativePath([string]$Path) {
 function Normalize-GitPath([string]$Path) {
     return $Path.Trim('"').Replace('\', '/')
 }
+function Get-GitOtherPaths([switch]$Ignored) {
+    $arguments = @('ls-files', '--others', '--exclude-standard')
+    if ($Ignored) { $arguments = @('ls-files', '--others', '--ignored', '--exclude-standard') }
+    $pathspec = @(
+        '--',
+        '.',
+        ':(exclude).git/**',
+        ':(exclude).codex/**',
+        ':(exclude).runtime/**',
+        ':(exclude).history-cache/**',
+        ':(exclude).validation-codex-home/**',
+        ':(exclude).sandbox-secrets/**',
+        ':(exclude)private-skill-config/**',
+        ':(exclude)node_modules/**',
+        ':(exclude).venv/**',
+        ':(exclude)venv/**',
+        ':(exclude)vendor/**'
+    )
+    foreach ($path in @(& git -C $root -c core.quotePath=false @arguments @pathspec)) {
+        if ($path) { Normalize-GitPath $path }
+    }
+}
 
 $tracked = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $trackedLines = if ($TrackedPathsFile) {
@@ -36,10 +58,10 @@ $disposableName = '^(\.DS_Store|Thumbs\.db)$|\.(pyc|pyo|tmp|temp|bak|orig|rej)$|
 $candidateRelativePaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 $usedGitCandidateScan = $false
 try {
-    foreach ($path in @(& git -C $root -c core.quotePath=false ls-files --others --exclude-standard)) {
+    foreach ($path in @(Get-GitOtherPaths)) {
         if ($path) { [void]$candidateRelativePaths.Add((Normalize-GitPath $path)) }
     }
-    foreach ($path in @(& git -C $root -c core.quotePath=false ls-files --others --ignored --exclude-standard)) {
+    foreach ($path in @(Get-GitOtherPaths -Ignored)) {
         if ($path) { [void]$candidateRelativePaths.Add((Normalize-GitPath $path)) }
     }
     $usedGitCandidateScan = $true
