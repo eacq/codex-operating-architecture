@@ -1,8 +1,22 @@
-﻿# Codex Operating Architecture — English
+# Codex Operating Architecture — English
 
 [中文说明 / Chinese README](README.md)
 
 This repository is a verified, self-iterating operating architecture for local Codex work. A single controller routes tasks to focused skills for project lifecycle, requirements, execution, knowledge, learning, error feedback, runtime environments, Git, and release safety.
+
+> Build reliable local Codex work: reuse verified experience first, make changes through explicit owners, and keep validation and user authority non-negotiable.
+
+## Start here
+
+| If you need to… | Start with |
+|---|---|
+| Set up a new local project | `scripts/init-project.ps1` and `$codex-self-evolution` |
+| Improve a workflow or learn from an external repository | `$codex-learning`, then the existing owner rather than a duplicate skill |
+| Diagnose an unexpected result | `$codex-error-feedback` before promoting any lesson |
+| Redesign a repository or profile README | `$github-readme-presentation` for an audit, a whole README, or asset-only work |
+| Commit verified private architecture work | `$codex-git-operations` and the scoped private auto-Git gate |
+
+The architecture is intentionally evidence-first: local project authority and deterministic tools come before expensive model or external work; a visual, dependency, publication, or credential step is used only when it materially improves the outcome.
 
 ## Repository channels
 
