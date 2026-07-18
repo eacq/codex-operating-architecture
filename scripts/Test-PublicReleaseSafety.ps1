@@ -20,8 +20,9 @@ $publicRepo = Get-RepoName $PublicRemote
 $privateRepo = Get-RepoName $PrivateRemote
 if ($publicRepo -eq $privateRepo) { throw 'Public and private remotes must be different repositories.' }
 if (-not (Get-Command gh -ErrorAction SilentlyContinue)) { throw 'GitHub CLI is required for public-release safety verification.' }
-if ((& gh repo view $publicRepo --json isPrivate --jq .isPrivate).Trim() -ne 'false') { throw 'The public remote is not confirmed public.' }
-if ((& gh repo view $privateRepo --json isPrivate --jq .isPrivate).Trim() -ne 'true') { throw 'The private remote is not confirmed private.' }
+$githubCommand = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-GitHubNetworkCommand.ps1'
+if ((& $githubCommand -RepositoryRoot $root -Tool gh repo view $publicRepo --json isPrivate --jq .isPrivate).Trim() -ne 'false') { throw 'The public remote is not confirmed public.' }
+if ((& $githubCommand -RepositoryRoot $root -Tool gh repo view $privateRepo --json isPrivate --jq .isPrivate).Trim() -ne 'true') { throw 'The private remote is not confirmed private.' }
 
 $paths = @(& git -C $root ls-tree -r --name-only $CandidateRef)
 $forbiddenPath = '(^|/)(\.codex|\.runtime|\.history-cache|\.sandbox-secrets|private-skill-config)(/|$)|(^|/)(\.env($|\.)|auth\.json$|.*\.dpapi$)'

@@ -14,6 +14,12 @@ On Windows, diagnose in this order:
 
 Inspect remotes and authentication separately. A missing remote is not an auth failure. Preserve unrelated changes and use non-interactive commands. Never use destructive reset or checkout without explicit authorization. Before committing, review the diff and scan for secrets. Use the `codex/` branch prefix unless the user specifies another convention.
 
+For GitHub network commands on this Windows machine, use
+`scripts/Invoke-GitHubNetworkCommand.ps1` for `git` and `gh` calls that touch
+GitHub. For proxy-budget isolation, OpenAI reachability checks, system proxy
+state, TUN/game routing, and local `127.0.0.1:7892` verification, read
+[subskills/scoped-network-proxy/SKILL.md](subskills/scoped-network-proxy/SKILL.md).
+
 ## Publication descriptions
 
 Before every non-merge commit, update `CHANGELOG.md` and run

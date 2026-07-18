@@ -52,12 +52,12 @@ Set-Location <architecture-root>
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.11.0.0`
+- Version: `1.12.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.11.0.0.md](docs/release-notes/v1.11.0.0.md)
-- Highlights: Release documentation, Lifecycle controller, Knowledge and experience, Skill architecture, Automation gates
+- Release note: [docs/release-notes/v1.12.0.0.md](docs/release-notes/v1.12.0.0.md)
+- Highlights: Release documentation, Automation gates, Skill architecture
 - Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.11.0.0.json](docs/release-readme-audits/v1.11.0.0.json)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.12.0.0.json](docs/release-readme-audits/v1.12.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->

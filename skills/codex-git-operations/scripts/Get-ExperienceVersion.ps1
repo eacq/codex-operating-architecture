@@ -9,6 +9,7 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$githubCommand = Join-Path $PSScriptRoot 'Invoke-GitHubNetworkCommand.ps1'
 function Get-RepoFromRemote([string]$Remote) {
     $url = (& git -C $RepositoryRoot remote get-url $Remote 2>$null).Trim()
     $match = [regex]::Match($url, 'github\.com[:/](?<name>[^/]+/[^/.]+)')
@@ -18,7 +19,7 @@ function Get-RepoFromRemote([string]$Remote) {
 if (-not $PublicRepository) { $PublicRepository = Get-RepoFromRemote 'public' }
 if (-not $PrivateRepository) { $PrivateRepository = Get-RepoFromRemote 'origin' }
 function Get-ReleaseParts([string]$Repository) {
-    $rows = @(& gh release list --repo $Repository --limit 100 2>$null)
+    $rows = @(& $githubCommand -RepositoryRoot $RepositoryRoot -Tool gh release list --repo $Repository --limit 100 2>$null)
     $parts = @()
     foreach ($row in $rows) {
         if ($row -match '\bv(?<first>\d+)\.(?<second>\d+)\b') { $parts += [pscustomobject]@{ First = [int]$Matches.first; Second = [int]$Matches.second } }

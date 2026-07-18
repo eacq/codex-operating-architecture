@@ -72,10 +72,11 @@ $classification = if ($hasImplementation) { 'minor' } elseif ($hasDocs) { 'patch
 $originUrl = (& git -C $root remote get-url origin).Trim()
 if (-not $originUrl) { throw 'The private origin remote is missing.' }
 $repoMatch = [regex]::Match($originUrl, 'github\.com[:/](?<repo>[^/]+/[^/.]+)')
+$githubCommand = Join-Path $PSScriptRoot 'Invoke-GitHubNetworkCommand.ps1'
 $privateConfirmed = $false
 $privacyReason = 'GitHub CLI or GitHub remote identity is unavailable.'
 if ($repoMatch.Success -and (Get-Command gh -ErrorAction SilentlyContinue)) {
-    try { $privateConfirmed = ((& gh repo view $repoMatch.Groups['repo'].Value --json isPrivate --jq .isPrivate 2>$null).Trim() -eq 'true'); $privacyReason = if ($privateConfirmed) { 'GitHub CLI confirmed origin is private.' } else { 'GitHub CLI did not confirm origin as private.' } } catch { $privacyReason = 'GitHub CLI could not verify origin visibility.' }
+    try { $privateConfirmed = ((& $githubCommand -RepositoryRoot $root -Tool gh repo view $repoMatch.Groups['repo'].Value --json isPrivate --jq .isPrivate 2>$null).Trim() -eq 'true'); $privacyReason = if ($privateConfirmed) { 'GitHub CLI confirmed origin is private.' } else { 'GitHub CLI did not confirm origin as private.' } } catch { $privacyReason = 'GitHub CLI could not verify origin visibility.' }
 }
 $metadataReady = ($selected -contains 'CHANGELOG.md') -and $hasDocs -and ((-not $hasImplementation) -or ($selected -contains 'docs/ITERATION-STATUS.md')) -and ((-not $hasVersion) -or $hasReleaseNote)
 $eligible = $classification -ne 'none' -and $metadataReady -and $privateConfirmed
@@ -103,8 +104,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Publication metadata validation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Git commit failed.' }
 $commit = (& git -C $root rev-parse HEAD).Trim()
 if (-not $CommitOnly) {
-    & git -C $root push origin HEAD
-    if ($LASTEXITCODE -ne 0) { throw 'Private origin push failed.' }
+    & $githubCommand -RepositoryRoot $root -Tool git -C $root push origin HEAD
 }
 & git -C $root config codex.route.repo-root $root
 & git -C $root config codex.route.branch $plan.branch

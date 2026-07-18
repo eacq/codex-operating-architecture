@@ -10,6 +10,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
+$githubCommand = Join-Path $PSScriptRoot 'Invoke-GitHubNetworkCommand.ps1'
 $getRepo = { param([string]$remote) $url = (& git -C $root remote get-url $remote).Trim(); $match = [regex]::Match($url, 'github\.com[:/](?<name>[^/]+/[^/.]+)'); if (-not $match.Success) { throw "Cannot derive GitHub repository from '$remote'." }; $match.Groups['name'].Value }
 $privateRepository = & $getRepo 'origin'
 $publicRepository = & $getRepo 'public'
@@ -30,12 +31,12 @@ if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
 $targetRemote = if ($Mode -eq 'Private') { 'origin' } else { 'public' }
 $localTag = (& git -C $root rev-parse -q --verify "refs/tags/$releaseTag" 2>$null)
 if ($localTag) { throw "Release tag already exists locally: $releaseTag. Resolve the stale tag or choose a new release before applying." }
-$remoteTag = @(& git -C $root ls-remote --tags $targetRemote "refs/tags/$releaseTag" 2>$null)
+$remoteTag = @(& $githubCommand -RepositoryRoot $root -Tool git -C $root ls-remote --tags $targetRemote "refs/tags/$releaseTag" 2>$null)
 if ($remoteTag.Count -gt 0) { throw "Release tag already exists on ${targetRemote}: $releaseTag." }
 $targetRepository = if ($Mode -eq 'Private') { $privateRepository } else { $publicRepository }
 $existingRelease = ''
 try {
-    $existingRelease = (& gh release view $releaseTag --repo $targetRepository --json tagName 2>$null)
+    $existingRelease = (& $githubCommand -RepositoryRoot $root -Tool gh release view $releaseTag --repo $targetRepository --json tagName 2>$null)
 } catch {
     $existingRelease = ''
 }
@@ -67,14 +68,14 @@ $commitScript = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-Veri
 if ($LASTEXITCODE -ne 0) { throw 'Private release commit/push failed.' }
 if ($Mode -eq 'Private') {
     & git -C $root tag -a $releaseTag -m $versionPlan.release_tag
-    & git -C $root push origin $releaseTag
-    & gh release create $releaseTag --repo $privateRepository --title $versionPlan.release_tag --notes-file $releaseNotePath
+    & $githubCommand -RepositoryRoot $root -Tool git -C $root push origin $releaseTag
+    & $githubCommand -RepositoryRoot $root -Tool gh release create $releaseTag --repo $privateRepository --title $versionPlan.release_tag --notes-file $releaseNotePath
 } else {
     & (Join-Path $root 'scripts\Test-PublicReleaseSafety.ps1') -RepositoryRoot $root -CandidateRef HEAD -PublicRemote public -PrivateRemote origin | Out-Null
-    & git -C $root push public main
+    & $githubCommand -RepositoryRoot $root -Tool git -C $root push public main
     & git -C $root tag -a $releaseTag -m $versionPlan.release_tag
-    & git -C $root push public $releaseTag
-    & gh release create $releaseTag --repo $publicRepository --title $versionPlan.release_tag --notes-file $releaseNotePath
+    & $githubCommand -RepositoryRoot $root -Tool git -C $root push public $releaseTag
+    & $githubCommand -RepositoryRoot $root -Tool gh release create $releaseTag --repo $publicRepository --title $versionPlan.release_tag --notes-file $releaseNotePath
 }
 if ($LASTEXITCODE -ne 0) { throw "$Mode GitHub release failed." }
 $plan['result'] = 'release-created'
