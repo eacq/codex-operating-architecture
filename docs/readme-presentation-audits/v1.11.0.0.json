@@ -9,10 +9,8 @@
     "selected_mode":  "README",
     "scope":  [
                   "CHANGELOG.md",
-                  "docs/CODEX-HOME-SKILL-CONSOLIDATION.md",
                   "docs/ITERATION-STATUS.md",
                   "docs/release-notes/v1.11.0.0.md",
-                  "docs/SKILL-TERMINOLOGY.md",
                   "README.en.md",
                   "README.md"
               ],

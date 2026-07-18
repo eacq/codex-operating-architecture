@@ -91,6 +91,32 @@ if (-not $hasSection -and $Apply) {
     Set-Content -LiteralPath $changelogPath -Value $updated -Encoding UTF8
 }
 
+if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
+    $releaseEnglish = 'Publish the verified experience-system release metadata, private tag, and release notes for the current version.'
+    $releaseChinese = Convert-EscapedUnicode '\u540c\u6b65\u53d1\u5e03\u5f53\u524d\u7248\u672c\u7684\u7ecf\u9a8c\u7cfb\u7edf\u53d1\u5e03\u5143\u6570\u636e\u3001\u79c1\u6709\u6807\u7b7e\u4e0e\u53d1\u5e03\u8bf4\u660e\u3002'
+    if ($existing -notmatch [regex]::Escape($releaseEnglish)) {
+        $sectionPattern = "(?ms)^##\s+$([regex]::Escape($Version))\b.*?(?=^##\s+|\z)"
+        $updated = [regex]::Replace($existing, $sectionPattern, {
+            param($match)
+            $value = $match.Value
+            $value = [regex]::Replace(
+                $value,
+                "(?m)(### English\s*\r?\n\s*\r?\n)",
+                ('$1' + "- $releaseEnglish`r`n"),
+                1
+            )
+            $value = [regex]::Replace(
+                $value,
+                "(?m)(### Chinese / .+\s*\r?\n\s*\r?\n)",
+                ('$1' + "- $releaseChinese`r`n"),
+                1
+            )
+            return $value
+        }, 1)
+        Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8
+    }
+}
+
 [ordered]@{
     version = $Version
     changelog_path = 'CHANGELOG.md'
