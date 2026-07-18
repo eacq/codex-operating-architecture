@@ -27,15 +27,37 @@ if (Test-Path -LiteralPath (Join-Path $root 'docs')) {
 }
 
 $violations = New-Object System.Collections.Generic.List[string]
+$missingAssets = New-Object System.Collections.Generic.List[string]
 foreach ($document in @($readerDocuments | Sort-Object -Unique)) {
     $content = Get-Content -LiteralPath $document -Raw -Encoding UTF8
     if ($content -match '(?im)!?\[[^\]]*\]\([^\)]*\.(mmd|svg)(?:[?#][^\)]*)?\)' -or
         $content -match '(?im)<(?:img|object|embed)[^>]+(?:src|data)=["''][^"'']*\.(mmd|svg)(?:[?#][^"'']*)?["'']') {
         $violations.Add((Resolve-Path -LiteralPath $document).Path)
     }
+    foreach ($match in [regex]::Matches($content, '(?im)!?\[[^\]]*\]\((?<target>[^\s\)]+\.(?:png|jpe?g|webp|mmd|svg)(?:[?#][^\)]*)?)\)')) {
+        $target = $match.Groups['target'].Value -replace '[?#].*$',''
+        if ($target -match '^[a-z][a-z0-9+.-]*:' -or $target.StartsWith('#')) { continue }
+        $candidate = Join-Path (Split-Path -Parent $document) ($target -replace '/','\\')
+        if (-not (Test-Path -LiteralPath $candidate -PathType Leaf)) {
+            $missingAssets.Add("$document -> $target")
+        }
+    }
 }
 if ($violations.Count -gt 0) {
     throw ('Reader-facing Markdown links to an unsupported editable visual format: ' + (($violations | Sort-Object -Unique) -join '; '))
+}
+if ($missingAssets.Count -gt 0) {
+    throw ('Reader-facing Markdown references a missing visual asset: ' + (($missingAssets | Sort-Object -Unique) -join '; '))
+}
+
+foreach ($requiredLabeledAsset in @('architecture_overview','file_organization')) {
+    $asset = $designSystem.visual_assets.$requiredLabeledAsset
+    if ($asset.text_mode -ne 'labeled' -or @($asset.exact_labels).Count -lt 3) {
+        throw "Design system requires a labeled explanatory visual for $requiredLabeledAsset."
+    }
+    if (-not (Test-Path -LiteralPath (Join-Path $root $asset.path) -PathType Leaf)) {
+        throw "Design-system visual asset is missing: $($asset.path)"
+    }
 }
 
 [ordered]@{
@@ -43,4 +65,5 @@ if ($violations.Count -gt 0) {
     documents_checked = @($readerDocuments | Sort-Object -Unique).Count
     reader_delivery = 'PNG/JPG/WebP only; Mermaid and SVG are maintainer sources.'
     in_image_text_contract = 'present'
+    labeled_explanations = @('architecture_overview','file_organization')
 } | ConvertTo-Json -Depth 4

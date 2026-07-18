@@ -53,16 +53,22 @@
       "regenerate_when": "The role model, in-image labels, or shared typography and palette contract changes materially."
     },
     "architecture_overview": {
-      "path": "docs/assets/readme-architecture-overview.png",
+      "path": "docs/assets/readme-architecture-overview-labeled.png",
       "format": "PNG",
-      "role": "Reader-facing global architecture overview.",
-      "regenerate_when": "The architecture graph or owner relationships change materially."
+      "role": "Labeled reader-facing global architecture overview.",
+      "text_mode": "labeled",
+      "exact_labels": ["ROUTE", "WORKFLOWS", "KNOWLEDGE", "VERIFY", "RELEASE", "LEARN"],
+      "provenance": "docs/assets/readme-raster-visuals.provenance.md",
+      "regenerate_when": "The architecture graph, owner relationships, labels, or shared typography and palette contract changes materially."
     },
     "file_organization": {
-      "path": "docs/assets/file-organization-architecture.png",
+      "path": "docs/assets/file-organization-architecture-labeled.png",
       "format": "PNG",
-      "role": "Reader-facing transactional file-organization explanation.",
-      "regenerate_when": "The transactional organization or rollback topology changes materially."
+      "role": "Labeled reader-facing transactional file-organization explanation.",
+      "text_mode": "labeled",
+      "exact_labels": ["ISOLATE", "BACKUP", "ORGANIZE", "VALIDATE", "REPLACE", "RECOVER"],
+      "provenance": "docs/assets/readme-raster-visuals.provenance.md",
+      "regenerate_when": "The transactional organization, rollback topology, labels, or shared typography and palette contract changes materially."
     }
   },
   "maintenance": {

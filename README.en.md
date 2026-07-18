@@ -28,7 +28,7 @@ The user supplies the outcome and authority; `codex-self-evolution` selects the 
 
 The image keeps only consistent role labels; authority, process detail, and bilingual explanation remain in Markdown for reliable reader and model access.
 
-![Operating architecture overview](docs/assets/readme-architecture-overview.png)
+![Operating architecture overview: route, workflows, knowledge, verify, release, and learn](docs/assets/readme-architecture-overview-labeled.png)
 
 ## Repository channels
 
@@ -60,7 +60,7 @@ The image keeps only consistent role labels; authority, process detail, and bili
 - A complete global iteration can use `-Staged -AutoCommit -Apply` to create a local Git commit only after explicit scope, full verification, metadata checks, and an out-of-scope-change rejection. It never auto-pushes, tags, releases, or runs in the background.
 - File organization uses a transactional isolate, backup/organize, sandbox-validation, exact pre-iteration snapshot, replacement, active cleanup, double global revalidation, and lifecycle-writeback loop. The rollback snapshot preserves every replaceable local file and SHA-256, including uncommitted content, while excluding `.git`, `.codex`, credentials, and runtimes. A pre-replacement failure leaves the active system untouched. A post-replacement failure restores modified/deleted files, removes iteration-added files, verifies every hash, and refreshes real global interfaces. A verified rollback records the error and requires owner repair followed by a complete rerun; rollback failure remains incomplete and raises a critical error. Cleanup remains limited to currently untracked allowlisted temporary/cache artifacts and empty directories, with off-root hash-verified quarantine before deletion. The Git gate accepts only proof that includes rollback readiness, replacement, revalidation, and lifecycle writeback.
 
-![Transactional file organization loop](docs/assets/file-organization-architecture.png)
+![Transactional file organization loop: isolate, backup, organize, validate, replace, and recover](docs/assets/file-organization-architecture-labeled.png)
 - When failures are intentionally used to test and debug file organization or the complete global iteration, continuous diagnosis records each owned attempt, runs an explicit safe repair, and restarts the whole probe until it passes. Unlimited attempts do not bypass rollback verification or normal credential, installation, destructive-action, and publication boundaries; rollback or repair-action failure becomes a blocker.
 
 ![Privacy-safe file organization concept](docs/assets/file-organization-concept.png)
@@ -116,12 +116,12 @@ Read the user-facing [Changelog / 更新日志](CHANGELOG.md) for every release 
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.7.0.0`
+- Version: `1.8.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.7.0.0.md](docs/release-notes/v1.7.0.0.md)
+- Release note: [docs/release-notes/v1.8.0.0.md](docs/release-notes/v1.8.0.0.md)
 - Highlights: Release documentation, Automation gates, Skill architecture
 - Visual: [docs/assets/readme-collaboration-loop.png](docs/assets/readme-collaboration-loop.png)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.7.0.0.json](docs/release-readme-audits/v1.7.0.0.json)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.8.0.0.json](docs/release-readme-audits/v1.8.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->
