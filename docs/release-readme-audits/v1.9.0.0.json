@@ -1,6 +1,6 @@
 ﻿{
     "schema_version":  1,
-    "version":  "1.8.0.0",
+    "version":  "1.9.0.0",
     "mode":  "Private",
     "owner":  "codex-task-execution/github-readme-presentation",
     "upstream_sources":  [
@@ -19,15 +19,19 @@
                          ],
     "mode_selected":  "README release refresh",
     "evidence":  {
-                     "release_note":  "docs/release-notes/v1.8.0.0.md",
+                     "release_note":  "docs/release-notes/v1.9.0.0.md",
                      "changed_paths":  [
                                            "docs/assets/file-organization-concept-labeled.png",
                                            "docs/assets/readme-raster-visuals.provenance.md",
                                            "docs/assets/release-visual-highlights-labeled.png",
                                            "docs/readme-design-system.json",
+                                           "docs/release-notes/v1.8.0.0.md",
+                                           "docs/release-readme-audits/v1.8.0.0.json",
                                            "README.en.md",
                                            "README.md",
                                            "scripts/Test-ReaderFacingVisualDelivery.ps1",
+                                           "scripts/Test-ReadmeIterationAlignment.ps1",
+                                           "scripts/Test-ReleaseReadmeAndVisuals.ps1",
                                            "skills/codex-git-operations/scripts/Test-ReleaseReadmeOptimization.ps1",
                                            "skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1"
                                        ],

@@ -1,5 +1,15 @@
 ﻿# Changelog / 更新日志
 
+## 1.9.0.0 - 2026-07-18
+
+### English
+
+- Record verified automatic Release iteration updates for the scoped changed paths.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+
 ## 1.8.0.0 - 2026-07-18
 
 ### English
@@ -369,6 +379,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

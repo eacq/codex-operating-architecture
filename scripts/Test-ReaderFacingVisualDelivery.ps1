@@ -50,7 +50,7 @@ if ($missingAssets.Count -gt 0) {
     throw ('Reader-facing Markdown references a missing visual asset: ' + (($missingAssets | Sort-Object -Unique) -join '; '))
 }
 
-foreach ($requiredLabeledAsset in @('architecture_overview','file_organization')) {
+foreach ($requiredLabeledAsset in @('architecture_overview','file_organization','file_organization_concept','release_visual')) {
     $asset = $designSystem.visual_assets.$requiredLabeledAsset
     if ($asset.text_mode -ne 'labeled' -or @($asset.exact_labels).Count -lt 3) {
         throw "Design system requires a labeled explanatory visual for $requiredLabeledAsset."
@@ -65,5 +65,5 @@ foreach ($requiredLabeledAsset in @('architecture_overview','file_organization')
     documents_checked = @($readerDocuments | Sort-Object -Unique).Count
     reader_delivery = 'PNG/JPG/WebP only; Mermaid and SVG are maintainer sources.'
     in_image_text_contract = 'present'
-    labeled_explanations = @('architecture_overview','file_organization')
+    labeled_explanations = @('architecture_overview','file_organization','file_organization_concept','release_visual')
 } | ConvertTo-Json -Depth 4

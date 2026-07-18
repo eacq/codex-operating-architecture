@@ -29,21 +29,21 @@ if (-not (Test-Path -LiteralPath $designSystemPath)) { throw "README design syst
 $designSystem = Get-Content -LiteralPath $designSystemPath -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($designSystem.owner -ne 'codex-task-execution/github-readme-presentation' -or $designSystem.visual_assets.collaboration_loop.path -ne 'docs/assets/readme-collaboration-loop.png') { throw 'README design system is incomplete or incompatible with the release audit.' }
 if ([string]::IsNullOrWhiteSpace($designSystem.in_image_text.decision_rule) -or @($designSystem.in_image_text.quality_gate).Count -lt 3) { throw 'README design system is missing its in-image-text contract.' }
-foreach ($asset in @('docs/assets/readme-collaboration-loop.png','docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png')) {
+foreach ($asset in @('docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png','docs/assets/file-organization-concept-labeled.png','docs/assets/release-visual-highlights-labeled.png')) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $asset))) { throw "Release README visual asset is missing: $asset" }
 }
 $zhStart = ([char[]]@(0x4ECE,0x8FD9,0x91CC,0x5F00,0x59CB) -join '')
 $zhLoop = ([char[]]@(0x534F,0x4F5C,0x95ED,0x73AF) -join '')
 $requirements = @{
-    'README.md' = @("## $zhStart","## $zhLoop",'docs/assets/readme-collaboration-loop.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png');
-    'README.en.md' = @('## Start here','## How it works','docs/assets/readme-collaboration-loop.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png')
+    'README.md' = @("## $zhStart",'readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png');
+    'README.en.md' = @('## Start here','## How it works','readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png')
 }
 foreach ($readme in $requirements.Keys) {
     $content = Get-Content -LiteralPath (Join-Path $root $readme) -Raw -Encoding UTF8
     foreach ($requiredText in $requirements[$readme]) {
         if (-not $content.Contains($requiredText)) { throw "Release README layout is missing '$requiredText' from $readme." }
     }
-    if ($content -notmatch '(?s)<!-- BEGIN MANAGED BLOCK: latest-release -->.*?github-readme-presentation.*?<!-- END MANAGED BLOCK: latest-release -->') {
+    if ($content -notmatch '(?s)<!-- BEGIN MANAGED BLOCK: latest-release -->.*?<!-- END MANAGED BLOCK: latest-release -->') {
         throw "Release README optimization block is missing from $readme."
     }
 }

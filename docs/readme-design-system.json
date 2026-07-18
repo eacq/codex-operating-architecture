@@ -69,6 +69,24 @@
       "exact_labels": ["ISOLATE", "BACKUP", "ORGANIZE", "VALIDATE", "REPLACE", "RECOVER"],
       "provenance": "docs/assets/readme-raster-visuals.provenance.md",
       "regenerate_when": "The transactional organization, rollback topology, labels, or shared typography and palette contract changes materially."
+    },
+    "file_organization_concept": {
+      "path": "docs/assets/file-organization-concept-labeled.png",
+      "format": "PNG",
+      "role": "Labeled reader-facing privacy-safe file-organization concept.",
+      "text_mode": "labeled",
+      "exact_labels": ["COLLECT", "CLASSIFY", "PROTECT", "ARCHIVE"],
+      "provenance": "docs/assets/readme-raster-visuals.provenance.md",
+      "regenerate_when": "The privacy-safe organization concept, labels, or shared typography and palette contract changes materially."
+    },
+    "release_visual": {
+      "path": "docs/assets/release-visual-highlights-labeled.png",
+      "format": "PNG",
+      "role": "Labeled reader-facing release visual for documentation, raster delivery, verification, and learning.",
+      "text_mode": "labeled",
+      "exact_labels": ["CLARITY", "RASTER DELIVERY", "VERIFY", "LEARN"],
+      "provenance": "docs/assets/readme-raster-visuals.provenance.md",
+      "regenerate_when": "The release visual message, labels, or shared typography and palette contract changes materially."
     }
   },
   "maintenance": {

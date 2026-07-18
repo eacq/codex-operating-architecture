@@ -19,6 +19,13 @@ function Normalize-RepoPath([string]$Path) {
     return ($Path -replace '\\','/').TrimStart('/')
 }
 
+function Get-GitHubRepository([string]$RemoteName) {
+    $url = (& git -C $root remote get-url $RemoteName 2>$null).Trim()
+    $match = [regex]::Match($url, 'github\.com[:/](?<name>[^/]+/[^/.]+)')
+    if ($match.Success) { return $match.Groups['name'].Value }
+    return ''
+}
+
 function Get-ImpactAreas([string[]]$Paths) {
     $areas = New-Object System.Collections.Generic.List[string]
     foreach ($path in $Paths) {
@@ -50,7 +57,10 @@ $areas = @(Get-ImpactAreas $paths)
 $visualRequired = $areas.Count -ge 3 -or @($paths | Where-Object { $_ -match '^(skills/|scripts/|config/|AGENTS\.md|module-registry\.json$)' }).Count -gt 0
 $releaseNotePath = Join-Path $root (Normalize-RepoPath $ReleaseNote)
 $releaseNoteRelative = Normalize-RepoPath $ReleaseNote
-$assetRelative = 'docs/assets/readme-collaboration-loop.png'
+$assetRelative = 'docs/assets/release-visual-highlights-labeled.png'
+$releaseRemote = if ($Mode -eq 'Private') { 'origin' } else { 'public' }
+$releaseRepository = Get-GitHubRepository $releaseRemote
+$releaseVisualUrl = if ($releaseRepository) { "https://github.com/$releaseRepository/raw/refs/heads/main/$assetRelative" } else { "../assets/release-visual-highlights-labeled.png" }
 $planRelative = "docs/release-visual-plans/v$Version.json"
 $readmeAuditRelative = "docs/release-readme-audits/v$Version.json"
 $generated = New-Object System.Collections.Generic.List[string]
@@ -136,9 +146,8 @@ $zhOptimization = Convert-EscapedUnicode 'README \u4f18\u5316\u5df2\u901a\u8fc7\
 $areaText = ($areas -join ', ')
 $visualText = if ($visualRequired) { "Visual: [$assetRelative]($assetRelative)" } else { 'Visual: no new diagram required for this release.' }
 $zhVisualText = if ($visualRequired) { "${zhDiagram}: [$assetRelative]($assetRelative)" } else { $zhVisualNone }
-$releaseAssetRelative = '../assets/readme-collaboration-loop.png'
-$releaseVisualText = if ($visualRequired) { "Visual: [$releaseAssetRelative]($releaseAssetRelative)" } else { 'Visual: no new diagram required for this release.' }
-$releaseZhVisualText = if ($visualRequired) { "${zhDiagram}: [$releaseAssetRelative]($releaseAssetRelative)" } else { $zhVisualNone }
+$releaseVisualText = if ($visualRequired) { "Visual: ![Labeled release highlights]($releaseVisualUrl)" } else { 'Visual: no new diagram required for this release.' }
+$releaseZhVisualText = if ($visualRequired) { "${zhDiagram}: ![带标签的发布亮点]($releaseVisualUrl)" } else { $zhVisualNone }
 
 $readmeBlock = @(
     "## Latest Release / $zhLatest",

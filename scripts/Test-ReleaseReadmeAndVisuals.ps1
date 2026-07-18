@@ -36,7 +36,7 @@ try {
         throw 'README latest-release block was not generated correctly.'
     }
     $note = Get-Content -LiteralPath (Join-Path $fixture 'docs\release-notes\v1.2.3.4.md') -Raw -Encoding UTF8
-    if ($note -notmatch 'BEGIN MANAGED BLOCK: release-readme-visual-refresh' -or $note -notmatch '\.\./assets/readme-collaboration-loop\.png') {
+    if ($note -notmatch 'BEGIN MANAGED BLOCK: release-readme-visual-refresh' -or $note -notmatch 'release-visual-highlights-labeled\.png') {
         throw 'Release note visual-refresh block was not generated correctly.'
     }
     if ($note -match '\.(mmd|svg)') {
