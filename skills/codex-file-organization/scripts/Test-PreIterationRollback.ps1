@@ -21,7 +21,8 @@ try {
     if (Test-Path -LiteralPath (Join-Path $fixture 'new.txt')) { throw 'Rollback did not remove an iteration-added file.' }
     if ((Get-Content (Join-Path $fixture '.codex\protected.txt') -Raw).Trim() -ne 'protected-after') { throw 'Rollback modified a protected path.' }
     if ((Get-Content (Join-Path $fixture '.env.local') -Raw).Trim() -ne 'secret-shaped') { throw 'Rollback modified a secret-shaped protected file.' }
-    if ($snapshot.file_inventory -ne 'git-tracked-untracked-ignored' -or $snapshot.copy_engine -ne 'robocopy-filtered-tree') { throw 'Rollback snapshot did not use the optimized privacy-filtered copy path.' }
+    if ($snapshot.file_inventory -ne 'git-tracked-untracked-ignored' -or $snapshot.copy_engine -ne 'robocopy-filtered-tree' -or $snapshot.hash_engine -ne 'dotnet-sha256-stream') { throw 'Rollback snapshot did not use the optimized privacy-filtered copy path.' }
+    if ($snapshot.snapshot_name_policy -ne 'short-prefix' -or (Split-Path -Leaf $snapshot.snapshot_root) -notmatch '^pre-\d{8}-\d{6}$') { throw 'Rollback snapshot does not use the short path-budget prefix.' }
     if (-not (Test-Path -LiteralPath (Join-Path $fixture 'keep-empty')) -or $restored.result -ne 'rolled-back' -or -not $restored.hash_verified) { throw 'Rollback evidence is incomplete.' }
     Write-Host 'Pre-iteration rollback test passed.'
 } finally {

@@ -22,6 +22,8 @@ if ($cleanup -notmatch 'candidate-parents-only') { throw 'Cleanup does not expos
 $rollback = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\New-PreIterationRollbackSnapshot.ps1') -Raw -Encoding UTF8
 if ($rollback -notmatch 'git-tracked-untracked-ignored') { throw 'Rollback snapshot does not record Git-backed file inventory.' }
 if ($rollback -notmatch 'robocopy-filtered-tree') { throw 'Rollback snapshot does not record filtered robocopy copy engine.' }
+if ($rollback -notmatch 'dotnet-sha256-stream') { throw 'Rollback snapshot does not record the optimized .NET hash engine.' }
+if ($rollback -notmatch 'short-prefix') { throw 'Rollback snapshot does not preserve the short path-budget snapshot naming policy.' }
 if ($rollback -notmatch 'private-skill-config') { throw 'Rollback snapshot does not exclude private local profile roots.' }
 $gate = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -Raw -Encoding UTF8
 if ($gate -notmatch 'Candidate-only global iteration proof cannot satisfy the Git publication gate') { throw 'Git publication gate does not reject candidate-only proof.' }

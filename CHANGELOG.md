@@ -1,6 +1,6 @@
 ﻿# Changelog / 更新日志
 
-## 1.12.6.1 - 2026-07-19
+## 1.12.6.2 - 2026-07-19
 
 ### English
 
@@ -9,6 +9,20 @@
 ### Chinese / 中文
 
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+
+## 1.12.6.1 - 2026-07-19
+
+### English
+
+- Record verified automatic Refinement iteration updates for the scoped changed paths.
+- Speed up pre-iteration rollback snapshot hashing with a .NET streaming SHA-256 helper and list-backed manifest accumulation while preserving source and snapshot hash verification.
+- Shorten rollback snapshot directory names to preserve Windows path budget for deep tracked files during off-root backup verification.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 将 pre-iteration rollback snapshot 的哈希计算改为 .NET 流式 SHA-256，并使用 List 累积 manifest，在保留源文件与快照文件双重哈希验证的同时减少 PowerShell 开销。
+- 缩短 rollback snapshot 目录名前缀，为深层 tracked 文件保留 Windows 路径长度预算，避免离根备份验证时因路径过长漏检。
 
 ## 1.12.6.0 - 2026-07-19
 
@@ -513,6 +527,7 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
+
 
 
 

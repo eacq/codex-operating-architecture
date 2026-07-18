@@ -10,7 +10,7 @@ $root = (Resolve-Path -LiteralPath $ProjectRoot).Path.TrimEnd('\')
 $backup = [IO.Path]::GetFullPath($BackupRoot).TrimEnd('\')
 if ($backup.Equals($root, [StringComparison]::OrdinalIgnoreCase) -or $backup.StartsWith($root + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Rollback snapshot must be outside the project root.' }
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
-$snapshot = Join-Path $backup "pre-iteration-snapshot-$stamp"
+$snapshot = Join-Path $backup "pre-$stamp"
 $payload = Join-Path $snapshot 'files'
 $protected = '(^|/)(\.git|\.codex|\.runtime|\.validation-codex-home|\.sandbox-secrets|private-skill-config|node_modules|\.venv|venv|vendor)(/|$)|(^|/)(\.env($|\.)|auth\.json$|.*\.dpapi$)'
 $snapshotExcludeDirs = @('.git', '.codex', '.runtime', '.validation-codex-home', '.sandbox-secrets', 'private-skill-config', 'node_modules', '.venv', 'venv', 'vendor')
@@ -20,6 +20,19 @@ function Normalize-GitPath([string]$Path) {
 }
 function Get-RelativePath([string]$Path) {
     return $Path.Substring($root.Length).TrimStart('\').Replace('\', '/')
+}
+function Get-Sha256Lower([string]$Path) {
+    $stream = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::ReadWrite)
+    try {
+        $sha = [Security.Cryptography.SHA256]::Create()
+        try {
+            return [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-', '').ToLowerInvariant()
+        } finally {
+            $sha.Dispose()
+        }
+    } finally {
+        $stream.Dispose()
+    }
 }
 function Get-ReplaceableDirectories {
     $results = New-Object System.Collections.Generic.List[string]
@@ -97,6 +110,8 @@ $record = [ordered]@{
     protected_paths_excluded = $true
     file_inventory = if ($usedGitFileInventory) { 'git-tracked-untracked-ignored' } else { 'filesystem-fallback' }
     copy_engine = 'robocopy-filtered-tree'
+    hash_engine = 'dotnet-sha256-stream'
+    snapshot_name_policy = 'short-prefix'
     apply_performed = [bool]$Apply
     created_at = [DateTime]::UtcNow.ToString('o')
 }
@@ -105,21 +120,22 @@ if (-not $Apply) { $record | ConvertTo-Json -Depth 4; exit 0 }
 [IO.Directory]::CreateDirectory($payload) | Out-Null
 & robocopy $root $payload /E /MT:8 /XD $snapshotExcludeDirs /XF $snapshotExcludeFiles | Out-Null
 if ($LASTEXITCODE -gt 7) { throw "Rollback snapshot copy failed with robocopy exit code $LASTEXITCODE." }
-$manifestFiles = @()
+$manifestFiles = New-Object System.Collections.Generic.List[object]
 foreach ($file in $files) {
     $relative = $file.RelativePath
     $target = Join-Path $payload ($relative.Replace('/', '\'))
     if (-not (Test-Path -LiteralPath $target -PathType Leaf)) { throw "Rollback snapshot copy missed file: $relative" }
-    $hash = (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
-    if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() -ne $hash) { throw "Rollback snapshot verification failed: $relative" }
-    $manifestFiles += [ordered]@{ relative_path = $relative; sha256 = $hash }
+    $hash = Get-Sha256Lower $file.FullName
+    if ((Get-Sha256Lower $target) -ne $hash) { throw "Rollback snapshot verification failed: $relative" }
+    [void]$manifestFiles.Add([ordered]@{ relative_path = $relative; sha256 = $hash })
 }
 $manifestPath = Join-Path $snapshot 'manifest.json'
 [ordered]@{
     schema_version = 1
-    files = $manifestFiles
+    files = $manifestFiles.ToArray()
     directories = $directories
     protected_paths_excluded = $true
+    hash_engine = $record.hash_engine
     created_at = $record.created_at
 } | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $manifestPath -Encoding UTF8
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'Restore-PreIterationRollbackSnapshot.ps1') -Destination (Join-Path $snapshot 'restore.ps1') -Force
