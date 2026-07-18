@@ -95,3 +95,5 @@ Optional:
 
 Read [references/report-schema.md](references/report-schema.md) before changing
 the schema or promotion rules.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; use them only within this owner's reproduce-diagnose-fix-verify loop.

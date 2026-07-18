@@ -44,3 +44,5 @@ not expand authority or auto-trigger from generic continuation wording.
 Do not claim completion while required processes are running. Do not perform destructive or materially broader actions without authorization.
 
 Ordinary in-scope file handling does not require a separate prompt. Notify the user before installing or upgrading external software, runtimes, system components, package managers, or system-changing dependencies. Keep higher-risk confirmation boundaries for destructive, public, paid, privilege-expanding, or irreversible actions.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; they remain owner-routed and inherit this execution and authorization boundary.

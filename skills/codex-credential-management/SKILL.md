@@ -15,3 +15,5 @@ Store only credential metadata: name, provider, source, scope, secure location, 
 6. Recommend rotation when a live secret was exposed.
 
 Distinguish identifiers from secrets without publishing either unnecessarily. Browser login may support visible authorized actions, never cookie, storage, profile, password, or session extraction. If no official OAuth exists, require user entry through a local secure prompt into DPAPI or another supported store.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; their former provider-routing material cannot override this owner's secure-configuration boundary.

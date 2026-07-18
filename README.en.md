@@ -52,12 +52,12 @@ See [Iteration Status](docs/ITERATION-STATUS.md), [Changelog / 更新日志](CHA
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.10.0.0`
+- Version: `1.11.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.10.0.0.md](docs/release-notes/v1.10.0.0.md)
-- Highlights: Release documentation, Knowledge and experience, Skill architecture, Automation gates, Lifecycle controller
+- Release note: [docs/release-notes/v1.11.0.0.md](docs/release-notes/v1.11.0.0.md)
+- Highlights: Release documentation, Lifecycle controller, Skill architecture, Automation gates
 - Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.10.0.0.json](docs/release-readme-audits/v1.10.0.0.json)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.11.0.0.json](docs/release-readme-audits/v1.11.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->

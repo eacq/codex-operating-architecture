@@ -83,3 +83,5 @@ Promote only generic lessons globally. Keep journal-specific templates, table nu
 Read `references/exact-word-layout-rules.md` for the layout decision tree and
 `references/locked-template-package-diagnostics.md` for package snapshots,
 round-trip risk, diagnostic order, and two-tier QA.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; they do not relax the authoritative-template or rendered-QA requirements.

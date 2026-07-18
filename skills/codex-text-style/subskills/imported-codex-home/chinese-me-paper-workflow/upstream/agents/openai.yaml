@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文机械论文工作流"
+  short_description: "把毕业论文或资料整理为中文机械类期刊小论文的分层工作流。"
+  default_prompt: "请使用中文机械论文工作流技能，基于我的论文材料构建、审校或迭代机械类期刊小论文。"

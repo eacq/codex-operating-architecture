@@ -22,3 +22,5 @@ Use `rg` for text and structured parsers for structured data. Stop gathering whe
 
 For repository-scale graph evidence with `codebase-memory-mcp`, read
 [subskills/codebase-graph-evidence/SKILL.md](subskills/codebase-graph-evidence/SKILL.md).
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; select them through this owner's evidence, access, and source-trust routing rather than exposing their former package names globally.

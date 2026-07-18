@@ -1,0 +1,30 @@
+﻿{
+    "schema_version":  1,
+    "version":  "1.11.0.0",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "upstream_sources":  [
+                             "oil-oil/beautify-github-readme",
+                             "rzashakeri/beautify-github-profile"
+                         ],
+    "selected_mode":  "README",
+    "scope":  [
+                  "CHANGELOG.md",
+                  "docs/CODEX-HOME-SKILL-CONSOLIDATION.md",
+                  "docs/ITERATION-STATUS.md",
+                  "docs/release-notes/v1.11.0.0.md",
+                  "docs/SKILL-TERMINOLOGY.md",
+                  "README.en.md",
+                  "README.md"
+              ],
+    "design_system":  "docs/readme-design-system.json",
+    "required_review":  [
+                            "project evidence and verified claims",
+                            "reading order and Markdown hierarchy",
+                            "approved visual assets and provenance",
+                            "GitHub-width and narrow-width preview",
+                            "no decorative widgets, trackers, counters, or unverified metrics"
+                        ],
+    "complex_readme_threshold":  "whole README, six or more headings, three or more top-level sections changed, or more than one visual changed",
+    "routing_basis":  "README, changelog, release note, and user-facing docs are reviewed for reader value; machine manifests, generated plans, and raw asset provenance are excluded.",
+    "result":  "presentation-audit-recorded"
+}

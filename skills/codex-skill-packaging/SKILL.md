@@ -48,6 +48,12 @@ adding, splitting, or promoting a subskill-style capability. Read
 [references/parent-skill-refinement.md](references/parent-skill-refinement.md)
 before trimming a broad parent skill.
 
+For a pre-existing direct Codex Home skill inventory, use
+[subskills/local-codex-home-consolidation/SKILL.md](subskills/local-codex-home-consolidation/SKILL.md).
+It imports compatible content beneath existing owners, migrates only non-secret
+configuration metadata, retains an off-root rollback copy, and rebuilds the
+single canonical global discovery surface.
+
 Run `quick_validate.py`, relevant subskill script tests, full validation, and
 global-interface validation. Skill files and junctions are ordinary file
 handling; notify before any external software or system change required by a

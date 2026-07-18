@@ -22,7 +22,8 @@ $paths = if ($Staged) {
     )
 }
 $paths = @($paths | Where-Object { $_ } | Sort-Object -Unique)
-if ($paths.Count -eq 0) { throw 'A complete global iteration requires changed paths to assess.' }
+if ($paths.Count -eq 0 -and -not $Apply) { throw 'A preview complete global iteration requires changed paths to assess.' }
+if ($paths.Count -eq 0 -and $AutoCommit) { throw 'AutoCommit requires explicit changed paths.' }
 if ($AutoCommit -and -not $Staged) { throw 'AutoCommit requires -Staged so the exact commit scope is explicit before iteration.' }
 
 function Get-Sha256([string[]]$Values) {

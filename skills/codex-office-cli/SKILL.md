@@ -102,3 +102,5 @@ After installation or upgrade, run:
 Representative verification must cover version/help plus at least one JSON
 operation for each of `.docx`, `.pptx`, and `.xlsx`. Close resident documents
 before handing files to non-OfficeCLI tools.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; choose them only after this owner has selected the document or presentation artifact and its validation path.

@@ -31,3 +31,5 @@ Read [references/knowledge-workflow.md](references/knowledge-workflow.md) for sc
 python .\scripts\build_knowledge.py
 python .\scripts\build_mindmaps.py
 ```
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; preserve the knowledge-system source, privacy, and promotion rules when using them.

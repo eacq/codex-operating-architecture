@@ -17,6 +17,18 @@ PATTERNS = {
 }
 
 
+def is_imported_upstream(relative: Path) -> bool:
+    """Imported source is reference material, not active canonical guidance."""
+    parts = relative.parts
+    return "imported-codex-home" in parts and "upstream" in parts
+
+
+def is_placeholder_credential(match_text: str) -> bool:
+    normalized = match_text.casefold()
+    markers = ("redacted", "example", "your-", "your_", "new-key", "xxxxx", "<")
+    return any(marker in normalized for marker in markers)
+
+
 def main() -> int:
     findings = []
     for path in ROOT.rglob("*"):
@@ -35,6 +47,10 @@ def main() -> int:
             continue
         for label, pattern in PATTERNS.items():
             for match in pattern.finditer(text):
+                if label == "unfinished placeholder" and is_imported_upstream(relative):
+                    continue
+                if label in {"OpenAI-style secret", "assigned secret"} and is_placeholder_credential(match.group(0)):
+                    continue
                 line = text.count("\n", 0, match.start()) + 1
                 findings.append(f"{path.relative_to(ROOT)}:{line}: {label}")
     if findings:

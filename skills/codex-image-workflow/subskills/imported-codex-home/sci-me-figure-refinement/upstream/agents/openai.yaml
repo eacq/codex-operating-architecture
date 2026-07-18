@@ -1,0 +1,4 @@
+interface:
+  display_name: "机械论文SCI修图"
+  short_description: "从原始图片和论文数据出发精修机械工程论文图表与Word版式。"
+  default_prompt: "请使用机械论文SCI修图技能，对论文中的仿真图、实验图、流程图和表格进行期刊级精修。"

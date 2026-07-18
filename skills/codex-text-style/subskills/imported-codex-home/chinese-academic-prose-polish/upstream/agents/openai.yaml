@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文学术语言精修"
+  short_description: "面向中文理工科论文的去AI感、逻辑增强和句段级润色。"
+  default_prompt: "请使用中文学术语言精修技能，对论文内容进行整体与局部的学术润色。"

@@ -26,3 +26,5 @@ Never upload confidential, private, paywalled, or unlicensed material. Browser l
 ```powershell
 .\scripts\run_bilibili_migration.ps1 -Root .\test-vault
 ```
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; route to one only after this owner's normal format, provenance, and safety gates select it.

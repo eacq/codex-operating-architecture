@@ -86,3 +86,5 @@ Do not claim a text meets a venue's requirements without checking its current pr
 - Route locked-template DOCX layout and rendered page-flow work to `codex-exact-word-layout`.
 - Route document creation or tracked changes to the document workflow, keeping this skill responsible only for text style.
 - Route research-code explanation and changes to `codex-information-gathering` and `codex-task-execution`; route evidence-based figures to `codex-image-workflow` or Mermaid.
+
+Imported local compatibility modes live under `subskills/imported-codex-home/`; retain this owner's protected-claim and source-grounding boundary when using them.

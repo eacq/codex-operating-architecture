@@ -1,0 +1,4 @@
+interface:
+  display_name: "机械工程学报Word格式"
+  short_description: "处理机械工程学报类Word模板、公式、图片、表格、参考文献和上标引用。"
+  default_prompt: "请使用机械工程学报Word格式技能，检查并修正我的论文Word排版、公式、图表和参考文献格式。"

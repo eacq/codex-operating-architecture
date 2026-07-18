@@ -84,7 +84,15 @@ if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
 if (-not $eligible) { throw ($plan | ConvertTo-Json -Depth 5) }
 if (-not $Message) { $Message = "chore: verified $classification architecture update" }
 & (Join-Path $root 'skills\codex-file-organization\scripts\Restore-GitTrackedWorkspaceLayout.ps1') -ProjectRoot $root | Out-Null
-& git -C $root add -- $selected
+$pathspecFile = Join-Path ([IO.Path]::GetTempPath()) ("codex-git-pathspec-" + [guid]::NewGuid().ToString('N') + '.txt')
+try {
+    [IO.File]::WriteAllLines($pathspecFile, @($selected), [Text.UTF8Encoding]::new($false))
+    & git -C $root add --pathspec-from-file=$pathspecFile
+    if ($LASTEXITCODE -ne 0) { throw 'Git staging failed for the selected pathspec file.' }
+}
+finally {
+    if (Test-Path -LiteralPath $pathspecFile) { Remove-Item -LiteralPath $pathspecFile -Force }
+}
 if (-not $SkipCompleteIteration) {
     & (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -RepositoryRoot $root -Staged -Apply | Out-Null
 }
