@@ -2,8 +2,14 @@
 param([string]$RepositoryRoot = (Get-Location).Path, [switch]$Staged, [switch]$Apply)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
-$args = if ($Staged) { @('diff','--cached','--name-only') } else { @('diff','--name-only') }
-$paths = @(& git -C $root @args | Where-Object { $_ })
+$paths = if ($Staged) {
+    @(& git -C $root diff --cached --name-only | Where-Object { $_ })
+} else {
+    @(
+        & git -C $root diff --name-only
+        & git -C $root ls-files --others --exclude-standard
+    ) | Where-Object { $_ }
+}
 if ($paths.Count -eq 0) { throw 'Iteration gate requires changed paths.' }
 $contracts = @(
     @{ owner='codex-self-evolution'; required='codex-experience-capture|codex-architecture-iteration|codex-workflow-design' },

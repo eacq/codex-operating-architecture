@@ -61,6 +61,13 @@ the Git publication gate; any commit, release, owner change, skill/script/docs
 change, or repository artifact change still requires the complete replacement
 proof.
 
+Complete replacement proof must include internal step timings for clone,
+backup, organization, restore, sandbox validation, rollback snapshot,
+replacement copy, active cleanup, each post-replacement validation pass,
+regenerated-artifact cleanup, and global-interface refresh. Use those timings
+to optimize the next bottleneck instead of treating the complete transaction as
+one opaque delay.
+
 Rollback readiness is mandatory. A post-replacement failure must restore and
 verify the exact pre-iteration state, record the error, repair the owning
 workflow, and rerun from the beginning. Rollback failure blocks mutation and Git
@@ -96,6 +103,8 @@ interface-validated, lifecycle-written success. Publication gates consume this
 proof and must never reorganize or delete from the active repository.
 Candidate-only proof is local lifecycle evidence only and is rejected by the
 publication gate.
+In non-staged mode, publication gates must count untracked repository paths as
+changed paths so a local file cannot hide behind an empty diff.
 
 The candidate report is an advisory post-iteration artifact. It aggregates
 project experience, ledger, linked-knowledge, workflow-learning, and candidate
