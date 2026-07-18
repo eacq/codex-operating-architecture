@@ -6,12 +6,16 @@
 
 - Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
 - Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Install the core `JuliusBrussee/caveman` skill locally and integrate its verified brevity principle as an opt-in presentation policy under resource economy.
+- Preserve normal clear prose for safety, irreversible actions, ambiguous procedures, and formal reader-facing documents; do not install upstream hooks, MCP middleware, or multi-agent helpers.
 
 ### Chinese / 中文
 
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
 - 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
 - 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+- 本机安装 `JuliusBrussee/caveman` 核心 skill，并将其经验证的简洁表达原则纳入资源经济模块的显式选择策略。
+- 在安全、不可逆操作、存在歧义的步骤和正式面向读者的文档中保持清晰表达；不安装上游 hooks、MCP 中间件或多代理辅助程序。
 
 ## 1.9.0.0 - 2026-07-18
 
