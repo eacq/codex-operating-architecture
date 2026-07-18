@@ -12,6 +12,8 @@ if ($isolated -notmatch 'validate replaced global system pass 1') { throw 'Isola
 if ($isolated -notmatch 'LightweightDirectoryCleanup') { throw 'Isolated global iteration does not use lightweight active cleanup.' }
 if ($isolated -notmatch 'Copy-ChangedPathOverlay') { throw 'Isolated global iteration does not use changed-path sandbox overlay.' }
 if ($isolated -match 'robocopy \$root \$sandbox') { throw 'Isolated global iteration still overlays the full active tree into the sandbox.' }
+if ($isolated -match 'core\.autocrlf=false clone') { throw 'Isolated global iteration forces LF checkout during sandbox clone.' }
+if ($isolated -match 'config core\.autocrlf false') { throw 'Isolated global iteration forces sandbox checkout policy away from the repository policy.' }
 if ($iteration -notmatch 'AutoCommit requires -Staged') { throw 'AutoCommit does not require an explicit staged scope.' }
 if ($iteration -notmatch '-SkipCompleteIteration -CommitOnly') { throw 'AutoCommit does not reuse the verified iteration proof for local-only commit.' }
 $cleanup = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -Raw -Encoding UTF8

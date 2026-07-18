@@ -98,12 +98,13 @@ if ($Replace -and (Test-Path -LiteralPath $statePath)) {
   $state | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $statePath -Encoding UTF8
 }
 # A local shared clone supplies the Git baseline without re-adding thousands of
-# files. Overlay the current worktree so the isolated iteration also tests the
-# uncommitted architecture repair being developed.
+# files. Keep the repository's checkout conversion policy so active replacement
+# does not create line-ending-only Git status noise on Windows. Overlay the
+# current worktree so the isolated iteration also tests the uncommitted
+# architecture repair being developed.
 Invoke-Step 'clone sandbox' {
-  & git -c core.autocrlf=false clone --shared --quiet $root $sandbox
+  & git clone --shared --quiet $root $sandbox
   if ($LASTEXITCODE -ne 0) { throw 'Sandbox shared clone failed.' }
-  & git -C $sandbox config core.autocrlf false
   $script:sandboxOverlay = Copy-ChangedPathOverlay -SourceRoot $root -TargetRoot $sandbox
   Copy-Item -LiteralPath (Join-Path $root '.codex\project') -Destination (Join-Path $sandbox '.codex\project') -Recurse -Force
   $script:trackedAuthority = Join-Path $sandbox '.codex\project\isolation-source-tracked.txt'
