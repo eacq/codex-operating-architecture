@@ -55,7 +55,7 @@ See [Iteration Status](docs/ITERATION-STATUS.md), [Changelog / 更新日志](CHA
 - Version: `1.10.0.0`
 - Channel: `Private` / 私有
 - Release note: [docs/release-notes/v1.10.0.0.md](docs/release-notes/v1.10.0.0.md)
-- Highlights: Knowledge and experience, Skill architecture, Automation gates, Lifecycle controller
+- Highlights: Release documentation, Knowledge and experience, Skill architecture, Automation gates, Lifecycle controller
 - Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
 - README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.10.0.0.json](docs/release-readme-audits/v1.10.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。

@@ -4,6 +4,7 @@
     "mode":  "Private",
     "release_note":  "docs/release-notes/v1.10.0.0.md",
     "impact_areas":  [
+                         "Release documentation",
                          "Knowledge and experience",
                          "Skill architecture",
                          "Automation gates",

@@ -47,4 +47,13 @@ foreach ($readme in $requirements.Keys) {
         throw "Release README optimization block is missing from $readme."
     }
 }
+$releaseNote = Join-Path $root "docs/release-notes/v$Version.md"
+if (-not (Test-Path -LiteralPath $releaseNote)) { throw "Release note is missing: $releaseNote" }
+$releaseContent = Get-Content -LiteralPath $releaseNote -Raw -Encoding UTF8
+foreach ($requiredHeading in @("## What's new /", '## Verification /')) {
+    if (-not $releaseContent.Contains($requiredHeading)) { throw "Release note is missing reader-facing heading '$requiredHeading'." }
+}
+if ($releaseContent -match 'README And Visual Refresh|!\[Labeled release highlights\]|README optimization audit:') {
+    throw 'Release note exposes presentation mechanics in its primary reader-facing summary.'
+}
 [ordered]@{ version = $Version; audit = $auditRelative; design_system = $designSystemRelative; sources = $sourceNames; result = 'release-readme-optimization-passed' } | ConvertTo-Json -Depth 5

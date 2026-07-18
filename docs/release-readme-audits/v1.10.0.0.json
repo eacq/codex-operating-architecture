@@ -21,8 +21,16 @@
     "evidence":  {
                      "release_note":  "docs/release-notes/v1.10.0.0.md",
                      "changed_paths":  [
+                                           "CHANGELOG.md",
+                                           "docs/ITERATION-STATUS.md",
+                                           "docs/readme-presentation-audits/v1.10.0.0.json",
+                                           "docs/release-notes/v1.10.0.0.md",
+                                           "docs/release-readme-audits/v1.10.0.0.json",
+                                           "docs/release-visual-plans/v1.10.0.0.json",
                                            "knowledge/network-learning-2026-07-18-superpowers-selective-adaptation.md",
                                            "module-registry.json",
+                                           "README.en.md",
+                                           "README.md",
                                            "scripts/validate.ps1",
                                            "skills/codex-error-feedback/SKILL.md",
                                            "skills/codex-experience-capture/subskills/global-experience-system/SKILL.md",
@@ -35,9 +43,11 @@
                                            "skills/codex-task-execution/SKILL.md",
                                            "skills/codex-workflow-design/scripts/Test-WritingPlanLite.ps1",
                                            "skills/codex-workflow-design/SKILL.md",
-                                           "skills/codex-workflow-design/subskills/writing-plan-lite/SKILL.md"
+                                           "skills/codex-workflow-design/subskills/writing-plan-lite/SKILL.md",
+                                           "VERSION"
                                        ],
                      "impact_areas":  [
+                                          "Release documentation",
                                           "Knowledge and experience",
                                           "Skill architecture",
                                           "Automation gates",
@@ -67,6 +77,7 @@
                         },
     "decisions":  [
                       "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Make the release note lead with verified user-facing changes; keep visual and audit mechanics out of its primary reading path.",
                       "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
                       "Use an approved raster visual only when the impact is multi-area; select text-free or labeled presentation by reader need, not as decoration."
                   ],

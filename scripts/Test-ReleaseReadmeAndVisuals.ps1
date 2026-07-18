@@ -36,8 +36,11 @@ try {
         throw 'README latest-release block was not generated correctly.'
     }
     $note = Get-Content -LiteralPath (Join-Path $fixture 'docs\release-notes\v1.2.3.4.md') -Raw -Encoding UTF8
-    if ($note -notmatch 'BEGIN MANAGED BLOCK: release-readme-visual-refresh' -or $note -notmatch 'release-visual-highlights-labeled\.png') {
-        throw 'Release note visual-refresh block was not generated correctly.'
+    if ($note -notmatch 'BEGIN MANAGED BLOCK: release-readme-visual-refresh' -or $note -notmatch "## What's new /" -or $note -notmatch '## Verification /') {
+        throw 'Release note reader-facing change summary was not generated correctly.'
+    }
+    if ($note -match 'release-visual-highlights-labeled\.png|README And Visual Refresh|README optimization audit:') {
+        throw 'Release note must not lead readers through visual-generation mechanics.'
     }
     if ($note -match '\.(mmd|svg)') {
         throw 'Release note must not link a Mermaid or SVG reader-facing visual.'
