@@ -53,8 +53,11 @@ exit 0
         -Apply | ConvertFrom-Json
 
     if (-not $result.visual_required) { throw 'Expected visual_required=true for multi-area release fixture.' }
-    foreach ($relative in @('README.md','README.en.md','docs/release-notes/v1.2.3.4.md','docs/release-visual-plans/v1.2.3.4.json','docs/release-readme-audits/v1.2.3.4.json')) {
+    foreach ($relative in @('README.md','README.en.md','docs/assets/codebase-memory-mcp-graph.png','docs/release-notes/v1.2.3.4.md','docs/release-visual-plans/v1.2.3.4.json','docs/release-readme-audits/v1.2.3.4.json')) {
         if (-not (Test-Path -LiteralPath (Join-Path $fixture $relative))) { throw "Expected generated release artifact missing: $relative" }
+    }
+    if (@($result.generated_paths) -notcontains 'docs/assets/codebase-memory-mcp-graph.png') {
+        throw 'Release README refresh did not include the rendered graph PNG in generated_paths.'
     }
     $readme = Get-Content -LiteralPath (Join-Path $fixture 'README.md') -Raw -Encoding UTF8
     if ($readme -notmatch 'BEGIN MANAGED BLOCK: latest-release' -or $readme -notmatch 'docs/release-notes/v1\.2\.3\.4\.md') {

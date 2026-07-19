@@ -29,6 +29,13 @@ Before every Git commit, push, tag, release, or remote update:
 3. Run `scripts/Test-ExperienceIterationGate.ps1 -Staged -Apply`.
 4. Confirm the proof matches current HEAD and exact staged paths.
 
+During repair and development, run the narrowest owner-level regressions first.
+Do not manually repeat full repository and global-interface validation immediately
+before a release: `Invoke-ExperienceRelease.ps1` delegates to the verified private
+commit controller, which owns the complete isolated iteration and its full
+validation passes. A failed release starts again from targeted evidence and a
+fresh controller-owned complete gate.
+
 For a completed verified iteration, assess the private auto-Git gate only for a
 new or materially changed capability, validated repair, cross-module contract,
 or meaningful documentation maintenance. Changed paths must be separable from
@@ -53,7 +60,9 @@ private release gate, and an explicit user command meaning "publish the
 experience system" as the public release gate. Both invoke
 `Invoke-ExperienceRelease.ps1` only after full synchronization,
 workflow-learning review, documentation alignment, scoped-path selection,
-validation, and explicit `-Apply`. A retry must recompute the release path set
+targeted owner validation, and explicit `-Apply`. The release controller runs
+the full validation gate exactly once unless its current HEAD and exact staged
+path hash prove that the complete result can be reused. A retry must recompute the release path set
 from the repaired worktree after generated release artifacts are refreshed; do
 not reuse an earlier selected-path list.
 

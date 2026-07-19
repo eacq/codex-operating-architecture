@@ -26,18 +26,7 @@ if ($unexpected.Count -gt 0) { throw "Selected paths are not changed or untracke
 if ($Apply) {
     $outsideSelected = @($allChanged | Where-Object { $_ -notin $selected })
     if ($outsideSelected.Count -gt 0) { throw "Auto-Git rejects a mixed worktree; unselected changed paths: $($outsideSelected -join ', ')" }
-    # Do this before generating version and release artifacts.  Otherwise an
-    # unresolved Git-process report can stop the complete-iteration gate only
-    # after this command has dirtied the worktree, making the next retry appear
-    # to be an unrelated mixed-worktree change.
-    $unresolvedGitReports = @(
-        Get-ChildItem -LiteralPath (Join-Path $root '.codex/errors') -Filter report.json -Recurse -File |
-            ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw -Encoding UTF8 | ConvertFrom-Json } |
-            Where-Object { $_.module -eq 'codex-git-operations' -and $_.status -notin @('fixed', 'verified') }
-    )
-    if ($unresolvedGitReports.Count -gt 0) {
-        throw "Git recovery is incomplete: $($unresolvedGitReports.Count) Git-process error report(s) must be fixed or verified before version and release artifacts are generated."
-    }
+    & (Join-Path $PSScriptRoot 'Test-CodexGitRecoveryPreflight.ps1') -RepositoryRoot $root | Out-Null
     if (-not $PreserveVersion) {
         $versionAction = if ($ChangeClass -eq 'Feature') { 'AutoFeature' } else { 'AutoFix' }
         $currentVersion = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
@@ -193,11 +182,13 @@ $commit = (& git -C $root rev-parse HEAD).Trim()
 if (-not $CommitOnly) {
     & $githubCommand -RepositoryRoot $root -ForceProxy:$ForceProxy -Tool git -C $root push origin HEAD
 }
+$statusRefresh = & (Join-Path $PSScriptRoot 'Repair-CodexGitStatusNoise.ps1') -RepositoryRoot $root -Apply | ConvertFrom-Json
 & git -C $root config codex.route.repo-root $root
 & git -C $root config codex.route.branch $plan.branch
 & git -C $root config codex.last.commit $commit
 & git -C $root config codex.last.version ((Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw).Trim())
 & git -C $root config codex.last.recorded-at ([DateTime]::UtcNow.ToString('o'))
 $plan['commit'] = $commit
+$plan['status_refresh'] = $statusRefresh
 $plan['decision'] = if ($CommitOnly) { 'committed-locally-no-push' } else { 'committed-and-pushed-private-origin' }
 $plan | ConvertTo-Json -Depth 5

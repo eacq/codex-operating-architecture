@@ -187,7 +187,8 @@ $Verification
     $existingMarkdown = [regex]::Replace($existingMarkdown, '(?m)^Status:\s*.*$', "Status: $Status", 1)
     Write-Utf8NoBom $reportPath ($existingMarkdown.TrimEnd() + "`r`n" + $update.TrimStart() + [Environment]::NewLine)
     $mirrored = $false
-    if (($MirrorToGlobalExperienceSystem -or $ExperienceSystemCausality -ne 'none') -and $resolvedArchitectureRoot) {
+    $effectiveCausality = if ($ExperienceSystemCausality -ne 'none') { $ExperienceSystemCausality } else { [string]$existing.experience_system_causality }
+    if (($MirrorToGlobalExperienceSystem -or $effectiveCausality -ne 'none') -and $resolvedArchitectureRoot) {
         $entry = [ordered]@{
             schema_version = 1
             recorded_at = [DateTime]::UtcNow.ToString('o')
@@ -199,7 +200,7 @@ $Verification
             component = $existing.component
             severity = $existing.severity
             status = $Status
-            experience_system_causality = if ($ExperienceSystemCausality -ne 'none') { $ExperienceSystemCausality } else { $existing.experience_system_causality }
+            experience_system_causality = $effectiveCausality
             global_experience_functions = @($existing.global_experience_functions)
             symptom = $existing.symptom
             actual_result = $existing.actual_result

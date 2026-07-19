@@ -39,6 +39,7 @@ if ($commit -notmatch 'if \(-not \$CommitOnly\)') { throw 'Local-only commit mod
 if ($commit -notmatch 'mixed worktree') { throw 'Verified private commit does not reject mixed worktrees.' }
 if ($commit -notmatch 'publication-envelope\.json') { throw 'Verified private commit does not write a publication envelope.' }
 if ($commit -notmatch 'Test-CurrentCompleteIterationProof') { throw 'Verified private commit cannot reuse a current complete iteration proof.' }
+if ($commit -notmatch 'Repair-CodexGitStatusNoise\.ps1') { throw 'Verified private commit does not safely refresh post-commit status-only entries.' }
 if ($commit -notmatch 'staged-git-paths-only') { throw 'Publication envelope does not define a staged-only publication surface.' }
 $metadata = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-GitPublicationMetadata.ps1') -Raw -Encoding UTF8
 if ($metadata -notmatch 'publication-envelope\.json') { throw 'Publication metadata gate does not require the publication envelope.' }

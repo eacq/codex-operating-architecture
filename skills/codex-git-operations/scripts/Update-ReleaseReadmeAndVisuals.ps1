@@ -190,6 +190,7 @@ if ($Apply) {
         if (-not (Test-Path -LiteralPath $graphOutputPath -PathType Leaf)) {
             throw "Codebase Memory graph renderer did not produce the expected PNG: $graphOutputPath"
         }
+        $generated.Add('docs/assets/codebase-memory-mcp-graph.png')
     }
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-visual-plans') | Out-Null
     $visualPlan | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root $planRelative) -Encoding UTF8

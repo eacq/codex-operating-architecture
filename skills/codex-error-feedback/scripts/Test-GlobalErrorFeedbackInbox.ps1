@@ -50,6 +50,18 @@ try {
     if ($entries[0].origin_project -ne 'fixture-project' -or $entries[0].experience_system_causality -ne 'partial') {
         throw 'Global inbox entry did not preserve routing metadata.'
     }
+    $closed = & (Join-Path $root 'skills\codex-error-feedback\scripts\New-ErrorFeedbackReport.ps1') `
+        -ReportDirectory (Split-Path -Parent $created.metadata) `
+        -ArchitectureRoot $architectureRoot `
+        -Status fixed `
+        -RepairAttempt 'Fixture repair.' `
+        -RepairResult 'Fixture passed.' `
+        -Verification 'Fixture verification.'
+    if (-not $closed.global_inbox_updated) { throw 'Closing a causal report did not append its status to the global inbox.' }
+    $closedEntries = @(Get-Content -LiteralPath $inbox -Encoding UTF8 | Where-Object { $_.Trim() } | ForEach-Object { $_ | ConvertFrom-Json })
+    if ($closedEntries.Count -ne 2 -or $closedEntries[-1].status -ne 'fixed' -or $closedEntries[-1].experience_system_causality -ne 'partial') {
+        throw 'Global inbox did not inherit causality and record the closed report status.'
+    }
     $reportMetadata = 'fixture-report.json'
     @(
         @{ report_metadata = $reportMetadata; recorded_at = '2026-01-01T00:00:00Z'; severity = 'high'; status = 'observed'; experience_system_causality = 'verified' },

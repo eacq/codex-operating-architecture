@@ -12,6 +12,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
+if ($Apply) {
+    & (Join-Path $PSScriptRoot 'Test-CodexGitRecoveryPreflight.ps1') -RepositoryRoot $root | Out-Null
+}
 $githubCommand = Join-Path $PSScriptRoot 'Invoke-GitHubNetworkCommand.ps1'
 $getRepo = { param([string]$remote) $url = (& git -C $root remote get-url $remote).Trim(); $match = [regex]::Match($url, 'github\.com[:/](?<name>[^/]+/[^/.]+)'); if (-not $match.Success) { throw "Cannot derive GitHub repository from '$remote'." }; $match.Groups['name'].Value }
 $privateRepository = & $getRepo 'origin'
@@ -61,7 +64,8 @@ if (-not (Test-Path -LiteralPath $releaseNotePath)) {
 $releaseReadmeVisuals = & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1') -RepositoryRoot $root -Version $versionPlan.version -Mode $Mode -ReleaseNote $releaseNote -ChangedPaths $Paths -Apply | ConvertFrom-Json
 $readmeOptimizationCheck = & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ReleaseReadmeOptimization.ps1') -RepositoryRoot $root -Version $versionPlan.version | ConvertFrom-Json
 if ($readmeOptimizationCheck.result -ne 'release-readme-optimization-passed') { throw 'Release README presentation optimization did not pass.' }
-$generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $releaseNote, 'docs/ITERATION-STATUS.md', 'CHANGELOG.md')
+$presentationAuditPath = "docs/readme-presentation-audits/v$($versionPlan.version).json"
+$generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $releaseNote, 'docs/ITERATION-STATUS.md', 'CHANGELOG.md', $presentationAuditPath)
 $allPaths = @($Paths + $generatedPaths | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null

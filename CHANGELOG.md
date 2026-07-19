@@ -319,6 +319,7 @@
 
 ### English
 
+- Publish the verified experience-system release metadata, private tag, and release notes for the current version.
 - Learn from `Yeachan-Heo/oh-my-codex` and `IamHBW/omx-lite`, comparing full runtime takeover against lite methodology packaging before any external skill installation.
 - Refine external package gates with manifest, dry-run/check, backup, size-budget, conflict-marker, explicit-invocation, rollback, and real smoke-test criteria.
 - Install the lightweight external-methodology subset as owner-internal subskills: `deep-interview-lite`, `consensus-plan-lite`, and `persistent-completion-lite`.
@@ -329,6 +330,7 @@
 
 ### Chinese / 中文
 
+- 同步发布当前版本的经验系统发布元数据、私有标签与发布说明。
 - 学习 `Yeachan-Heo/oh-my-codex` 与 `IamHBW/omx-lite`，在安装任何外部 skill 前先比较“完整运行时接管”与“轻量方法包”的差异。
 - 精炼外部包门禁：manifest、dry-run/check、备份、尺寸预算、冲突标记、显式调用、回滚和真实 smoke test 都进入兼容性判断。
 - 将轻量外部方法子集安装为 owner 内部 subskill：`deep-interview-lite`、`consensus-plan-lite` 与 `persistent-completion-lite`。
@@ -564,13 +566,3 @@
 - 允许所有非受保护目录加入受管理范围；Git 前自动从本地迁移清单恢复受跟踪路径与配置引用，凭据仅保留安全存储引用。
 - 将经过验证的 Codex Operating Architecture 发布线重置为 v1.0。
 - 提供生命周期路由、关联知识与经验捕获、GPT 优先的隐私安全可视化规划、README 迭代一致性检查和安全的公开发布检查。
-
-
-
-
-
-
-
-
-
-

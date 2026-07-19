@@ -94,11 +94,10 @@ if (-not $hasSection -and $Apply) {
 if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
     $releaseEnglish = 'Publish the verified experience-system release metadata, private tag, and release notes for the current version.'
     $releaseChinese = Convert-EscapedUnicode '\u540c\u6b65\u53d1\u5e03\u5f53\u524d\u7248\u672c\u7684\u7ecf\u9a8c\u7cfb\u7edf\u53d1\u5e03\u5143\u6570\u636e\u3001\u79c1\u6709\u6807\u7b7e\u4e0e\u53d1\u5e03\u8bf4\u660e\u3002'
-    if ($existing -notmatch [regex]::Escape($releaseEnglish)) {
-        $sectionPattern = "(?ms)^##\s+$([regex]::Escape($Version))\b.*?(?=^##\s+|\z)"
-        $updated = [regex]::Replace($existing, $sectionPattern, {
-            param($match)
-            $value = $match.Value
+    $sectionPattern = "(?ms)^##\s+$([regex]::Escape($Version))\b.*?(?=^##\s+|\z)"
+    $sectionMatch = [regex]::Match($existing, $sectionPattern)
+    if ($sectionMatch.Success -and $sectionMatch.Value -notmatch [regex]::Escape($releaseEnglish)) {
+            $value = $sectionMatch.Value
             $value = [regex]::Replace(
                 $value,
                 "(?m)(### English\s*\r?\n\s*\r?\n)",
@@ -111,9 +110,8 @@ if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
                 ('$1' + "- $releaseChinese`r`n"),
                 1
             )
-            return $value
-        }, 1)
-        Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8
+            $updated = $existing.Substring(0, $sectionMatch.Index) + $value + $existing.Substring($sectionMatch.Index + $sectionMatch.Length)
+            Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8
     }
 }
 

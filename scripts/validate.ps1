@@ -93,6 +93,10 @@ if (-not $?) { throw 'Codex Git workflow test failed.' }
 if (-not $?) { throw 'Git index-lock recovery test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceVersion.ps1')
 if (-not $?) { throw 'Experience version test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitRecoveryFastPath.ps1')
+if (-not $?) { throw 'Git recovery fast-path test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitStatusNoiseRepair.ps1')
+if (-not $?) { throw 'Git status-noise repair test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackUtf8Input.ps1')
 if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')
@@ -111,4 +115,4 @@ if (-not $?) { throw 'Owner self-iteration review test failed.' }
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-AuthorizedCandidateProcessing.ps1')
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-AutoCommitIterationIntegration.ps1')
 if (-not $?) { throw 'Global iteration candidate report test failed.' }
-Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, rollback tests, continuous diagnosis tests, error-feedback tests, brainstorming and writing-plan contract tests, and global error-feedback inbox tests validated.'
+Write-Host 'All skills, history indexing, module registry, knowledge graph, mind-map views, image workflow tests, cleanup tests, rollback tests, continuous diagnosis tests, Git recovery tests, error-feedback tests, brainstorming and writing-plan contract tests, and global error-feedback inbox tests validated.'
