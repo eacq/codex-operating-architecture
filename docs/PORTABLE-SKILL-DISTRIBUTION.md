@@ -42,9 +42,11 @@ move the actual choice to the local profile, and document what remains optional.
 Keep provider protocol and authentication modes in the shared skill, but keep a
 specific service, endpoint, quota plan, and account choice local.
 
-`your-api-source` is retained as a compatibility entry but now uses this generic
-OpenAI-compatible provider contract. Its previous provider-specific endpoint and
-model choices must be supplied by the recipient's local profile.
+`codex-credential-management-provider-routing` is the canonical
+OpenAI-compatible provider contract under credential management.
+`your-api-source` and `codex-provider-routing` remain one-release compatibility
+aliases for historical prompts. Provider-specific endpoint and model choices
+must be supplied by the recipient's local profile.
 
 ## Installation boundary
 

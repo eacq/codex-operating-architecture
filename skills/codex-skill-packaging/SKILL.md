@@ -18,6 +18,18 @@ controller document. The parent `SKILL.md` keeps discovery metadata, routing,
 acceptance gates, and non-negotiable safety boundaries; detailed modes, gates,
 recovery paths, and release commands move into owner-internal subskills.
 
+## Naming And Renames
+
+Use [references/skill-naming-governance.md](references/skill-naming-governance.md)
+when a skill name may no longer match its actual capability. A rename requires
+agreement between the skill's real contract, user-recognizable language,
+verified experience evidence, and owning parent. Top-level names are reserved
+for independent owners; parent-owned capabilities move to `subskills` and use
+a parent-prefixed callable name. Keep a compatibility alias for one release
+and validate the migration map before retiring a historical name.
+Top-owner renames may use the stored naming-only authority when their contract
+and safety boundary are unchanged; they never authorize owner restructuring.
+
 Create a top-level skill only when the trigger, workflow, maintained knowledge,
 artifacts, and safety boundary do not fit an existing owner. Otherwise add a
 subskill-style contract to the owner and route from the parent `SKILL.md`.

@@ -11,7 +11,11 @@ $provenance = Get-Content -LiteralPath (Join-Path $root 'docs\assets\readme-rast
 
 if ($renderer -notmatch '\[switch\]\$GenerateGif') { throw 'Graph renderer must require the explicit GenerateGif switch for GIF output.' }
 if ($renderer -notmatch '\$renderGif = \$GenerateGif\.IsPresent') { throw 'Graph renderer must default to PNG-only output.' }
+if ($renderer -notmatch '\$staticMode\s*=\s*\(-not\s+\$renderGif\)\.ToString\(\)\.ToLowerInvariant\(\)') { throw 'Graph renderer must serialize the Node static-mode flag as lowercase text.' }
+if ($renderer -match '--static\s+\(-not\s+\$renderGif\)') { throw 'Graph renderer must not pass a PowerShell Boolean token to the Node static-mode protocol.' }
+if ($renderer -match '\[string\]\$(OutputPath|GifOutputPath)\s*=\s*\(Join-Path\s+\$PSScriptRoot') { throw 'Graph renderer path defaults must be initialized after script parameter binding.' }
 if ($release -match 'Render-CodebaseMemoryGraph\.ps1[^\r\n]*-GenerateGif') { throw 'Release refresh must not generate or overwrite GIF assets.' }
+if ($release -notmatch '\$ErrorActionPreference\s*=\s*''Continue''[\s\S]+\$rendererExitCode\s*=\s*\$LASTEXITCODE') { throw 'Release refresh must capture native renderer stderr without bypassing exit-code validation.' }
 if ([string]::IsNullOrWhiteSpace($design.visual_assets.codebase_memory_graph.animation_policy)) { throw 'Design system must record the Codebase Memory GIF opt-in policy.' }
 if ($architecture -notmatch 'GIF.*release' -or $provenance -notmatch 'explicit user request') { throw 'Architecture and provenance documentation must preserve the GIF opt-in policy.' }
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Credential Management: Provider Routing"
+  short_description: "Diagnose a locally configured OpenAI-compatible provider"
+  default_prompt: "Use $codex-credential-management-provider-routing to diagnose my locally configured OpenAI-compatible provider without exposing credentials."

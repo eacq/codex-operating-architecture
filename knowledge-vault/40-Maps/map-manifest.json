@@ -25,10 +25,10 @@
       "type": "index",
       "path": "00-Home/Home.md",
       "links": [
-        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
         "Experience Knowledge Subskill Refinement",
         "Experience and Knowledge Architecture",
+        "Figure Optimization Subskill",
         "Image Hosting and Cleanup Workflow",
         "Image Workflow Module",
         "Knowledge Index",
@@ -113,12 +113,25 @@
       "codex_learning": true
     },
     {
+      "id": "subskill-figure-optimization",
+      "name": "Figure Optimization Subskill",
+      "type": "subskill",
+      "path": "10-Modules/Figure Optimization Subskill.md",
+      "links": [
+        "Image Workflow Module",
+        "Scientific Figure Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "module-image-workflow",
       "name": "Image Workflow Module",
       "type": "module",
       "path": "10-Modules/Image Workflow Module.md",
       "links": [
-        "Academic Figure Optimizer Module",
+        "Figure Optimization Subskill",
         "Image Hosting and Cleanup Workflow",
         "Knowledge System Module",
         "Scientific Figure Workflow"
@@ -350,8 +363,8 @@
       "type": "workflow",
       "path": "20-Workflows/Scientific Figure Workflow.md",
       "links": [
-        "Academic Figure Optimizer Module",
         "Academic Writing and Citation Workflow",
+        "Figure Optimization Subskill",
         "Provider Capability Boundary"
       ],
       "learning_audience": null,
@@ -717,6 +730,20 @@
         "Literature Discovery Workflow",
         "Scientific Figure Workflow",
         "Zotero Reference Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-solution-visualization",
+      "name": "Solution Visualization Workflow",
+      "type": "workflow",
+      "path": "30-Knowledge/Solution Visualization Workflow.md",
+      "links": [
+        "Global Experience System",
+        "Image Workflow Module",
+        "Visual Format Selection"
       ],
       "learning_audience": "codex",
       "user_anki": false,

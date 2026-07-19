@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "canonical_pattern": "active root owners use codex-<domain>; child capabilities use codex-<parent>-<capability> and live under the parent subskills directory",
+    "decision_basis": [
+      "actual trigger, workflow, artifacts, safety boundary, and owning parent",
+      "user-recognizable task language",
+      "verified experience and module-registry evidence"
+    ],
+    "required_updates": [
+      "canonical skill metadata and agents/openai.yaml",
+      "module registry, architecture, requirements, workflows, and user-facing documentation",
+      "all executable paths, tests, and global discovery interfaces",
+      "compatibility entry and migration record when a live name changes",
+      "parent SKILL routing and the canonical subskill path"
+    ],
+    "compatibility": "Keep the historical top-level entry for at least one release, route new work to the canonical name, and remove it only after no live references remain.",
+    "top_owner_rename_authority": {
+      "enabled": true,
+      "scope": "naming-only top-owner migration",
+      "conditions": [
+        "the owner contract, trigger, artifacts, knowledge, and safety boundary remain unchanged",
+        "actual contract, user-recognizable language, and verified experience all favor the new name",
+        "the migration record, one-release compatibility alias, reference updates, and validation gates are complete"
+      ],
+      "exclusions": [
+        "add, merge, split, deprecate, delete, or materially revise an owner",
+        "change runtime, credential, installation, publication, or safety authority"
+      ]
+    }
+  },
+  "migrations": [
+    {
+      "from": "your-api-source",
+      "to": "codex-credential-management-provider-routing",
+      "canonical_path": "skills/codex-credential-management/subskills/provider-routing",
+      "status": "compatibility-active",
+      "retire_after": "one release after 1.2.0.0",
+      "reason": "The capability performs provider routing and diagnostics under credential management; the historical name implies a provider selection rather than its actual capability."
+    },
+    {
+      "from": "codex-provider-routing",
+      "to": "codex-credential-management-provider-routing",
+      "canonical_path": "skills/codex-credential-management/subskills/provider-routing",
+      "status": "compatibility-active",
+      "retire_after": "one release after 1.2.0.0",
+      "reason": "The interim root name is clear but does not express its credential-management owner."
+    },
+    {
+      "from": "academic-figure-optimizer",
+      "to": "codex-image-workflow-figure-optimization",
+      "canonical_path": "skills/codex-image-workflow/subskills/figure-optimization",
+      "status": "compatibility-active",
+      "retire_after": "one release after 1.2.0.0",
+      "reason": "Data-faithful figure optimization is a specialized image-workflow execution mode, not an independent owner."
+    }
+  ]
+}

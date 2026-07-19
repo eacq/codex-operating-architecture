@@ -47,6 +47,8 @@ mindmap
     source
       Knowledge Tooling
       XLW1 API Conversation Evidence
+    subskill
+      Figure Optimization Subskill Codex
     untyped
       GitHub README Presentation Network Learning
       Knowledge System Module
@@ -69,6 +71,7 @@ mindmap
       Project Creation From Experience Workflow Codex
       Project Vocabulary and Decision Brief Codex
       Scientific Figure Workflow
+      Solution Visualization Workflow Codex
       Visual Format Selection Codex
       XLW1 Manuscript Refinement Workflow Codex
       Zotero Reference Workflow Codex

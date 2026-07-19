@@ -1,7 +1,4 @@
 interface:
-  display_name: "Academic Figure Optimizer"
-  short_description: "Standardize academic figures, fonts, arbitrary dimensions, resolution, and exports."
-  default_prompt: "Use $academic-figure-optimizer to optimize this scientific figure while preserving numerical fidelity."
-
-policy:
-  allow_implicit_invocation: true
+  display_name: "Figure Optimization (Legacy Alias)"
+  short_description: "Compatibility alias for image-workflow figure optimization"
+  default_prompt: "Use $codex-image-workflow-figure-optimization to optimize this scientific figure while preserving numerical fidelity."

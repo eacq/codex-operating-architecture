@@ -25,6 +25,13 @@ and baseline plus equivalent behavior evidence proves a net gain. Automatically
 apply only owner-scoped read-only or local-reversible optimizations; retain all
 other recommendations as candidates.
 
+Treat owners and skills as first-class optimizable assets as well. Complete
+global iterations run `codex-architecture-iteration/scripts/Invoke-OwnerSelfIterationReview.ps1`.
+It supports only measured, contract-preserving documentation, owner-internal
+subskill, and local-reversible workflow/script improvements; it does not grant
+authority for structural owner changes, external actions, installations,
+credentials, publication, or destructive operations.
+
 For project work, treat `.codex/project/WORKFLOWS.md` as the current project authority. Update it after verified workflow changes; keep global skills limited to cross-project procedure.
 
 After a verified workflow update, route it through `codex-knowledge-system/scripts/New-WorkflowLearningRecord.ps1`. The record automatically identifies related owners and creates knowledge/experience candidates from evidence count; then `codex-experience-capture` decides promotion and `codex-architecture-iteration` compares triggers, artifacts, ownership, and safety boundaries before any revise, merge, split, add, deprecate, or delete decision. Never promote workflow prose alone as global experience.

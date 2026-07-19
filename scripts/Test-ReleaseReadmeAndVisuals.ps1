@@ -1,8 +1,17 @@
 $ErrorActionPreference = 'Stop'
 
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$releaseControllerPath = Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1'
+$releaseController = Get-Content -LiteralPath $releaseControllerPath -Raw -Encoding UTF8
+if ($releaseController -notmatch '&\s+powershell\.exe\s+-NoProfile\s+-NonInteractive\s+-File\s+\$graphRenderer') {
+    throw 'Release README refresh must isolate the graph renderer in a child PowerShell process.'
+}
+if ($releaseController -match '&\s+\$graphRenderer') {
+    throw 'Release README refresh still invokes the graph renderer in its parent process.'
+}
 $fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ('codex-release-readme-visuals-' + [guid]::NewGuid().ToString('N')) -Create
 New-Item -ItemType Directory -Force -Path (Join-Path $fixture 'docs\release-notes') | Out-Null
+New-Item -ItemType Directory -Force -Path (Join-Path $fixture 'scripts') | Out-Null
 
 try {
     '# Test README' | Set-Content -LiteralPath (Join-Path $fixture 'README.md') -Encoding UTF8
@@ -18,8 +27,24 @@ try {
         '',
         'Fixture bilingual placeholder.'
     ) | Set-Content -LiteralPath (Join-Path $fixture 'docs\release-notes\v1.2.3.4.md') -Encoding UTF8
+    @'
+[pscustomobject]@{
+    url = 'http://127.0.0.1:9750/'
+    project_name = 'F-codex'
+} | ConvertTo-Json
+'@ | Set-Content -LiteralPath (Join-Path $fixture 'scripts\Start-CodebaseMemoryGraphUi.ps1') -Encoding UTF8
+    @'
+param(
+    [string]$OutputPath,
+    [string]$UiUrl,
+    [string]$ProjectName,
+    [switch]$PngOnly
+)
+New-Item -ItemType File -Path $OutputPath -Force | Out-Null
+exit 0
+'@ | Set-Content -LiteralPath (Join-Path $fixture 'scripts\Render-CodebaseMemoryGraph.ps1') -Encoding UTF8
 
-    $result = & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ReleaseReadmeAndVisuals.ps1') `
+    $result = & $releaseControllerPath `
         -RepositoryRoot $fixture `
         -Version '1.2.3.4' `
         -Mode Private `

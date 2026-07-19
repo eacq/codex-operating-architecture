@@ -1,5 +1,15 @@
 ﻿# Changelog / 更新日志
 
+## Unreleased
+
+### English
+
+- Add `codex-image-workflow/solution-visualization`: a Chinese problem-solving visual mode with an executable format selector, reusable prompt template, and validation contract for relationship, procedure, geometry, and quantitative explanations.
+
+### Chinese / 中文
+
+- 在 `codex-image-workflow` 下增加 `solution-visualization`：为关系、流程、几何和数量题提供中文解题图模式、可执行格式选择器、复用提示词模板和语义核验契约。
+
 ## 1.1.0.0 - 2026-07-19
 
 ### English

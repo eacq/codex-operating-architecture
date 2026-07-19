@@ -251,6 +251,14 @@
       "verified": true
     },
     {
+      "id": "subskill-figure-optimization",
+      "name": "Figure Optimization Subskill",
+      "path": "10-Modules\\Figure Optimization Subskill.md",
+      "summary": "Use codex-image-workflow-figure-optimization for data-faithful scientific figure re-rendering, user-requested or inferred dimensions, publication typography, arbitrary supported raster/vector exports, and layout repair; do not use generative image redraws for quantitative plots.",
+      "source": "user-supplied-skill-package-2026-07-17",
+      "verified": true
+    },
+    {
       "id": "workflow-academic-research",
       "name": "Academic Research Workflow",
       "path": "20-Workflows\\Academic Research Workflow.md",
@@ -329,6 +337,14 @@
       "summary": "New project creation should turn folder evidence into lifecycle files, project-local skills, storage indexes, runtime preflight, error feedback, and verified retrospectives before promoting global lessons.",
       "source": "xlw1-project-iteration-2026-07-15",
       "verified": true
+    },
+    {
+      "id": "workflow-solution-visualization",
+      "name": "Solution Visualization Workflow",
+      "path": "30-Knowledge\\Solution Visualization Workflow.md",
+      "summary": "After written reasoning is established, choose a Chinese explanatory visual only when it materially reduces reasoning effort. Preserve Mermaid for reviewable relationship/procedure logic, SVG for deterministic geometry, PNG for chart-like quantitative views, and a sanitized generated raster only for complex conceptual explanation.",
+      "source": "user-request-2026-07-19; solution-visualization-planner-test-2026-07-19",
+      "verified": false
     },
     {
       "id": "workflow-xlw1-manuscript-refinement",

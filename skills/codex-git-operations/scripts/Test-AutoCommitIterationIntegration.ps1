@@ -2,6 +2,10 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
 $iteration = Get-Content -LiteralPath (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -Raw -Encoding UTF8
 $commit = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1') -Raw -Encoding UTF8
+$lockRecovery = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\Repair-CodexGitIndexLock.ps1') -Raw -Encoding UTF8
+$presentationAudit = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\New-GlobalReadmePresentationAudit.ps1') -Raw -Encoding UTF8
+if ($lockRecovery -match '(?m)^\s*exit\s+0\s*$') { throw 'Git lock recovery can terminate its parent publication controller.' }
+if ($presentationAudit -match '(?m)^\s*exit\s+0\s*$') { throw 'README presentation audit can terminate its parent publication controller.' }
 if ($iteration -notmatch '\[switch\]\$AutoCommit') { throw 'Complete global iteration does not expose the AutoCommit gate.' }
 if ($iteration -notmatch '\[switch\]\$CandidateOnly') { throw 'Complete global iteration does not expose the candidate-only fast path.' }
 if ($iteration -notmatch 'full Git worktree has no tracked, staged, or untracked repository changes') { throw 'Candidate-only mode does not reject repository changes.' }

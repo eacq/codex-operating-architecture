@@ -20,10 +20,31 @@ candidate rather than manufacturing a change.
 
 Before the economy pass, test that affected skills, linked knowledge, experience records, and workflows still interoperate. Use failed or weak handoffs as evidence to strengthen contracts before any simplification.
 
+## Owner And Skill Self-Iteration
+
+On every complete global iteration, run `scripts/Invoke-OwnerSelfIterationReview.ps1`.
+Owners and skills may self-optimize documentation, internal subskill packaging,
+and read-only or local-reversible workflow/script refactors when their contract,
+trigger, artifacts, maintained knowledge, and safety boundary remain unchanged.
+Each candidate needs baseline evidence, an expected benefit, equivalent
+validation, and a rollback boundary. The review is evidence, not mutation
+authority except for a naming-only owner or skill migration that satisfies the
+automatic rename policy in `config/owner-self-iteration-policy.json` and
+`config/skill-name-migrations.json`. Automatic rename requires tri-source
+naming evidence, a canonical path, migration record, one-release compatibility
+route, synchronized references, and passing migration/global-interface
+validation. External actions, credentials, runtime or installation changes, Git
+publication, destructive work, material contract changes, and top-level owner
+add/merge/split/deprecation/deletion retain their existing explicit gates.
+
 ## Top-Level Owner Authorization Gate
 
 Adding, merging, splitting, deprecating, deleting, or materially revising a
 top-level owner requires explicit user authorization for the current iteration.
+An evidence-backed naming-only owner rename may instead use the stored
+`skill-name-migrations.json` authority when the owner contract and safety
+boundary are unchanged; it does not authorize any of the preceding structural
+actions.
 Record the authority, candidates considered, trigger/artifact/knowledge/safety
 comparison, chosen action, migration or rollback boundary, and verification in
 the project retrospective and module registry. Prior authorization does not

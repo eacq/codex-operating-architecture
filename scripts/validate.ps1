@@ -45,6 +45,8 @@ $registered = @($registry.modules | ForEach-Object name | Sort-Object)
 $skillNames = @(Get-ChildItem -LiteralPath (Join-Path $root 'skills') -Directory | ForEach-Object Name | Sort-Object)
 $delta = Compare-Object $registered $skillNames
 if ($delta) { throw "Module registry differs from skill folders: $($delta | Out-String)" }
+& (Join-Path $root 'scripts\Test-SkillNameMigrations.ps1') -RepositoryRoot $root
+if (-not $?) { throw 'Skill-name migration validation failed.' }
 $runtimeManager = Join-Path $root 'skills\codex-runtime-environments\scripts\Manage-CodexEnvironment.ps1'
 $parseErrors = $null
 [System.Management.Automation.Language.Parser]::ParseFile($runtimeManager, [ref]$null, [ref]$parseErrors) | Out-Null
@@ -65,6 +67,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Knowledge graph validation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Mind-map generation failed.' }
 & $python -m unittest discover -s (Join-Path $root 'skills\codex-image-workflow\scripts') -p 'test_*.py'
 if ($LASTEXITCODE -ne 0) { throw 'Image workflow tests failed.' }
+& (Join-Path $root 'skills\codex-image-workflow\scripts\Test-SolutionVisualizationPlan.ps1')
+if (-not $?) { throw 'Solution visualization planner test failed.' }
 & $python -m unittest discover -s (Join-Path $root 'skills\codex-conversation-continuity\scripts') -p 'test_*.py'
 if ($LASTEXITCODE -ne 0) { throw 'Conversation continuity tests failed.' }
 & (Join-Path $root 'skills\codex-file-organization\scripts\Test-FileOrganizationCleanup.ps1')
@@ -85,6 +89,8 @@ if (-not $?) { throw 'Codex verification controller test failed.' }
 if (-not $?) { throw 'Codebase Memory project-scope test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-CodexGitWorkflow.ps1')
 if (-not $?) { throw 'Codex Git workflow test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitIndexLockRecovery.ps1')
+if (-not $?) { throw 'Git index-lock recovery test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceVersion.ps1')
 if (-not $?) { throw 'Experience version test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackUtf8Input.ps1')
@@ -99,6 +105,8 @@ if (-not $?) { throw 'Writing Plan Lite contract test failed.' }
 if (-not $?) { throw 'Script automation candidate test failed.' }
 & (Join-Path $root 'skills\codex-workflow-design\scripts\Test-ScriptAssetOptimization.ps1')
 if (-not $?) { throw 'Script asset optimization test failed.' }
+& (Join-Path $root 'skills\codex-architecture-iteration\scripts\Test-OwnerSelfIterationReview.ps1')
+if (-not $?) { throw 'Owner self-iteration review test failed.' }
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-GlobalIterationCandidateReport.ps1')
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-AuthorizedCandidateProcessing.ps1')
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-AutoCommitIterationIntegration.ps1')

@@ -28,5 +28,6 @@ Priority templates:
 Other templates:
 
 - `knowledge-diagram`: visual explanation for a Codex or project workflow.
+- `solution-explanation`: Chinese explanatory visual for a solved relationship, process, geometry, or quantitative problem.
 - `frontend-hero`: product or project hero image for web work.
 - `ui-mockup`: interface screenshot or product UI concept.

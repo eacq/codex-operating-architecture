@@ -121,10 +121,10 @@ Codex Knowledge System
 			-> XLW1 Manuscript Refinement Workflow
 	index
 		Home
-			-> Academic Figure Optimizer Module
 			-> Academic Writing and Citation Workflow
 			-> Experience Knowledge Subskill Refinement
 			-> Experience and Knowledge Architecture
+			-> Figure Optimization Subskill
 			-> Image Hosting and Cleanup Workflow
 			-> Image Workflow Module
 			-> Knowledge Index
@@ -155,7 +155,7 @@ Codex Knowledge System
 			-> Exact Word Layout Workflow
 			-> Verified Experience Promotion
 		Image Workflow Module [Codex]
-			-> Academic Figure Optimizer Module
+			-> Figure Optimization Subskill
 			-> Image Hosting and Cleanup Workflow
 			-> Knowledge System Module
 			-> Scientific Figure Workflow
@@ -194,6 +194,10 @@ Codex Knowledge System
 			-> XLW1 Manuscript Refinement Workflow
 			-> XLW1 Source Figure Integrity
 			-> XLW1 Version Authority
+	subskill
+		Figure Optimization Subskill [Codex]
+			-> Image Workflow Module
+			-> Scientific Figure Workflow
 	untyped
 		GitHub README Presentation Network Learning
 		Knowledge System Module
@@ -267,9 +271,13 @@ Codex Knowledge System
 			-> Subskill Packaging Boundary
 			-> Verified Experience Promotion
 		Scientific Figure Workflow
-			-> Academic Figure Optimizer Module
 			-> Academic Writing and Citation Workflow
+			-> Figure Optimization Subskill
 			-> Provider Capability Boundary
+		Solution Visualization Workflow [Codex]
+			-> Global Experience System
+			-> Image Workflow Module
+			-> Visual Format Selection
 		Visual Format Selection [Codex]
 			-> Baoyu Skills Network Learning
 			-> Experience and Knowledge Architecture

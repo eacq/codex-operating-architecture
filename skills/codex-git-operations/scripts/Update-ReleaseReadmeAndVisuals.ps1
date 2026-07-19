@@ -175,7 +175,21 @@ if ($Apply) {
     $graphUiStarter = Join-Path $root 'scripts\Start-CodebaseMemoryGraphUi.ps1'
     if ((Test-Path -LiteralPath $graphRenderer) -and (Test-Path -LiteralPath $graphUiStarter)) {
         $graphUi = & $graphUiStarter | ConvertFrom-Json
-        & $graphRenderer -OutputPath (Join-Path $root 'docs\assets\codebase-memory-mcp-graph.png') -UiUrl $graphUi.url -ProjectName $graphUi.project_name | Out-Null
+        $graphOutputPath = Join-Path $root 'docs\assets\codebase-memory-mcp-graph.png'
+        $previousErrorActionPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = 'Continue'
+            $rendererOutput = @(& powershell.exe -NoProfile -NonInteractive -File $graphRenderer -OutputPath $graphOutputPath -UiUrl $graphUi.url -ProjectName $graphUi.project_name -PngOnly 2>&1)
+            $rendererExitCode = $LASTEXITCODE
+        } finally {
+            $ErrorActionPreference = $previousErrorActionPreference
+        }
+        if ($rendererExitCode -ne 0) {
+            throw "Codebase Memory graph renderer failed in its isolated process with exit code ${rendererExitCode}: $($rendererOutput -join [Environment]::NewLine)"
+        }
+        if (-not (Test-Path -LiteralPath $graphOutputPath -PathType Leaf)) {
+            throw "Codebase Memory graph renderer did not produce the expected PNG: $graphOutputPath"
+        }
     }
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-visual-plans') | Out-Null
     $visualPlan | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root $planRelative) -Encoding UTF8

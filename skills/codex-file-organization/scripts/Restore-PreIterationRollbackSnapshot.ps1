@@ -19,7 +19,7 @@ $currentFiles = @(Get-ChildItem -LiteralPath $root -Recurse -Force -File -ErrorA
     $_.FullName.Substring($root.Length).TrimStart('\').Replace('\', '/') -notmatch $protected
 })
 $extraFiles = @($currentFiles | Where-Object { -not $expectedFiles.Contains($_.FullName.Substring($root.Length).TrimStart('\').Replace('\', '/')) })
-$record = [ordered]@{ schema_version = 1; files_restored = @($manifest.files).Count; extra_files_removed = $extraFiles.Count; hash_verified = $false; apply_performed = [bool]$Apply; result = if ($Apply) { 'pending' } else { 'preview' } }
+$record = [ordered]@{ schema_version = 1; files_restored = 0; files_skipped_identical = 0; extra_files_removed = $extraFiles.Count; hash_verified = $false; apply_performed = [bool]$Apply; result = if ($Apply) { 'pending' } else { 'preview' } }
 if (-not $Apply) { $record | ConvertTo-Json -Depth 4; exit 0 }
 
 foreach ($file in $extraFiles) { [IO.File]::Delete($file.FullName) }
@@ -29,8 +29,13 @@ foreach ($item in @($manifest.files)) {
     $target = [IO.Path]::GetFullPath((Join-Path $root ($relative.Replace('/', '\'))))
     if (-not $target.StartsWith($root + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Rollback manifest escaped the project root.' }
     [IO.Directory]::CreateDirectory((Split-Path -Parent $target)) | Out-Null
+    if ((Test-Path -LiteralPath $target -PathType Leaf) -and (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() -eq $item.sha256) {
+        $record.files_skipped_identical += 1
+        continue
+    }
     Copy-Item -LiteralPath $source -Destination $target -Force
     if ((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() -ne $item.sha256) { throw "Rollback hash verification failed: $relative" }
+    $record.files_restored += 1
 }
 $currentDirectories = @(Get-ChildItem -LiteralPath $root -Recurse -Force -Directory -ErrorAction SilentlyContinue | Sort-Object { $_.FullName.Length } -Descending)
 foreach ($directory in $currentDirectories) {

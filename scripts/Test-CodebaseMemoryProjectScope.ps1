@@ -1,6 +1,15 @@
 $ErrorActionPreference = 'Stop'
 
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$globalAgentPath = Join-Path $root 'config\global-AGENTS.md'
+$preflightPath = Join-Path $root 'skills\codex-self-evolution\subskills\mcp-startup-preflight\SKILL.md'
+foreach ($path in @($globalAgentPath, $preflightPath)) {
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Codebase Memory startup authority is missing: $path" }
+}
+$startupAuthority = (Get-Content -LiteralPath $globalAgentPath -Raw -Encoding UTF8) + (Get-Content -LiteralPath $preflightPath -Raw -Encoding UTF8)
+if ($startupAuthority -notmatch 'callable capability registry' -or $startupAuthority -notmatch 'index_repository') {
+    throw 'Codebase Memory startup policy must check deferred capability discovery before skipping indexing.'
+}
 $configPath = Join-Path $HOME '.codex\config.toml'
 if (-not (Test-Path -LiteralPath $configPath -PathType Leaf)) {
     Write-Host 'Codebase Memory project-scope test skipped: Codex config.toml is unavailable.'

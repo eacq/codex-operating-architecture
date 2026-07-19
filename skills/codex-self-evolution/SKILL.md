@@ -17,11 +17,13 @@ subskills.
    On every Codex project entry, ensure the canonical graph console is available
    with `scripts/Start-CodebaseMemoryGraphUi.ps1` (`F:\codex`, `F-codex`,
    `127.0.0.1:9750`) before selecting narrower skills.
-   For source repositories with `codebase-memory-mcp` exposed in the current
-   Codex task, run the startup preflight in
+   Query the current task's callable capability registry for deferred or
+   namespaced `codebase-memory-mcp` tools. When callable, run the startup
+   preflight in
    [subskills/mcp-startup-preflight/SKILL.md](subskills/mcp-startup-preflight/SKILL.md)
-   before broad file reading or architecture claims. Avoid lifecycle churn for
-   trivial or read-only tasks.
+   before broad file reading or architecture claims. For a task without
+   source-structure work, retain the global UI health check but do not force
+   project graph citation. Avoid lifecycle churn for trivial or read-only tasks.
 2. Read the request and project authority files, then select only the needed
    modules. Open `codex-learning` only for a concrete gap plus qualifying
    evidence.

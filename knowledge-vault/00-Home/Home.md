@@ -13,7 +13,7 @@ verified: true
 - [[Knowledge System Module]]
 - [[Research Knowledge Module]]
 - [[Image Workflow Module]]
-- [[Academic Figure Optimizer Module]]
+- [[Figure Optimization Subskill]]
 
 ## Research workflows
 

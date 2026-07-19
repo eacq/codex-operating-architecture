@@ -45,7 +45,7 @@ if ($paths | Where-Object { $_ -like 'skills/codex-self-evolution/*' -or $_ -eq 
 if ($paths | Where-Object { $_ -like 'skills/codex-experience-capture/*' -or $_ -like 'skills/codex-knowledge-system/*' -or $_ -like 'skills/codex-error-feedback/*' }) {
     $english.Add('Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.')
 }
-if ($paths | Where-Object { $_ -like 'skills/academic-figure-optimizer/*' }) {
+if ($paths | Where-Object { $_ -like 'skills/codex-image-workflow/subskills/figure-optimization/*' }) {
     $english.Add('Install the academic figure optimizer as a data-faithful figure-rendering skill with publication-format checks.')
 }
 if ($paths | Where-Object { $_ -like 'scripts/Invoke-ContinuousIterationDiagnosis.ps1' -or $_ -like 'scripts/Test-ContinuousIterationDiagnosis.ps1' }) {
@@ -67,7 +67,7 @@ if ($paths | Where-Object { $_ -like 'skills/codex-skill-packaging/*' -or $_ -li
 if ($paths | Where-Object { $_ -like 'skills/codex-experience-capture/*' -or $_ -like 'skills/codex-knowledge-system/*' -or $_ -like 'skills/codex-error-feedback/*' }) {
     $chinese.Add((Convert-EscapedUnicode '\u5c06\u7ecf\u9a8c\u3001\u77e5\u8bc6\u4e0e\u9519\u8bef\u53cd\u9988\u7684\u957f\u6d41\u7a0b\u4e0b\u6c89\u4e3a owner \u5185\u90e8\u5b50 skill\uff0c\u5e76\u4fdd\u7559\u7236\u5165\u53e3\u53d1\u73b0\u8fb9\u754c\u3002'))
 }
-if ($paths | Where-Object { $_ -like 'skills/academic-figure-optimizer/*' }) {
+if ($paths | Where-Object { $_ -like 'skills/codex-image-workflow/subskills/figure-optimization/*' }) {
     $chinese.Add((Convert-EscapedUnicode '\u5b89\u88c5\u5e76\u8bb0\u5f55\u5b66\u672f\u56fe\u5f62\u4f18\u5316\u80fd\u529b\uff0c\u4fdd\u6301\u6570\u636e\u3001\u5c3a\u5bf8\u3001\u683c\u5f0f\u4e0e\u8d28\u91cf\u68c0\u67e5\u8fb9\u754c\u3002'))
 }
 

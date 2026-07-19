@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "asset_class": "first-class-owner-and-skill-asset",
+  "automatic_review": "Run on every complete global experience iteration and persist a project-local review.",
+  "automatic_local_optimization": {
+    "enabled": true,
+    "conditions": [
+      "The owner contract, trigger, artifacts, maintained knowledge, and safety boundary remain unchanged.",
+      "The change has a recorded baseline, expected measurable benefit, no-regression validation, and rollback path.",
+      "The change is owner-scoped and is documentation-only, an internal subskill refinement, or a read-only/local-reversible script or workflow refactor.",
+      "The change uses an already available runtime and preserves all caller contracts."
+    ]
+  },
+  "automatic_rename": {
+    "enabled": true,
+    "scope": "naming-only owner and skill migrations",
+    "conditions": [
+      "The actual contract, trigger, artifacts, maintained knowledge, owning parent, and safety boundary remain unchanged.",
+      "Actual contract evidence, user-recognizable task language, and verified experience all favor the new stable name.",
+      "The canonical naming pattern, migration record, one-release compatibility route, reference updates, and global discovery interfaces are complete.",
+      "Test-SkillNameMigrations.ps1 and global-interface validation pass before the renamed capability is treated as active."
+    ],
+    "exclusions": [
+      "add, merge, split, deprecate, delete, or materially revise an owner or skill",
+      "change runtime, credential, installation, publication, or safety authority"
+    ]
+  },
+  "requires_explicit_authorization": [
+    "add, merge, split, deprecate, or delete a top-level owner",
+    "material owner or skill contract, trigger, artifact, knowledge, or safety-boundary change",
+    "external, public, paid, credential, installation, runtime-changing, destructive, or irreversible action",
+    "Git commit, push, tag, release, or publication"
+  ],
+  "required_evidence": [
+    "outcome-directed iteration contract",
+    "baseline and expected benefit",
+    "equivalent behavior or no-regression validation",
+    "rollback boundary and affected-owner routing review"
+  ]
+}

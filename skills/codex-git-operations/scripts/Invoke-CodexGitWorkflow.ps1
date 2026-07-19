@@ -9,6 +9,7 @@ param(
     [string]$ChangeClass = 'Feature',
     [switch]$CheckWhitespace,
     [switch]$Push,
+    [switch]$ForceProxy,
     [switch]$Apply
 )
 
@@ -78,6 +79,7 @@ $basePlan = [ordered]@{
     remotes = @(Get-RemoteSummary)
     checkpoint = Get-Checkpoint
     diff_check = $diffCheck
+    force_proxy = [bool]$ForceProxy
     apply_required = $Action -ne 'Inspect'
 }
 
@@ -91,6 +93,11 @@ $unknown = @($selected | Where-Object { $_ -notin $changed })
 if ($unknown.Count -gt 0) { throw "Selected paths are not changed or untracked: $($unknown -join ', ')" }
 
 if ($Action -eq 'Stage') {
+    $indexLockRepair = Join-Path $PSScriptRoot 'Repair-CodexGitIndexLock.ps1'
+    $indexLockResult = & $indexLockRepair -RepositoryRoot $root -Apply | ConvertFrom-Json
+    if ($indexLockResult.result -eq 'lock-retained') {
+        throw "Git staging is blocked by index lock: $($indexLockResult.retained_reason)."
+    }
     $runRootResolver = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..\scripts\Resolve-CodexRunRoot.ps1')).Path
     $runRoot = & $runRootResolver -ArchitectureRoot $root -Kind tmp -Create
     $pathspec = Join-Path $runRoot ('codex-stage-' + [guid]::NewGuid().ToString('N') + '.txt')
@@ -103,6 +110,7 @@ if ($Action -eq 'Stage') {
         if (Test-Path -LiteralPath $pathspec) { Remove-Item -LiteralPath $pathspec -Force }
     }
     $basePlan.staged_paths = @(& git -C $root diff --cached --name-only | Where-Object { $_ } | Sort-Object -Unique)
+    $basePlan.index_lock_recovery = $indexLockResult
     $basePlan.result = 'staged-selected-paths'
     $basePlan | ConvertTo-Json -Depth 6
     exit 0
@@ -113,6 +121,7 @@ if ($Action -eq 'Commit') {
     $arguments = @{ RepositoryRoot = $root; Paths = $selected; ChangeClass = $ChangeClass; Apply = $true }
     if ($Message) { $arguments.Message = $Message }
     if (-not $Push) { $arguments.CommitOnly = $true }
+    if ($ForceProxy) { $arguments.ForceProxy = $true }
     $result = & $commitScript @arguments | ConvertFrom-Json
     $basePlan.controller_result = $result
     $basePlan.result = $result.decision
@@ -122,7 +131,7 @@ if ($Action -eq 'Commit') {
 
 $releaseScript = Join-Path $PSScriptRoot 'Invoke-ExperienceRelease.ps1'
 $releaseMode = if ($Action -eq 'PrivateRelease') { 'Private' } else { 'Public' }
-$releaseResult = & $releaseScript -RepositoryRoot $root -Mode $releaseMode -Paths $selected -Apply | ConvertFrom-Json
+$releaseResult = & $releaseScript -RepositoryRoot $root -Mode $releaseMode -Paths $selected -ForceProxy:$ForceProxy -Apply | ConvertFrom-Json
 $basePlan.controller_result = $releaseResult
 $basePlan.result = $releaseResult.result
 $basePlan | ConvertTo-Json -Depth 8

@@ -47,6 +47,17 @@ foreach ($relative in $scriptPaths) {
     }
 }
 
+foreach ($relative in @(
+    'skills/codex-git-operations/scripts/Invoke-CodexGitWorkflow.ps1',
+    'skills/codex-git-operations/scripts/Invoke-ExperienceRelease.ps1',
+    'skills/codex-git-operations/scripts/Invoke-VerifiedPrivateCommit.ps1'
+)) {
+    $content = Get-Content -LiteralPath (Join-Path $root $relative) -Raw -Encoding UTF8
+    if ($content -notmatch '\[switch\]\$ForceProxy' -or $content -notmatch '-ForceProxy:\$ForceProxy') {
+        throw "GitHub controller does not propagate the explicit scoped-proxy retry switch: $relative"
+    }
+}
+
 [pscustomobject]@{
     helper = $helperPath
     proxy_endpoint = 'http://127.0.0.1:7892'

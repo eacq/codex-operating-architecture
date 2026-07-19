@@ -6,14 +6,15 @@ description: Use codebase-memory-mcp as a local graph evidence layer for reposit
 # Codebase Graph Evidence
 
 Use this subskill when a task needs repository orientation, architectural
-mapping, impact analysis, dependency/caller discovery, or codebase learning and
-`codebase-memory-mcp` is available.
+mapping, impact analysis, dependency/caller discovery, or codebase learning.
+Before deciding the MCP is unavailable, query the current task's deferred or
+namespaced callable capability registry.
 
 ## Evidence Order
 
-1. At project entry, when the MCP tools are exposed and the current project is
-   a source repository, refresh the graph for the current repository with
-   `index_repository` before broad file reading.
+1. At project entry, when the current project is a source repository and the
+   MCP is callable after the capability-registry check, refresh the graph for
+   the current repository with `index_repository` before broad file reading.
    Prefer `mode: fast` for first-pass orientation, large repos, mixed Markdown
    and scripts, or when semantic similarity is not required.
 2. Read `get_graph_schema` and `get_architecture` before making architecture

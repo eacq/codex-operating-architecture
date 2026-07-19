@@ -7,6 +7,7 @@ param(
     [string]$ChangeClass = 'Feature',
     [switch]$PreserveVersion,
     [switch]$SkipCompleteIteration,
+    [switch]$ForceProxy,
     [switch]$CommitOnly,
     [switch]$Apply
 )
@@ -76,7 +77,7 @@ $githubCommand = Join-Path $PSScriptRoot 'Invoke-GitHubNetworkCommand.ps1'
 $privateConfirmed = $false
 $privacyReason = 'GitHub CLI or GitHub remote identity is unavailable.'
 if ($repoMatch.Success -and (Get-Command gh -ErrorAction SilentlyContinue)) {
-    try { $privateConfirmed = ((& $githubCommand -RepositoryRoot $root -Tool gh repo view $repoMatch.Groups['repo'].Value --json isPrivate --jq .isPrivate 2>$null).Trim() -eq 'true'); $privacyReason = if ($privateConfirmed) { 'GitHub CLI confirmed origin is private.' } else { 'GitHub CLI did not confirm origin as private.' } } catch { $privacyReason = 'GitHub CLI could not verify origin visibility.' }
+    try { $privateConfirmed = ((& $githubCommand -RepositoryRoot $root -ForceProxy:$ForceProxy -Tool gh repo view $repoMatch.Groups['repo'].Value --json isPrivate --jq .isPrivate 2>$null).Trim() -eq 'true'); $privacyReason = if ($privateConfirmed) { 'GitHub CLI confirmed origin is private.' } else { 'GitHub CLI did not confirm origin as private.' } } catch { $privacyReason = 'GitHub CLI could not verify origin visibility.' }
 }
 $currentVersion = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
 $changelogReady = (Test-Path -LiteralPath (Join-Path $root 'CHANGELOG.md')) -and ((Get-Content -LiteralPath (Join-Path $root 'CHANGELOG.md') -Raw -Encoding UTF8) -match [regex]::Escape($currentVersion))
@@ -152,6 +153,11 @@ if ($selected.Count -eq 0) { throw 'No selected paths remain changed after resto
 $pathspecRoot = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -Create
 $pathspecFile = Join-Path $pathspecRoot ("codex-git-pathspec-" + [guid]::NewGuid().ToString('N') + '.txt')
 try {
+    $indexLockRepair = Join-Path $PSScriptRoot 'Repair-CodexGitIndexLock.ps1'
+    $indexLockResult = & $indexLockRepair -RepositoryRoot $root -Apply | ConvertFrom-Json
+    if ($indexLockResult.result -eq 'lock-retained') {
+        throw "Git commit staging is blocked by index lock: $($indexLockResult.retained_reason)."
+    }
     [IO.File]::WriteAllLines($pathspecFile, @($selected), [Text.UTF8Encoding]::new($false))
     & git -C $root add --pathspec-from-file=$pathspecFile
     if ($LASTEXITCODE -ne 0) { throw 'Git staging failed for the selected pathspec file.' }
@@ -185,7 +191,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Publication metadata validation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Git commit failed.' }
 $commit = (& git -C $root rev-parse HEAD).Trim()
 if (-not $CommitOnly) {
-    & $githubCommand -RepositoryRoot $root -Tool git -C $root push origin HEAD
+    & $githubCommand -RepositoryRoot $root -ForceProxy:$ForceProxy -Tool git -C $root push origin HEAD
 }
 & git -C $root config codex.route.repo-root $root
 & git -C $root config codex.route.branch $plan.branch

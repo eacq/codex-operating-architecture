@@ -42,6 +42,8 @@ First run `scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -RepositoryRoot 
 ## Failure recovery
 
 On any Git-process failure, create or update the redacted `codex-error-feedback` report and resolve every Git-process report to `fixed` or `verified` before retrying. Do not reuse a failed commit, synchronization, or release plan. Recalculate the repaired worktree's complete scoped paths, regenerate changelog/documentation/version artifacts, stage that new set, and rerun full validation, global iteration, integration, metadata, privacy, and visibility checks as applicable. Release automation rejects unselected repaired paths so a stale retry cannot omit a fix.
+For a blocked `.git/index.lock`, use `scripts/Repair-CodexGitIndexLock.ps1` through the scripted Git entry. It removes a lock only when the target is the verified repository-local lock, the lock is empty and older than the minimum age, and no `git.exe` process is active. Any active Git process, recent lock, or non-empty lock remains a blocker rather than being removed.
+When a failed release has already generated `VERSION` and its release materials but has not committed, pushed, tagged, or created the release, retry `Invoke-ExperienceRelease.ps1` with `-PreserveVersion` after repairing the reported Git failure. The flag reuses only that exact uncommitted four-part version; it does not bypass scoped paths, validation, commit, push, tag, privacy, or release checks.
 For experience-system release sync, `Invoke-ExperienceRelease.ps1` must derive
 the actual commit set through `Resolve-ExperienceReleasePathSet.ps1` after
 release notes, README blocks, changelog, visual plans, and iteration status are

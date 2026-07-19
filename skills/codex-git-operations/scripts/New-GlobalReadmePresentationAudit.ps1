@@ -15,7 +15,7 @@ $presentationPaths = @($paths | Where-Object {
 })
 if ($presentationPaths.Count -eq 0) {
     [ordered]@{ required = $false; generated_path = $null; reason = 'No main user-facing explanation surface changed.' } | ConvertTo-Json
-    exit 0
+    return
 }
 
 $readmePaths = @($presentationPaths | Where-Object { $_ -match '^README(\.en)?\.md$' })

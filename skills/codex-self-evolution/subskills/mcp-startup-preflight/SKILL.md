@@ -24,10 +24,11 @@ invoke the relevant MCP tool before broad repository reading.
    until `GET /api/project-health?name=F-codex` is healthy. This applies to
    every Codex task, including non-source repositories, so the graph console
    remains available at `http://127.0.0.1:9750/` with `F-codex` visible.
-2. Determine whether `codebase-memory-mcp` is callable in the current task.
-   When the tool surface is deferred or namespaced, inspect the task's callable
-   capability registry before concluding it is unavailable; do not rely only on
-   the initially displayed static tool list. If callable, first call:
+2. Always determine whether `codebase-memory-mcp` is callable in the current
+   task before deciding to skip graph evidence. When the tool surface is
+   deferred or namespaced, inspect the task's callable capability registry; do
+   not rely only on the initially displayed static tool list. If callable,
+   first call:
 
    ```text
    index_repository(repo_path="F:\\codex", mode=fast, name="F-codex")
@@ -54,9 +55,11 @@ invoke the relevant MCP tool before broad repository reading.
 
 5. Treat the result as startup evidence: record project name, status, node and
    edge counts, and visible exclusions when they affect confidence.
-6. Do not block ordinary work only after the callable-capability check confirms
-   the MCP tool is unavailable in the current task. Record the missing tool and
-   fall back to `rg`, Git state, and local files.
+6. Do not skip opening or indexing an exposed MCP merely because it is absent
+   from the initial static list. Ordinary work may proceed without a graph only
+   after the callable-capability check confirms the tool is unavailable, or
+   when the task has no relevant source-structure question. Record that narrow
+   reason, then fall back to `rg`, Git state, and local files.
 7. Do not commit MCP cache databases, `.codebase-memory` artifacts, local
    binary paths, or machine-specific MCP config.
 8. For architecture, ownership, impact, or absence claims, hand off to

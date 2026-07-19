@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
-    [string]$OutputPath = (Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.png'),
-    [string]$GifOutputPath = (Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.gif'),
+    [string]$OutputPath = '',
+    [string]$GifOutputPath = '',
     [int]$NodeCount = 0,
     [int]$EdgeCount = 0,
     [int]$Seed = 20260719,
@@ -14,6 +14,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.png' }
+if ([string]::IsNullOrWhiteSpace($GifOutputPath)) { $GifOutputPath = Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.gif' }
 $python = 'C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 $renderer = Join-Path $PSScriptRoot 'render_codebase_memory_graph.py'
 $canvasCapture = Join-Path $PSScriptRoot 'capture_codebase_memory_graph_canvas.mjs'
@@ -41,7 +43,8 @@ $architectureRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $framesDirectory = & $runRootResolver -ArchitectureRoot $architectureRoot -Kind tmp -ChildPath ("codebase-memory-frames-" + [guid]::NewGuid().ToString('N')) -Create
 if ($GenerateGif -and $PngOnly) { throw 'GenerateGif and PngOnly cannot be used together.' }
 $renderGif = $GenerateGif.IsPresent
-& node $canvasCapture --playwright-root $playwrightRoot --chrome-path $chrome --ui-url $ui.url --project $ui.project_name --frames-dir $framesDirectory --frames $Frames --static (-not $renderGif)
+$staticMode = (-not $renderGif).ToString().ToLowerInvariant()
+& node $canvasCapture --playwright-root $playwrightRoot --chrome-path $chrome --ui-url $ui.url --project $ui.project_name --frames-dir $framesDirectory --frames $Frames --static $staticMode
 if ($LASTEXITCODE -ne 0) { throw 'Codebase Memory Three.js canvas capture failed.' }
 if ($renderGif) {
     & $python $renderer --png $OutputPath --gif $GifOutputPath --frames-dir $framesDirectory --loop-duration-ms ($Frames * $GifFrameDurationMilliseconds)

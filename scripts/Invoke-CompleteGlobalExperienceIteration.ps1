@@ -121,6 +121,10 @@ Invoke-TimedStep 'script-asset-optimization-review' {
     $script:scriptAssetOptimization = & (Join-Path $root 'skills\codex-workflow-design\scripts\Invoke-ScriptAssetOptimization.ps1') -ProjectRoot $root -Apply | ConvertFrom-Json
     if ($scriptAssetOptimization.result -ne 'analyzed' -or $scriptAssetOptimization.asset_class -ne 'first-class-script-asset') { throw 'Script asset optimization review did not establish its contract.' }
 }
+Invoke-TimedStep 'owner-self-iteration-review' {
+    $script:ownerSelfIteration = & (Join-Path $root 'skills\codex-architecture-iteration\scripts\Invoke-OwnerSelfIterationReview.ps1') -ProjectRoot $root -ArchitectureRoot $root -Apply | ConvertFrom-Json
+    if ($ownerSelfIteration.result -ne 'analyzed' -or $ownerSelfIteration.asset_class -ne 'first-class-owner-and-skill-asset' -or -not $ownerSelfIteration.automatic_local_optimization.enabled) { throw 'Owner self-iteration review did not establish its policy contract.' }
+}
 $iterationMode = 'complete-replacement'
 if ($CandidateOnly) {
     $iterationMode = 'candidate-only'
@@ -172,6 +176,7 @@ $record = [ordered]@{
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
         script_asset_optimization = $scriptAssetOptimization.output
+        owner_self_iteration = $script:ownerSelfIteration.output
         candidate_report = $isolatedIteration.candidate_report
         candidate_processing = $candidateProcessingStatus
         visual_decision = $visualProbe.action

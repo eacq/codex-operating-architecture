@@ -12,7 +12,7 @@
 | 2 | `codex-requirement-authoring` | 理解歧义需求并形成可验收规格 |
 | 3 | `codex-task-execution` | 受控实施、测试与交付 |
 | 4 | `codex-workflow-design` | 把重复任务固化为可恢复工作流 |
-| 5 | `codex-credential-management` | 管理凭据元数据、验证和轮换，不保存秘密 |
+| 5 | `codex-credential-management` | 管理凭据元数据、验证和轮换；其 `provider-routing` 子 skill 处理兼容提供方路由，不保存秘密 |
 | 6 | `codex-git-operations` | Git/GitHub 诊断、分支、提交与远程操作 |
 | 7 | `codex-tool-installation` | 插件、skill、软件和运行时安装验证 |
 | 8 | `codex-experience-capture` | 从历史与执行结果中提炼经验 |
@@ -22,8 +22,8 @@
 | 12 | `codex-skill-packaging` | 新增、合并、精简和发布 skills |
 | 13 | `codex-cost-optimization` | 在不降低验收质量的前提下降低费用 |
 | 14 | `codex-knowledge-system` | 用 Obsidian 双向链接、MindMaster/Mermaid 导图和 Anki 复习连接经验 |
-| 15 | `codex-image-workflow` | 图片检索/生成、B 站托管、链接替换与安全清理 |
-| 16 | `your-api-source` | 私有 OpenAI-compatible provider、凭据来源、模型路由与低频连接诊断兼容入口 |
+| 15 | `codex-image-workflow` | 图片检索/生成、B 站托管、链接替换与安全清理；其 `figure-optimization` 子 skill 负责数据保真的学术图优化 |
+| 16 | 兼容入口 | `your-api-source`、`codex-provider-routing` 与 `academic-figure-optimizer` 为一发布周期别名；新任务使用对应母 skill 的子 skill |
 | 17 | `codex-conversation-continuity` | 跨账号与提供商检索本地会话元数据，保持历史发现连续性 |
 | 18 | `codex-runtime-environments` | 管理基础与项目隔离 Python 环境、PowerShell/CMD 入口、依赖清单和高频依赖晋升证据 |
 | 19 | `codex-exact-word-layout` | 修复锁定模板 DOCX 的精确页流与版式，使用局部 OOXML/Word COM 编辑和渲染验收 |
@@ -36,6 +36,8 @@
 - 合并模块：触发条件、工作流和维护内容高度重复时。
 - 停用模块：长期无使用证据、知识已被上游工具取代或维护成本超过收益时；先标记 deprecated，再删除。
 - 每次完整迭代更新 `module-registry.json` 的证据与决策，不以主观偏好随意增删。
+- owner 与 skill 可在不改变触发、产物、维护知识、契约和安全边界时自我优化：必须有基线、预期收益、等价验证和回滚；自动范围仅限文档、owner 内部子 skill 与只读/本地可逆的工作流或脚本重构。顶层结构、实质契约、外部/凭据/安装/运行时/Git 发布、破坏性或不可逆操作仍需原有明确授权。
+- 仅命名变更的 owner 与 skill 可自动重命名：实际契约、用户可识别任务语言和已验证经验必须共同支持新名称，且不改变 owner 边界；必须同步迁移记录、规范路径、一个发布周期的兼容入口、全部引用与全局接口，并通过命名迁移和接口验证。
 
 <!-- BEGIN MANAGED BLOCK: codebase-memory-architecture-graph -->
 ## 架构图谱

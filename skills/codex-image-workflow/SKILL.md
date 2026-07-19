@@ -7,6 +7,8 @@ description: Find, generate, select, upload, link, validate, and safely retire i
 
 For knowledge, experience, and workflow explanations, first assess whether a visual materially improves understanding. Then select the visual class and final file format through [subskills/visual-format-selection/SKILL.md](subskills/visual-format-selection/SKILL.md): SVG/Mermaid are conditional editable-structure choices, never a default fallback for visuals that should be raster. For three or more non-linear relationships, prefer a sanitized GPT-generated visual when it improves comprehension. Run `New-UnderstandingVisualPlan.ps1` before creating a project-bound visual. Never send raw private artifacts, local paths, remote identities, credentials, sessions, or user data to GPT image generation. On change, edit only when the visual topology is still valid; regenerate after structural change and delete/unlink obsolete visuals.
 
+For a user request to solve or explain a problem, read [subskills/solution-visualization/SKILL.md](subskills/solution-visualization/SKILL.md). It decides whether a Chinese explanatory visual improves the reasoning, selects Mermaid, SVG, PNG, or a generated raster, and keeps the diagram semantically tied to the written solution.
+
 Read [references/image-workflow.md](references/image-workflow.md) before uploading, rewriting, or deleting images.
 
 1. Use a visual only when it improves understanding. Record its purpose, chosen class, final format, rationale, dimensions, and any derivative before generation or conversion. Prefer user-owned, generated, or explicitly licensed images; use Mermaid or SVG only when editable structure materially improves the result.
@@ -20,6 +22,13 @@ Read [references/image-workflow.md](references/image-workflow.md) before uploadi
 9. On any failure, keep originals and stop. Authentication failure requires user-assisted credential refresh through the secure DPAPI prompt.
 
 Never upload confidential, private, paywalled, or unlicensed material. Browser login may support visible actions but does not authorize cookie or storage extraction.
+
+## Figure Optimization
+
+Use `$codex-image-workflow-figure-optimization` when a scientific figure needs
+data-faithful re-rendering, publication typography, exact dimensions, or export
+conversion. It inherits this owner's provenance and runtime-routing boundaries;
+do not use generative redraws when numerical fidelity matters.
 
 ## Example
 

@@ -200,7 +200,7 @@
 | AC-06 | 执行一张测试图迁移 | 远程 HTTPS 可访问、Markdown 已替换、清单已提交、本地源已安全删除 |
 | AC-07 | 检查配置策略 | `periodic_scan=false`，软件包与安装位置符合 本地软件根策略 |
 | AC-08 | 检查 Git | 版本、提交、标签与远程主分支一致，无秘密进入提交 |
-| AC-09 | 运行 `your-api-source/scripts/check_your_api_source.py` | `TEST_API_KEY` 失效时安全切换到获批凭据来源，输出只含模型、来源名称和状态 |
+| AC-09 | 运行 `codex-credential-management/subskills/provider-routing/scripts/check_provider_routing.py` | `TEST_API_KEY` 失效时安全切换到获批凭据来源，输出只含模型、来源名称和状态 |
 | AC-10 | 初始化基础环境与临时项目环境 | Python、PowerShell 和 CMD 入口均使用隔离解释器，物理环境保持 Git 忽略 |
 
 ## 7. 运行入口

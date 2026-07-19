@@ -7,10 +7,11 @@ try {
     [IO.Directory]::CreateDirectory((Join-Path $fixture 'keep-empty')) | Out-Null
     Set-Content -LiteralPath (Join-Path $fixture 'keep.txt') -Value 'before' -Encoding UTF8
     Set-Content -LiteralPath (Join-Path $fixture 'restore.txt') -Value 'restore-me' -Encoding UTF8
+    Set-Content -LiteralPath (Join-Path $fixture 'unchanged.txt') -Value 'unchanged' -Encoding UTF8
     Set-Content -LiteralPath (Join-Path $fixture '.codex\protected.txt') -Value 'protected-before' -Encoding UTF8
     Set-Content -LiteralPath (Join-Path $fixture '.env.local') -Value 'secret-shaped' -Encoding UTF8
     & git -C $fixture init --quiet
-    & git -C $fixture add -- keep.txt restore.txt
+    & git -C $fixture add -- keep.txt restore.txt unchanged.txt
     $snapshot = & (Join-Path $PSScriptRoot 'New-PreIterationRollbackSnapshot.ps1') -ProjectRoot $fixture -BackupRoot $backup -Apply | ConvertFrom-Json
     Set-Content -LiteralPath (Join-Path $fixture 'keep.txt') -Value 'after' -Encoding UTF8
     Remove-Item -LiteralPath (Join-Path $fixture 'restore.txt') -Force
@@ -24,6 +25,7 @@ try {
     if ((Get-Content (Join-Path $fixture '.env.local') -Raw).Trim() -ne 'secret-shaped') { throw 'Rollback modified a secret-shaped protected file.' }
     if ($snapshot.file_inventory -ne 'git-tracked-untracked-ignored' -or $snapshot.copy_engine -ne 'robocopy-filtered-tree' -or $snapshot.hash_engine -ne 'dotnet-sha256-stream') { throw 'Rollback snapshot did not use the optimized privacy-filtered copy path.' }
     if ($snapshot.snapshot_name_policy -ne 'short-prefix' -or (Split-Path -Leaf $snapshot.snapshot_root) -notmatch '^pre-\d{8}-\d{6}$') { throw 'Rollback snapshot does not use the short path-budget prefix.' }
+    if ($restored.files_restored -ne 2 -or $restored.files_skipped_identical -lt 1) { throw 'Rollback did not skip the already verified identical file.' }
     if (-not (Test-Path -LiteralPath (Join-Path $fixture 'keep-empty')) -or $restored.result -ne 'rolled-back' -or -not $restored.hash_verified) { throw 'Rollback evidence is incomplete.' }
     Write-Host 'Pre-iteration rollback test passed.'
 } finally {
