@@ -35,20 +35,21 @@ maintained knowledge base, and safety boundary.
 
 ## Operating Order
 
-1. Read project lifecycle authority and the current experience ledger.
-2. Check pending events, structured error reports, and incoming global-causality
+1. Enter through `codex-self-evolution`. Its MCP startup preflight must first refresh `F:\codex` as `F-codex` with fast `index_repository`, which is the automatic structural index of this global experience system. When the current task is a different source repository, index it after `F-codex`. This is mandatory even when the global experience system is entered through a narrower owner; when unavailable, record the absence and continue with local evidence.
+2. Read project lifecycle authority and the current experience ledger.
+3. Check pending events, structured error reports, and incoming global-causality
    summaries before treating behavior as a lesson.
-3. Classify evidence through `local-experience-iteration` or
+4. Classify evidence through `local-experience-iteration` or
    `workflow-learning` as appropriate.
-4. Convert workflow changes into hash-based learning records through
+5. Convert workflow changes into hash-based learning records through
    `codex-knowledge-system`.
-5. Ask `codex-architecture-iteration` to decide revise, parent-skill
+6. Ask `codex-architecture-iteration` to decide revise, parent-skill
    refinement, subskill packaging, subworkflow, merge, split, add, deprecate,
    or delete.
-6. Apply the smallest owner-scoped change, then update the ledger, linked
+7. Apply the smallest owner-scoped change, then update the ledger, linked
    knowledge, registry evidence, and documentation surfaces that describe the
    changed behavior.
-7. After a completed global iteration, generate the advisory candidate report.
+8. After a completed global iteration, generate the advisory candidate report.
    Present its Chinese-primary user view with source, evidence, suggested
    decision, and authority boundary, then append the stable English model view
    so the user and experience system can consume the same evidence without
@@ -59,7 +60,7 @@ maintained knowledge base, and safety boundary.
    so do not promise command launching from a chat click. The local report
    script and optional `codex-report` handler remain manual compatibility
    routes for File Explorer or a terminal, not the primary user delivery path.
-8. When an active explicit all-candidate authorization exists, the complete
+9. When an active explicit all-candidate authorization exists, the complete
    global-experience controller (`scripts/Invoke-CompleteGlobalExperienceIteration.ps1 -Apply`)
    consumes it through `Process-AuthorizedCandidateRecords.ps1` before its
    isolated replacement transaction:
@@ -71,6 +72,17 @@ maintained knowledge base, and safety boundary.
 ## Economy Rules
 
 - Prefer a handoff artifact over duplicating instructions across owners.
+- Treat repeated deterministic manual operations as an economy candidate. Route
+  them through `codex-workflow-design/scripts/New-ScriptAutomationCandidate.ps1`
+  before adding more prompt text: preserve owner routing, stable inputs,
+  validation, language choice, and authorization boundaries. Future global
+  optimization reviews must consider this scriptification path.
+- Treat scripts as first-class knowledge/workflow assets alongside skills,
+  knowledge, and experience. Every complete iteration automatically writes a
+  measured script-asset optimization review. It may split, merge, refactor, or
+  select a different suitable language only when caller contracts, equivalent
+  behavior, owner boundaries, rollback, and validation remain explicit; it
+  automatically applies only measured read-only or local-reversible gains.
 - For long or repetitive global-experience-system work, ask
   `codex-self-evolution` -> `resource-economy` to decide whether routine
   progress and closeout can use autonomous `caveman-lite` presentation

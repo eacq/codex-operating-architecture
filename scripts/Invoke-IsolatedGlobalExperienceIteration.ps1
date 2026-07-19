@@ -47,15 +47,11 @@ function Copy-ChangedPathOverlay {
     [Parameter(Mandatory = $true)][string]$SourceRoot,
     [Parameter(Mandatory = $true)][string]$TargetRoot
   )
+  $collector = Join-Path $SourceRoot 'scripts\Get-CodexGitChangedPaths.ps1'
+  if (-not (Test-Path -LiteralPath $collector)) { throw 'Shared Git changed-path collector is missing from the source root.' }
   $paths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
-  foreach ($arguments in @(
-      @('diff', '--name-only'),
-      @('diff', '--cached', '--name-only'),
-      @('ls-files', '--others', '--exclude-standard')
-    )) {
-    foreach ($path in @(& git -C $SourceRoot -c core.quotePath=false @arguments)) {
-      if ($path) { [void]$paths.Add((Normalize-GitPath $path)) }
-    }
+  foreach ($path in @(& $collector -RepositoryRoot $SourceRoot)) {
+    if ($path) { [void]$paths.Add((Normalize-GitPath $path)) }
   }
   $copied = 0
   $removed = 0
@@ -105,6 +101,10 @@ if ($Replace -and (Test-Path -LiteralPath $statePath)) {
 Invoke-Step 'clone sandbox' {
   & git clone --shared --quiet $root $sandbox
   if ($LASTEXITCODE -ne 0) { throw 'Sandbox shared clone failed.' }
+  $originUrl = (& git -C $root remote get-url origin 2>$null).Trim()
+  if ($originUrl) { & git -C $sandbox remote set-url origin $originUrl }
+  $publicUrl = (& git -C $root remote get-url public 2>$null).Trim()
+  if ($publicUrl) { & git -C $sandbox remote add public $publicUrl }
   $script:sandboxOverlay = Copy-ChangedPathOverlay -SourceRoot $root -TargetRoot $sandbox
   Copy-Item -LiteralPath (Join-Path $root '.codex\project') -Destination (Join-Path $sandbox '.codex\project') -Recurse -Force
   $script:trackedAuthority = Join-Path $sandbox '.codex\project\isolation-source-tracked.txt'

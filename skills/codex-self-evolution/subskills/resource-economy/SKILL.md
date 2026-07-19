@@ -30,6 +30,23 @@ Never save resources by skipping required verification, security controls,
 evidence, rollback readiness, or redaction. This subskill selects work; it does
 not authorize external services, provider changes, monitoring, or agents.
 
+When a global-system optimization identifies a repeated deterministic operation,
+prefer an owner-bound script over recurring manual tool choreography. Record the
+candidate with `codex-workflow-design/scripts/New-ScriptAutomationCandidate.ps1`:
+require stable inputs, a validation check, measured or observed repeat evidence,
+and the least complex supported language. Script trials may automate read-only
+or local-reversible steps; higher-authority actions remain explicit controllers
+with their existing authorization gates.
+
+Treat scripts as first-class assets rather than disposable implementation
+details. Complete global iterations automatically analyze persisted timing
+evidence through `codex-workflow-design/scripts/Invoke-ScriptAssetOptimization.ps1`.
+The analysis may recommend splitting, merging, refactoring, or selecting a more
+suitable supported language. It may automatically apply only function-preserving
+read-only or local-reversible changes with a measured baseline, equivalent
+verification, and rollback; all other changes remain candidates or require
+their existing explicit authority.
+
 ## Adaptive concise communication
 
 Use the installed `caveman` skill as a presentation-layer compression option,

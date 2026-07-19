@@ -2,6 +2,11 @@
   "schema_version": 1,
   "package_root": "$SOFTWARE_ARCHIVE_ROOT",
   "install_root": "$SOFTWARE_INSTALL_ROOT",
+  "default_package_root": "$ARCHITECTURE_ROOT/.runtime/installers",
+  "default_install_root": "$ARCHITECTURE_ROOT/.runtime/software",
+  "temporary_root": "$CODEX_RUN_TMP_ROOT or $ARCHITECTURE_ROOT/.runtime/tmp",
+  "work_root": "$CODEX_RUN_WORK_ROOT or $ARCHITECTURE_ROOT/.runtime/work",
+  "cache_root": "$CODEX_RUN_CACHE_ROOT or $ARCHITECTURE_ROOT/.runtime/cache",
   "local_profile": "$CODEX_HOME/private-skill-config/portable-skill.json",
   "naming": {
     "allowed": "Unicode letters and numbers plus dot, underscore, and hyphen",
@@ -14,11 +19,13 @@
     "notify_before_system_change": true,
     "verify_actual_install_location": true,
     "record_install_result": true,
-    "migrate_existing_installations": false
+    "migrate_existing_installations": false,
+    "cleanup_disposable_workspaces": true,
+    "prefer_architecture_runtime_roots": true
   },
   "exceptions_requiring_report_before_install": [
     "installer does not support a custom location",
-    "Microsoft Store or UWP controls the location",
+    "Microsoft Store, UWP, or WindowsApps controls the application package location",
     "driver or Windows component requires a system directory",
     "upgrade must preserve an existing location outside the policy roots"
   ]

@@ -20,6 +20,17 @@ GitHub. For proxy-budget isolation, OpenAI reachability checks, system proxy
 state, TUN/game routing, and local `127.0.0.1:7892` verification, read
 [subskills/scoped-network-proxy/SKILL.md](subskills/scoped-network-proxy/SKILL.md).
 
+Use `scripts/Invoke-CodexGitWorkflow.ps1` as the single scripted Git entry:
+`Inspect` produces a sanitized status, remote, checkpoint, scope, and diff
+plan. Add `-CheckWhitespace` only when an explicit whitespace audit is needed;
+the expensive scan remains mandatory in the existing commit and release gates.
+`Stage` stages only explicit paths; `Commit` delegates to the verified
+private-commit gate and pushes only with `-Push`; `PrivateRelease` and
+`PublicRelease` delegate to the existing release controller. Every mutating
+action requires explicit paths and `-Apply`; the wrapper never bypasses the
+complete-iteration, publication-metadata, privacy, or release authorization
+gates.
+
 ## Publication descriptions
 
 Before every non-merge commit, update `CHANGELOG.md` and run

@@ -6,7 +6,7 @@ $root = (Resolve-Path -LiteralPath $ProjectRoot).Path
 $manifestPath = Join-Path $root '.codex\project\file-organization-move-manifest.json'
 if (-not (Test-Path -LiteralPath $manifestPath)) {
   [pscustomobject]@{ restored=0; removed_relocated_copies=0; result='no-local-move-manifest' } | ConvertTo-Json
-  exit 0
+  return
 }
 $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $restored = 0; $removed = 0

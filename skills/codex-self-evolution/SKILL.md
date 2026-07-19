@@ -14,6 +14,9 @@ subskills.
 
 1. Identify the project root and check `.codex/project/state.json`; invoke
    `codex-project-optimization` before substantive work when it is missing.
+   On every Codex project entry, ensure the canonical graph console is available
+   with `scripts/Start-CodebaseMemoryGraphUi.ps1` (`F:\codex`, `F-codex`,
+   `127.0.0.1:9750`) before selecting narrower skills.
    For source repositories with `codebase-memory-mcp` exposed in the current
    Codex task, run the startup preflight in
    [subskills/mcp-startup-preflight/SKILL.md](subskills/mcp-startup-preflight/SKILL.md)

@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ('codex-continuous-diagnosis-' + [guid]::NewGuid().ToString('N'))
+$fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ('codex-continuous-diagnosis-' + [guid]::NewGuid().ToString('N')) -Create
 New-Item -ItemType Directory -Force -Path $fixture | Out-Null
 try {
     $probe = Join-Path $fixture 'probe.ps1'

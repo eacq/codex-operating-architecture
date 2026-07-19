@@ -147,7 +147,7 @@ $readmeOptimization = [ordered]@{
     evidence = [ordered]@{ release_note = $releaseNoteRelative; changed_paths = $paths; impact_areas = $areas }
     design_system = 'docs/readme-design-system.json'
     reading_order_contract = @('value proposition', 'first successful action', 'collaboration mechanism', 'architecture visual', 'channels and detailed guarantees', 'release evidence')
-    visual_decision = [ordered]@{ action = 'use-approved-raster-visual-system'; format = 'PNG'; raster_assets = @('docs/assets/readme-collaboration-loop.png','docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png'); reader_delivery_rule = 'Reader-facing Markdown uses approved PNG assets for reliable rendering. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.'; text_policy = 'Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. Architecture and transactional workflow explanations require reviewed labeled visuals; when image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review.' }
+    visual_decision = [ordered]@{ action = 'use-approved-raster-visual-system'; format = 'PNG'; raster_assets = @('docs/assets/readme-collaboration-loop.png','docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png','docs/assets/codebase-memory-mcp-graph.png'); reader_delivery_rule = 'Reader-facing Markdown uses approved PNG assets. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.'; animation_policy = 'GIF generation and overwrite are opt-in: release refreshes do not modify an existing GIF unless the user explicitly requests it.'; text_policy = 'Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. Architecture and transactional workflow explanations require reviewed labeled visuals; when image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review.' }
     decisions = @(
         'Refresh both README language variants with the current release, evidence links, and impact summary.',
         'Make the release note lead with verified user-facing changes; keep visual and audit mechanics out of its primary reading path.',
@@ -171,6 +171,12 @@ $visualPlan = [ordered]@{
 }
 
 if ($Apply) {
+    $graphRenderer = Join-Path $root 'scripts\Render-CodebaseMemoryGraph.ps1'
+    $graphUiStarter = Join-Path $root 'scripts\Start-CodebaseMemoryGraphUi.ps1'
+    if ((Test-Path -LiteralPath $graphRenderer) -and (Test-Path -LiteralPath $graphUiStarter)) {
+        $graphUi = & $graphUiStarter | ConvertFrom-Json
+        & $graphRenderer -OutputPath (Join-Path $root 'docs\assets\codebase-memory-mcp-graph.png') -UiUrl $graphUi.url -ProjectName $graphUi.project_name | Out-Null
+    }
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-visual-plans') | Out-Null
     $visualPlan | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root $planRelative) -Encoding UTF8
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-readme-audits') | Out-Null
@@ -178,6 +184,22 @@ if ($Apply) {
 }
 $generated.Add($planRelative)
 $generated.Add($readmeAuditRelative)
+
+$architectureRelative = 'ARCHITECTURE.md'
+$architecturePath = Join-Path $root $architectureRelative
+if (Test-Path -LiteralPath $architecturePath) {
+    $architectureContent = Get-Content -LiteralPath $architecturePath -Raw -Encoding UTF8
+    $architectureLines = @(
+        (ConvertFrom-Utf8Base64 'IyMg5p625p6E5Zu+6LCx'),
+        '',
+        (ConvertFrom-Utf8Base64 'IVtDb2RlYmFzZSBNZW1vcnkgTUNQIOaXoOagh+etvuaetuaehOWbvuiwsV0oZG9jcy9hc3NldHMvY29kZWJhc2UtbWVtb3J5LW1jcC1ncmFwaC5wbmcp'),
+        '',
+        (ConvertFrom-Utf8Base64 '6K+lIFBORyDlnKjmr4/mrKEgcmVsZWFzZSDml7bnlLEgQ29kZWJhc2UgTWVtb3J5IE1DUCDnmoQgVGhyZWUuanMg5o6n5Yi25Y+w6YeN5paw57Si5byV5bm25riy5p+T44CC5a6D5Y+q5ZGI546w57uT5p6E5a+G5bqm77yM5LiN5YyF5ZCr6Lev5b6E44CB5Lya6K+d5oiW5rqQ56CB5paH5pys44CCR0lGIOS7heWcqOeUqOaIt+aYjuehruimgeaxgueUn+aIkOaIluabtOaWsOaXtuaJjeS8muWGmeWFpe+8m+WFtuS7liByZWxlYXNlIOS/neeVmeW3suaciSBHSUbjgII=')
+    )
+    $updatedArchitecture = Set-ManagedBlock -Content $architectureContent -Name 'codebase-memory-architecture-graph' -Lines $architectureLines
+    if ($Apply) { Set-Content -LiteralPath $architecturePath -Value $updatedArchitecture.TrimEnd() -Encoding UTF8 }
+    $generated.Add($architectureRelative)
+}
 
 if ($false) { # Retained only as disabled historical source-generation code; release delivery never emits Mermaid or SVG.
     $safeAreas = @($areas | ForEach-Object { ($_ -replace '[^\w \-]','').Trim() } | Where-Object { $_ })

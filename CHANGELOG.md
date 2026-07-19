@@ -389,12 +389,14 @@
 - Publish the verified Codebase Graph Evidence workflow and `codex-information-gathering` subskill through the private experience-system release channel.
 - Fix private release sync so release-scoped context paths can remain broad while the commit step receives only actually changed or untracked files.
 - Fix the global incoming error-feedback gate to evaluate the latest append-only status per report instead of blocking on stale earlier entries.
+- Repair lifecycle helpers so normal no-op paths return to their parent controller, and preserve the GitHub `origin` identity in isolated release validation.
 
 ### Chinese / 中文
 
 - 通过 private 经验系统发布通道同步已验证的 Codebase Graph Evidence 工作流与 `codex-information-gathering` 子 skill。
 - 修复 private release 同步：发布范围路径可以保持完整，提交步骤只接收实际变化或未跟踪文件。
 - 修复全局 incoming error-feedback 门禁：按每个报告的最新 append-only 状态判断，避免被旧状态误阻塞。
+- 修复生命周期辅助脚本的正常空操作返回逻辑，并在隔离发布校验中保留 GitHub `origin` 身份。
 
 ## 1.1.2.0 - 2026-07-18
 

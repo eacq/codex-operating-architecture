@@ -22,6 +22,10 @@ roots in committed files and resolve them locally at runtime.
 - `$SOFTWARE_ARCHIVE_ROOT`: the local installer/archive directory.
 - `$SOFTWARE_INSTALL_ROOT`: the local custom installation directory.
 - `$IMAGE_QUARANTINE_ROOT`: the local image quarantine directory.
+- `$CODEX_RUN_TMP_ROOT`: optional override for disposable Codex run fixtures.
+- `$CODEX_RUN_WORK_ROOT`: optional override for network-learning clones,
+  publication snapshots, and other reviewable candidate workspaces.
+- `$CODEX_RUN_CACHE_ROOT`: optional override for reusable Codex caches.
 
 ## Routing rule
 
@@ -30,6 +34,11 @@ belong in `~/.codex/private-skill-config/portable-skill.json` or environment
 variables documented in [[Knowledge Tooling]]. Generated history catalogs,
 image manifests, learning indexes, and MindMaster/Mermaid maps must preserve
 the same boundary so that a clone remains understandable without this machine.
+First-party Codex temporary files, network-learning clones, release-review
+snapshots, caches, installer archives, and custom installs default to ignored
+`$ARCHITECTURE_ROOT/.runtime` roots. Microsoft Store/UWP package directories
+such as WindowsApps are installer-controlled application locations and must not
+be moved by path cleanup; record them only as external runtime evidence.
 
 ## Links
 

@@ -32,10 +32,16 @@ $model = if ($providerName -eq 'skip') { '' } else { Read-Choice 'Preferred mode
 $useCustomPaths = Read-Choice 'Configure custom software archive/install roots? yes or no' 'no'
 $archiveRoot = ''
 $installRoot = ''
+$temporaryRoot = ''
+$workRoot = ''
+$cacheRoot = ''
 $tools = @()
 if ($useCustomPaths -eq 'yes') {
     $archiveRoot = Read-Choice 'Installer archive root' ''
     $installRoot = Read-Choice 'Software install root' ''
+    $temporaryRoot = Read-Choice 'Temporary workspace root' ''
+    $workRoot = Read-Choice 'Longer-lived work root' ''
+    $cacheRoot = Read-Choice 'Cache root' ''
     $toolInput = Read-Choice 'Optional tools, comma-separated' ''
     $tools = @($toolInput -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ })
 }
@@ -52,6 +58,9 @@ $profile = [ordered]@{
     software = [ordered]@{
         archive_root = $archiveRoot
         install_root = $installRoot
+        temporary_root = $temporaryRoot
+        work_root = $workRoot
+        cache_root = $cacheRoot
         selected_tools = $tools
     }
     notes = 'Local-only choices. No secrets, tokens, cookies, or account data are stored here.'

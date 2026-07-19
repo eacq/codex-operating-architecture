@@ -84,8 +84,9 @@ relationship, and validation in the project audit artifact.
   composition. Do not use SVG as a reflexive default and never rasterize the
   whole README.
 - Use only GitHub-safe markup: no scripts, `foreignObject`, remote fonts, or
-  essential SVG animation. Make GIF an opt-in derivative only when meaningful
-  motion is explicitly requested; retain its source asset.
+  essential SVG animation. Generate or overwrite a GIF only when the user
+  explicitly requests meaningful motion; otherwise retain the existing GIF
+  unchanged and deliver the current static raster asset.
 - Treat external counters, statistics cards, badges, profile widgets, embeds,
   and tracking services as optional dependencies. Verify availability,
   privacy, and reader value before using one; do not add personal identifiers,

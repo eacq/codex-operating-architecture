@@ -16,7 +16,7 @@ description: Install, update, configure, and verify Codex skills, plugins, comma
 
 Read [references/software-path-policy.md](references/software-path-policy.md) before every external software installation or upgrade.
 
-Archive installers under `$SOFTWARE_ARCHIVE_ROOT\<product>` and install custom-location software under `$SOFTWARE_INSTALL_ROOT\<product>`. Use `install_software.ps1` for winget plans. Report installer-controlled exceptions first; never migrate existing software or user data automatically.
+Archive installers under `$SOFTWARE_ARCHIVE_ROOT\<product>` and install custom-location software under `$SOFTWARE_INSTALL_ROOT\<product>`. Use `install_software.ps1` for winget plans. Report installer-controlled exceptions first; never migrate existing software or user data automatically. When those roots are not configured, the architecture-local fallback is `$ARCHITECTURE_ROOT\.runtime\installers` and `$ARCHITECTURE_ROOT\.runtime\software`; these ignored roots avoid scattering Codex-managed installers and custom installs across the user profile. Disposable download, clone, or test work uses `scripts/Resolve-CodexRunRoot.ps1` with `tmp`, `work`, or `cache`, and must be removed or recorded before completion.
 
 ## Example
 

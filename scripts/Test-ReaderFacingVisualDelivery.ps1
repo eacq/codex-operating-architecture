@@ -34,7 +34,7 @@ foreach ($document in @($readerDocuments | Sort-Object -Unique)) {
         $content -match '(?im)<(?:img|object|embed)[^>]+(?:src|data)=["''][^"'']*\.(mmd|svg)(?:[?#][^"'']*)?["'']') {
         $violations.Add((Resolve-Path -LiteralPath $document).Path)
     }
-    foreach ($match in [regex]::Matches($content, '(?im)!?\[[^\]]*\]\((?<target>[^\s\)]+\.(?:png|jpe?g|webp|mmd|svg)(?:[?#][^\)]*)?)\)')) {
+    foreach ($match in [regex]::Matches($content, '(?im)!?\[[^\]]*\]\((?<target>[^\s\)]+\.(?:png|jpe?g|webp|gif|mmd|svg)(?:[?#][^\)]*)?)\)')) {
         $target = $match.Groups['target'].Value -replace '[?#].*$',''
         if ($target -match '^[a-z][a-z0-9+.-]*:' -or $target.StartsWith('#')) { continue }
         $candidate = Join-Path (Split-Path -Parent $document) ($target -replace '/','\\')
@@ -63,7 +63,7 @@ foreach ($requiredLabeledAsset in @('architecture_overview','file_organization',
 [ordered]@{
     result = 'reader-facing-visual-delivery-passed'
     documents_checked = @($readerDocuments | Sort-Object -Unique).Count
-    reader_delivery = 'PNG/JPG/WebP only; Mermaid and SVG are maintainer sources.'
+    reader_delivery = 'PNG/JPG/WebP, plus reviewed user-requested GIF motion derivatives; Mermaid and SVG are maintainer sources.'
     in_image_text_contract = 'present'
     labeled_explanations = @('architecture_overview','file_organization','file_organization_concept','release_visual')
 } | ConvertTo-Json -Depth 4

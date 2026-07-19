@@ -10,5 +10,7 @@ if ($zh -notmatch 'readme-collaboration-loop-labeled\.png' -or $en -notmatch '##
 foreach ($asset in @('docs/assets/readme-collaboration-loop-labeled.png','docs/assets/readme-architecture-overview-labeled.png','docs/assets/file-organization-architecture-labeled.png','docs/assets/file-organization-concept-labeled.png')) {
   if (-not (Test-Path -LiteralPath (Join-Path $root $asset))) { throw "README-linked organization visual is missing: $asset" }
 }
+if ($zh -notmatch 'codebase-memory-mcp-graph\.png' -or $en -notmatch 'codebase-memory-mcp-graph\.png') { throw 'Both README files must link to the Codebase Memory MCP architecture graph canvas.' }
+if (-not (Test-Path -LiteralPath (Join-Path $root 'docs/assets/codebase-memory-mcp-graph.png'))) { throw 'README-linked Codebase Memory MCP graph canvas is missing.' }
 if ($zh -notmatch 'file-organization-concept-labeled\.png' -or $en -notmatch 'file-organization-concept-labeled\.png') { throw 'Both README files must link to the labeled file-organization visual.' }
 [pscustomobject]@{ readmes = @('README.md','README.en.md'); checks = @('changelog link','iteration status link','collaboration model','reader-facing labeled visual assets'); result = 'readme-iteration-alignment-passed' } | ConvertTo-Json

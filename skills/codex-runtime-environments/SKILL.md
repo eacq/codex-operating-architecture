@@ -7,6 +7,8 @@ description: Create, select, reproduce, and audit project-local Python environme
 
 Keep the canonical base definition and usage ledger in `$ARCHITECTURE_ROOT\runtime-environments`; keep the physical base environment in the ignored `$ARCHITECTURE_ROOT\.runtime\envs\codex-foundation` (`base` is a Conda-reserved name). Each project owns `.codex/runtime`, including its environment, dependency declarations, lock snapshot, launchers, and evidence.
 
+Use `$ARCHITECTURE_ROOT\scripts\Resolve-CodexRunRoot.ps1` for runtime scratch space: `.runtime\tmp` for disposable validation fixtures, `.runtime\work` for candidate clones or generated workspaces that may survive until review, and `.runtime\cache` for reusable local caches. Do not default to `%TEMP%`, `%LOCALAPPDATA%`, `$HOME\.cache`, or scattered project folders for Codex-managed runtime work unless an external tool forces that location and the exception is recorded.
+
 Use `scripts/Manage-CodexEnvironment.ps1`:
 
 1. Run `status` before mutation.

@@ -77,6 +77,16 @@ if (-not $?) { throw 'Continuous iteration diagnosis test failed.' }
 if (-not $?) { throw 'Release README and visual refresh test failed.' }
 & (Join-Path $root 'scripts\Test-ExperienceReleasePathSet.ps1')
 if (-not $?) { throw 'Experience release path-set test failed.' }
+& (Join-Path $root 'scripts\Test-RunRootPolicy.ps1')
+if (-not $?) { throw 'Run-root policy test failed.' }
+& (Join-Path $root 'scripts\Test-CodexVerification.ps1')
+if (-not $?) { throw 'Codex verification controller test failed.' }
+& (Join-Path $root 'scripts\Test-CodebaseMemoryProjectScope.ps1')
+if (-not $?) { throw 'Codebase Memory project-scope test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-CodexGitWorkflow.ps1')
+if (-not $?) { throw 'Codex Git workflow test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceVersion.ps1')
+if (-not $?) { throw 'Experience version test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackUtf8Input.ps1')
 if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')
@@ -85,6 +95,10 @@ if (-not $?) { throw 'Global error-feedback inbox test failed.' }
 if (-not $?) { throw 'Brainstorming Lite contract test failed.' }
 & (Join-Path $root 'skills\codex-workflow-design\scripts\Test-WritingPlanLite.ps1')
 if (-not $?) { throw 'Writing Plan Lite contract test failed.' }
+& (Join-Path $root 'skills\codex-workflow-design\scripts\Test-ScriptAutomationCandidate.ps1')
+if (-not $?) { throw 'Script automation candidate test failed.' }
+& (Join-Path $root 'skills\codex-workflow-design\scripts\Test-ScriptAssetOptimization.ps1')
+if (-not $?) { throw 'Script asset optimization test failed.' }
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-GlobalIterationCandidateReport.ps1')
 & (Join-Path $root 'skills\codex-experience-capture\scripts\Test-AuthorizedCandidateProcessing.ps1')
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-AutoCommitIterationIntegration.ps1')

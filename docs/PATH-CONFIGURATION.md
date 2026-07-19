@@ -11,6 +11,9 @@ than a specific user's drive or home directory.
 | `$SOFTWARE_ARCHIVE_ROOT` | Local installer archive directory |
 | `$SOFTWARE_INSTALL_ROOT` | Local custom software install directory |
 | `$IMAGE_QUARANTINE_ROOT` | Local image-backup quarantine directory |
+| `$CODEX_RUN_TMP_ROOT` | Optional override for disposable Codex run fixtures |
+| `$CODEX_RUN_WORK_ROOT` | Optional override for reviewable candidate workspaces |
+| `$CODEX_RUN_CACHE_ROOT` | Optional override for reusable Codex caches |
 
 Set provider and software choices through the local portable skill profile. The
 software installer also accepts `SOFTWARE_ARCHIVE_ROOT` and
@@ -18,6 +21,20 @@ software installer also accepts `SOFTWARE_ARCHIVE_ROOT` and
 runtime helpers accept `CONDA_EXE`, `CODEX_PYTHON`, and
 `CODEX_PORTABLE_SKILL_PROFILE`. These values are local configuration, not Git
 data.
+
+When no local override is configured, Codex-owned temporary files, candidate
+clones, caches, installer archives, and custom software installs default to the
+ignored architecture-local roots under `$ARCHITECTURE_ROOT\.runtime`: `tmp`,
+`work`, `cache`, `installers`, and `software`. First-party scripts should call
+`scripts\Resolve-CodexRunRoot.ps1` instead of `[IO.Path]::GetTempPath()`,
+`%TEMP%`, `%LOCALAPPDATA%`, or `$HOME\.cache`. External tool exceptions must be
+reported with cleanup or retention evidence.
+
+Network-learning clones and public/private release review clones are reviewable
+candidate workspaces, so they belong under the work root rather than OS Temp.
+Microsoft Store or UWP package directories such as WindowsApps are
+installer-controlled application locations, not Codex-managed workspaces; do
+not move them. Record them as external runtime/application evidence when needed.
 
 ## 中文对照
 

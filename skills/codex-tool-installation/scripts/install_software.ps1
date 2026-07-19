@@ -10,13 +10,28 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$architectureRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
 $profilePath = if ($env:CODEX_PORTABLE_SKILL_PROFILE) { $env:CODEX_PORTABLE_SKILL_PROFILE } else { Join-Path $HOME '.codex\private-skill-config\portable-skill.json' }
 $profile = $null
 if (Test-Path -LiteralPath $profilePath) {
     $profile = Get-Content -LiteralPath $profilePath -Raw -Encoding UTF8 | ConvertFrom-Json
 }
-$packageRoot = if ($env:SOFTWARE_ARCHIVE_ROOT) { $env:SOFTWARE_ARCHIVE_ROOT } elseif ($profile -and $profile.software -and $profile.software.archive_root) { $profile.software.archive_root } else { throw 'SOFTWARE_ARCHIVE_ROOT is not configured. Set the environment variable or run Initialize-PortableSkillConfig.ps1.' }
-$installRoot = if ($env:SOFTWARE_INSTALL_ROOT) { $env:SOFTWARE_INSTALL_ROOT } elseif ($profile -and $profile.software -and $profile.software.install_root) { $profile.software.install_root } else { throw 'SOFTWARE_INSTALL_ROOT is not configured. Set the environment variable or run Initialize-PortableSkillConfig.ps1.' }
+$profileArchiveRoot = if ($profile -and $profile.software -and $profile.software.archive_root) { [string]$profile.software.archive_root } else { '' }
+$profileInstallRoot = if ($profile -and $profile.software -and $profile.software.install_root) { [string]$profile.software.install_root } else { '' }
+$packageRoot = if ($env:SOFTWARE_ARCHIVE_ROOT) {
+    $env:SOFTWARE_ARCHIVE_ROOT
+} elseif ($profileArchiveRoot.Trim()) {
+    $profileArchiveRoot
+} else {
+    & (Join-Path $architectureRoot 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $architectureRoot -Kind installers -Create
+}
+$installRoot = if ($env:SOFTWARE_INSTALL_ROOT) {
+    $env:SOFTWARE_INSTALL_ROOT
+} elseif ($profileInstallRoot.Trim()) {
+    $profileInstallRoot
+} else {
+    & (Join-Path $architectureRoot 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $architectureRoot -Kind software -Create
+}
 $folderName = ($ProductName -replace '[^\p{L}\p{Nd}._-]+', '-').Trim('-', '.', '_')
 if (-not $folderName) { throw 'ProductName does not contain a usable folder name.' }
 $packageDir = Join-Path $packageRoot $folderName

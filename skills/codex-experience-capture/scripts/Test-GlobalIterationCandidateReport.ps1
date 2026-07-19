@@ -1,5 +1,6 @@
 $ErrorActionPreference = 'Stop'
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ("codex-candidate-report-" + [guid]::NewGuid().ToString('N'))
+$root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ("codex-candidate-report-" + [guid]::NewGuid().ToString('N')) -Create
 try {
     New-Item -ItemType Directory -Force -Path (Join-Path $fixture '.codex\project'), (Join-Path $fixture 'knowledge'), (Join-Path $fixture 'knowledge-vault\30-Knowledge'), (Join-Path $fixture 'knowledge-vault\Templates') | Out-Null
     @('# Project Experience', '', '## Candidates', '', '- Install candidate needs a runtime check.') | Set-Content -LiteralPath (Join-Path $fixture '.codex\project\EXPERIENCE.md') -Encoding UTF8

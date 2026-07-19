@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ('codex-global-error-feedback-' + [guid]::NewGuid().ToString('N'))
+$fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ('codex-global-error-feedback-' + [guid]::NewGuid().ToString('N')) -Create
 $sourceProject = Join-Path $fixture 'source-project'
 $architectureRoot = Join-Path $fixture 'architecture-root'
 

@@ -12,6 +12,9 @@ machine inventory.
 The initializer writes `~/.codex/private-skill-config/portable-skill.json`.
 It may contain a provider label, base URL, environment-variable name, auth
 preference, preferred model, software archive/install roots, and selected tools.
+It may also contain optional temporary, work, and cache roots for Codex-managed
+scratch space. If these are omitted, the architecture repository defaults to
+ignored `.runtime` roots rather than the user's system Temp or home cache.
 It must not contain a key, password, token, cookie, `auth.json`, or browser
 export. Store secrets in an OS secure store or a user environment variable.
 

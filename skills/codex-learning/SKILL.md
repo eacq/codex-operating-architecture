@@ -35,7 +35,12 @@ If no condition holds, record no learning action and continue the task. Learning
    verification gate before installation. Prefer adapting the useful behavior
    into an existing owner, subskill, reference, or local profile; install only
    when that form is still the best fit for the user's workflow.
-5. Convert an adopted idea into a small reversible change plus an acceptance test. A source alone is a candidate, never a verified experience.
+5. Clone or extract reviewed upstream repositories only under the configured
+   Codex work root, resolved by `scripts/Resolve-CodexRunRoot.ps1 -Kind work`.
+   Do not leave network-learning worktrees in OS Temp, Downloads, or user-home
+   caches. If an external tool forces another location, record and clean or
+   retain it as an exception.
+6. Convert an adopted idea into a small reversible change plus an acceptance test. A source alone is a candidate, never a verified experience.
 
 ## Update and re-learning authorization
 

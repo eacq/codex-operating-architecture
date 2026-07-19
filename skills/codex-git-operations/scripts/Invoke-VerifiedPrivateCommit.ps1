@@ -78,7 +78,9 @@ $privacyReason = 'GitHub CLI or GitHub remote identity is unavailable.'
 if ($repoMatch.Success -and (Get-Command gh -ErrorAction SilentlyContinue)) {
     try { $privateConfirmed = ((& $githubCommand -RepositoryRoot $root -Tool gh repo view $repoMatch.Groups['repo'].Value --json isPrivate --jq .isPrivate 2>$null).Trim() -eq 'true'); $privacyReason = if ($privateConfirmed) { 'GitHub CLI confirmed origin is private.' } else { 'GitHub CLI did not confirm origin as private.' } } catch { $privacyReason = 'GitHub CLI could not verify origin visibility.' }
 }
-$metadataReady = ($selected -contains 'CHANGELOG.md') -and $hasDocs -and ((-not $hasImplementation) -or ($selected -contains 'docs/ITERATION-STATUS.md')) -and ((-not $hasVersion) -or $hasReleaseNote)
+$currentVersion = (Get-Content -LiteralPath (Join-Path $root 'VERSION') -Raw -Encoding UTF8).Trim()
+$changelogReady = (Test-Path -LiteralPath (Join-Path $root 'CHANGELOG.md')) -and ((Get-Content -LiteralPath (Join-Path $root 'CHANGELOG.md') -Raw -Encoding UTF8) -match [regex]::Escape($currentVersion))
+$metadataReady = $changelogReady -and $hasDocs -and ((-not $hasImplementation) -or ($selected -contains 'docs/ITERATION-STATUS.md')) -and ((-not $hasVersion) -or $hasReleaseNote)
 $eligible = $classification -ne 'none' -and $metadataReady -and $privateConfirmed
 $plan = [ordered]@{ repository_root = $root; branch = (& git -C $root branch --show-current).Trim(); origin = $originUrl; selected_paths = $selected; classification = $classification; recommended_semver_bump = $classification; private_origin_confirmed = $privateConfirmed; privacy_reason = $privacyReason; metadata_ready = $metadataReady; eligible = $eligible; decision = if ($eligible) { 'eligible-for-private-commit' } else { 'needs-human-or-metadata-completion' } }
 if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
@@ -144,7 +146,11 @@ function Write-PublicationEnvelope([string[]]$StagedPaths, [string]$Hash, [bool]
 }
 
 & (Join-Path $root 'skills\codex-file-organization\scripts\Restore-GitTrackedWorkspaceLayout.ps1') -ProjectRoot $root | Out-Null
-$pathspecFile = Join-Path ([IO.Path]::GetTempPath()) ("codex-git-pathspec-" + [guid]::NewGuid().ToString('N') + '.txt')
+$changedAfterRestore = @(& git -C $root diff --name-only; & git -C $root diff --cached --name-only; & git -C $root ls-files --others --exclude-standard | Where-Object { $_ } | Sort-Object -Unique)
+$selected = @($selected | Where-Object { $_ -in $changedAfterRestore })
+if ($selected.Count -eq 0) { throw 'No selected paths remain changed after restoring the Git workspace layout.' }
+$pathspecRoot = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -Create
+$pathspecFile = Join-Path $pathspecRoot ("codex-git-pathspec-" + [guid]::NewGuid().ToString('N') + '.txt')
 try {
     [IO.File]::WriteAllLines($pathspecFile, @($selected), [Text.UTF8Encoding]::new($false))
     & git -C $root add --pathspec-from-file=$pathspecFile

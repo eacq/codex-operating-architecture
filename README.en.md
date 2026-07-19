@@ -25,6 +25,10 @@ The user supplies the outcome and authority. The system chooses the smallest nec
 
 ![Operating architecture overview: route, workflows, knowledge, verify, release, and learn](docs/assets/readme-architecture-overview-labeled.png)
 
+![Unlabeled Codebase Memory MCP architecture graph](docs/assets/codebase-memory-mcp-graph.png)
+
+The graph is refreshed by Codebase Memory MCP at project entry. This README uses an unlabeled PNG rendered by its upstream Three.js graph console, exposing architecture density without publishing paths, sessions, or source text.
+
 - **Route** work to an existing owner instead of duplicating capability.
 - **Retain** project knowledge locally; promote only cross-project verified lessons.
 - **Protect** credentials, raw sessions, and local private paths from Git.
@@ -52,12 +56,12 @@ See [Iteration Status](docs/ITERATION-STATUS.md), [Changelog / 更新日志](CHA
 <!-- BEGIN MANAGED BLOCK: latest-release -->
 ## Latest Release / 最新发布
 
-- Version: `1.1.0.0`
+- Version: `1.2.0.0`
 - Channel: `Private` / 私有
-- Release note: [docs/release-notes/v1.1.0.0.md](docs/release-notes/v1.1.0.0.md)
-- Highlights: Release documentation, Skill architecture, Lifecycle controller
+- Release note: [docs/release-notes/v1.2.0.0.md](docs/release-notes/v1.2.0.0.md)
+- Highlights: Lifecycle controller, Release documentation, Knowledge and experience, Skill architecture, Automation gates
 - Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
-- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.1.0.0.json](docs/release-readme-audits/v1.1.0.0.json)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.2.0.0.json](docs/release-readme-audits/v1.2.0.0.json)
 - README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
 - 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
 <!-- END MANAGED BLOCK: latest-release -->

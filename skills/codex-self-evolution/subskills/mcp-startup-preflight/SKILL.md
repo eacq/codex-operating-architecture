@@ -17,12 +17,28 @@ invoke the relevant MCP tool before broad repository reading.
 
 ## Procedure
 
-1. Confirm the project root. If it is not a source repository, skip MCP graph
-   warmup and continue normal lifecycle routing.
+1. Before checking the task root, run
+   `F:\codex\scripts\Start-CodebaseMemoryGraphUi.ps1 -RepositoryRoot F:\codex -ProjectName F-codex -Port 9750`.
+   It is idempotent: reuse an existing local listener rather than starting a
+   second UI process, and use the UI service's own `POST /api/index` endpoint
+   until `GET /api/project-health?name=F-codex` is healthy. This applies to
+   every Codex task, including non-source repositories, so the graph console
+   remains available at `http://127.0.0.1:9750/` with `F-codex` visible.
 2. Determine whether `codebase-memory-mcp` is callable in the current task.
    When the tool surface is deferred or namespaced, inspect the task's callable
    capability registry before concluding it is unavailable; do not rely only on
-   the initially displayed static tool list. If callable, call
+   the initially displayed static tool list. If callable, first call:
+
+   ```text
+   index_repository(repo_path="F:\\codex", mode=fast, name="F-codex")
+   ```
+
+   This is the automatic structural index of the global experience system and
+   applies even when the current task is not in `F:\codex`. Record the result
+   as global-experience startup evidence.
+3. Confirm the project root. If it is not a source repository, keep the fresh
+   `F-codex` index available and continue normal lifecycle routing.
+4. When the current project is a source repository other than `F:\codex`, call
    `index_repository` with the exact callable-contract key `repo_path` (not
    `repository_path`) and:
 
@@ -32,14 +48,18 @@ invoke the relevant MCP tool before broad repository reading.
    name=<stable-project-name>
    ```
 
-3. Treat the result as startup evidence: record project name, status, node and
+   For the canonical global experience-system repository, use the single stable
+   project name `F-codex`. Do not create additional aliases such as `codex` or
+   `codex-operating-architecture` for the same `F:\codex` root.
+
+5. Treat the result as startup evidence: record project name, status, node and
    edge counts, and visible exclusions when they affect confidence.
-4. Do not block ordinary work only after the callable-capability check confirms
+6. Do not block ordinary work only after the callable-capability check confirms
    the MCP tool is unavailable in the current task. Record the missing tool and
    fall back to `rg`, Git state, and local files.
-5. Do not commit MCP cache databases, `.codebase-memory` artifacts, local
+7. Do not commit MCP cache databases, `.codebase-memory` artifacts, local
    binary paths, or machine-specific MCP config.
-6. For architecture, ownership, impact, or absence claims, hand off to
+8. For architecture, ownership, impact, or absence claims, hand off to
    `codex-information-gathering` and its codebase graph evidence subskill:
    startup indexing routes evidence but does not replace source-file
    verification.
@@ -64,8 +84,8 @@ refresh the graph and verify the cited source file instead.
 For the architecture repository, a valid startup preflight is:
 
 ```text
-index_repository(repo_path="F:\\codex", mode=fast, name="codex-operating-architecture")
+index_repository(repo_path="F:\\codex", mode=fast, name="F-codex")
 ```
 
-The current verified result indexed `codex-operating-architecture` with 1165
-nodes and 1173 edges after private release `private-v1.2`.
+The current verified result indexed `F-codex` with 9731 nodes and 20151 edges
+after clearing stale C-drive and duplicate project indexes.

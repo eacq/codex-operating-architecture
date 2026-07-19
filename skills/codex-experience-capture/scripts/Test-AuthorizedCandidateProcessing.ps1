@@ -1,6 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ('candidate-processing-' + [guid]::NewGuid().ToString('N'))
+$fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ('candidate-processing-' + [guid]::NewGuid().ToString('N')) -Create
 try {
   New-Item -ItemType Directory -Force -Path "$fixture\.codex\project", "$fixture\knowledge", "$fixture\knowledge-vault\01-Test" | Out-Null
   $zh = [string]([char]0x5019) + [char]0x9009 + [char]0x7ECF + [char]0x9A8C

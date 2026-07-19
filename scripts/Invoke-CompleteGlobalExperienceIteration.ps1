@@ -117,6 +117,10 @@ Invoke-TimedStep 'workflow-and-visual-probes' {
     $script:visualProbe = & (Join-Path $root 'skills/codex-image-workflow/scripts/New-UnderstandingVisualPlan.ps1') -Kind workflow -Subject 'Sanitized global iteration topology' -Relationships 'skill-to-workflow','workflow-to-experience','experience-to-knowledge' | ConvertFrom-Json
     if ($visualProbe.action -ne 'generate-gpt-image-first') { throw 'Global iteration visual integration probe failed.' }
 }
+Invoke-TimedStep 'script-asset-optimization-review' {
+    $script:scriptAssetOptimization = & (Join-Path $root 'skills\codex-workflow-design\scripts\Invoke-ScriptAssetOptimization.ps1') -ProjectRoot $root -Apply | ConvertFrom-Json
+    if ($scriptAssetOptimization.result -ne 'analyzed' -or $scriptAssetOptimization.asset_class -ne 'first-class-script-asset') { throw 'Script asset optimization review did not establish its contract.' }
+}
 $iterationMode = 'complete-replacement'
 if ($CandidateOnly) {
     $iterationMode = 'candidate-only'
@@ -167,6 +171,7 @@ $record = [ordered]@{
         experience_ledger = 'validated'
         linked_knowledge_graph = [ordered]@{ nodes=@($graph.nodes).Count; edges=@($graph.edges).Count }
         workflow_learning = 'knowledge-and-experience-candidates'
+        script_asset_optimization = $scriptAssetOptimization.output
         candidate_report = $isolatedIteration.candidate_report
         candidate_processing = $candidateProcessingStatus
         visual_decision = $visualProbe.action

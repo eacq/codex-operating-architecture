@@ -41,7 +41,7 @@ if ($Apply) {
     $manifest.backup_type = 'git-bundle'
     $manifest.archive_sha256 = (Get-FileHash -LiteralPath $bundle -Algorithm SHA256).Hash.ToLowerInvariant()
     $manifest | ConvertTo-Json -Depth 4
-    exit 0
+    return
   }
   $name = 'file-organization-backup-' + (Get-Date -Format 'yyyyMMdd-HHmmss') + '.zip'
   $archive = Join-Path $backup $name

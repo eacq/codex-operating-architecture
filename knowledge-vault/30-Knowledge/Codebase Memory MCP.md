@@ -31,7 +31,9 @@ and [[Verified Experience Promotion]] through evidence-first repository learning
 ## Operating rule
 
 1. At project entry, index or refresh the current repository before broad file
-   reading when the MCP tools are exposed in the current Codex task.
+   reading when the MCP tools are exposed in the current Codex task. For the
+   global experience-system repository, the only supported project name is
+   `F-codex` rooted at `F:\codex`.
 2. Use `list_projects`, `get_architecture`, `get_graph_schema`,
    `search_graph`, `search_code`, or `trace_path` to find likely evidence.
 3. Treat graph output as routing evidence, not final proof.
@@ -58,11 +60,12 @@ not, while `trace_path` and `get_code_snippet` worked for indexed PowerShell
 functions. Routine repository learning should therefore combine graph tools with
 source-file reads instead of treating a single graph search mode as exhaustive.
 
-After private release `private-v1.2`, startup preflight was verified by calling
-`index_repository` from inside the active Codex task for `F:\codex`; fast mode
-returned status `indexed` with 1165 nodes and 1173 edges. This verifies the MCP
-server is exposed and callable at task time. The lifecycle controller now
-requires this preflight at source-repository entry when the tool is available.
+After stale C-drive and duplicate indexes were removed, startup preflight was
+verified by calling `index_repository` for `F:\codex` with project name
+`F-codex`; fast mode returned status `indexed` with 9731 nodes and 20151 edges.
+`list_projects` then showed only `F-codex` rooted at `F:/codex` for the global
+experience system. This verifies the MCP server is exposed, callable, and scoped
+to the canonical repository at task time.
 
 On 2026-07-18, `DeusData/codebase-memory-mcp` was re-reviewed from upstream
 source at commit `e678b2b6acb02bc1ab84a854f2df0e1d092f2cc0`. A fast MCP index of
@@ -84,7 +87,10 @@ knowledge.
 
 The tool reads local source and writes local index/config files. Do not commit
 its cache databases, generated graph artifacts, local MCP paths, or machine
-installation records. Restart Codex tasks after MCP config changes so the server
-is loaded by the client. If a project explicitly wants to share a graph artifact,
-require a separate privacy review and reproducibility reason before committing
-`.codebase-memory/graph.db.zst`.
+installation records. For the global experience system, clear C-drive,
+WindowsApps, network-learning, and duplicate alias indexes from the active
+Codebase Memory cache; preserve only `F-codex` unless the user explicitly asks
+for a separate project-scoped graph. Restart Codex tasks after MCP config
+changes so the server is loaded by the client. If a project explicitly wants to
+share a graph artifact, require a separate privacy review and reproducibility
+reason before committing `.codebase-memory/graph.db.zst`.

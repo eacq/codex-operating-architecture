@@ -10,6 +10,9 @@
   "software": {
     "archive_root": "",
     "install_root": "",
+    "temporary_root": "",
+    "work_root": "",
+    "cache_root": "",
     "selected_tools": ["test-tool"]
   },
   "notes": "Local-only choices. Do not put secrets, tokens, cookies, or account data here."

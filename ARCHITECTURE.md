@@ -1,4 +1,4 @@
-# 架构说明
+﻿# 架构说明
 
 ## 总体流程
 
@@ -36,6 +36,14 @@
 - 合并模块：触发条件、工作流和维护内容高度重复时。
 - 停用模块：长期无使用证据、知识已被上游工具取代或维护成本超过收益时；先标记 deprecated，再删除。
 - 每次完整迭代更新 `module-registry.json` 的证据与决策，不以主观偏好随意增删。
+
+<!-- BEGIN MANAGED BLOCK: codebase-memory-architecture-graph -->
+## 架构图谱
+
+![Codebase Memory MCP 无标签架构图谱](docs/assets/codebase-memory-mcp-graph.png)
+
+该 PNG 在每次 release 时由 Codebase Memory MCP 的 Three.js 控制台重新索引并渲染。它只呈现结构密度，不包含路径、会话或源码文本。GIF 仅在用户明确要求生成或更新时才会写入；其他 release 保留已有 GIF。
+<!-- END MANAGED BLOCK: codebase-memory-architecture-graph -->
 
 ## 迭代闭环
 

@@ -1,5 +1,6 @@
 $ErrorActionPreference = 'Stop'
-$fixture = Join-Path ([IO.Path]::GetTempPath()) ('codex-rollback-test-' + [guid]::NewGuid().ToString('N'))
+$root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$fixture = & (Join-Path $root 'scripts\Resolve-CodexRunRoot.ps1') -ArchitectureRoot $root -Kind tmp -ChildPath ('codex-rollback-test-' + [guid]::NewGuid().ToString('N')) -Create
 $backup = $fixture + '-backup'
 try {
     [IO.Directory]::CreateDirectory((Join-Path $fixture '.codex')) | Out-Null

@@ -10,6 +10,7 @@ All reader-facing PNG assets below were generated with the Codex built-in image 
 | `readme-collaboration-loop-labeled.png` | Labeled collaboration-role loop | The USER, LOCAL EXPERIENCE, MODEL, or VERIFY & LEARN role contract changes, or a label fails the exact-text/readability review. |
 | `file-organization-concept-labeled.png` | Labeled privacy-safe file-organization concept | The labels `COLLECT`, `CLASSIFY`, `PROTECT`, or `ARCHIVE` change, or a label fails the exact-text/readability review. |
 | `release-visual-highlights-labeled.png` | Labeled release visual | The labels `CLARITY`, `RASTER DELIVERY`, `VERIFY`, or `LEARN` change, or a label fails the exact-text/readability review. |
+| `codebase-memory-mcp-graph.png` | Unlabeled Codebase Memory MCP structural graph | Every release after the `F-codex` fast graph refresh, or when `DeusData/codebase-memory-mcp` changes its graph-console rendering contract. The optional GIF is retained unchanged unless the user explicitly asks to generate or update it. |
 
 `readme-collaboration-loop-labeled.png` uses the exact reviewed English labels `USER`, `LOCAL EXPERIENCE`, `MODEL`, and `VERIFY & LEARN`; it is the shared palette/typography example for in-image text. Bilingual detail, commands, and accessible explanations remain in Markdown.
 
@@ -18,3 +19,5 @@ All reader-facing PNG assets below were generated with the Codex built-in image 
 `file-organization-concept-labeled.png` and `release-visual-highlights-labeled.png` complete the reader-facing visual set. Each image was checked for its exact labels before embedding; the former text-free assets are retained only as maintainers' historical sources and are not reader-facing Markdown targets.
 
 Mermaid and SVG may remain as maintainer-editable sources. User-facing Markdown must embed the approved raster visual instead.
+
+`codebase-memory-mcp-graph.png` is exported directly from the deployed `DeusData/codebase-memory-mcp` Three.js WebGL canvas: live `layout3d` coordinates; UI OrbitControls full-graph framing; `[0, 0, 800]` perspective camera with `fov: 50`; `#06090f` background; default edge/node density compensation; instanced MeshBasic node meshes; AdditiveBlending; and Bloom threshold `0.3`, radius `0.6`, intensity `1.45`. Labels are disabled. The exporter reads canvas pixels through `toDataURL()` and never calls a browser screenshot API. It contains no repository paths, source text, session material, or credentials. Release rendering writes PNG only; the legacy GIF is generated or overwritten only by an explicit user request through `-GenerateGif`.
