@@ -93,6 +93,8 @@ if (-not $?) { throw 'Codex Git workflow test failed.' }
 if (-not $?) { throw 'Git index-lock recovery test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceVersion.ps1')
 if (-not $?) { throw 'Experience version test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-PrivateExperienceReleaseEvidence.Fixture.ps1')
+if (-not $?) { throw 'Private experience release evidence test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitRecoveryFastPath.ps1')
 if (-not $?) { throw 'Git recovery fast-path test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitStatusNoiseRepair.ps1')
@@ -101,6 +103,8 @@ if (-not $?) { throw 'Git status-noise repair test failed.' }
 if (-not $?) { throw 'Error-feedback UTF-8 file-input test failed.' }
 & (Join-Path $root 'skills\codex-error-feedback\scripts\Test-GlobalErrorFeedbackInbox.ps1')
 if (-not $?) { throw 'Global error-feedback inbox test failed.' }
+& (Join-Path $root 'skills\codex-error-feedback\scripts\Test-ErrorFeedbackCloseout.ps1')
+if (-not $?) { throw 'Error-feedback closeout test failed.' }
 & (Join-Path $root 'skills\codex-requirement-authoring\scripts\Test-BrainstormingLite.ps1')
 if (-not $?) { throw 'Brainstorming Lite contract test failed.' }
 & (Join-Path $root 'skills\codex-workflow-design\scripts\Test-WritingPlanLite.ps1')

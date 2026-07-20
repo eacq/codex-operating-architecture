@@ -211,10 +211,12 @@
 
 ### English
 
+- Publish the verified experience-system release metadata, private tag, and release notes for the current version.
 - Record verified automatic Release iteration updates for the scoped changed paths.
 
 ### Chinese / 中文
 
+- 同步发布当前版本的经验系统发布元数据、私有标签与发布说明。
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
 
 ## 1.4.2.2 - 2026-07-18

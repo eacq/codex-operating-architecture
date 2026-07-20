@@ -21,24 +21,58 @@
     "evidence":  {
                      "release_note":  "docs/release-notes/v1.5.0.0.md",
                      "changed_paths":  [
+                                           "scripts/validate.ps1",
+                                           "skills/codex-error-feedback/scripts/Complete-ErrorFeedbackRepair.ps1",
+                                           "skills/codex-error-feedback/scripts/New-ErrorFeedbackReport.ps1",
+                                           "skills/codex-error-feedback/scripts/Test-ErrorFeedbackCloseout.ps1",
+                                           "skills/codex-error-feedback/SKILL.md",
                                            "skills/codex-git-operations/scripts/Invoke-ExperienceRelease.ps1",
-                                           "skills/codex-git-operations/scripts/Test-ReleaseReadmeOptimization.ps1",
-                                           "skills/codex-git-operations/scripts/Update-ReleaseReadmeAndVisuals.ps1",
+                                           "skills/codex-git-operations/scripts/Test-ExperienceReleaseReadiness.ps1",
+                                           "skills/codex-git-operations/scripts/Test-ExperienceVersion.ps1",
+                                           "skills/codex-git-operations/scripts/Test-PrivateExperienceReleaseEvidence.Fixture.ps1",
+                                           "skills/codex-git-operations/scripts/Test-PrivateExperienceReleaseEvidence.ps1",
                                            "skills/codex-git-operations/SKILL.md"
                                        ],
                      "impact_areas":  [
+                                          "Automation gates",
                                           "Skill architecture"
                                       ]
                  },
+    "design_system":  "docs/readme-design-system.json",
+    "reading_order_contract":  [
+                                   "value proposition",
+                                   "first successful action",
+                                   "collaboration mechanism",
+                                   "architecture visual",
+                                   "channels and detailed guarantees",
+                                   "release evidence"
+                               ],
+    "visual_decision":  {
+                            "action":  "use-approved-raster-visual-system",
+                            "format":  "PNG",
+                            "raster_assets":  [
+                                                  "docs/assets/readme-collaboration-loop.png",
+                                                  "docs/assets/readme-collaboration-loop-labeled.png",
+                                                  "docs/assets/readme-architecture-overview-labeled.png",
+                                                  "docs/assets/file-organization-architecture-labeled.png",
+                                                  "docs/assets/codebase-memory-mcp-graph.png"
+                                              ],
+                            "reader_delivery_rule":  "Reader-facing Markdown uses approved PNG assets. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.",
+                            "animation_policy":  "GIF generation and overwrite are opt-in: release refreshes do not modify an existing GIF unless the user explicitly requests it.",
+                            "text_policy":  "Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. Architecture and transactional workflow explanations require reviewed labeled visuals; when image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review."
+                        },
     "decisions":  [
                       "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Make the release note lead with verified user-facing changes; keep visual and audit mechanics out of its primary reading path.",
                       "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
-                      "Use a release diagram only when the impact is multi-area; Mermaid is selected only for reviewable text structure, not as a decorative default."
+                      "Use an approved raster visual only when the impact is multi-area; select text-free or labeled presentation by reader need, not as decoration."
                   ],
     "preview_checks":  [
                            "GitHub-safe Markdown",
                            "release-note link",
                            "both README variants",
+                           "reading-order headings",
+                           "existing architecture visual placement",
                            "reader-value and dependency review",
                            "format-selection record"
                        ],

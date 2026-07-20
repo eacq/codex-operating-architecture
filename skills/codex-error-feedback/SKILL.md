@@ -61,6 +61,12 @@ command parameters, promotion rules, and the schema contract.
    .\skills\codex-error-feedback\scripts\New-ErrorFeedbackReport.ps1 -ReportDirectory <report-directory> -Status verified -RepairAttempt '<change made>' -RepairResult '<observed result>' -Verification '<command or inspection>'
    ```
 
+   For the normal verified closeout, prefer
+   `scripts/Complete-ErrorFeedbackRepair.ps1 -Apply`. It updates the report,
+   runs workflow-error review, and returns the UTF-8 global-inbox blocking count
+   in one call. Use the lower-level command only when diagnosing one of those
+   closeout stages independently.
+
 6. Route repeated or verified failures to `codex-experience-capture`; route
    durable concepts to `codex-knowledge-system`. One-off or uncertain diagnoses
    remain candidates. Do not add an Anki card merely because an error occurred.

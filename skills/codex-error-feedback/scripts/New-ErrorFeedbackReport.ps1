@@ -48,9 +48,9 @@ if ($UserReportFile) {
 }
 
 function Get-SafeFileName([string]$Value) {
-    $name = ($Value -replace '[^\p{L}\p{Nd}\._-]+', '-').Trim('-')
+    $name = ($Value -replace '[^\p{L}\p{Nd}\._-]+', '-').Trim([char[]]'-.')
     if (-not $name) { return 'error-feedback' }
-    if ($name.Length -gt 80) { return $name.Substring(0, 80).Trim('-') }
+    if ($name.Length -gt 80) { return $name.Substring(0, 80).Trim([char[]]'-.') }
     return $name
 }
 

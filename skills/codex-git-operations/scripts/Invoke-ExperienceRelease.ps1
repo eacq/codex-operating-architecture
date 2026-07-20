@@ -69,6 +69,7 @@ $generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $relea
 $allPaths = @($Paths + $generatedPaths | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceReleaseReadiness.ps1') -RepositoryRoot $root -Version $versionPlan.version | Out-Null
 $pathSet = & (Join-Path $root 'skills\codex-git-operations\scripts\Resolve-ExperienceReleasePathSet.ps1') -RepositoryRoot $root -Paths $Paths -GeneratedPaths $generatedPaths | ConvertFrom-Json
 $allPaths = @($pathSet.all_paths)
 $unselected = @($pathSet.unselected_paths)
@@ -90,6 +91,18 @@ if ($Mode -eq 'Private') {
     & $githubCommand -RepositoryRoot $root -ForceProxy:$ForceProxy -Tool gh release create $releaseTag --repo $publicRepository --title $versionPlan.release_tag --notes-file $releaseNotePath
 }
 if ($LASTEXITCODE -ne 0) { throw "$Mode GitHub release failed." }
+$releaseEvidence = if ($Mode -eq 'Private') {
+    & (Join-Path $root 'skills\codex-git-operations\scripts\Test-PrivateExperienceReleaseEvidence.ps1') `
+        -RepositoryRoot $root `
+        -Version $versionPlan.version `
+        -Tag $releaseTag `
+        -ForceProxy:$ForceProxy `
+        -RequireClean `
+        -ApplyLifecycleState | ConvertFrom-Json
+} else {
+    $null
+}
 $plan['result'] = 'release-created'
 $plan['readme_optimization'] = $readmeOptimizationCheck
+$plan['release_evidence'] = $releaseEvidence
 $plan | ConvertTo-Json -Depth 5
