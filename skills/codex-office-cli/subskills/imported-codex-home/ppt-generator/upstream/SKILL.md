@@ -1,4 +1,4 @@
----
+﻿---
 name: ppt-generator-pro
 description: Generate AI-driven PPT images and optional transition videos with NanoBanana PPT Skills. Use when the user asks for NanoBanana PPT, AI-generated presentation images, gradient glass PPT, vector illustration PPT, or PPT video transitions.
 ---
@@ -7,15 +7,15 @@ description: Generate AI-driven PPT images and optional transition videos with N
 
 ## Codex 本机安装说明
 
-- Skill 目录: `C:\Users\12484\.codex\skills\ppt-generator`
-- Python 虚拟环境: `C:\Users\12484\.codex\skills\ppt-generator\venv\Scripts\python.exe`
+- Skill 目录: `%USERPROFILE%\.codex\skills\ppt-generator`
+- Python 虚拟环境: `%USERPROFILE%\.codex\skills\ppt-generator\venv\Scripts\python.exe`
 - 依赖已安装: `google-genai`, `pillow`, `python-dotenv`, `openai`
 - 运行脚本时优先使用上面的虚拟环境，不要改用全局 Python。
 - 密钥不要写入仓库或回复正文；优先读取系统环境变量。
 - `GEMINI_API_KEY` 是图片生成必需项；`KLING_ACCESS_KEY` 和 `KLING_SECRET_KEY` 仅用于可选视频转场。
 - ZCHAT 可用于文本/视觉分析类转场提示词生成：设置 `ZCHAT_API_KEY`，可选设置 `ZCHAT_MODEL=gemini-3-pro`。
 - ZCHAT 不能直接替代 `google-genai` 图片生成接口；NanoBanana 图片生成仍需要真正的 `GEMINI_API_KEY`，除非以后有已验证的 Google Gemini API 兼容代理。
-- 详细 API 路由边界见 `C:\Users\12484\.codex\skills\api-provider-routing\references\local-api-routing.md`。
+- 详细 API 路由边界见 `%USERPROFILE%\.codex\skills\api-provider-routing\references\local-api-routing.md`。
 
 ## 📋 元数据
 

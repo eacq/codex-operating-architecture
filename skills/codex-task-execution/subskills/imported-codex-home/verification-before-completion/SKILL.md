@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'v
 
 # Imported Codex Home Package: verification-before-completion
 
-**Owner:** $(@{Name=verification-before-completion; Owner=codex-task-execution; Source=C:\Users\12484\.codex\skills\verification-before-completion}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=verification-before-completion; Owner=codex-task-execution; Source=%USERPROFILE%\.codex\skills\verification-before-completion}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'c
 
 # Imported Codex Home Package: chinese-me-paper-workflow
 
-**Owner:** $(@{Name=chinese-me-paper-workflow; Owner=codex-text-style; Source=C:\Users\12484\.codex\skills\chinese-me-paper-workflow}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=chinese-me-paper-workflow; Owner=codex-text-style; Source=%USERPROFILE%\.codex\skills\chinese-me-paper-workflow}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

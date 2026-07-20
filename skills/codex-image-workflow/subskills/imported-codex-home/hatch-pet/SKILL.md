@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'h
 
 # Imported Codex Home Package: hatch-pet
 
-**Owner:** $(@{Name=hatch-pet; Owner=codex-image-workflow; Source=C:\Users\12484\.codex\skills\hatch-pet}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=hatch-pet; Owner=codex-image-workflow; Source=%USERPROFILE%\.codex\skills\hatch-pet}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

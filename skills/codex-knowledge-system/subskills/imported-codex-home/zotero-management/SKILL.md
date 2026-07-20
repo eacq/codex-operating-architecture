@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'z
 
 # Imported Codex Home Package: zotero-management
 
-**Owner:** $(@{Name=zotero-management; Owner=codex-knowledge-system; Source=C:\Users\12484\.codex\skills\zotero-management}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=zotero-management; Owner=codex-knowledge-system; Source=%USERPROFILE%\.codex\skills\zotero-management}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

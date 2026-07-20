@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'p
 
 # Imported Codex Home Package: paper-reading
 
-**Owner:** $(@{Name=paper-reading; Owner=codex-information-gathering; Source=C:\Users\12484\.codex\skills\paper-reading}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=paper-reading; Owner=codex-information-gathering; Source=%USERPROFILE%\.codex\skills\paper-reading}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

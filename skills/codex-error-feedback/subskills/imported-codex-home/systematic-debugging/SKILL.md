@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 's
 
 # Imported Codex Home Package: systematic-debugging
 
-**Owner:** $(@{Name=systematic-debugging; Owner=codex-error-feedback; Source=C:\Users\12484\.codex\skills\systematic-debugging}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=systematic-debugging; Owner=codex-error-feedback; Source=%USERPROFILE%\.codex\skills\systematic-debugging}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

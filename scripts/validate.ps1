@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $localRuntimeConfig = Join-Path $root '.codex\project\validation-runtime.json'
 $configuredPython = if (Test-Path -LiteralPath $localRuntimeConfig) {
@@ -95,6 +95,8 @@ if (-not $?) { throw 'Git index-lock recovery test failed.' }
 if (-not $?) { throw 'Experience version test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-LocalReleaseTagCollision.ps1')
 if (-not $?) { throw 'Local release tag collision test failed.' }
+& (Join-Path $root 'scripts\Test-PublicReleaseSafetyRules.ps1')
+if (-not $?) { throw 'Public release safety rules test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-PrivateExperienceReleaseEvidence.Fixture.ps1')
 if (-not $?) { throw 'Private experience release evidence test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitRecoveryFastPath.ps1')

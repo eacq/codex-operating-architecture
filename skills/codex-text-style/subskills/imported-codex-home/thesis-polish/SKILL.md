@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 't
 
 # Imported Codex Home Package: thesis-polish
 
-**Owner:** $(@{Name=thesis-polish; Owner=codex-text-style; Source=C:\Users\12484\.codex\skills\thesis-polish}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=thesis-polish; Owner=codex-text-style; Source=%USERPROFILE%\.codex\skills\thesis-polish}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

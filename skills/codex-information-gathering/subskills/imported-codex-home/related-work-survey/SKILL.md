@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'r
 
 # Imported Codex Home Package: related-work-survey
 
-**Owner:** $(@{Name=related-work-survey; Owner=codex-information-gathering; Source=C:\Users\12484\.codex\skills\related-work-survey}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=related-work-survey; Owner=codex-information-gathering; Source=%USERPROFILE%\.codex\skills\related-work-survey}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

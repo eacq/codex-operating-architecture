@@ -1,4 +1,4 @@
----
+﻿---
 name: academic-figure-generation
 description: >
   Generate and refine publication-quality academic figures, framework
@@ -16,9 +16,9 @@ OpenAI-compatible text provider and a matplotlib-code fallback for PNG output.
 
 ## Current Local Setup
 
-- PaperBanana root: `C:\Users\12484\Documents\Codex\2026-07-09\qin\work\PaperBanana`
-- Run script: `C:\Users\12484\Documents\Codex\2026-07-09\qin\work\run_paperbanana.ps1`
-- Default output folder: `C:\Users\12484\Documents\Codex\2026-07-09\qin\outputs`
+- PaperBanana root: `%USERPROFILE%\Documents\Codex\2026-07-09\qin\work\PaperBanana`
+- Run script: `%USERPROFILE%\Documents\Codex\2026-07-09\qin\work\run_paperbanana.ps1`
+- Default output folder: `%USERPROFILE%\Documents\Codex\2026-07-09\qin\outputs`
 - Runtime check script: `scripts/check_runtime.py`
 - Model/API details: read `references/zchat-paperbanana.md` when configuring, debugging, or running ZCHAT.
 
@@ -37,7 +37,7 @@ stored outside the skill in the user's Codex auth/environment.
    .\work\run_paperbanana.ps1 `
      -MethodFile "C:\path\to\method.md" `
      -Caption "Figure 1: Overview of the proposed framework" `
-     -Output "C:\Users\12484\Documents\Codex\2026-07-09\qin\outputs\figure.png" `
+     -Output "%USERPROFILE%\Documents\Codex\2026-07-09\qin\outputs\figure.png" `
      -AspectRatio "16:9" `
      -Candidates 3 `
      -CriticRounds 0
@@ -72,8 +72,8 @@ references/zchat-paperbanana.md
 To verify the Codex Python runtime after an update, run:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\academic-figure-generation\scripts\check_runtime.py
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\academic-figure-generation\scripts\check_runtime.py
 ```
 
 Use `CriticRounds=0` first with ZCHAT because the documented ZCHAT endpoint is

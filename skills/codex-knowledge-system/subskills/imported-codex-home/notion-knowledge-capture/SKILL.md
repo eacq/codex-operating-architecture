@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'n
 
 # Imported Codex Home Package: notion-knowledge-capture
 
-**Owner:** $(@{Name=notion-knowledge-capture; Owner=codex-knowledge-system; Source=C:\Users\12484\.codex\skills\notion-knowledge-capture}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=notion-knowledge-capture; Owner=codex-knowledge-system; Source=%USERPROFILE%\.codex\skills\notion-knowledge-capture}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

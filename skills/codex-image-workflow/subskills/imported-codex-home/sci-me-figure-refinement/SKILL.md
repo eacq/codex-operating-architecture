@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 's
 
 # Imported Codex Home Package: sci-me-figure-refinement
 
-**Owner:** $(@{Name=sci-me-figure-refinement; Owner=codex-image-workflow; Source=C:\Users\12484\.codex\skills\sci-me-figure-refinement}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=sci-me-figure-refinement; Owner=codex-image-workflow; Source=%USERPROFILE%\.codex\skills\sci-me-figure-refinement}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

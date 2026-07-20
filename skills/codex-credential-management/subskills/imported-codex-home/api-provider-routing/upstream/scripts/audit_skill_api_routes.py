@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 import re
 import sys
 
@@ -7,7 +7,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
-ROOT = Path(r"C:\Users\12484\.codex\skills")
+ROOT = Path(r"%USERPROFILE%\.codex\skills")
 PATTERN = re.compile(
     r"(API_KEY|OPENAI_API_KEY|ZCHAT|GEMINI|GOOGLE|ANTHROPIC|OPENROUTER|"
     r"KLING|ZOTERO|ELSEVIER|SPRINGER|NCBI|SEMANTIC|AMINER|base_url|api_key)",

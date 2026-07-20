@@ -1,4 +1,4 @@
----
+﻿---
 name: api-provider-routing
 description: Use when configuring skills that require external APIs, deciding whether ZCHAT can replace OpenAI/Anthropic/Gemini/OpenRouter/Kling or publisher APIs, or auditing skill API keys and endpoint routing.
 ---
@@ -49,11 +49,11 @@ Current highlights:
 
 - Prefer environment variables over `.env` files when a key is shared across skills.
 - Never print API keys or write real keys into skill documentation.
-- Preserve existing `C:\Users\12484\.codex\config.toml` sections when editing Codex provider config.
+- Preserve existing `%USERPROFILE%\.codex\config.toml` sections when editing Codex provider config.
 - For Codex core chat, prefer ZCHAT first; when authenticated ZCHAT quota/account-pool/provider availability is exhausted after one documented model fallback, prefer ChatGPT sign-in so usage can follow the user's ChatGPT subscription/Plus workspace where eligible.
 - Use official OpenAI Platform API fallback only when the user explicitly chooses usage-based API billing or ChatGPT sign-in is unavailable.
 - Do not fall back from ZCHAT for request-shape bugs such as 400, 404, unsupported parameters, or misspelled model names.
-- Treat `C:\Users\12484\.codex\auth.json` as the active Codex credential cache, not a multi-provider inventory. Its schema is mode-specific: ZCHAT/API-key mode uses `auth_mode: "apikey"` and `OPENAI_API_KEY`; ChatGPT sign-in uses `auth_mode: "chatgpt"` and token fields. Do not merge those schemas; keep multi-provider metadata in a separate local JSON template.
+- Treat `%USERPROFILE%\.codex\auth.json` as the active Codex credential cache, not a multi-provider inventory. Its schema is mode-specific: ZCHAT/API-key mode uses `auth_mode: "apikey"` and `OPENAI_API_KEY`; ChatGPT sign-in uses `auth_mode: "chatgpt"` and token fields. Do not merge those schemas; keep multi-provider metadata in a separate local JSON template.
 - Avoid high-concurrency ZCHAT usage, including loops and immersive-translation style integrations.
 - Do not continue prompts that trigger ZCHAT moral/safety review warnings.
 
@@ -62,14 +62,14 @@ Current highlights:
 Use this script to list API-related references across local skills:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\api-provider-routing\scripts\audit_skill_api_routes.py
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\api-provider-routing\scripts\audit_skill_api_routes.py
 ```
 
 Use this script to check whether relevant API environment variables are present
 without printing any secret values:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\api-provider-routing\scripts\check_api_env.py
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\api-provider-routing\scripts\check_api_env.py
 ```

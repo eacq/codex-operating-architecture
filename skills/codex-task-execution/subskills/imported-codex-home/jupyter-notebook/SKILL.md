@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'j
 
 # Imported Codex Home Package: jupyter-notebook
 
-**Owner:** $(@{Name=jupyter-notebook; Owner=codex-task-execution; Source=C:\Users\12484\.codex\skills\jupyter-notebook}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=jupyter-notebook; Owner=codex-task-execution; Source=%USERPROFILE%\.codex\skills\jupyter-notebook}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

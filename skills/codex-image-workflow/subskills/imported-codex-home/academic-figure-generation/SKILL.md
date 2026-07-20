@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'a
 
 # Imported Codex Home Package: academic-figure-generation
 
-**Owner:** $(@{Name=academic-figure-generation; Owner=codex-image-workflow; Source=C:\Users\12484\.codex\skills\academic-figure-generation}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=academic-figure-generation; Owner=codex-image-workflow; Source=%USERPROFILE%\.codex\skills\academic-figure-generation}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

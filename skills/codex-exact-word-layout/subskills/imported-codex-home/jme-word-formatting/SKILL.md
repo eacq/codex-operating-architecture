@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'j
 
 # Imported Codex Home Package: jme-word-formatting
 
-**Owner:** $(@{Name=jme-word-formatting; Owner=codex-exact-word-layout; Source=C:\Users\12484\.codex\skills\jme-word-formatting}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=jme-word-formatting; Owner=codex-exact-word-layout; Source=%USERPROFILE%\.codex\skills\jme-word-formatting}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

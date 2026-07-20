@@ -6,11 +6,13 @@
 
 - Publish the verified experience-system release metadata, private tag, and release notes for the current version.
 - Record verified automatic Release iteration updates for the scoped changed paths.
+- Repair the public release safety path by allowing `.env.example` templates, sanitizing local home paths and private repository links before public publication, and adding a regression test for the snapshot rules.
 
 ### Chinese / 中文
 
 - 同步发布当前版本的经验系统发布元数据、私有标签与发布说明。
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 修复公开发布安全路径：允许 `.env.example` 模板，在公开发布前脱敏本机用户目录与私有仓库链接，并加入快照规则回归测试。
 
 ## Unreleased
 

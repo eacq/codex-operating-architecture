@@ -1,4 +1,4 @@
-# ZCHAT + PaperBanana Reference
+﻿# ZCHAT + PaperBanana Reference
 
 Use this reference when a user asks to configure, debug, or run ke yan hua tu /
 academic-figure generation with ZCHAT.
@@ -8,7 +8,7 @@ academic-figure generation with ZCHAT.
 - Do not print the full API key.
 - Current credential locations:
   - Windows user environment variable: `ZCHAT_API_KEY`
-  - Codex auth file: `C:\Users\12484\.codex\auth.json`
+  - Codex auth file: `%USERPROFILE%\.codex\auth.json`
   - `auth.json` should contain:
 
     ```json
@@ -73,7 +73,7 @@ ZCHAT notes from user-provided docs:
 Config file:
 
 ```text
-C:\Users\12484\.codex\config.toml
+%USERPROFILE%\.codex\config.toml
 ```
 
 Required core provider config:
@@ -99,13 +99,13 @@ currently working ZCHAT model, commonly `grok-3` or `gemini-3-pro`.
 Configured local root:
 
 ```text
-C:\Users\12484\Documents\Codex\2026-07-09\qin\work\PaperBanana
+%USERPROFILE%\Documents\Codex\2026-07-09\qin\work\PaperBanana
 ```
 
 PaperBanana config file:
 
 ```text
-C:\Users\12484\Documents\Codex\2026-07-09\qin\work\PaperBanana\configs\model_config.yaml
+%USERPROFILE%\Documents\Codex\2026-07-09\qin\work\PaperBanana\configs\model_config.yaml
 ```
 
 Expected ZCHAT-compatible config:
@@ -136,13 +136,13 @@ PNG locally.
 Codex primary Python:
 
 ```text
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
 ```
 
 PaperBanana dedicated Python:
 
 ```text
-C:\Users\12484\Documents\Codex\2026-07-09\qin\work\PaperBanana\.venv\Scripts\python.exe
+%USERPROFILE%\Documents\Codex\2026-07-09\qin\work\PaperBanana\.venv\Scripts\python.exe
 ```
 
 The Codex primary Python has been prepared with the runtime packages needed by
@@ -173,26 +173,26 @@ pandas
 Check runtime status with:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\academic-figure-generation\scripts\check_runtime.py
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\academic-figure-generation\scripts\check_runtime.py
 ```
 
 If Codex updates and resets the primary runtime, reinstall with:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
   -m pip install pyyaml openai google-genai anthropic httpx aiofiles tqdm json_repair huggingface_hub python-dotenv
 ```
 
 ## Run Command
 
-From workspace root `C:\Users\12484\Documents\Codex\2026-07-09\qin`:
+From workspace root `%USERPROFILE%\Documents\Codex\2026-07-09\qin`:
 
 ```powershell
 .\work\run_paperbanana.ps1 `
   -MethodFile "C:\path\to\method.md" `
   -Caption "Figure 1: Overview of the proposed framework" `
-  -Output "C:\Users\12484\Documents\Codex\2026-07-09\qin\outputs\figure.png" `
+  -Output "%USERPROFILE%\Documents\Codex\2026-07-09\qin\outputs\figure.png" `
   -AspectRatio "16:9" `
   -Candidates 3 `
   -CriticRounds 0

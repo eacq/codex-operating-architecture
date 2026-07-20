@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'a
 
 # Imported Codex Home Package: api-provider-routing
 
-**Owner:** $(@{Name=api-provider-routing; Owner=codex-credential-management; Source=C:\Users\12484\.codex\skills\api-provider-routing}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=api-provider-routing; Owner=codex-credential-management; Source=%USERPROFILE%\.codex\skills\api-provider-routing}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

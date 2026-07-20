@@ -1,4 +1,4 @@
-# Local API Routing Matrix
+﻿# Local API Routing Matrix
 
 This file records how local Codex skills should handle external API providers.
 
@@ -9,7 +9,7 @@ This file records how local Codex skills should handle external API providers.
 | `zchat-api-usage` | ZCHAT OpenAI-compatible chat/embeddings | Native | `ZCHAT_API_KEY`, `https://api.zchat.tech/v1` |
 | `academic-figure-generation` | PaperBanana text model plus local rendering fallback | Compatible for text planning | `ZCHAT_API_KEY` mapped to OpenAI-compatible calls; use `CriticRounds=0` first |
 | `ppt-generator` transition prompts | Anthropic Claude multimodal prompt generation | Partially compatible | patched to prefer `ZCHAT_API_KEY`/`OPENAI_API_KEY` via OpenAI-compatible chat; set `ZCHAT_MODEL=gemini-3-pro` if model selection is needed |
-| `Codex core provider` | OpenAI-compatible chat provider | Compatible | `C:\Users\12484\.codex\config.toml` uses `model_provider = "openai-chat-completions"` and `base_url = "https://api.zchat.tech/v1"` |
+| `Codex core provider` | OpenAI-compatible chat provider | Compatible | `%USERPROFILE%\.codex\config.toml` uses `model_provider = "openai-chat-completions"` and `base_url = "https://api.zchat.tech/v1"` |
 
 ## Codex Core Provider Priority
 
@@ -17,12 +17,12 @@ Use this provider order for Codex itself:
 
 1. ZCHAT primary: `model_provider = "openai-chat-completions"` with `base_url = "https://api.zchat.tech/v1"`.
 2. ZCHAT model fallback: try one documented alternate model when the primary model returns provider-side 500/502/503 or account-pool shortage.
-3. ChatGPT sign-in fallback: after authenticated ZCHAT quota, account-pool, or provider availability is exhausted, sign in with ChatGPT (`codex login` or desktop app sign-in) and use `C:\Users\12484\.codex\chatgpt.config.toml` so eligible usage follows ChatGPT subscription/Plus access.
-4. Official OpenAI Platform API fallback: use `C:\Users\12484\.codex\openai.config.toml` only when the user explicitly wants usage-based Platform API billing or ChatGPT sign-in is unavailable.
+3. ChatGPT sign-in fallback: after authenticated ZCHAT quota, account-pool, or provider availability is exhausted, sign in with ChatGPT (`codex login` or desktop app sign-in) and use `%USERPROFILE%\.codex\chatgpt.config.toml` so eligible usage follows ChatGPT subscription/Plus access.
+4. Official OpenAI Platform API fallback: use `%USERPROFILE%\.codex\openai.config.toml` only when the user explicitly wants usage-based Platform API billing or ChatGPT sign-in is unavailable.
 
 Do not switch providers for local integration errors. Fix 400 request shape, 404 route/base URL, unsupported parameters, missing credentials, and misspelled models on the ZCHAT route first.
 
-`C:\Users\12484\.codex\auth.json` or the OS credential store holds only the active Codex credentials. Its JSON schema changes by login mode: ZCHAT/API-key mode is `auth_mode: "apikey"` plus `OPENAI_API_KEY`, while ChatGPT sign-in is `auth_mode: "chatgpt"` plus token fields. Switch both `config.toml` and the active auth state together; keeping the old schema produces a mixed provider/auth state. Keep inventory metadata in `C:\Users\12484\.codex\auth.providers.template.json` or a private copy, but do not store multiple live secrets there.
+`%USERPROFILE%\.codex\auth.json` or the OS credential store holds only the active Codex credentials. Its JSON schema changes by login mode: ZCHAT/API-key mode is `auth_mode: "apikey"` plus `OPENAI_API_KEY`, while ChatGPT sign-in is `auth_mode: "chatgpt"` plus token fields. Switch both `config.toml` and the active auth state together; keeping the old schema produces a mixed provider/auth state. Keep inventory metadata in `%USERPROFILE%\.codex\auth.providers.template.json` or a private copy, but do not store multiple live secrets there.
 
 ## Not Directly ZCHAT-Compatible
 
@@ -64,8 +64,8 @@ format.
 For ZCHAT, test only low-frequency single calls:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\zchat-api-usage\scripts\check_zchat.py `
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\zchat-api-usage\scripts\check_zchat.py `
   --model grok-3
 ```
 
@@ -76,12 +76,12 @@ Avoid loops, stress tests, and high-concurrency usage.
 For the complete local environment variable checklist, read:
 
 ```text
-C:\Users\12484\.codex\skills\api-provider-routing\references\api-env-inventory.md
+%USERPROFILE%\.codex\skills\api-provider-routing\references\api-env-inventory.md
 ```
 
 Check local status without printing secrets:
 
 ```powershell
-C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
-  C:\Users\12484\.codex\skills\api-provider-routing\scripts\check_api_env.py
+%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe `
+  %USERPROFILE%\.codex\skills\api-provider-routing\scripts\check_api_env.py
 ```

@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'p
 
 # Imported Codex Home Package: pdf
 
-**Owner:** $(@{Name=pdf; Owner=codex-office-cli; Source=C:\Users\12484\.codex\skills\pdf}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=pdf; Owner=codex-office-cli; Source=%USERPROFILE%\.codex\skills\pdf}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

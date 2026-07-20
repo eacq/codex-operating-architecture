@@ -78,6 +78,13 @@ $generatedPaths = @($releaseReadmeVisuals.generated_paths) + @('VERSION', $relea
 $allPaths = @($Paths + $generatedPaths | Sort-Object -Unique)
 & (Join-Path $root 'skills\codex-git-operations\scripts\Update-ExperienceChangelog.ps1') -RepositoryRoot $root -Version $versionPlan.version -ChangedPaths $allPaths -ChangeClass Release -Apply | Out-Null
 & (Join-Path $root 'scripts\Sync-IterationDocumentation.ps1') -RepositoryRoot $root -ChangedPaths $allPaths -Apply | Out-Null
+if ($Mode -eq 'Public') {
+    $privacyRepair = & (Join-Path $root 'skills\codex-git-operations\scripts\Repair-PublicReleaseSnapshotPrivacy.ps1') -RepositoryRoot $root -Apply | ConvertFrom-Json
+    if ($privacyRepair.changed_count -gt 0) {
+        $generatedPaths += @($privacyRepair.changed_paths)
+        $allPaths = @($allPaths + @($privacyRepair.changed_paths) | Sort-Object -Unique)
+    }
+}
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceReleaseReadiness.ps1') -RepositoryRoot $root -Version $versionPlan.version | Out-Null
 $pathSet = & (Join-Path $root 'skills\codex-git-operations\scripts\Resolve-ExperienceReleasePathSet.ps1') -RepositoryRoot $root -Paths $Paths -GeneratedPaths $generatedPaths | ConvertFrom-Json
 $allPaths = @($pathSet.all_paths)

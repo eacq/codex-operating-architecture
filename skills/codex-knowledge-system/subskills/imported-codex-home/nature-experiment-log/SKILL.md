@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'n
 
 # Imported Codex Home Package: nature-experiment-log
 
-**Owner:** $(@{Name=nature-experiment-log; Owner=codex-knowledge-system; Source=C:\Users\12484\.codex\skills\nature-experiment-log}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=nature-experiment-log; Owner=codex-knowledge-system; Source=%USERPROFILE%\.codex\skills\nature-experiment-log}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

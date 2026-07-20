@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'n
 
 # Imported Codex Home Package: nature-ref-verifier
 
-**Owner:** $(@{Name=nature-ref-verifier; Owner=codex-information-gathering; Source=C:\Users\12484\.codex\skills\nature-ref-verifier}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=nature-ref-verifier; Owner=codex-information-gathering; Source=%USERPROFILE%\.codex\skills\nature-ref-verifier}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

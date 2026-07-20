@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 'c
 
 # Imported Codex Home Package: caveman
 
-**Owner:** $(@{Name=caveman; Owner=codex-task-execution; Source=C:\Users\12484\.codex\skills\caveman}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=caveman; Owner=codex-task-execution; Source=%USERPROFILE%\.codex\skills\caveman}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

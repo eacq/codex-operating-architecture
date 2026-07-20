@@ -5,8 +5,8 @@ description: Internal compatibility package for the migrated Codex Home skill 's
 
 # Imported Codex Home Package: screenshot
 
-**Owner:** $(@{Name=screenshot; Owner=codex-task-execution; Source=C:\Users\12484\.codex\skills\screenshot}.Owner)  
-**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.  
+**Owner:** $(@{Name=screenshot; Owner=codex-task-execution; Source=%USERPROFILE%\.codex\skills\screenshot}.Owner)
+**Invocation:** owner-routed internal subskill; do not register this package as a new global entry point.
 **Imported source:** upstream/ (portable workflow and non-secret assets only).
 
 ## Contract

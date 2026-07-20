@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$RepositoryRoot = (Get-Location).Path
 )
@@ -9,7 +9,7 @@ $helperPath = Join-Path $root 'skills\codex-git-operations\scripts\Invoke-GitHub
 $helper = Get-Content -LiteralPath $helperPath -Raw -Encoding UTF8
 
 foreach ($required in @(
-    'C:\Users\Public\Desktop\YouTu.lnk',
+    '%PUBLIC%\Desktop\YouTu.lnk',
     '127.0.0.1:7892',
     'HTTP_PROXY',
     'HTTPS_PROXY',

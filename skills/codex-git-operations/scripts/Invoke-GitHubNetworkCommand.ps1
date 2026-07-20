@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
     [ValidateSet('git', 'gh')]
@@ -9,7 +9,7 @@ param(
     [string]$ProxyUri = 'http://127.0.0.1:7892',
     [string]$ProxyHost = '127.0.0.1',
     [int]$ProxyPort = 7892,
-    [string]$YouTuShortcut = 'C:\Users\Public\Desktop\YouTu.lnk',
+    [string]$YouTuShortcut = '%PUBLIC%\Desktop\YouTu.lnk',
     [int]$StartupTimeoutSeconds = 45,
     [switch]$ForceProxy
 )

@@ -6,13 +6,13 @@
                              "oil-oil/beautify-github-readme",
                              "rzashakeri/beautify-github-profile"
                          ],
-    "selected_mode":  "README",
+    "selected_mode":  "Audit",
     "scope":  [
                   "CHANGELOG.md",
                   "docs/ITERATION-STATUS.md",
-                  "docs/release-notes/v2.0.0.0.md",
-                  "README.en.md",
-                  "README.md"
+                  "docs/release-notes/v1.8.0.0.md",
+                  "docs/release-notes/v1.9.0.0.md",
+                  "docs/release-notes/v2.0.0.0.md"
               ],
     "design_system":  "docs/readme-design-system.json",
     "required_review":  [

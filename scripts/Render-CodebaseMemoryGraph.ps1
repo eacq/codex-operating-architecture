@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$OutputPath = '',
     [string]$GifOutputPath = '',
@@ -16,7 +16,7 @@ param(
 $ErrorActionPreference = 'Stop'
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.png' }
 if ([string]::IsNullOrWhiteSpace($GifOutputPath)) { $GifOutputPath = Join-Path $PSScriptRoot '..\docs\assets\codebase-memory-mcp-graph.gif' }
-$python = 'C:\Users\12484\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
+$python = '%USERPROFILE%\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
 $renderer = Join-Path $PSScriptRoot 'render_codebase_memory_graph.py'
 $canvasCapture = Join-Path $PSScriptRoot 'capture_codebase_memory_graph_canvas.mjs'
 $uiStarter = Join-Path $PSScriptRoot 'Start-CodebaseMemoryGraphUi.ps1'
