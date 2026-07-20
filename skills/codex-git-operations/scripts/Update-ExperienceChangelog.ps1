@@ -57,10 +57,18 @@ if ($paths | Where-Object { $_ -like 'knowledge-vault/*' }) {
 if ($english.Count -eq 0) {
     $english.Add("Record verified automatic $ChangeClass iteration updates for the scoped changed paths.")
 }
+$releaseEnglish = 'Publish the verified experience-system release metadata, private tag, and release notes for the current version.'
+if ($ChangeClass -eq 'Release' -and -not $hasSection) {
+    $english.Insert(0, $releaseEnglish)
+}
 
 $zhHeading = Convert-EscapedUnicode '\u4e2d\u6587'
 $chinese = New-Object System.Collections.Generic.List[string]
 $chinese.Add((Convert-EscapedUnicode '\u540c\u6b65\u8bb0\u5f55\u672c\u6b21\u5df2\u9a8c\u8bc1\u7684\u7ecf\u9a8c\u7cfb\u7edf\u8fed\u4ee3\uff0c\u786e\u4fdd\u66f4\u65b0\u65e5\u5fd7\u4e0e\u7248\u672c\u5316\u884c\u4e3a\u4e00\u81f4\u3002'))
+$releaseChinese = Convert-EscapedUnicode '\u540c\u6b65\u53d1\u5e03\u5f53\u524d\u7248\u672c\u7684\u7ecf\u9a8c\u7cfb\u7edf\u53d1\u5e03\u5143\u6570\u636e\u3001\u79c1\u6709\u6807\u7b7e\u4e0e\u53d1\u5e03\u8bf4\u660e\u3002'
+if ($ChangeClass -eq 'Release' -and -not $hasSection) {
+    $chinese.Insert(0, $releaseChinese)
+}
 if ($paths | Where-Object { $_ -like 'skills/codex-skill-packaging/*' -or $_ -like 'skills/codex-self-evolution/*' }) {
     $chinese.Add((Convert-EscapedUnicode '\u65b0\u589e\u6bcd skill \u63d0\u70bc\u4e0e\u5185\u90e8\u5b50 skill \u95e8\u7981\u62c6\u5206\u89c4\u5219\uff0c\u51cf\u5c11\u9876\u5c42\u5165\u53e3\u81a8\u80c0\u3002'))
 }
@@ -88,12 +96,10 @@ if (-not $hasSection -and $Apply) {
     $title = if ($lines.Count -gt 0) { $lines[0] } else { '# Changelog / Update Log' }
     $rest = if ($lines.Count -gt 1) { ($lines[1..($lines.Count - 1)] -join [Environment]::NewLine).TrimStart() } else { '' }
     $updated = $title + [Environment]::NewLine + [Environment]::NewLine + (($section -join [Environment]::NewLine).TrimEnd()) + [Environment]::NewLine + [Environment]::NewLine + $rest.TrimStart()
-    Set-Content -LiteralPath $changelogPath -Value $updated -Encoding UTF8
+    Set-Content -LiteralPath $changelogPath -Value $updated -Encoding UTF8 -NoNewline
 }
 
 if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
-    $releaseEnglish = 'Publish the verified experience-system release metadata, private tag, and release notes for the current version.'
-    $releaseChinese = Convert-EscapedUnicode '\u540c\u6b65\u53d1\u5e03\u5f53\u524d\u7248\u672c\u7684\u7ecf\u9a8c\u7cfb\u7edf\u53d1\u5e03\u5143\u6570\u636e\u3001\u79c1\u6709\u6807\u7b7e\u4e0e\u53d1\u5e03\u8bf4\u660e\u3002'
     $sectionPattern = "(?ms)^##\s+$([regex]::Escape($Version))\b.*?(?=^##\s+|\z)"
     $sectionMatch = [regex]::Match($existing, $sectionPattern)
     if ($sectionMatch.Success -and $sectionMatch.Value -notmatch [regex]::Escape($releaseEnglish)) {
@@ -111,7 +117,7 @@ if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
                 1
             )
             $updated = $existing.Substring(0, $sectionMatch.Index) + $value + $existing.Substring($sectionMatch.Index + $sectionMatch.Length)
-            Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8
+            Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8 -NoNewline
     }
 }
 

@@ -41,7 +41,6 @@ if (-not $Apply) { $plan | ConvertTo-Json -Depth 5; exit 0 }
 
 $targetRemote = if ($Mode -eq 'Private') { 'origin' } else { 'public' }
 $localTag = (& git -C $root rev-parse -q --verify "refs/tags/$releaseTag" 2>$null)
-if ($localTag) { throw "Release tag already exists locally: $releaseTag. Resolve the stale tag or choose a new release before applying." }
 $remoteTag = @(& $githubCommand -RepositoryRoot $root -ForceProxy:$ForceProxy -Tool git -C $root ls-remote --tags $targetRemote "refs/tags/$releaseTag" 2>$null)
 if ($remoteTag.Count -gt 0) { throw "Release tag already exists on ${targetRemote}: $releaseTag." }
 $targetRepository = if ($Mode -eq 'Private') { $privateRepository } else { $publicRepository }
@@ -52,6 +51,16 @@ try {
     $existingRelease = ''
 }
 if ($existingRelease) { throw "GitHub Release already exists in $targetRepository for tag: $releaseTag." }
+$tagReconciliation = $null
+if ($localTag) {
+    $tagReconciliation = & (Join-Path $PSScriptRoot 'Resolve-LocalReleaseTagCollision.ps1') `
+        -RepositoryRoot $root `
+        -Tag $releaseTag `
+        -RemoteTagExists:($remoteTag.Count -gt 0) `
+        -ReleaseExists:([bool]$existingRelease) `
+        -Apply | ConvertFrom-Json
+    $plan['tag_reconciliation'] = $tagReconciliation
+}
 
 if (-not $PreserveVersion) { Set-Content -LiteralPath (Join-Path $root 'VERSION') -Value $versionPlan.version -Encoding UTF8 }
 $releaseNotePath = Join-Path $root $releaseNote

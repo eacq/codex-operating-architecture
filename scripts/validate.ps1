@@ -93,6 +93,8 @@ if (-not $?) { throw 'Codex Git workflow test failed.' }
 if (-not $?) { throw 'Git index-lock recovery test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceVersion.ps1')
 if (-not $?) { throw 'Experience version test failed.' }
+& (Join-Path $root 'skills\codex-git-operations\scripts\Test-LocalReleaseTagCollision.ps1')
+if (-not $?) { throw 'Local release tag collision test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-PrivateExperienceReleaseEvidence.Fixture.ps1')
 if (-not $?) { throw 'Private experience release evidence test failed.' }
 & (Join-Path $root 'skills\codex-git-operations\scripts\Test-GitRecoveryFastPath.ps1')

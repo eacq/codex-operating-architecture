@@ -60,6 +60,12 @@ try {
         $blocked = $_.Exception.Message -match 'CHANGELOG\.md to differ from HEAD'
     }
     if (-not $blocked) { throw 'Release readiness did not fail early when CHANGELOG.md had no release diff.' }
+
+    '2.0.0.0' | Set-Content -LiteralPath (Join-Path $fixture 'VERSION') -Encoding UTF8
+    '# Fixture public release note' | Set-Content -LiteralPath (Join-Path $fixture 'docs\release-notes\v2.0.0.0.md') -Encoding UTF8
+    & $updater -RepositoryRoot $fixture -Version '2.0.0.0' -ChangedPaths @('scripts/public.ps1') -ChangeClass Release -Apply | Out-Null
+    $singlePass = & (Join-Path $root 'skills\codex-git-operations\scripts\Test-ExperienceReleaseReadiness.ps1') -RepositoryRoot $fixture -Version '2.0.0.0' | ConvertFrom-Json
+    if ($singlePass.result -ne 'experience-release-readiness-passed') { throw 'A newly generated release section was not ready after one update pass.' }
 }
 finally {
     if (Test-Path -LiteralPath $fixture) { Remove-Item -LiteralPath $fixture -Recurse -Force }

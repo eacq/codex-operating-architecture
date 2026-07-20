@@ -2,6 +2,8 @@
 param(
     [string]$RepositoryRoot = 'F:\codex',
     [string]$ProjectName = 'F-codex',
+    [Alias('HostAddress', 'BindAddress')]
+    [string]$Address = '127.0.0.1',
     [int]$Port = 9750,
     [ValidateRange(1, 300)]
     [int]$IndexTimeoutSeconds = 180
@@ -14,7 +16,7 @@ if (-not (Test-Path -LiteralPath $binary -PathType Leaf)) {
     throw "Codebase Memory MCP UI binary is missing: $binary"
 }
 
-$baseUrl = "http://127.0.0.1:$Port"
+$baseUrl = "http://$Address`:$Port"
 function Get-UiJson([string]$Path, [int]$TimeoutSeconds = 10) {
     $response = Invoke-WebRequest -UseBasicParsing -Uri "$baseUrl$Path" -TimeoutSec $TimeoutSeconds
     return $response.Content | ConvertFrom-Json
@@ -28,18 +30,18 @@ try {
 } catch { }
 $listener = $null
 if (-not $health) {
-    $listener = Get-NetTCPConnection -State Listen -LocalAddress '127.0.0.1' -LocalPort $Port -ErrorAction SilentlyContinue | Select-Object -First 1
+    $listener = Get-NetTCPConnection -State Listen -LocalAddress $Address -LocalPort $Port -ErrorAction SilentlyContinue | Select-Object -First 1
 }
 if (-not $health -and -not $listener) {
     # Keep stdio open because the MCP server exits when it receives EOF.
-    $command = "ping -t 127.0.0.1 | `"$binary`" --ui=true --port=$Port"
+    $command = "ping -t $Address | `"$binary`" --ui=true --port=$Port"
     $process = Start-Process -FilePath cmd.exe -ArgumentList '/c', $command -WindowStyle Hidden -PassThru
     $deadline = (Get-Date).AddSeconds(15)
     do {
         Start-Sleep -Milliseconds 250
-        $listener = Get-NetTCPConnection -State Listen -LocalAddress '127.0.0.1' -LocalPort $Port -ErrorAction SilentlyContinue | Select-Object -First 1
+        $listener = Get-NetTCPConnection -State Listen -LocalAddress $Address -LocalPort $Port -ErrorAction SilentlyContinue | Select-Object -First 1
     } while (-not $listener -and (Get-Date) -lt $deadline)
-    if (-not $listener) { throw "Codebase Memory MCP UI did not open 127.0.0.1:$Port (launcher PID $($process.Id))." }
+    if (-not $listener) { throw "Codebase Memory MCP UI did not open $Address`:$Port (launcher PID $($process.Id))." }
 }
 $health = if ($health) { $health } else { Get-UiJson ("/api/project-health?name=" + [uri]::EscapeDataString($ProjectName)) }
 $indexStatus = 'healthy'
@@ -68,7 +70,7 @@ if ($health.status -ne 'healthy') {
 [pscustomobject]@{
     repository_root = $root
     project_name = $ProjectName
-    url = "http://127.0.0.1:$Port/"
+    url = "http://$Address`:$Port/"
     port = $Port
     process_id = if ($listener) { $listener.OwningProcess } else { $null }
     index_status = $indexStatus
