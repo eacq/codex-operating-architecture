@@ -33,6 +33,13 @@
   host exposes it, and `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports a
   `codex_runtime` layer with measured-task count, totals, and an optimization
   target.
+- Add complete hierarchical timing records (session -> step/operation ->
+  functional unit/tool call, each with completion status and duration), a
+  composite time metric (external Codex wall clock vs internal timers, capped
+  index relative to the system median), and a script-control aggregation that
+  feeds `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
+  for releasing task-scoped processes and disposable tmp files (dry-run first;
+  workspaces stay advisory).
 
 ### Chinese / 中文
 
@@ -54,6 +61,11 @@
   （保存点续跑边界）测到接受的保存点，宿主上报工作时长在宿主暴露时记录；
   `scripts/Invoke-HistoricalTimingAnalysis.ps1` 输出 `codex_runtime` 分层
   （已测任务数、总量与优化目标）。
+- 新增全层级计时记录（会话 -> 步骤/操作 -> 功能元/工具调用，均含完成状态与耗时）、
+  综合时间指标（外部 Codex 墙钟 vs 内部计时器，相对系统中位数的封顶指数），
+  以及脚本控制聚合，供
+  `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
+  释放任务进程与一次性临时文件（默认 dry-run；工作区仅建议不自动删除）。
 
 ## 2.1.0.0 - 2026-07-23
 

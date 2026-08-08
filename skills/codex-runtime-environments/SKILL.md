@@ -16,6 +16,16 @@ Memory MCP, proxy, Adobe, MCP servers), and defaults to dry-run until `-Apply`.
 Run `scripts/Test-ReleaseUsedTaskProcesses.ps1` for the deterministic contract
 check.
 
+Use `scripts/Invoke-ScriptResourceRelease.ps1` for script/resource control: it
+releases task-scoped leftover processes (via `Release-UsedTaskProcesses.ps1`),
+deletes disposable `.runtime\tmp` items older than a retention window, and
+reports stale `.runtime\work` workspaces as advisory candidates only (never
+deleted automatically). Defaults to dry-run until `-Apply`. The timing ledger
+from `scripts/Invoke-HistoricalTimingAnalysis.ps1 -Ledger` lists every
+functional unit (tool call) with duration and completion status, which drives
+script-control decisions. Run `scripts/Test-ScriptResourceRelease.ps1` for the
+deterministic contract check.
+
 Use `scripts/Manage-CodexEnvironment.ps1`:
 
 1. Run `status` before mutation.

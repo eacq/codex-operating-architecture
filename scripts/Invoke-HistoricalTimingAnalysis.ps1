@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$RepositoryRoot = 'F:\codex',
-    [switch]$Apply
+    [switch]$Apply,
+    [switch]$Ledger
 )
 
 $ErrorActionPreference = 'Stop'
@@ -21,7 +22,7 @@ function Read-JsonOrNull([string]$Path) {
 }
 
 function Get-SessionRecord {
-    param([string]$StatePath)
+    param([string]$StatePath, [bool]$CollectLedger)
     $state = Read-JsonOrNull $StatePath
     if (-not $state) { return $null }
     $dir = Split-Path -Parent $StatePath
@@ -31,8 +32,14 @@ function Get-SessionRecord {
     $sessionSeconds = if ($created -and $updated) { [math]::Max([double]0, ($updated - $created).TotalSeconds) } else { $null }
 
     $openStack = New-Object System.Collections.Generic.List[object]
+    $toolOpenStack = New-Object System.Collections.Generic.List[object]
     $opSumSeconds = 0.0
     $opCount = 0
+    $toolSumSeconds = 0.0
+    $toolCount = 0
+    $toolErrorCount = 0
+    $opRows = @()
+    $toolRows = @()
     $eventCount = 0
     $turnCount = 0
     $firstEvent = $null
@@ -64,6 +71,46 @@ function Get-SessionRecord {
                         $duration = [math]::Max([double]0, ($ts - $started).TotalSeconds)
                         $opSumSeconds += $duration
                         $opCount++
+                        if ($CollectLedger) {
+                            $opRows += [pscustomobject]@{
+                                level = 'step'
+                                kind = 'operation'
+                                operation = [string]$event.data.operation
+                                started_at = $started.ToString('o')
+                                completed_at = $ts.ToString('o')
+                                duration_seconds = [math]::Round($duration, 3)
+                                status = [string]$event.data.status
+                            }
+                        }
+                    }
+                }
+                continue
+            }
+            if ($type -eq 'tool_call_started') {
+                $toolOpenStack.Add([pscustomobject]@{ operation = [string]$event.data.operation; started = $ts })
+                continue
+            }
+            if ($type -eq 'tool_call_finished') {
+                if ($toolOpenStack.Count -gt 0) {
+                    $lastIndex = $toolOpenStack.Count - 1
+                    $started = $toolOpenStack[$lastIndex].started
+                    $toolOpenStack.RemoveAt($lastIndex)
+                    if ($started -and $ts) {
+                        $duration = [math]::Max([double]0, ($ts - $started).TotalSeconds)
+                        $toolSumSeconds += $duration
+                        $toolCount++
+                        if ($event.data.is_error) { $toolErrorCount++ }
+                        if ($CollectLedger) {
+                            $toolRows += [pscustomobject]@{
+                                level = 'functional_unit'
+                                kind = 'tool_call'
+                                operation = [string]$event.data.operation
+                                started_at = $started.ToString('o')
+                                completed_at = $ts.ToString('o')
+                                duration_seconds = [math]::Round($duration, 3)
+                                is_error = [bool]$event.data.is_error
+                            }
+                        }
                     }
                 }
             }
@@ -87,6 +134,9 @@ function Get-SessionRecord {
         active_span_seconds = $activeSpanSeconds
         operation_sum_seconds = [math]::Round($opSumSeconds, 3)
         operation_count = $opCount
+        tool_call_sum_seconds = [math]::Round($toolSumSeconds, 3)
+        tool_call_count = $toolCount
+        tool_call_error_count = $toolErrorCount
         idle_seconds = $idleSeconds
         event_count = $eventCount
         turn_count = $turnCount
@@ -97,12 +147,14 @@ function Get-SessionRecord {
         host_reported_worked_seconds = if ($timing) { $timing.host_reported_worked_seconds } else { $null }
         operation_wall_clock_seconds = if ($timing) { $timing.operation_wall_clock_seconds } else { $null }
         controller_wall_clock_seconds = if ($timing) { $timing.controller_wall_clock_seconds } else { $null }
+        op_rows = $opRows
+        tool_rows = $toolRows
     }
 }
 
 $sessions = @()
 foreach ($statePath in @(Get-ChildItem -LiteralPath $sessionsRoot -Recurse -Filter 'state.json' -File -ErrorAction SilentlyContinue)) {
-    $record = Get-SessionRecord -StatePath $statePath.FullName
+    $record = Get-SessionRecord -StatePath $statePath.FullName -CollectLedger ([bool]$Ledger)
     if ($record) { $sessions += $record }
 }
 
@@ -116,6 +168,7 @@ foreach ($s in $sessions) {
     Add-LayerStat $layerStats 'agent_session' 'session_wall_clock_seconds' $s.session_wall_clock_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'agent_session' 'active_span_seconds' $s.active_span_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'controller_operation' 'operation_sum_seconds' $s.operation_sum_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'functional_unit' 'tool_call_seconds' $s.tool_call_sum_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'agent_session' 'idle_seconds' $s.idle_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'user_outcome' 'task_wall_clock_seconds' $s.task_wall_clock_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'user_outcome' 'host_reported_worked_seconds' $s.host_reported_worked_seconds ("session:" + $s.session_id)
@@ -216,6 +269,51 @@ $totalTaskWallSeconds = Get-LayerSum $layerStats 'user_outcome' 'task_wall_clock
 $totalHostWorkedSeconds = Get-LayerSum $layerStats 'user_outcome' 'host_reported_worked_seconds'
 $codexMeasuredTaskCount = ($sessions | Where-Object { $_.task_time_status -eq 'measured-from-caller-task-start' } | Measure-Object).Count
 $codexHostWorkedRecordCount = ($sessions | Where-Object { $_.host_reported_worked_seconds -ne $null } | Measure-Object).Count
+$toolCallTotalSeconds = Get-LayerSum $layerStats 'functional_unit' 'tool_call_seconds'
+$toolCallCountTotal = 0
+$toolErrorTotal = 0
+foreach ($s in $sessions) {
+    if ($s.tool_call_count) { $toolCallCountTotal += [int]$s.tool_call_count }
+    if ($s.tool_call_error_count) { $toolErrorTotal += [int]$s.tool_call_error_count }
+}
+$externalSpans = @($sessions | Where-Object { $_.active_span_seconds -ne $null } | ForEach-Object { [double]$_.active_span_seconds })
+$medianExternal = if ($externalSpans.Count -gt 0) { ($externalSpans | Sort-Object)[[int]($externalSpans.Count / 2)] } else { $null }
+$compositeIndices = @()
+foreach ($s in $sessions) {
+    $external = if ($null -ne $s.task_wall_clock_seconds) { [double]$s.task_wall_clock_seconds } elseif ($null -ne $s.active_span_seconds) { [double]$s.active_span_seconds } else { $null }
+    $s | Add-Member -NotePropertyName external_wall_clock_seconds -NotePropertyValue $external -Force
+    $idx = if ($external -and $external -gt 0 -and $medianExternal) { [math]::Min(500, [math]::Round(100 * $medianExternal / $external, 1)) } else { $null }
+    $s | Add-Member -NotePropertyName composite_time_index -NotePropertyValue $idx -Force
+    $opShare = $null; $toolShare = $null; $idleShare = $null
+    if ($external -and $external -gt 0) {
+        if ($s.operation_sum_seconds -ge 0) { $opShare = [math]::Round([double]$s.operation_sum_seconds / $external, 4) }
+        if ($s.tool_call_sum_seconds -ge 0) { $toolShare = [math]::Round([double]$s.tool_call_sum_seconds / $external, 4) }
+        if ($s.idle_seconds -ge 0) { $idleShare = [math]::Round([double]$s.idle_seconds / $external, 4) }
+    }
+    $s | Add-Member -NotePropertyName operation_share -NotePropertyValue $opShare -Force
+    $s | Add-Member -NotePropertyName tool_call_share -NotePropertyValue $toolShare -Force
+    $s | Add-Member -NotePropertyName idle_share -NotePropertyValue $idleShare -Force
+    if ($idx) { $compositeIndices += [double]$idx }
+}
+$meanCompositeIndex = if ($compositeIndices.Count -gt 0) { [math]::Round(($compositeIndices | Measure-Object -Average).Average, 1) } else { $null }
+$medianCompositeIndex = if ($compositeIndices.Count -gt 0) { [math]::Round((@($compositeIndices | Sort-Object))[[int]($compositeIndices.Count / 2)], 1) } else { $null }
+$scriptControl = $null
+if ($Ledger) {
+    $scriptAgg = @{}
+    foreach ($sessionRecord in $sessions) {
+        foreach ($row in @($sessionRecord.tool_rows)) {
+            $key = [string]$row.operation
+            if (-not $scriptAgg.ContainsKey($key)) {
+                $scriptAgg[$key] = [ordered]@{ operation = $key; count = 0; sum_seconds = 0.0; error_count = 0; max_seconds = 0.0 }
+            }
+            $scriptAgg[$key].count++
+            $scriptAgg[$key].sum_seconds = [math]::Round([double]$scriptAgg[$key].sum_seconds + [double]$row.duration_seconds, 3)
+            if ($row.is_error) { $scriptAgg[$key].error_count++ }
+            if ([double]$row.duration_seconds -gt [double]$scriptAgg[$key].max_seconds) { $scriptAgg[$key].max_seconds = [math]::Round([double]$row.duration_seconds, 3) }
+        }
+    }
+    $scriptControl = @($scriptAgg.Values | Sort-Object @{ E = { [double]$_.sum_seconds } } -Descending | Select-Object -First 15)
+}
 
 $result = [ordered]@{
     schema_version = 1
@@ -244,7 +342,23 @@ $result = [ordered]@{
         codex_task_wall_clock_total_seconds = $totalTaskWallSeconds
         codex_host_worked_record_count = $codexHostWorkedRecordCount
         codex_host_worked_total_seconds = $totalHostWorkedSeconds
+        composite_time_index = $medianCompositeIndex
+        functional_unit_tool_call_seconds = $toolCallTotalSeconds
     }
+    timing_sources = [ordered]@{
+        external_system_time = 'task wall clock from caller task-start anchor to save point (Codex response view); host-reported worked time captured when the host exposes it'
+        internal_timers = 'operation_started/finished, tool_call_started/finished, controller and script step timers'
+    }
+    composite_time = [ordered]@{
+        definition = 'Composite time metric per session: external wall clock (measured task wall clock, else active span); composite_time_index = 100 * system median external / session external (higher = faster than median); component shares = operation, tool call, idle'
+        median_external_seconds = $medianExternal
+        median_composite_time_index = $medianCompositeIndex
+        mean_composite_time_index = $meanCompositeIndex
+        functional_unit_tool_call_count = $toolCallCountTotal
+        functional_unit_tool_call_seconds = $toolCallTotalSeconds
+        functional_unit_tool_call_error_count = $toolErrorTotal
+    }
+    script_control = $scriptControl
     codex_runtime = [ordered]@{
         measured_task_record_count = $codexMeasuredTaskCount
         task_wall_clock_total_seconds = $totalTaskWallSeconds
@@ -279,12 +393,48 @@ if ($Apply) {
     $lines += ('- Measured task records (caller task start supplied): ' + $system.codex_measured_task_count)
     $lines += ('- Codex task wall clock total: ' + $system.codex_task_wall_clock_total_seconds + 's; host-reported worked records: ' + $system.codex_host_worked_record_count + ' (' + $system.codex_host_worked_total_seconds + 's)')
     $lines += ('- Target: ' + $result.codex_runtime.optimization_target)
+    $composite = $result.composite_time
+    $lines += @('','## Composite Time Metric','')
+    $lines += ('- Definition: ' + $composite.definition)
+    $lines += ('- Median external seconds: ' + $composite.median_external_seconds + '; median composite time index: ' + $composite.median_composite_time_index + ' (mean ' + $composite.mean_composite_time_index + ')')
+    $lines += ('- Functional unit (tool call): count=' + $composite.functional_unit_tool_call_count + ' seconds=' + $composite.functional_unit_tool_call_seconds + ' errors=' + $composite.functional_unit_tool_call_error_count)
+    if ($scriptControl) {
+        $lines += @('','## Script Control (top functional units by time)','')
+        foreach ($row in $scriptControl) {
+            $lines += ('- ' + $row.operation + ': count=' + $row.count + ' sum=' + $row.sum_seconds + 's max=' + $row.max_seconds + 's errors=' + $row.error_count)
+        }
+        $lines += @('','Resource release: use skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1 to release task-scoped processes and disposable temp files.')
+    }
     $lines += @('','## Top Sessions by Wall Clock','')
     foreach ($t in $topSessions) {
         $lines += ('- ' + $t.session_id + ' (' + $t.goal + '): session=' + $t.session_seconds + 's ops=' + $t.operation_sum_seconds + 's (' + $t.operation_count + ') idle=' + $t.idle_seconds + 's turns=' + $t.turns)
     }
     $lines += @('','## Decision','','Baseline captured across all past tasks. Optimizations require function-preserving candidates with two equivalent observations per declared layer; Full validation remains for global closeout.')
     [IO.File]::WriteAllText($mdPath, ($lines -join "`n"), [Text.UTF8Encoding]::new($false))
+    if ($Ledger) {
+        $ledgerDir = Join-Path $outputDir 'session-timing-ledger'
+        New-Item -ItemType Directory -Force -Path $ledgerDir | Out-Null
+        $ledgerCount = 0
+        foreach ($sessionRecord in $sessions) {
+            if ($null -eq $sessionRecord -or $sessionRecord -is [System.Management.Automation.SwitchParameter]) { continue }
+            if (@($sessionRecord.op_rows).Count -eq 0 -and @($sessionRecord.tool_rows).Count -eq 0) { continue }
+            $safeId = ($sessionRecord.session_id -replace '[^A-Za-z0-9._-]', '_')
+            $ledgerPayload = [ordered]@{
+                session_id = $sessionRecord.session_id
+                external_wall_clock_seconds = $sessionRecord.external_wall_clock_seconds
+                composite_time_index = $sessionRecord.composite_time_index
+                operation_sum_seconds = $sessionRecord.operation_sum_seconds
+                tool_call_sum_seconds = $sessionRecord.tool_call_sum_seconds
+                idle_seconds = $sessionRecord.idle_seconds
+                operations = @($sessionRecord.op_rows)
+                tool_calls = @($sessionRecord.tool_rows)
+            }
+            [IO.File]::WriteAllText((Join-Path $ledgerDir ($safeId + '.json')), (($ledgerPayload | ConvertTo-Json -Depth 8) + [Environment]::NewLine), [Text.UTF8Encoding]::new($false))
+            $ledgerCount++
+        }
+        $result['ledger_artifacts'] = '.codex/project/timing-analysis/session-timing-ledger'
+        $result['ledger_session_count'] = $ledgerCount
+    }
     $result['artifacts'] = @('.codex/project/timing-analysis/historical-timing-analysis.json','.codex/project/timing-analysis/historical-timing-analysis.md')
 }
 $result | ConvertTo-Json -Depth 10

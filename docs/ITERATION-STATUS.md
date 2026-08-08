@@ -13,6 +13,7 @@
 - Latest verified learning: distilled the `msitarzewski/agency-agents` specialist-design method into `skills/codex-experience-capture/references/agency-agents-specialist-design.md`, a linked knowledge note, and a deterministic distillation test; raw upstream installers are rejected.
 - Latest verified timing/resource optimization: `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports diversified timing layers and system total time across all past sessions; the GEA runtime now persists the full timing block into session state at every save point; `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` provides safe dry-run-first task-process release.
 - Latest verified Codex-runtime metric: every GEA save records task wall clock from the caller task-start anchor to the accepted save point (`measured-from-caller-task-start`), host-reported worked time when exposed, and the historical timing analysis reports the `codex_runtime` layer with totals and an optimization target.
+- Latest verified hierarchical timing/script control: `Invoke-HistoricalTimingAnalysis.ps1 -Ledger` records every step and functional unit with completion status and duration, computes a composite time metric (external vs internal, capped median-relative index), and feeds `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1` (dry-run-first process/tmp release, advisory workspaces).
 
 ## 中文
 
@@ -30,3 +31,7 @@
 - 最新已验证 Codex 运行时间指标：每次 GEA 保存都从调用方任务起始锚点记录到接受的
   保存点的任务墙钟（`measured-from-caller-task-start`），宿主暴露时记录宿主工作时长；
   历史计时分析输出 `codex_runtime` 分层与总量及优化目标。
+- 最新已验证全层级计时与脚本控制：`Invoke-HistoricalTimingAnalysis.ps1 -Ledger`
+  记录每个步骤与功能元的完成状态和耗时，计算综合时间指标（外部 vs 内部、封顶中位数
+  相对指数），并供给 `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
+  （默认 dry-run 的进程/临时文件释放，工作区仅建议）。
