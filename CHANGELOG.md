@@ -40,6 +40,8 @@
   feeds `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
   for releasing task-scoped processes and disposable tmp files (dry-run first;
   workspaces stay advisory).
+- Enable automatic resource cleanup at task-end boundaries: `Invoke-CompleteGlobalExperienceIteration.ps1` and `Invoke-VerifiedPrivateCommit.ps1` now run `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses` (disposable tmp only, processes stay manual) and record the cleanup result in the iteration proof / commit plan.
+- Add a full data-lifecycle policy and controller: `config/data-lifecycle-policy.json` defines an orderly local storage layout and retention (tmp hours, workspace advisory days, backup-snapshot and iteration-log keep-latest windows, protected durable roots); `skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1` prunes old tmp, old backup snapshots, and old logs at task-end and never auto-deletes sessions, memory, timing evidence, archives, reports, proofs, gates, envelopes, or release backups. Iteration and verified-Git-commit controllers call it automatically and record the result.
 
 ### Chinese / 中文
 
@@ -66,6 +68,15 @@
   以及脚本控制聚合，供
   `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
   释放任务进程与一次性临时文件（默认 dry-run；工作区仅建议不自动删除）。
+- 在任务结束边界启用自动资源清理：`Invoke-CompleteGlobalExperienceIteration.ps1` 与
+  `Invoke-VerifiedPrivateCommit.ps1` 现在自动运行
+  `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses`（仅一次性 tmp，
+  进程释放保持人工），并把清理结果记入迭代证明/提交计划。
+- 新增完整数据生命周期策略与控制器：`config/data-lifecycle-policy.json` 定义有序的本地
+  存储布局与保留规则（tmp 小时数、工作区建议天数、备份快照与迭代日志的保留窗口、
+  受保护的持久根）；`skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1`
+  在任务结束清理旧 tmp、旧备份快照与旧日志，绝不自动删除会话、记忆、计时证据、归档、
+  报告、证明、门禁、信封或发布备份。迭代与已验证 Git 提交控制器自动调用并记录结果。
 
 ## 2.1.0.0 - 2026-07-23
 

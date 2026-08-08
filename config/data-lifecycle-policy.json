@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "data-lifecycle-policy",
+  "owner": "codex-runtime-environments",
+  "purpose": "Orderly storage and retention for runtime temp files, workspaces, backups, logs, and durable records; delete only unimportant disposable content and keep every important record in a structured local layout.",
+  "storage_layout": {
+    ".runtime/tmp": "disposable validation fixtures and scratch; deleted after retention",
+    ".runtime/work": "candidate clones and generated workspaces; kept until review, stale candidates advisory only",
+    ".runtime/cache": "reusable local caches; kept",
+    ".codex/project/agent-sessions": "durable Agent sessions (protected, never auto-deleted)",
+    ".codex/project/agent-memory": "durable Agent memory (protected)",
+    ".codex/project/timing-evidence": "timing measurement records (protected)",
+    ".codex/project/timing-analysis": "timing analysis and session timing ledgers (protected)",
+    ".codex/project/candidate-archive": "candidate processing archives (protected)",
+    ".codex/project/candidate-reports": "candidate reports (protected)",
+    ".codex/project/release-backups": "release rollback backups (protected)",
+    ".codex/project/structural-optimization-records": "structural optimization records (protected)",
+    ".codex/project/iteration-runs": "iteration logs; old logs pruned to the latest N",
+    ".codex/project/*-codex-backups": "pre-iteration rollback snapshots; keep the latest N",
+    ".codex/project/*.json": "lifecycle proofs, gates, envelopes (protected)"
+  },
+  "retention": {
+    "tmp_hours": 24,
+    "workspace_days_advisory": 30,
+    "backup_snapshot_keep_latest": 2,
+    "iteration_log_keep_latest": 20
+  },
+  "protected_roots": [
+    "agent-sessions",
+    "agent-memory",
+    "timing-evidence",
+    "timing-analysis",
+    "candidate-archive",
+    "candidate-reports",
+    "release-backups",
+    "structural-optimization-records",
+    "host-recovery"
+  ],
+  "protected_files": [
+    "state.json",
+    "global-experience-iteration.json",
+    "isolated-global-iteration.json",
+    "global-experience-agent-last-run.json",
+    "publication-envelope.json",
+    "git-iteration-gate.json",
+    "verification-last-run.json",
+    "task-timing-last.json",
+    "timing-optimization-baseline.json",
+    "candidate-processing-authorization.json",
+    "incoming-error-feedback.jsonl",
+    "workflow-learning.json"
+  ],
+  "deletion_rule": "At a verified task-end boundary, delete only disposable tmp items older than retention and prune old backup snapshots and iteration logs beyond the keep-latest window. Durable sessions, memory, timing evidence, archives, reports, proofs, gates, envelopes, and rollback backups are never auto-deleted; stale workspaces are advisory only.",
+  "rollback_note": "Pruning old pre-iteration snapshots is safe after a verified iteration because the latest snapshot, release-backups, and Git refs preserve rollback evidence."
+}

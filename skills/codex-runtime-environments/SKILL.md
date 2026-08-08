@@ -26,6 +26,16 @@ functional unit (tool call) with duration and completion status, which drives
 script-control decisions. Run `scripts/Test-ScriptResourceRelease.ps1` for the
 deterministic contract check.
 
+Use `scripts/Invoke-DataLifecycleCleanup.ps1` at task-end boundaries for the
+full data lifecycle governed by `config/data-lifecycle-policy.json`: it reuses
+the tmp/workspace cleanup above, prunes old pre-iteration backup snapshots and
+old iteration logs to keep-latest windows, and always preserves durable
+sessions, memory, timing evidence, archives, reports, proofs, gates, envelopes,
+and release backups. Defaults to dry-run until `-Apply`; stale workspaces stay
+advisory. `Invoke-CompleteGlobalExperienceIteration.ps1` and
+`Invoke-VerifiedPrivateCommit.ps1` call it automatically when a task ends. Run
+`scripts/Test-DataLifecycleCleanup.ps1` for the deterministic contract check.
+
 Use `scripts/Manage-CodexEnvironment.ps1`:
 
 1. Run `status` before mutation.

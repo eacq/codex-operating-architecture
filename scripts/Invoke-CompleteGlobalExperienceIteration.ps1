@@ -195,6 +195,21 @@ $record = [ordered]@{
     step_timings = @($stepTimings.ToArray())
     completed_at = [DateTime]::UtcNow.ToString('o')
 }
+$resourceCleanup = $null
+if ($Apply) {
+    $lifecycleScript = Join-Path $root 'skills\codex-runtime-environments\scripts\Invoke-DataLifecycleCleanup.ps1'
+    if (-not (Test-Path -LiteralPath $lifecycleScript -PathType Leaf)) {
+        $lifecycleScript = Join-Path $root 'skills\codex-runtime-environments\scripts\Invoke-ScriptResourceRelease.ps1'
+    }
+    if (Test-Path -LiteralPath $lifecycleScript -PathType Leaf) {
+        try {
+            $resourceCleanup = & $lifecycleScript -RepositoryRoot $root -TmpRetentionHours 1 -Apply | ConvertFrom-Json
+        } catch {
+            $resourceCleanup = [ordered]@{ result = 'failed'; error = $_.Exception.Message }
+        }
+    }
+}
+$record.resource_cleanup = $resourceCleanup
 if ($Apply) { Write-Utf8NoBom -Path (Join-Path $root '.codex/project/global-experience-iteration.json') -Value (($record | ConvertTo-Json -Depth 6) + [Environment]::NewLine) }
 if ($Apply -and $AutoCommit) {
     $allChanged = @(

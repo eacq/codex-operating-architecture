@@ -191,5 +191,18 @@ $statusRefresh = & (Join-Path $PSScriptRoot 'Repair-CodexGitStatusNoise.ps1') -R
 & git -C $root config codex.last.recorded-at ([DateTime]::UtcNow.ToString('o'))
 $plan['commit'] = $commit
 $plan['status_refresh'] = $statusRefresh
+$releaseScript = Join-Path $root 'skills\codex-runtime-environments\scripts\Invoke-DataLifecycleCleanup.ps1'
+if (-not (Test-Path -LiteralPath $releaseScript -PathType Leaf)) {
+    $releaseScript = Join-Path $root 'skills\codex-runtime-environments\scripts\Invoke-ScriptResourceRelease.ps1'
+}
+$resourceCleanup = $null
+if (Test-Path -LiteralPath $releaseScript -PathType Leaf) {
+    try {
+        $resourceCleanup = & $releaseScript -RepositoryRoot $root -TmpRetentionHours 1 -Apply | ConvertFrom-Json
+    } catch {
+        $resourceCleanup = [ordered]@{ result = 'failed'; error = $_.Exception.Message }
+    }
+}
+$plan['resource_cleanup'] = $resourceCleanup
 $plan['decision'] = if ($CommitOnly) { 'committed-locally-no-push' } else { 'committed-and-pushed-private-origin' }
 $plan | ConvertTo-Json -Depth 5

@@ -14,6 +14,8 @@
 - Latest verified timing/resource optimization: `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports diversified timing layers and system total time across all past sessions; the GEA runtime now persists the full timing block into session state at every save point; `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` provides safe dry-run-first task-process release.
 - Latest verified Codex-runtime metric: every GEA save records task wall clock from the caller task-start anchor to the accepted save point (`measured-from-caller-task-start`), host-reported worked time when exposed, and the historical timing analysis reports the `codex_runtime` layer with totals and an optimization target.
 - Latest verified hierarchical timing/script control: `Invoke-HistoricalTimingAnalysis.ps1 -Ledger` records every step and functional unit with completion status and duration, computes a composite time metric (external vs internal, capped median-relative index), and feeds `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1` (dry-run-first process/tmp release, advisory workspaces).
+- Latest verified task-end resource cleanup: iteration and verified-Git-commit controllers automatically run `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses` (disposable tmp only) when a task ends and record the result in the iteration proof / commit plan.
+- Latest verified data lifecycle: `config/data-lifecycle-policy.json` plus `skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1` keep temp files, workspaces, backup snapshots, and logs under orderly retention at task end while preserving durable sessions, memory, timing evidence, archives, reports, proofs, gates, envelopes, and release backups.
 
 ## 中文
 
@@ -35,3 +37,10 @@
   记录每个步骤与功能元的完成状态和耗时，计算综合时间指标（外部 vs 内部、封顶中位数
   相对指数），并供给 `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
   （默认 dry-run 的进程/临时文件释放，工作区仅建议）。
+- 最新已验证任务结束自动清理：迭代与已验证 Git 提交控制器在任务结束时自动运行
+  `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses`（仅一次性 tmp），
+  并把结果记入迭代证明/提交计划。
+- 最新已验证数据生命周期：`config/data-lifecycle-policy.json` 与
+  `skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1` 在任务结束时
+  按保留规则管理临时文件、工作区、备份快照与日志，同时永久保留会话、记忆、计时证据、
+  归档、报告、证明、门禁、信封与发布备份。
