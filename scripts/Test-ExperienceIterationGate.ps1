@@ -38,5 +38,9 @@ $sha = [Security.Cryptography.SHA256]::Create()
 $hash = ([BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes(($paths | Sort-Object) -join "`n"))) -replace '-','').ToLowerInvariant()
 $sha.Dispose()
 $record = [ordered]@{ schema_version=1; staged_paths_sha256=$hash; checks=@('experience iteration','workflow-to-knowledge/experience probe','knowledge/workflow visual-planning probe','continuous iteration diagnosis proof','exact rollback readiness proof','isolated cleanup and replacement proof','post-replacement validation proof','lifecycle writeback proof','robustness/economy review'); result='passed'; replay_safe=$true; created_at=[DateTime]::UtcNow.ToString('o') }
-if ($Apply) { $record | ConvertTo-Json | Set-Content (Join-Path $root '.codex\project\git-iteration-gate.json') -Encoding UTF8 }
+if ($Apply) {
+    $gatePath = Join-Path $root '.codex\project\git-iteration-gate.json'
+    $gateJson = ($record | ConvertTo-Json) + [Environment]::NewLine
+    [IO.File]::WriteAllText($gatePath, $gateJson, [Text.UTF8Encoding]::new($false))
+}
 $record | ConvertTo-Json

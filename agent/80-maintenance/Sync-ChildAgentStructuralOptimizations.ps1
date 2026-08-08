@@ -24,7 +24,19 @@ $manifest = $manifestRaw | ConvertFrom-Json
 $templateBefore = $template | ConvertTo-Json -Depth 50 -Compress
 $registryBefore = $registry | ConvertTo-Json -Depth 50 -Compress
 $manifestBefore = $manifest | ConvertTo-Json -Depth 50 -Compress
-$baselineSha256 = (Get-FileHash -LiteralPath $policyPath -Algorithm SHA256).Hash.ToLowerInvariant()
+function Get-NormalizedTextSha256([string]$Path) {
+    $utf8 = [Text.UTF8Encoding]::new($false, $true)
+    $text = [IO.File]::ReadAllText($Path, $utf8)
+    $normalized = $text -replace "`r`n", "`n" -replace "`r", "`n"
+    $sha256 = [Security.Cryptography.SHA256]::Create()
+    try {
+        return ([BitConverter]::ToString($sha256.ComputeHash($utf8.GetBytes($normalized)))).Replace('-', '').ToLowerInvariant()
+    } finally {
+        $sha256.Dispose()
+    }
+}
+
+$baselineSha256 = Get-NormalizedTextSha256 $policyPath
 $requiredIds = @($policy.required_optimizations | ForEach-Object { [string]$_.id })
 if ($requiredIds.Count -eq 0 -or @($requiredIds | Sort-Object -Unique).Count -ne $requiredIds.Count) {
     throw 'Structural optimization policy must contain unique required optimization ids.'

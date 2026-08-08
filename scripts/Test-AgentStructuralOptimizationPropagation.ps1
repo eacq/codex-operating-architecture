@@ -18,7 +18,19 @@ $template = Get-Content -LiteralPath $templatePath -Raw -Encoding UTF8 | Convert
 $registry = Get-Content -LiteralPath $registryPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $requiredIds = @($policy.required_optimizations.id)
-$baselineSha256 = (Get-FileHash -LiteralPath $policyPath -Algorithm SHA256).Hash.ToLowerInvariant()
+function Get-NormalizedTextSha256([string]$Path) {
+    $utf8 = [Text.UTF8Encoding]::new($false, $true)
+    $text = [IO.File]::ReadAllText($Path, $utf8)
+    $normalized = $text -replace "`r`n", "`n" -replace "`r", "`n"
+    $sha256 = [Security.Cryptography.SHA256]::Create()
+    try {
+        return ([BitConverter]::ToString($sha256.ComputeHash($utf8.GetBytes($normalized)))).Replace('-', '').ToLowerInvariant()
+    } finally {
+        $sha256.Dispose()
+    }
+}
+
+$baselineSha256 = Get-NormalizedTextSha256 $policyPath
 if ($policy.model -ne 'global-agent-structural-optimization-policy' -or $policy.status -ne 'active' -or $requiredIds.Count -lt 8) {
     throw 'Structural optimization policy is inactive or incomplete.'
 }

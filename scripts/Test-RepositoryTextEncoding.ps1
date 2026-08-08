@@ -39,7 +39,12 @@ if ($IncludeAgentRuntimeState) {
     if (Test-Path -LiteralPath $projectStateRoot -PathType Container) {
         Get-ChildItem -LiteralPath $projectStateRoot -Recurse -File |
             Where-Object { $_.Extension.ToLowerInvariant() -in @('.json', '.jsonl', '.md', '.txt', '.yaml', '.yml') } |
-            ForEach-Object { $paths.Add($_.FullName) }
+            ForEach-Object {
+                $normalized = ($_.FullName -replace '\\', '/')
+                $isArchiveCopy = @($archivePrefixes | Where-Object { $normalized.Contains($_) }).Count -gt 0
+                if ($isArchiveCopy) { return }
+                $paths.Add($_.FullName)
+            }
     }
 }
 

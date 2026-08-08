@@ -11,6 +11,8 @@
   knowledge workflows, and validation tooling.
 - Preserve the private/public release boundary: `private-v1.0` for the private
   repository and `v1.0` for the public repository.
+- Fix Windows `core.autocrlf` line-ending conversion so structural optimization
+  baseline hashes remain stable across Git checkout and runtime validation.
 
 ### Chinese / 中文
 

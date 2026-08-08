@@ -9,6 +9,7 @@
 - Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note and an exact-version `CHANGELOG.md` section.
 - Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.
 - Latest verified Agent capability surface: owner-routed document parse pipeline under `codex-office-cli`, exposed through Global Experience Agent state, resources, knowledge, manifests, and validation.
+- Latest verified repair: structural optimization baseline hashing normalizes UTF-8 text line endings, preventing Windows Git checkout from creating false propagation drift.
 
 ## 中文
 
