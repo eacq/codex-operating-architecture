@@ -1,0 +1,53 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-skill-portability",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-skill-portability/SKILL.md"
+                ],
+    "id":  "codex-skill-portability",
+    "owner":  "codex-skill-portability",
+    "plane":  "platform",
+    "stage":  "dispatch",
+    "canonical_skill":  "skills/codex-skill-portability/SKILL.md",
+    "triggers":  [
+                     "cross-environment transfer",
+                     "cloneable skill",
+                     "private-to-generic conversion"
+                 ],
+    "consumes":  [
+                     "canonical skill",
+                     "local profile boundary",
+                     "privacy constraints"
+                 ],
+    "produces":  [
+                     "sanitized portability profile",
+                     "first-use contract",
+                     "rollback copy"
+                 ],
+    "verification":  "no credentials or personal paths and target discovery remains valid",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-skill-packaging",
+                         "artifact":  "validated skill package",
+                         "event":  "portability_review_requested"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-architecture-iteration",
+                         "artifact":  "portability boundary evidence",
+                         "event":  "architecture_review_requested"
+                     },
+                     {
+                         "to":  "codex-project-optimization",
+                         "artifact":  "first-use profile",
+                         "event":  "target_project_initialization"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "agent-codebase-memory-policy",
+  "owner": "codex-information-gathering",
+  "entry_owner": "codex-self-evolution",
+  "canonical_project": {
+    "name": "F-codex",
+    "repo_path": "F:\\codex",
+    "root_normalized": "F:/codex",
+    "default_mode": "fast",
+    "persistence": true,
+    "role": "structural evidence index for the Global Experience Agent"
+  },
+  "automatic_indexing": {
+    "enabled": true,
+    "auto_index_setting": false,
+    "automatic_projects": [
+      {
+        "name": "F-codex",
+        "repo_path": "F:\\codex",
+        "mode": "fast"
+      }
+    ],
+    "automatic_exclusions": [
+      "C:\\Program Files\\WindowsApps",
+      "C:\\Users\\12484\\.codex",
+      "C:\\Users\\12484\\.agents",
+      "C:\\",
+      "all external and system roots"
+    ],
+    "explicit_c_drive_rule": "Only inspect or index a narrowly named C-drive path when the current task states why host implementation evidence is necessary; use a temporary task-scoped project name, record the path and expiry, and delete the derived project before returning to the single-project F-codex gate."
+  },
+  "callable_discovery": {
+    "registry_first": true,
+    "rule": "before treating codebase-memory-mcp as unavailable, query the current task callable capability registry for deferred or namespaced tools",
+    "fallback": "if not callable, record the gap and use local file, Git, and lifecycle evidence without graph-based claims"
+  },
+  "allowed_operations": [
+    {
+      "name": "index_repository",
+      "phase": "entry_refresh",
+      "authority": "read-derived-write-local-artifact",
+      "required_arguments": {
+        "repo_path": "F:\\codex",
+        "mode": "fast",
+        "name": "F-codex",
+        "persistence": true
+      }
+    },
+    {
+      "name": "get_graph_schema",
+      "phase": "coverage_inspection",
+      "authority": "read-only",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "get_architecture",
+      "phase": "route_evidence",
+      "authority": "read-only",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "search_code",
+      "phase": "target_selection",
+      "authority": "read-only",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "search_graph",
+      "phase": "target_selection",
+      "authority": "read-only-when-callable",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "trace_path",
+      "phase": "impact_analysis",
+      "authority": "read-only",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "query_graph",
+      "phase": "advanced_structural_query",
+      "authority": "read-only-when-callable",
+      "required_arguments": {
+        "project": "F-codex"
+      }
+    },
+    {
+      "name": "get_code_snippet",
+      "phase": "source_targeting",
+      "authority": "read-only-when-callable",
+      "required_arguments": {
+        "project": "F-codex"
+      },
+      "precondition": "search_graph or another graph query has identified the exact qualified_name"
+    }
+  ],
+  "agent_use_lifecycle": [
+    {
+      "phase": "entry_refresh",
+      "action": "refresh F-codex with index_repository when callable",
+      "record": ["project", "status", "mode", "nodes", "edges", "excluded_count", "artifact_present"]
+    },
+    {
+      "phase": "coverage_inspection",
+      "action": "read schema and architecture for structure, labels, edges, clusters, hotspots, and visible exclusions",
+      "record": ["node_labels", "edge_types", "coverage_limits"]
+    },
+    {
+      "phase": "route_evidence",
+      "action": "select the smallest owner and file surface using graph evidence",
+      "record": ["candidate_owner", "candidate_files", "graph_queries"]
+    },
+    {
+      "phase": "source_verify",
+      "action": "open cited source files before behavior, owner, absence, or mutation claims",
+      "record": ["source_files", "line_or_section_evidence", "verification_result"]
+    },
+    {
+      "phase": "save_point_record",
+      "action": "write graph coverage and source verification into the Agent save point or final evidence",
+      "record": ["freshness", "coverage_limits", "verified_claims", "residual_risk"]
+    }
+  ],
+  "authority_boundary": {
+    "human": "may request graph-backed orientation and reports through registered Agent operations",
+    "llm": "may use graph evidence for routing and source targeting under current task authority",
+    "internal-functional-unit": "may consume graph evidence as an input but cannot directly mutate Agent structure",
+    "global-control": "may route structure-affecting changes through codex-architecture-iteration and the agent_structure gate",
+    "never_allowed": [
+      "creating aliases for F:\\codex",
+      "treating graph misses as absence proof without source verification",
+      "using graph evidence to bypass owner tool gates",
+      "committing MCP databases or machine-specific MCP configuration",
+      "indexing external reference repositories into the global cache for single-project validation",
+      "automatically indexing Codex installation, Codex home, Agent home, or other C-drive system paths"
+    ]
+  },
+  "source_verification_rule": "graph output routes attention; current source files and tests remain final proof",
+  "single_project_validation": {
+    "script": "scripts/Test-CodebaseMemoryProjectScope.ps1",
+    "required_project_count": 1,
+    "required_project_name": "F-codex",
+    "required_root": "F:/codex"
+  },
+  "agent_state_surface": {
+    "reader": "agent/40-runtime/Get-AgentHarnessState.ps1",
+    "property": "agent_codebase_memory",
+    "test": "scripts/Test-AgentCodebaseMemoryPolicy.ps1"
+  }
+}

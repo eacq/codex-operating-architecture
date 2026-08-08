@@ -1,0 +1,73 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-office-cli",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-office-cli/SKILL.md"
+                ],
+    "id":  "codex-office-cli",
+    "owner":  "codex-office-cli",
+    "plane":  "capability",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-office-cli/SKILL.md",
+    "triggers":  [
+                     "Office automation",
+                     "PDF transformation",
+                     "cross-format document operation",
+                     "Agent document intake",
+                     "document parse pipeline"
+                 ],
+    "consumes":  [
+                     "source office artifact",
+                     "structured operation",
+                     "delivery constraints",
+                     "document parse request",
+                     "business validation keywords"
+                 ],
+    "produces":  [
+                     "validated Office artifact",
+                     "issue report",
+                     "unified Document/Chunk parse record",
+                     "content-structure-performance-robustness validation result"
+                 ],
+    "verification":  "format validation, issue checks, visual QA when layout matters, and Agent document parse pipeline validation before memory or knowledge intake",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-image-workflow",
+                         "artifact":  "visual asset and provenance",
+                         "event":  "office_assembly_selected"
+                     },
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "office operation brief or document parse request",
+                         "event":  "office_specialist_selected"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-exact-word-layout",
+                         "artifact":  "structured office artifact",
+                         "event":  "exact_layout_required"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "validated Office artifact or Document/Chunk parse record",
+                         "event":  "specialist_result_returned"
+                     },
+                     {
+                         "to":  "codex-knowledge-system",
+                         "artifact":  "validated Document/Chunk parse record",
+                         "event":  "knowledge_intake_ready"
+                     },
+                     {
+                         "to":  "codex-experience-capture",
+                         "artifact":  "document parse validation result",
+                         "event":  "parse_experience_observed"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "agent-filesystem",
+  "root": "agent",
+  "agent": "global-experience-agent",
+  "runtime_owner": "codex-self-evolution",
+  "architecture_owner": "codex-architecture-iteration",
+  "filesystem_owner": "codex-file-organization",
+  "principles": [
+    "one physical root represents the complete Agent topology",
+    "one canonical implementation exists for every executable capability",
+    "generated Agent manifests reference canonical Owner Skills instead of copying them",
+    "durable local state stays outside Git under .codex/project and .runtime",
+    "compatibility adapters forward to the canonical runtime and hold no behavior",
+    "all generated topology is deterministic and drift-testable"
+  ],
+  "zones": [
+    { "order": 0, "id": "root", "path": "agent/00-root", "purpose": "root Agent identity, contract, and entrypoint projection", "content": "generated-manifest" },
+    { "order": 10, "id": "interfaces", "path": "agent/10-interfaces", "purpose": "human, LLM, internal, and global-control permission boundaries", "content": "generated-manifests" },
+    { "order": 20, "id": "agents", "path": "agent/20-agents", "purpose": "concept, specialist, and bounded child Agent topology", "content": "generated-manifests" },
+    { "order": 30, "id": "resources", "path": "agent/30-resources", "purpose": "information-unit and functional-unit catalogs", "content": "generated-catalogs" },
+    { "order": 40, "id": "runtime", "path": "agent/40-runtime", "purpose": "canonical executable controller, runtime, state reader, and runtime catalog", "content": "canonical-code-and-generated-catalog" },
+    { "order": 50, "id": "evidence", "path": "agent/50-evidence", "purpose": "evidence, lifecycle, save-point, and privacy locations", "content": "generated-catalog" },
+    { "order": 60, "id": "exits", "path": "agent/60-exits", "purpose": "typed Agent response and control exits", "content": "generated-manifests" },
+    { "order": 70, "id": "presentation", "path": "agent/70-presentation", "purpose": "architecture views and presentation asset references", "content": "generated-catalog" },
+    { "order": 80, "id": "maintenance", "path": "agent/80-maintenance", "purpose": "filesystem projection, resolution, and drift verification", "content": "canonical-code-and-generated-catalog" },
+    { "order": 90, "id": "local", "path": "agent/90-local", "purpose": "tracked pointers to ignored local runtime state; never stores private runtime data", "content": "policy" }
+  ],
+  "canonical_surfaces": {
+    "system_contract": "config/agent-system.json",
+    "registry": "config/global-experience-agent-registry.json",
+    "structural_optimization_policy": "config/agent-structural-optimization-policy.json",
+    "interface_policy": "config/agent-interface-policy.json",
+    "intent_policy": "config/agent-intent-policy.json",
+    "loop_policy": "config/agent-loop-policy.json",
+    "memory_skill_policy": "config/agent-memory-skill-policy.json",
+    "chunking_retrieval_policy": "config/agent-chunking-retrieval-policy.json",
+    "codebase_memory_policy": "config/agent-codebase-memory-policy.json",
+    "owner_network": "config/agent-owner-connections.json",
+    "runtime_controller": "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+    "runtime_implementation": "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+    "structural_optimization_snapshot_provider": "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+    "structural_optimization_sync": "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+    "memory_backend": "agent/40-runtime/Invoke-AgentMemoryStore.py",
+    "state_reader": "agent/40-runtime/Get-AgentHarnessState.ps1",
+    "owner_resources": "skills",
+    "knowledge": "knowledge-vault/30-Knowledge/Global Experience System.md"
+  },
+  "compatibility_adapters": [
+    { "legacy": "scripts/Invoke-GlobalExperienceAgent.ps1", "canonical": "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1", "policy": "forward-only", "removal_boundary": "next-major-release" },
+    { "legacy": "scripts/Invoke-GlobalExperienceAgentRuntime.ps1", "canonical": "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1", "policy": "forward-only", "removal_boundary": "next-major-release" },
+    { "legacy": "scripts/Get-AgentHarnessState.ps1", "canonical": "agent/40-runtime/Get-AgentHarnessState.ps1", "policy": "forward-only", "removal_boundary": "next-major-release" }
+  ],
+  "local_state": [
+    { "id": "sessions", "path": ".codex/project/agent-sessions", "tracked": false },
+    { "id": "agent-memory", "path": ".codex/project/agent-memory", "tracked": false },
+    { "id": "lifecycle", "path": ".codex/project/state.json", "tracked": false },
+    { "id": "runtime-work", "path": ".runtime/work", "tracked": false },
+    { "id": "runtime-evidence", "path": ".runtime/evidence", "tracked": false }
+  ],
+  "protected_paths": [
+    ".git",
+    ".codex",
+    ".runtime",
+    ".history-cache",
+    "config.toml",
+    "auth.json"
+  ],
+  "projection": {
+    "generator": "agent/80-maintenance/Sync-AgentFilesystem.ps1",
+    "resolver": "agent/80-maintenance/Resolve-AgentFilesystemPath.ps1",
+    "test": "agent/80-maintenance/Test-AgentFilesystem.ps1",
+    "generated_marker": "agent-filesystem-projection",
+    "source_contracts": [
+      "config/agent-system.json",
+      "config/global-experience-agent-registry.json",
+      "config/agent-structural-optimization-policy.json",
+      "config/agent-interface-policy.json",
+      "config/agent-owner-connections.json"
+    ],
+    "generated_roots": [
+      "agent/00-root",
+      "agent/10-interfaces",
+      "agent/20-agents",
+      "agent/30-resources",
+      "agent/40-runtime/runtime.json",
+      "agent/50-evidence",
+      "agent/60-exits",
+      "agent/70-presentation",
+      "agent/80-maintenance/maintenance.json"
+    ],
+    "apply_rule": "write only deterministic generated files below the declared Agent root; never overwrite canonical code or Owner Skills",
+    "delete_rule": "remove only stale JSON files carrying the generated marker inside declared generated directories"
+  }
+}

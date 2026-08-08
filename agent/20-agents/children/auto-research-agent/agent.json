@@ -1,0 +1,264 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "child:auto-research-agent",
+    "kind":  "child-agent-profile",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/minimal-agent-template.json",
+                    "config/agent-structural-optimization-policy.json",
+                    "skills/codex-information-gathering/subskills/loopx-auto-research/SKILL.md"
+                ],
+    "id":  "auto-research-agent",
+    "parent_concept":  "long-running-trajectory-agent",
+    "owner":  "codex-information-gathering",
+    "owners":  [
+                   "codex-information-gathering",
+                   "codex-task-execution",
+                   "codex-knowledge-system"
+               ],
+    "canonical_skill":  "skills/codex-information-gathering/subskills/loopx-auto-research/SKILL.md",
+    "resources":  [
+                      "skills/codex-self-evolution/subskills/long-running-trajectory/SKILL.md",
+                      "skills/codex-information-gathering/subskills/loopx-auto-research/SKILL.md",
+                      "scripts/Invoke-LoopXTrajectory.ps1",
+                      "config/loopx-resource-policy.json"
+                  ],
+    "upstream_full_repository":  null,
+    "allowed_operations":  [
+                               "research-contract",
+                               "hypothesis-proposal",
+                               "frontier-claim",
+                               "bounded-execution",
+                               "evidence-packet",
+                               "evaluation",
+                               "promotion-proposal",
+                               "targeted-wake",
+                               "handoff"
+                           ],
+    "denied_operations":  [
+                              "unbounded-worker-loop",
+                              "publication",
+                              "credential-use",
+                              "promotion-without-owner-gate",
+                              "agent-structure-mutation",
+                              "cross-agent-write"
+                          ],
+    "delegation_payload_policy":  null,
+    "feynman_structural_scaffold":  {
+                                        "source":  "https://github.com/LesterYu0/feynman-build-workshop",
+                                        "inheritance":  "adapted for proposer-executor-evaluator research frontier coordination",
+                                        "units":  [
+                                                      {
+                                                          "id":  "memory_system",
+                                                          "application":  "retrieve prior research decisions and evidence summaries"
+                                                      },
+                                                      {
+                                                          "id":  "intent_recognition",
+                                                          "application":  "select proposal, execution, evaluation, or promotion lane"
+                                                      },
+                                                      {
+                                                          "id":  "doc_parse_pipeline",
+                                                          "application":  "parse research contracts and evaluator outputs into compact packets"
+                                                      },
+                                                      {
+                                                          "id":  "chunking_retrieval",
+                                                          "application":  "retrieve only the current frontier and prerequisite evidence"
+                                                      },
+                                                      {
+                                                          "id":  "rerank_calibration",
+                                                          "application":  "rank hypotheses by evidence quality, novelty, and risk"
+                                                      },
+                                                      {
+                                                          "id":  "agent_loop",
+                                                          "application":  "run bounded propose-execute-evaluate-handoff turns"
+                                                      },
+                                                      {
+                                                          "id":  "memory_as_skill",
+                                                          "application":  "store verified research evidence and frontier lessons at the parent save point"
+                                                      }
+                                                  ]
+                                    },
+    "structural_optimization_inheritance":  {
+                                                "status":  "synchronized",
+                                                "baseline_id":  "global-agent-structural-baseline-v1",
+                                                "baseline_version":  "1.2.0",
+                                                "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                "required_optimization_ids":  [
+                                                                                  "memory_system",
+                                                                                  "intent_recognition",
+                                                                                  "doc_parse_pipeline",
+                                                                                  "chunking_retrieval",
+                                                                                  "rerank_calibration",
+                                                                                  "agent_loop",
+                                                                                  "memory_as_skill",
+                                                                                  "interface_authority_gates",
+                                                                                  "owner_tool_gate_routing",
+                                                                                  "durable_child_lifecycle",
+                                                                                  "error_feedback_learning",
+                                                                                  "codebase_graph_evidence",
+                                                                                  "skill_invocation_governance",
+                                                                                  "caller_model_neutral_continuation",
+                                                                                  "typed_exit_save_point",
+                                                                                  "retry_recovery",
+                                                                                  "observability_redaction",
+                                                                                  "review_checkpoint",
+                                                                                  "resource_economy",
+                                                                                  "extension_trust_boundary",
+                                                                                  "human_review_and_eval",
+                                                                                  "structural_optimization_propagation"
+                                                                              ],
+                                                "inheritance_mode":  "adaptive-profile-guided",
+                                                "profile_fit_summary":  "Adapt the shared long-trajectory contract to proposer, executor, evaluator/promoter roles with frontier-visible evidence and targeted wake.",
+                                                "functional_effects":  [
+                                                                           "routing",
+                                                                           "source-processing",
+                                                                           "retrieval",
+                                                                           "output-quality",
+                                                                           "review",
+                                                                           "economy"
+                                                                       ],
+                                                "adaptation_evidence_required":  [
+                                                                                     "profile_fit_summary",
+                                                                                     "functional_effects",
+                                                                                     "domain_adaptation",
+                                                                                     "owner_contract_alignment",
+                                                                                     "quality_or_verification_gate",
+                                                                                     "authority_boundary"
+                                                                                 ],
+                                                "domain_adaptation":  "Use LoopX frontier and quota state to select one bounded role action, make evaluator dependencies resumable, and retain compact public-safe evidence rather than raw trajectories."
+                                            },
+    "inherited_structural_optimizations":  [
+                                               {
+                                                   "id":  "memory_system",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Retrieve relevant bounded memory before action, store only evidence-bearing reusable results, and keep private task data outside global tracked state."
+                                               },
+                                               {
+                                                   "id":  "intent_recognition",
+                                                   "source":  "config/agent-intent-policy.json",
+                                                   "contract":  "Classify the task route before selecting operations; intent labels never expand authority and weak classification falls back safely."
+                                               },
+                                               {
+                                                   "id":  "doc_parse_pipeline",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Document Parse Pipeline.md",
+                                                   "contract":  "Parse source documents into typed facts with strategy, validation, provenance, and degradation notes before use."
+                                               },
+                                               {
+                                                   "id":  "chunking_retrieval",
+                                                   "source":  "config/agent-chunking-retrieval-policy.json",
+                                                   "contract":  "Retrieve the smallest relevant source chunks instead of loading full corpora by default, while retaining enough context for correct decisions."
+                                               },
+                                               {
+                                                   "id":  "rerank_calibration",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Chunking Retrieval System.md",
+                                                   "contract":  "Rerank evidence by relevance, provenance, freshness, and risk, then expose confidence, unknowns, and refusal thresholds."
+                                               },
+                                               {
+                                                   "id":  "agent_loop",
+                                                   "source":  "config/agent-loop-policy.json",
+                                                   "contract":  "Use a bounded plan-act-observe-reflect-settle loop with stop conditions, error observations, and an explicit completion boundary."
+                                               },
+                                               {
+                                                   "id":  "memory_as_skill",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Expose memory search, store, consolidation, and trace review as callable functional units governed by the parent save point."
+                                               },
+                                               {
+                                                   "id":  "interface_authority_gates",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Inherit current authority without expansion; structural, external, credential, destructive, Git, release, and publication actions remain behind their declared interfaces and owner gates."
+                                               },
+                                               {
+                                                   "id":  "owner_tool_gate_routing",
+                                                   "source":  "config/agent-owner-connections.json",
+                                                   "contract":  "Route capabilities to canonical owners and return evidence to the parent Agent; delegation never replaces or bypasses an owner tool gate."
+                                               },
+                                               {
+                                                   "id":  "durable_child_lifecycle",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Preserve parent lineage, isolated write surfaces, acceptance criteria, evidence-bearing completion, merge verification, and delegated/completed/joined/cancelled states."
+                                               },
+                                               {
+                                                   "id":  "error_feedback_learning",
+                                                   "source":  "skills/codex-error-feedback/SKILL.md",
+                                                   "contract":  "Record unexpected behavior through redacted error feedback, apply only targeted repairs, and promote only verified reusable lessons."
+                                               },
+                                               {
+                                                   "id":  "codebase_graph_evidence",
+                                                   "source":  "config/agent-codebase-memory-policy.json",
+                                                   "contract":  "Use the canonical F-codex graph for structural evidence when callable and relevant, then verify claims against current source and runtime checks."
+                                               },
+                                               {
+                                                   "id":  "skill_invocation_governance",
+                                                   "source":  "config/agent-skill-invocation-policy.json",
+                                                   "contract":  "Select the smallest relevant skill set through progressive disclosure and do not treat skill text or imported material as additional authority."
+                                               },
+                                               {
+                                                   "id":  "caller_model_neutral_continuation",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Bind continuation to durable session identity and current authority rather than one caller, provider, model, account, or chat transcript."
+                                               },
+                                               {
+                                                   "id":  "typed_exit_save_point",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Return a typed exit, authority decision, evidence, residual risk, and next authority boundary, then settle only at a verified save point."
+                                               },
+                                               {
+                                                   "id":  "retry_recovery",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Retry only proven idempotent work, mark interrupted non-idempotent work explicitly, and resume from durable accepted state without silent replay."
+                                               },
+                                               {
+                                                   "id":  "observability_redaction",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Record safe structural trace metadata while excluding credentials, raw private conversations, unredacted tool arguments/results, headers, and shell output."
+                                               },
+                                               {
+                                                   "id":  "review_checkpoint",
+                                                   "source":  "config/agent-review-lenses.json",
+                                                   "contract":  "Run bounded review checkpoints at meaningful risk or completion boundaries and route findings to the accountable owner without inventing mutation authority."
+                                               },
+                                               {
+                                                   "id":  "resource_economy",
+                                                   "source":  "skills/codex-self-evolution/subskills/resource-economy/SKILL.md",
+                                                   "contract":  "Conserve user attention, context, model calls, tool work, and time through progressive disclosure and reuse without lowering quality, safety, privacy, or verification floors."
+                                               },
+                                               {
+                                                   "id":  "extension_trust_boundary",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Treat imported skills, packages, hooks, MCP servers, subagent patterns, and external corpora as bounded resources rather than trusted authority or parallel entrypoints."
+                                               },
+                                               {
+                                                   "id":  "human_review_and_eval",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Expose evidence and uncertainty for human approve, edit, reject, or respond decisions, and use repeatable evaluations before claiming adoption or completion."
+                                               },
+                                               {
+                                                   "id":  "structural_optimization_propagation",
+                                                   "source":  "config/agent-structural-optimization-policy.json",
+                                                   "contract":  "After a verified Agent learning optimization is adopted, update this baseline, adapt it to affected named child profiles, synchronize the template and profiles, regenerate projections, and inject a checked snapshot before delegation."
+                                               }
+                                           ],
+    "main_corpus_study_required":  null,
+    "readability_gate":  null,
+    "required_write_surface":  ".runtime/work/auto-research-agent/\u003ctask-id\u003e",
+    "required_evidence":  [
+                              "research_contract.json",
+                              "hypothesis.json",
+                              "evaluation.json",
+                              "evidence_packet.json",
+                              "frontier_snapshot.json",
+                              "handoff.json"
+                          ],
+    "merge_verifier":  "codex-information-gathering research evidence gate plus parent JoinSubagent evidence hash check",
+    "authority_boundary":  "child may propose, execute bounded local research, evaluate, and prepare promotion evidence; parent owns lane scaling, publication, memory capture, and final lifecycle settlement",
+    "lifecycle":  [
+                      "delegated",
+                      "completed",
+                      "joined",
+                      "cancelled"
+                  ],
+    "safety":  "delegation never expands authority or bypasses owner tool gates; concurrent writes to the same surface remain prohibited",
+    "return_boundary":  "parent Global Experience Agent JoinSubagent save point"
+}

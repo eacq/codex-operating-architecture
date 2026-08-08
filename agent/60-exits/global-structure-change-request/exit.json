@@ -1,0 +1,24 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "exit:global-structure-change-request",
+    "kind":  "agent-exit",
+    "sources":  [
+                    "config/agent-interface-policy.json"
+                ],
+    "id":  "global-structure-change-request",
+    "audience":  [
+                     "global-control"
+                 ],
+    "status":  "passed",
+    "contract":  {
+                     "required_fields":  [
+                                             "type",
+                                             "status",
+                                             "audience",
+                                             "authority_decision",
+                                             "next_authority_boundary"
+                                         ],
+                     "rule":  "every runtime result exposes a typed machine-readable exit; denied structural requests are blocked before durable session mutation"
+                 }
+}

@@ -1,0 +1,22 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "concept:delivery-agent",
+    "kind":  "concept-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "delivery-agent",
+    "owners":  [
+                   "codex-task-execution",
+                   "codex-text-style",
+                   "codex-image-workflow",
+                   "codex-office-cli",
+                   "codex-exact-word-layout"
+               ],
+    "resources":  [
+                      "skills/codex-task-execution/SKILL.md"
+                  ],
+    "purpose":  "produce and verify user deliverables through existing specialist owners",
+    "child_policy":  "executable-under-current-authority"
+}

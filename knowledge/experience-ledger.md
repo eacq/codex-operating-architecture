@@ -1,0 +1,140 @@
+# Experience Ledger
+
+## 已验证经验
+
+- 正式内容创作能力归属 `codex-task-execution/content-production`：文章、社媒系列、简报、科普说明、封面/信息图/漫画简报和幻灯叙事均先形成来源感知的简要包、主张约束和提纲，再保留草稿、视觉或 Office 交接与复核记录。该能力已完成路由、边界和结构验证；真实读者价值与修订收益仍作为后续内容任务的结果度量。草稿不得越过发布、登录、上传、付费生成、版权复用或安装授权。
+
+- 图像工作流必须在生成、渲染、转换、托管或嵌入前按读者任务选择视觉类别和最终格式，而不是把 SVG/Mermaid 当作通用兜底。小型可编辑结构可保留 Mermaid 或 SVG；带透明背景、文字/线条和无损 QA 的栅格图优先 PNG；不透明的照片化或绘画式交付在压缩不损害语义时可优先 JPG；WebP 只能作为兼容性已验证的派生格式。保留权威原图/源文件，并以最终展示尺寸验证。
+
+- 全局自我迭代的终极目标必须在每个物料性优化前落为五类可检验要求：有用任务的能力结果、用户/本地经验/模型之间的协作交接、在不降低质量门槛下的资源节约、安全与授权边界，以及可反馈/失效/回滚的演进闭环。每轮记录基线、预期可观察贡献与无回归检查；若不能显示净贡献，保留现有架构而不为迭代而迭代。
+
+- 当成本/资源规则没有独立脚本、产物生命周期或安全边界，且已被全局 controller 的协作契约覆盖时，应在用户授权后从顶层 owner 降级为内部资源经济子能力；保留一版兼容入口并把活跃 owner 计数与物理 skill 接口数分开，后续无引用审查和新授权后才能删除。
+
+- 顶层 `codex-project-optimization` 的可复用边界是项目生命周期初始化与协调，而不是泛化的项目诊断、实施、工作流设计或经验晋升。它保留独立的项目本地产物生命周期；经当前迭代用户授权后精炼 owner 契约和显式交接，而不与全局 controller 合并。
+
+- 完整全局迭代是单控制器的长运行事务：调用方超时首先是可观测性事件，而不是再次启动替换的授权。先检查 lifecycle 和 proof；若精确快照尚未完成且不存在 pre-replace bundle，则确认未进入替换；若替换可能已开始，必须用快照哈希恢复后从头重跑。该规则由 2026-07-18 的约 212 秒隔离迭代验证，未引入外部服务或并行 writer。
+
+- “全局经验系统”是跨 owner 的协调闭环，而不是新的顶层 skill。入口由 `codex-self-evolution` 识别，系统边界由 `codex-experience-capture` 的内部模式承载；错误先进入 `codex-error-feedback`，概念和 workflow-learning 记录进入 `codex-knowledge-system`，owner 合并/拆分/封装决策进入 `codex-architecture-iteration`。精炼优先使用交接件和 owner 内 subskill，只有独立触发、产物、知识库与安全边界被两次验证后才新增顶层模块。
+- GitHub 文档的双语门禁在 Windows 上不得依赖控制台代码页或乱码文本匹配；应使用 Unicode 码点构造中文标记并检查实际暂存内容。该规则经完整 `v1.0` 私有同步与公开发布验证。
+- 已验证的工作流变更应生成带哈希、关联 owner 与证据计数的学习记录；该记录同时进入知识和经验候选队列，经过证据门槛后才允许由架构迭代决定精炼、合并、拆分、增加或废弃，不能将工作流原文无条件提升为全局规则。
+- 经验版本采用 `P.R.A.B` 四段格式：`P` 仅由公开仓库 release 决定，`R` 仅由私有仓库 release 决定，`A` 由经验系统的自动功能提交递增，`B` 由自动修复提交递增。只有明确的“同步经验系统”才创建私有 release；只有明确的“发布经验系统”才创建公开 release。
+- 私有或公开 release 都应刷新用户可见说明面：通过发布门禁自动更新两个 README、版本发布说明和视觉计划；当变更跨越重要实现、工作流、知识、安装或发布面时，生成可版本化的 Mermaid 高亮图。视觉内容默认使用脱敏仓库级标签，只有在另行证明有必要且隐私安全时才升级为 GPT 图片请求。
+- 经验系统同步失败后的重试不能复用旧路径清单。`Invoke-ExperienceRelease.ps1` 在生成 release note、README 最新发布块、changelog、visual plan 和 iteration status 后，应通过独立 path-set helper 重新读取当前 changed/untracked 文件：release scope 可以保留上下文路径，提交层只接收实际变化路径，任何 scope 外脏文件都必须以精确路径阻断同步。该规则由 `Test-ExperienceReleasePathSet.ps1` 覆盖。
+- codebase-memory-mcp 适合作为仓库级取证路由层：先索引并读取 schema/architecture/search/trace 结果，再打开被引用的源文件核验。单次图谱搜索失败不能作为缺失证明；在本架构仓库中，`search_code` 能找到 `search_graph` BM25 未命中的发布流程文本，说明图谱工具应组合使用并记录覆盖限制。
+- 对 MCP 的“启动自动调用”应落在全局生命周期入口，而不是只依赖本地 config.toml。`codebase-memory-mcp` 在 Codex 配置中暴露工具，`codex-self-evolution` 在项目入口负责主动运行 fast `index_repository` 预热；若当前任务未暴露 MCP，则记录不可用并回退到本地文件取证。
+- codebase-memory-mcp 的上游源码复核应进入图谱取证边界：在非完全受信环境配置时使用 `CBM_ALLOWED_ROOT` 或等效 allowed-root 限制；`.codebase-memory/graph.db.zst` 默认是本地派生索引，不提交进 Git，除非有明确团队共享、隐私审计和可复现理由；`CBM_DIAGNOSTICS` 仅作为用户可选择分享的本地诊断材料，不作为长期知识记录。该规则由上游 commit `e678b2b6acb02bc1ab84a854f2df0e1d092f2cc0` 的源码/测试命中与本机 MCP fast index 复核支持。
+- OfficeCLI 这类单二进制 Office 工具适合受控安装到本地软件根并由全局 skill 路由，而不是运行上游自动安装器去改 PATH 和多个 agent 目录。普通 Word/Excel/PowerPoint 结构化读写、验证、渲染和 JSON 错误恢复走 `codex-office-cli`；锁模板 Word 分页/页眉/节结构仍由 `codex-exact-word-layout` 持有。MCP 暴露时，先用 `load_skill <format>` 读取 OfficeCLI 自带的版本配套格式指南，再以 `help` 作为 schema 权威；交付前至少执行 `save`、`validate --json`、`view issues --json`、占位符扫描和可用的视觉检查。该模式经 OfficeCLI 1.0.137 的 CLI 与 MCP 双路径验证，当前证据支持精炼父 skill 和测试门禁，不支持拆成多个全局 Office skill。
+
+- Every verified implementation iteration should regenerate a bilingual status document and verify its changelog, README, and version-note dependencies before private commit. Private skills, knowledge, and experience become public candidates only with two independent verified evidence sources, a sanitization audit, local-only preservation of original non-secret configuration, and a separate release decision.
+
+- Autonomous Git is safe only as a verified private-commit gate: require a completed iteration, explicit staged paths, semantic-version and bilingual GitHub metadata, full validation, and GitHub-CLI confirmation that `origin` is private. `-AutoCommit` may create a local commit only after the proof confirms no out-of-scope changes; it never automatically pushes. Never infer approval for public remotes, tags, releases, breaking-major versions, or a mixed worktree.
+
+### 项目生命周期
+
+- 学术任务跨越读论文、证据综合、写作、科研代码和图表时，先建立包含研究问题、来源定位、交付物和证据状态的项目内清单，再交接给专业 skill。标题、URL、搜索摘要或模型共识都不是证据本身；来源抽取、引文核验、文本改写、代码修改和制图保持独立所有权。
+- 完整本地经验迭代按项目生命周期、待同步事件和错误报告、元数据会话目录、记忆索引、全局账本、关联知识索引的顺序取证；单条会话标题不是晋升证据。派生 UTF-8 JSON 必须由创建它的运行时或等效 UTF-8 解析器验证，Windows PowerShell 默认解码的解析失败不能直接判为数据损坏。
+- 项目首次使用时建立项目内的需求、工作流、经验、复盘和状态文件；项目事实留在项目仓库，全局 skill 只吸收跨项目且已验证的规则。
+- 项目创建能力不只是初始化目录；应把文件夹证据转换为生命周期文件、项目本地 skill、storage/index、运行时预检、错误反馈报告和已验证复盘，然后只把具备范围与失效条件的通用规则晋升到全局知识。
+- Git hook 只记录待同步事件，不直接运行模型或改写业务文件；后续 Codex 任务读取事件并完成有证据的总结。
+- 经验晋升要求非显然、具体、已验证、可复用且不重复。未满足条件的候选跨迭代保留，不写成强制规则。
+- 流程强度应随风险增长：小改动保留必要取证和验证，但不套用大型状态机；契约、认证、数据和发布变更需要更完整的需求、回滚和复盘。
+- 项目学习与联网学习共享“具体能力缺口 -> 合格证据 -> 与既有 owner 对比 -> 可逆验证 -> 经验/知识晋升”的闭环时，应作为同一学习模块的子工作流；用户认可必须有独立佐证，单次表扬、单条来源或单次会话均不得直接改写全局规则。完成学习后先审查模块关系，再精炼重复指令与失效边界。
+
+### 操作提示边界
+
+- Skill 内普通文件处理和全局 skill 文件同步可直接执行，不需要逐项提示。
+- 安装或升级外部软件、运行时、系统组件、包管理器或系统环境依赖前，应先说明安装对象、来源、范围和影响。
+- Skill 文件复制不等同于软件安装；破坏性、公开、付费、提权和不可逆外部操作仍遵守更高确认边界。
+
+### 精确 Word/DOCX
+
+- 普通文档创建、批注和常规样式调整由 `documents` 负责；当保留模板、页眉页脚、分节/分栏、引用字段、OMML、媒体关系或分页渲染容易被整文档保存破坏时，转入 `codex-exact-word-layout`，不新建重叠 Word skill。
+- 锁定模板 DOCX 的变更前先记录源文件、不可变输出位置、关键 package part 与媒体哈希、节/栏拓扑和预期变更面。未改动二进制 part 用哈希验证；预期修改的 XML 用规范化语义比较，不能因一个例外属性而放宽整份 header/package 校验。
+- 采用最小编辑面：优先局部 OOXML/运行片段补丁；若必须经 Word 自动化或高层库保存，保存后重新审计 headers、relationships、styles、settings、media 和渲染页面。高层库整文档 round-trip 不是无害操作。
+- 验收分为两层：包损坏、受保护媒体变化、引用/字段/公式丢失、模板硬错误和图表题分离属于硬失败；可疑分节符、空段、短行和留白是渲染人工复核队列。结构检查通过不能替代 Word/PDF/PNG 页面审查。
+- 定位局部版式问题时依次检查段落机制、分页控制、题注-对象与分节转换、对象环绕、活动页眉页脚；不要先用空格、全局缩进重置、批量删节或整套页眉替换掩盖症状。
+
+### 论文修订与学术表达
+
+- 论文修订按“整体论证与章节角色 -> 段落逻辑 -> 句级学术表达 -> Word 安全写回与渲染复核”分层进行；先改善逻辑关系，再替换同义词。表达修改不能代替研究设计、数据解释、引文核验或作者对结论强度的决定。
+- 默认保护数值、单位、条件、效应方向、比较基准、术语、缩略语、公式、变量、图表引用、引用/字段/超链接/书签、结论范围、因果强度和不确定性。遇到歧义或证据缺口应标记，而非补写机制或强化结论。
+- 对“去 AI 痕迹”的处理只描述可观察问题：空泛价值判断、模糊施事、抽象名词堆叠、无逻辑关系的连接词链、对称罗列、夸张新颖性和缺少证据指向的推广。用具体对象、关系、机制、条件或指标修复，不根据文风断言作者身份。
+- 含引用、交叉引用、字段、OMML 或复杂 run 的 Word 段落不可整段粗暴替换。先保留受保护标记与运行结构，再局部修改非受保护文本；任何版式压缩都必须回到精确 Word 的 package/渲染 QA。
+
+### Windows 与 Git
+
+- 当用户说“启用 Git”时，依次检查 `git --version`、`where.exe git`、`git rev-parse --show-toplevel` 和 `git status --short --branch`。Git 已安装时，真实问题常是仓库根目录错误或缺少远程，而不是需要重装。
+- Windows 网络不稳定导致 clone 重置时，可尝试 `git -c http.version=HTTP/1.1 clone --depth 1 ...`，但使用前仍应检查当前网络和远程状态。
+- 不跨 shell 拼接删除或移动命令；递归文件操作前验证绝对路径位于目标工作区。
+
+### Skill、插件与运行时
+
+- Previously learned or installed MCPs, skills, packages, and projects may be checked read-only only within a user-initiated task; do not create periodic update monitoring. A newly detected release is a candidate, not standing permission: obtain explicit user authorization before download, upgrade, reconfiguration, or substantive re-learning that changes local skills, knowledge, workflows, or configuration.
+- 用户已经指定安装目标时，直接安装该目标并完成验证，不重新展开候选讨论。
+- Python 工作流必须验证未来 Codex 实际使用的运行时；本机优先检查 Codex bundled Python，而不只检查项目 venv。
+- 验证器缺少依赖不等于 skill 本身损坏，应先区分运行时问题与内容问题。
+- Windows 上含中文的工具输出应显式使用 UTF-8；扫描 skill 时排除 `venv`、缓存和生成目录。
+- 后续软件下载包统一保留在 `$SOFTWARE_ARCHIVE_ROOT\<软件名>`，支持自定义目录的软件统一安装到 `$SOFTWARE_INSTALL_ROOT\<软件名>`；安装后必须核验实际位置，不能静默接受系统盘默认路径。
+- 既有软件升级优先保持原安装目录，不自动迁移用户数据；不支持自定义目录的安装器应先报告例外。
+- VS Code 扩展安装应保留官方 VSIX 到 `$SOFTWARE_ARCHIVE_ROOT\VSCodeExtensions`。若既有扩展目录已在用户目录，为避免破坏当前插件与配置可继续沿用，不自动迁移；项目通过 `.vscode/extensions.json` 和安全的项目级设置声明可恢复能力。
+- 本架构的全局 skill 路径使用目录联接指向 `$ARCHITECTURE_ROOT\skills`，Codex Home 仅作为 Codex 自动发现接口，不保留可独立编辑的副本。迭代、校验、Git 提交和回滚全部以 `$ARCHITECTURE_ROOT` 为准。
+- 用 Codex Home 下的全局 `AGENTS.md` 在任何项目入口强制路由 `$codex-self-evolution`；优先链接到 `$ARCHITECTURE_ROOT\config\global-AGENTS.md`。Windows 未授权文件符号链接时，可使用由安装脚本刷新的托管入口副本，但不得在 Codex Home 独立迭代。总控先检查项目生命周期状态，再按任务规模决定是否初始化或只做无改动检查。
+- Skill 精简应优先删除跨模块重复叙述，让总控只负责路由、专属模块保留脆弱顺序和安全边界、可选细节进入直接 reference。只有触发、流程和维护知识都高度重叠时才合并；不能仅为减少模块数量而牺牲所有权边界。
+
+### API 与凭据
+
+- 私有 OpenAI-compatible provider 只在目标需要兼容 chat/embeddings 时作为替代；不能默认替代 Gemini 图像、音频转写、OpenRouter 图像或领域文献 API。
+- 私有 OpenAI-compatible provider 的 401/403 表示凭据来源被拒绝，应先规范化密钥并切换获批安全来源；已鉴权的 500/502/503 表示模型或提供商路由不可用，应保留凭据并只尝试一个本地配置的模型回退。陈旧 provider 环境变量可能遮蔽有效 Codex `auth.json`，诊断输出只能包含来源名称和状态。
+- Zotero Web API 应先用 `/keys/<key>` 获取 numeric user ID，再访问 `/users/{id}`；仓库仅记录变量名与验证方法，不记录 key 或用户秘密。
+- 文档中的示例使用明显的占位符，禁止放入形似真实密钥的字符串。用户在聊天中暴露有效密钥时，应建议轮换。
+
+### 项目维护与文档
+
+- 代码改动先映射入口、数据流和验证命令；不随机删除或缩短有意义的注释。
+- WinForms 可读性调整优先检查手写逻辑，除非明确要求布局变更，否则避免盲改 `*.Designer.cs`。
+- 对 RotorGrindCAM 的快速构建验证使用 `dotnet msbuild RotorGrindCAM.sln /p:Configuration=Debug /p:Platform="Any CPU" /v:minimal`，但应先确认当前仓库和工具链仍匹配。
+
+### 图片与图床
+
+- 结构关系优先使用 Mermaid 等文本原生图，减少二进制文件和外部依赖；位图只在能显著提高理解密度时加入。
+- 仅上传用户拥有、生成或明确开放许可的图片。B 站专栏封面接口不是正式通用存储契约，必须隔离适配器并保留迁移清单。
+- 本地图片只有在上传成功、HTTPS CDN 可访问、所有 Markdown 引用替换成功、隔离副本和清单写入成功后才能删除。
+- Cookie 使用 Windows DPAPI 加密并留在 `.sandbox-secrets`，不得进入 Git、Markdown、日志或命令历史。
+- Chrome 已登录状态可用于验证和可见 UI 操作，但不能读取 Cookie、Local Storage、密码或会话存储；后台 API 所需秘密只能由用户通过本机安全提示主动写入 DPAPI，或使用正式 OAuth。
+- B 站图床不使用定期扫描任务；只在需要迁移图片时按需运行。认证或上传失败时停止替换和删除，并提示用户按 Chrome DevTools Application > Cookies 的方式重新获取 `bili_jct` 与 `SESSDATA`。
+
+### 思维导图与知识复习
+
+- Codex 本地学习与用户 Anki 必须分流：内部运行经验进入可检索的 Codex 学习索引并参与 skill 迭代；只有用户本人需要主动回忆的知识才进入 Anki。未声明受众或字段冲突必须使构建失败。
+- 经验与知识架构应至少保留一张跨模块总览图，把证据、经验、权威知识、执行闭环以及 Obsidian、MindMaster、Anki、图床的责任边界放在同一视图中；局部短笔记不为配图而配图。
+- Obsidian Markdown 与类型化链接是知识权威源；MindMaster 只用于导图布局、浏览与导出，`.emmx` 不得成为唯一知识副本。
+- 先生成 Mermaid 和缩进大纲作为开放格式兜底，再按需在 MindMaster 中编辑。现有软件已满足需求时不因版本较旧而升级。
+- 导图 PNG 只在确实提高理解密度或节省空间时进入按需图床流程；不得创建定期扫描或在远程验证前删除本地文件。
+- Anki 卡片来自源笔记中的高价值回忆问题，不对导图节点做机械式全量制卡。
+- B 站文章封面接口当前可能返回 `article.biliimg.com`；远程校验白名单需覆盖 `.biliimg.com`、`.hdslb.com` 和 `.bilibili.com`，但仍必须要求 HTTPS 与成功 GET。上传成功后若域名校验失败，流程必须保留原图且不得替换 Markdown。
+
+## 已推广的受限经验
+
+> 用户于 2026-07-18 授权推广。以下条目保留原始候选措辞、来源和失效条件，可用于路由与最小范围试验；它们不是已独立验证的强制规则，不解除既有安全、安装、凭据、发布或回滚边界。
+
+- Network learning candidate: `JimLiu/baoyu-skills` (commit `6b7a2e417500561a5ecdd0b168332f4142584617`) should be evaluated skill-by-skill, not installed as a 21-skill bundle. Its selective-installation and visual-workflow confirmation/provenance ideas are useful, but browser/CDP cookie sidecars, credentials, remote publishing, reverse-engineered services, multi-provider image control planes, and dynamic Bun dependencies exceed current global need. Keep `baoyu-diagram` as a project-local trial candidate only; reject `baoyu-format-markdown` as-is because its reviewed implementation overwrites the input path despite an output-oriented workflow description. Revisit only with a named project gap, explicit installation authorization, isolated test output, dependency validation, and removal plan.
+
+- Network relearning candidate: `mattpocock/skills` v1.1.0 reinforces a project-local vocabulary and consequential-decision brief alongside requirements clarification. Map it to `codex-requirement-authoring`, not a new global skill: trial it only where repeated terminology or decision ambiguity demonstrably harms a downstream handoff; require one real verified application plus independent corroboration before promoting it to a subskill or mandatory workflow. Do not introduce a global `CONTEXT.md`, automatic ADR generation, or raw conversation capture.
+- Network learning candidate: `mattpocock/skills` reinforces skill economy rules that fit `codex-skill-packaging`: split by invocation only for autonomous reach, split by sequence only after sharpening completion criteria, keep branch-specific reference behind direct pointers, and prune duplicate/no-op/negative guidance. External skill installation is not forbidden, but each candidate must prove necessity, value, compatibility with local privacy/profile/validation rules, and a removal or revision path. Current source is one upstream repository plus local validation, so keep as candidate until reused independently.
+- Combined network-learning candidate: treat external skill repositories as evidence-bearing codebases when tooling is available. Use codebase-memory-mcp to index, inspect schema/architecture, and route to source files; then apply skill-economy gates from `mattpocock/skills` and the Codex owner-boundary rules before deciding between learn-only, owner reference, owner subskill, project-local skill, or global skill. Keep as candidate until this combined workflow is reused on another external skill or MCP/tooling source.
+- Network learning candidate: `oh-my-codex` and `omx-lite` show that external Codex workflow packages need a takeover-surface comparison before installation. Full runtimes that manage hooks, config, state, worktrees, team sessions, CLI launch policy, and implicit routing should default to learn-only or owner-reference in this Windows Codex Desktop architecture unless an explicit need and rollback/smoke-test path exist. Lite methodology packages can contribute manifest-driven dry-run/check installs, backup-before-copy, size budgets, conflict-marker detection, and explicit-only imported workflows, but still need local owner adaptation rather than raw copying. Keep as candidate until reused on another external package.
+- Lightweight external-methodology installation candidate: install only the useful `omx-lite`-style workflow subset as owner-internal subskills when full runtime takeover is unnecessary. The initial local adaptation is `deep-interview-lite` under `codex-requirement-authoring`, `consensus-plan-lite` under `codex-workflow-design`, and `persistent-completion-lite` under `codex-task-execution`; all are explicit-first, no hooks/config/state mutation, and no raw upstream copying. Keep as candidate until used successfully on real tasks beyond installation validation.
+
+## 候选经验格式
+
+```text
+标题：
+状态：候选 | 已推广（受限） | 已验证 | 已废弃
+触发情境：
+观察与证据：
+采取行动：
+验证结果：
+适用范围：
+失效条件：
+来源：
+```

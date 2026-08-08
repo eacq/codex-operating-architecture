@@ -1,0 +1,350 @@
+{
+    "schema_version":  1,
+    "status":  "active",
+    "model":  "global-experience-agent-intent-policy",
+    "source":  {
+                   "repository":  "https://github.com/LesterYu0/feynman-build-workshop",
+                   "path":  "episodes/02-intent-recognition",
+                   "adaptation":  "four-layer-funnel-with-deterministic-local-routing"
+               },
+    "owner":  "codex-self-evolution",
+    "architecture_owner":  "codex-architecture-iteration",
+    "runtime":  "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+    "principles":  [
+                       "intent routing optimizes latency, cost, error rate, and safety together",
+                       "fast deterministic matches must return before slower classification",
+                       "low confidence must ask for clarification or start bounded work instead of guessing a gated side effect",
+                       "LLM-style classification is a host capability candidate, not a built-in dependency",
+                       "intent labels never grant authority or bypass interface policy"
+                   ],
+    "layers":  [
+                   {
+                       "id":  "L0",
+                       "name":  "explicit-operation-and-rule",
+                       "purpose":  "exact requested operation, explicit owner, slash commands, and high-frequency fixed phrases",
+                       "side_effect":  "none"
+                   },
+                   {
+                       "id":  "L1",
+                       "name":  "local-semantic-lexical",
+                       "purpose":  "deterministic utterance and keyword scoring for common Agent operations",
+                       "side_effect":  "none"
+                   },
+                   {
+                       "id":  "L2",
+                       "name":  "host-llm-classifier",
+                       "purpose":  "reserved for a future strict enum host adapter with temperature 0 and structured output",
+                       "status":  "disabled-by-default",
+                       "side_effect":  "none"
+                   },
+                   {
+                       "id":  "L3",
+                       "name":  "fallback-safe-work-start",
+                       "purpose":  "fall back to StartWork or clarification instead of guessing a risky operation",
+                       "side_effect":  "none"
+                   }
+               ],
+    "confidence_bands":  {
+                             "direct_execute":  0.8,
+                             "execute_with_review":  0.6,
+                             "clarify_below":  0.6,
+                             "out_of_domain_below":  0.4,
+                             "reasoning_checkpoint":  0.55
+                         },
+    "l0_rules":  [
+                     {
+                         "id":  "slash-help",
+                         "pattern":  "^/(help|帮助|start)$",
+                         "operation":  "DescribeInterfaces",
+                         "intent":  "describe-interfaces",
+                         "confidence":  1.0
+                     },
+                     {
+                         "id":  "slash-cancel",
+                         "pattern":  "^/(cancel|取消|abort)$",
+                         "operation":  "Abort",
+                         "intent":  "abort",
+                         "confidence":  1.0
+                     },
+                     {
+                         "id":  "slash-verify",
+                         "pattern":  "^/(verify|检查|验证)$",
+                         "operation":  "VerifyAgent",
+                         "intent":  "verify-agent",
+                         "confidence":  1.0
+                     },
+                     {
+                         "id":  "slash-review",
+                         "pattern":  "^/(review|审查|复核)$",
+                         "operation":  "ClassifyIntent",
+                         "intent":  "trigger-deliberation-review",
+                         "confidence":  1
+                     }
+                 ],
+    "routes":  [
+                   {
+                       "intent":  "candidate-report",
+                       "operation":  "CandidateReport",
+                       "threshold":  0.65,
+                       "utterances":  [
+                                          "candidate",
+                                          "candidates",
+                                          "candidate report",
+                                          "候选",
+                                          "候选报告",
+                                          "当前候选",
+                                          "生成候选报告"
+                                      ],
+                       "keywords":  [
+                                        "candidate",
+                                        "候选"
+                                    ]
+                   },
+                   {
+                       "intent":  "complete-iteration",
+                       "operation":  "CompleteIteration",
+                       "threshold":  0.72,
+                       "utterances":  [
+                                          "complete iteration",
+                                          "global iteration",
+                                          "verified iteration",
+                                          "完整迭代",
+                                          "全局迭代",
+                                          "完成全局迭代",
+                                          "完整验证"
+                                      ],
+                       "keywords":  [
+                                        "iteration",
+                                        "迭代",
+                                        "验证"
+                                    ]
+                   },
+                   {
+                       "intent":  "search-memory",
+                       "operation":  "SearchMemory",
+                       "threshold":  0.66,
+                       "utterances":  [
+                                          "search memory",
+                                          "retrieve memory",
+                                          "查记忆",
+                                          "搜索记忆",
+                                          "找记忆",
+                                          "之前记录",
+                                          "之前保存"
+                                      ],
+                       "keywords":  [
+                                        "memory",
+                                        "记忆",
+                                        "记录"
+                                    ]
+                   },
+                   {
+                       "intent":  "store-memory",
+                       "operation":  "StoreMemory",
+                       "threshold":  0.68,
+                       "utterances":  [
+                                          "store memory",
+                                          "save memory",
+                                          "记录到记忆",
+                                          "保存到记忆",
+                                          "把这个记下来"
+                                      ],
+                       "keywords":  [
+                                        "store",
+                                        "save",
+                                        "保存",
+                                        "记下来"
+                                    ]
+                   },
+                   {
+                       "intent":  "render-memory-snapshot",
+                       "operation":  "RenderMemorySnapshot",
+                       "threshold":  0.7,
+                       "utterances":  [
+                                          "render memory snapshot",
+                                          "freeze memory",
+                                          "冻结记忆",
+                                          "记忆快照",
+                                          "生成记忆快照"
+                                      ],
+                       "keywords":  [
+                                        "snapshot",
+                                        "快照",
+                                        "冻结"
+                                    ]
+                   },
+                   {
+                       "intent":  "retrieve-context",
+                       "operation":  "RetrieveContext",
+                       "threshold":  0.62,
+                       "utterances":  [
+                                          "retrieve context",
+                                          "load context",
+                                          "恢复上下文",
+                                          "读取上下文",
+                                          "找相关上下文"
+                                      ],
+                       "keywords":  [
+                                        "context",
+                                        "上下文"
+                                    ]
+                   },
+                   {
+                       "intent":  "describe-filesystem",
+                       "operation":  "DescribeFilesystem",
+                       "threshold":  0.65,
+                       "utterances":  [
+                                          "describe filesystem",
+                                          "agent filesystem",
+                                          "文件系统",
+                                          "agent 文件夹",
+                                          "agent 文件结构"
+                                      ],
+                       "keywords":  [
+                                        "filesystem",
+                                        "文件系统",
+                                        "文件夹"
+                                    ]
+                   },
+                   {
+                       "intent":  "describe-interfaces",
+                       "operation":  "DescribeInterfaces",
+                       "threshold":  0.62,
+                       "utterances":  [
+                                          "describe interfaces",
+                                          "interface policy",
+                                          "权限接口",
+                                          "接口权限",
+                                          "有哪些接口"
+                                      ],
+                       "keywords":  [
+                                        "interface",
+                                        "接口",
+                                        "权限"
+                                    ]
+                   },
+                   {
+                       "intent":  "request-structure-change",
+                       "operation":  "RequestStructureChange",
+                       "threshold":  0.78,
+                       "utterances":  [
+                                          "request structure change",
+                                          "change agent structure",
+                                          "修改 agent 结构",
+                                          "重构 agent 结构",
+                                          "调整 agent 架构"
+                                      ],
+                       "keywords":  [
+                                        "structure",
+                                        "结构",
+                                        "架构",
+                                        "重构"
+                                    ]
+                   }
+               ],
+    "fallback":  {
+                     "operation":  "StartWork",
+                     "intent":  "start-bounded-work",
+                     "confidence":  0.5,
+                     "rule":  "unknown, ambiguous, or low-confidence goals become bounded work contracts unless the caller explicitly selected an operation"
+                 },
+    "safety":  {
+                   "llm_adapter_status":  "not-implemented",
+                   "llm_adapter_requirements":  [
+                                                    "strict enum output",
+                                                    "temperature 0",
+                                                    "no free-text operation names",
+                                                    "no authority elevation",
+                                                    "no direct tool execution"
+                                                ],
+                   "gated_operations_still_require_interface_policy":  [
+                                                                           "CompleteIteration",
+                                                                           "RequestStructureChange",
+                                                                           "Abort"
+                                                                       ],
+                   "observability":  [
+                                         "intent",
+                                         "operation",
+                                         "confidence",
+                                         "layer",
+                                         "matched_rule",
+                                         "fallback_needed"
+                                     ]
+               },
+    "deliberation_rules":  {
+                               "source":  "book-shelf-learning-v2-20260723",
+                               "principle":  "Before any gated or structural operation, run a deliberate reasoning checkpoint (System 2 from Kahneman) after fast routing (System 1) to check for biases, risks, alternatives, and boundary conditions",
+                               "trigger_operations":  [
+                                                          "CompleteIteration",
+                                                          "RequestStructureChange",
+                                                          "RouteOwner",
+                                                          "DelegateSubagent"
+                                                      ],
+                               "checkpoint_checks":  [
+                                                         {
+                                                             "id":  "fact_check",
+                                                             "question":  "Does the source evidence match the declared goal?",
+                                                             "lens":  "structure-and-principle-extraction"
+                                                         },
+                                                         {
+                                                             "id":  "risk_check",
+                                                             "question":  "What is the rollback cost and blast radius?",
+                                                             "lens":  "feedback-loop-risk-review"
+                                                         },
+                                                         {
+                                                             "id":  "alternative_check",
+                                                             "question":  "Why this approach over alternatives?",
+                                                             "lens":  "model-selection-before-action"
+                                                         },
+                                                         {
+                                                             "id":  "value_check",
+                                                             "question":  "Does this change produce measurable improvement?",
+                                                             "lens":  "deliberate-reasoning-checkpoint"
+                                                         },
+                                                         {
+                                                             "id":  "boundary_check",
+                                                             "question":  "Are domain boundaries respected in this transfer?",
+                                                             "lens":  "analogy-transfer-with-boundary-check"
+                                                         },
+                                                         {
+                                                             "id":  "composition_check",
+                                                             "question":  "Can this be composed from existing components?",
+                                                             "lens":  "combinatorial-recursive-capability-evolution"
+                                                         }
+                                                     ],
+                               "risk_classification":  {
+                                                           "levels":  [
+                                                                          "low",
+                                                                          "medium",
+                                                                          "high",
+                                                                          "critical"
+                                                                      ],
+                                                           "rules":  [
+                                                                         {
+                                                                             "level":  "critical",
+                                                                             "condition":  "operation is RequestStructureChange or affects more than 2 owners"
+                                                                         },
+                                                                         {
+                                                                             "level":  "high",
+                                                                             "condition":  "operation is CompleteIteration or affects gated surfaces"
+                                                                         },
+                                                                         {
+                                                                             "level":  "medium",
+                                                                             "condition":  "operation is DelegateSubagent or RouteOwner"
+                                                                         },
+                                                                         {
+                                                                             "level":  "low",
+                                                                             "condition":  "operation is read-only or metadata-only"
+                                                                         }
+                                                                     ],
+                                                           "review_roles_from_six_hats":  {
+                                                                                              "white_hat":  "facts and data: what evidence exists?",
+                                                                                              "red_hat":  "intuition and feeling: what could go wrong?",
+                                                                                              "black_hat":  "risks and caution: what is the worst case?",
+                                                                                              "yellow_hat":  "value and benefit: what improvement does this bring?",
+                                                                                              "green_hat":  "alternatives and creativity: what other approaches exist?",
+                                                                                              "blue_hat":  "process and meta-review: are all gates passed?"
+                                                                                          }
+                                                       }
+                           }
+}

@@ -1,0 +1,58 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-image-workflow",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-image-workflow/SKILL.md"
+                ],
+    "id":  "codex-image-workflow",
+    "owner":  "codex-image-workflow",
+    "plane":  "capability",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-image-workflow/SKILL.md",
+    "triggers":  [
+                     "image generation",
+                     "visual explanation",
+                     "figure optimization"
+                 ],
+    "consumes":  [
+                     "visual brief",
+                     "format selection",
+                     "source constraints"
+                 ],
+    "produces":  [
+                     "visual asset",
+                     "provenance record",
+                     "preview QA"
+                 ],
+    "verification":  "semantic fidelity, final-size inspection, and provenance validation",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-text-style",
+                         "artifact":  "visual handoff brief",
+                         "event":  "visual_support_selected"
+                     },
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "visual delivery brief",
+                         "event":  "image_specialist_selected"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-office-cli",
+                         "artifact":  "visual asset and provenance",
+                         "event":  "office_assembly_selected"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "verified visual asset",
+                         "event":  "specialist_result_returned"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

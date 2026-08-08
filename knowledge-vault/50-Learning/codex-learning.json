@@ -1,0 +1,462 @@
+{
+  "schema_version": 1,
+  "audience": "codex",
+  "entries": [
+    {
+      "id": "Agent Chunking Retrieval System",
+      "name": "Agent Chunking Retrieval System",
+      "path": "30-Knowledge\\Agent Chunking Retrieval System.md",
+      "summary": "Use the Agent chunking-retrieval policy after document parsing and before durable memory or knowledge use; start with a local L1 recursive BM25-lite baseline, measure recall/MRR, calibrate rerank confidence, apply refusal thresholds, and route external rerankers, RAPTOR, GraphRAG, embedding, or ontology paths through owner gates.",
+      "source": "LesterYu0/feynman-build-workshop episodes 04 chunking-retrieval and 05 rerank-calibration",
+      "verified": false
+    },
+    {
+      "id": "Agent Document Parse Pipeline",
+      "name": "Agent Document Parse Pipeline",
+      "path": "30-Knowledge\\Agent Document Parse Pipeline.md",
+      "summary": "Route Agent document intake through codex-office-cli's seven-layer Document/Chunk parse pipeline; require parser strategy and content, structure, performance, and robustness validation before storing parsed content in Agent memory or knowledge.",
+      "source": "LesterYu0/feynman-build-workshop episode 03 doc-parse-pipeline",
+      "verified": false
+    },
+    {
+      "id": "Agent Loop System",
+      "name": "Agent Loop System",
+      "path": "30-Knowledge\\Agent Loop System.md",
+      "summary": "Treat feynman-build-workshop episode 06 as the Global Experience Agent control-plane contract: bounded Plan-Act-Observe-Reflect-Settle loop, explicit error observations, context budget, multi-condition termination, tracing, and owner-gated tool execution.",
+      "source": "LesterYu0/feynman-build-workshop episode 06 agent-loop",
+      "verified": false
+    },
+    {
+      "id": "Agent Skill Invocation Governance",
+      "name": "Agent Skill Invocation Governance",
+      "path": "30-Knowledge\\Agent Skill Invocation Governance.md",
+      "summary": "Treat mattpocock/skills as a method source for predictable skill invocation: separate human-only orchestration from model-reachable discipline, keep model-visible descriptions trigger-focused, use checkable completion criteria, and bind implementation work to red-capable loops, tracer-bullet slices, and two-axis review.",
+      "source": "mattpocock/skills",
+      "verified": false
+    },
+    {
+      "id": "Minimal Agent Architecture Template",
+      "name": "Minimal Agent Architecture Template",
+      "path": "30-Knowledge\\Minimal Agent Architecture Template.md",
+      "summary": "Use config/minimal-agent-template.json plus New-MinimalAgentPlan.ps1 to design bounded child Agents from the Global Experience Agent without adding a second controller or expanding authority.",
+      "source": null,
+      "verified": false
+    },
+    {
+      "id": "concept-academic-manuscript-revision-boundaries",
+      "name": "Academic Manuscript Revision Boundaries",
+      "path": "30-Knowledge\\Academic Manuscript Revision Boundaries.md",
+      "summary": "Revise a manuscript from argument and paragraph logic to local academic expression, protect evidence-bearing content and Word markup, and use rendered layout QA only after the text revision is meaning-safe.",
+      "source": "codex-text-style;XLW1 verified academic polishing experience",
+      "verified": true
+    },
+    {
+      "id": "concept-agent-memory-system",
+      "name": "Agent Memory System",
+      "path": "30-Knowledge\\Agent Memory System.md",
+      "summary": "Implement Agent memory as a registered functional capability and skill/action space, not as an unbounded prompt dump. Use typed memory, SQLite/FTS5 retrieval, TTL/supersession, consolidation, Frozen Snapshot rendering, search-before-store behavior, upsert/supersession, and save-point trace review behind the Global Experience Agent interface and owner gates.",
+      "source": "https://github.com/LesterYu0/feynman-build-workshop;commit=20c93f76c6f55f41e6fe51493697e7034d5a38a3",
+      "verified": true
+    },
+    {
+      "id": "concept-agent-skill-evolution-optimization",
+      "name": "Agent Skill Evolution Optimization",
+      "path": "30-Knowledge\\Agent Skill Evolution Optimization.md",
+      "summary": "Evolve one owner-internal skill candidate at a time through harvest, mine, compose, propose, score, gate, validate, adopt-or-revert, and consolidate; use book lenses as guarded review models rather than automatic authority.",
+      "source": "user-provided private book shelf plus darwin-skill and SkillOpt method sources",
+      "verified": true
+    },
+    {
+      "id": "concept-baoyu-skills-network-learning",
+      "name": "Baoyu Skills Network Learning",
+      "path": "30-Knowledge\\Baoyu Skills Network Learning.md",
+      "summary": "Review Baoyu skills by individual takeover surface, not as a bundle. Keep browser-cookie, credential, publishing, and multi-provider capabilities out of global installation; trial only a project-local, explicitly authorized diagram workflow after runtime and output validation.",
+      "source": "https://github.com/JimLiu/baoyu-skills;commit=6b7a2e417500561a5ecdd0b168332f4142584617",
+      "verified": false
+    },
+    {
+      "id": "concept-cherry-studio-capability-routing",
+      "name": "Cherry Studio Capability Routing and Durable Workflow Learning",
+      "path": "30-Knowledge\\Cherry Studio Capability Routing and Durable Workflow Learning.md",
+      "summary": "从 Cherry Studio 源码学习缓存优先的能力目录、按需延迟暴露、搜索-检查-调用路由、审批能力直达、Agent 会话驱动器解耦，以及知识操作的持久作业化；只在现有 owner 和独立闸门内融合。",
+      "source": "https://github.com/CherryHQ/cherry-studio/tree/55130eef9beb48c454f3a0bdcfffe21c3ac2fb7e",
+      "verified": false
+    },
+    {
+      "id": "concept-codebase-memory-mcp",
+      "name": "Codebase Memory MCP",
+      "path": "30-Knowledge\\Codebase Memory MCP.md",
+      "summary": "Use codebase-memory-mcp as a local structural codebase index before broad repository reading; verify graph results against source files before making behavior claims.",
+      "source": "codebase-memory-mcp-v0.9.0-install-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-experience-error-feedback",
+      "name": "Experience System Error Feedback",
+      "path": "30-Knowledge\\Experience System Error Feedback.md",
+      "summary": "Unexpected experience-system behavior should become a structured error report before it becomes verified experience, knowledge, or a skill change.",
+      "source": "codex-error-feedback",
+      "verified": true
+    },
+    {
+      "id": "concept-experience-knowledge-architecture",
+      "name": "Experience and Knowledge Architecture",
+      "path": "30-Knowledge\\Experience and Knowledge Architecture.md",
+      "summary": "Promote evidence into verified experience, keep Markdown canonical, treat maps and images as derived views, and export only explicit user-learning material to Anki.",
+      "source": "architecture-review-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "concept-experience-knowledge-subskill-refinement",
+      "name": "Experience Knowledge Subskill Refinement",
+      "path": "30-Knowledge\\Experience Knowledge Subskill Refinement.md",
+      "summary": "Refine the experience and knowledge system by keeping parent skills as routing surfaces and moving long verified mode contracts into owner-internal subskills when ownership and safety boundaries do not change.",
+      "source": "codex-experience-knowledge-refinement-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-global-experience-system",
+      "name": "Global Experience System",
+      "path": "30-Knowledge\\Global Experience System.md",
+      "summary": "Treat the global experience system as the executable Global Experience Agent. Experience capture, knowledge, memory, error feedback, MCP graph evidence, Git, release, and owner routing are registered Agent capabilities or gates under one root harness, not parallel entrypoints.",
+      "source": "codex-global-experience-agent-refinement-2026-07-22",
+      "verified": true
+    },
+    {
+      "id": "concept-header-frame-body-wrap-diagnostic",
+      "name": "Header Frame Body Wrap Diagnostic",
+      "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
+      "summary": "When a locked-template DOCX has a persistent staircase-shaped page-top body exclusion, inspect empty wrapping frames in the active header parts before changing body indentation; treat any repair coordinate as project-local until independently reproduced.",
+      "source": "XLW1 verified error-feedback repair 2026-07-16;codex-exact-word-layout",
+      "verified": false
+    },
+    {
+      "id": "concept-information-functional-unit-principle",
+      "name": "Information and Functional Unit Principle",
+      "path": "30-Knowledge\\Information and Functional Unit Principle.md",
+      "summary": "Model the Global Experience Agent as a bidirectionally linked graph of information units and functional units. Keep each unit minimal and owner-scoped, but require the whole graph to cover authority, memory, MCP evidence, collaboration, learning, execution, validation, and evolution.",
+      "source": "user-guidance-information-functional-units-2026-07-21",
+      "verified": true
+    },
+    {
+      "id": "concept-learning-audience-boundary",
+      "name": "Learning Audience Boundary",
+      "path": "30-Knowledge\\Learning Audience Boundary.md",
+      "summary": "Separate Codex-local operating knowledge from user study; send internal rules to the Codex learning index and export only explicitly user-facing recall material to Anki.",
+      "source": "user-correction-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "concept-learning-governance",
+      "name": "Learning Governance",
+      "path": "30-Knowledge\\Learning Governance.md",
+      "summary": "Trigger learning only from a concrete gap plus qualifying evidence; compare project or primary external sources against the current owner, make a reversible tested change, and promote only verified results after architecture and economy review.",
+      "source": "architecture-learning-review-2026-07-16",
+      "verified": true
+    },
+    {
+      "id": "concept-locked-template-docx-package-invariants",
+      "name": "Locked Template DOCX Package Invariants",
+      "path": "30-Knowledge\\Locked Template DOCX Package Invariants.md",
+      "summary": "For a locked-template DOCX, snapshot critical package parts and media, patch the smallest known surface, compare intentional XML changes semantically, and accept only after both hard structural checks and rendered-page review pass.",
+      "source": "codex-exact-word-layout;verified locked-template Word repairs",
+      "verified": true
+    },
+    {
+      "id": "concept-matt-pocock-skills-method-system-relearning",
+      "name": "Matt Pocock Skills Method System Relearning",
+      "path": "30-Knowledge\\Matt Pocock Skills Method System Relearning.md",
+      "summary": "Treat external skill repositories as whole method systems, not only SKILL.md collections. Learn their philosophy, workflow graph, docs, scripts, manifests, release boundaries, and failure-mode vocabulary; adapt only owner-compatible ideas as guarded experiments with local verification, never as raw installation or automatic authority.",
+      "source": "https://github.com/mattpocock/skills/tree/task/plugin-skills-dir-form;commit=c01d2b634689185203de52cfdc12b39b7ac0313d",
+      "verified": false
+    },
+    {
+      "id": "concept-matt-pocock-skills-network-learning",
+      "name": "Matt Pocock Skills Network Learning",
+      "path": "30-Knowledge\\Matt Pocock Skills Network Learning.md",
+      "summary": "Matt Pocock skills reinforce skill economy through invocation load, information hierarchy, explicit completion criteria, repo-local setup documents, and feedback loops; external skills can be installed only after necessity, value, compatibility, and verification are established.",
+      "source": "https://github.com/mattpocock/skills;commit=9603c1cc8118d08bc1b3bf34cf714f62178dea3b",
+      "verified": false
+    },
+    {
+      "id": "concept-mother-skill-refinement",
+      "name": "Mother Skill Refinement",
+      "path": "30-Knowledge\\Mother Skill Refinement.md",
+      "summary": "Refine a broad mother skill by keeping its parent SKILL.md as the discovery and routing surface while moving long gates, recovery flows, release commands, and specialized mode contracts into owner-internal subskills.",
+      "source": "codex-parent-skill-refinement-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-oh-my-codex-omx-lite-network-learning",
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "path": "30-Knowledge\\Oh My Codex and OMX Lite Network Learning.md",
+      "summary": "Relearn external Codex workflow packages as method systems. Adopt portable gates such as fact-backed planning, explicit invocation, manifest/digest checks, lifecycle outcome vocabulary, authority leases, transport-boundary protection, and redaction tests into existing owners; do not install or copy full runtimes when their hooks, state, worktrees, and plugin surfaces would shadow the local architecture.",
+      "source": "https://github.com/Yeachan-Heo/oh-my-codex;commit=435d4a9cc982ffaf83fabbfbb8711ae6c178ffca; https://github.com/IamHBW/omx-lite;commit=44c5d8ba479b5a27e373e7e0ea5cb30aa48c6c5f",
+      "verified": true
+    },
+    {
+      "id": "concept-pi-agent-harness-network-learning",
+      "name": "Pi Agent Harness Network Learning",
+      "path": "30-Knowledge\\Pi Agent Harness Network Learning.md",
+      "summary": "Treat earendil-works/pi as an agent-harness method source. Adopt its small-core resource model, evented lifecycle, session tree, save-point semantics, project-trust split, and extension-surface discipline as guarded architecture lenses; do not install Pi or inherit its no-sandbox runtime stance without local authority and validation.",
+      "source": "https://github.com/earendil-works/pi;commit=dd6bea41efa8caa7a10fe5a6401676dc5699f83f",
+      "verified": true
+    },
+    {
+      "id": "concept-project-creation-capability",
+      "name": "Project Creation Capability",
+      "path": "30-Knowledge\\Project Creation Capability.md",
+      "summary": "A project is created in the experience system when evidence is converted into lifecycle files, project-local skills, storage records, runtime checks, error reports, and verified iteration records.",
+      "source": "xlw1-project-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "concept-project-vocabulary-decision-brief",
+      "name": "Project Vocabulary and Decision Brief",
+      "path": "30-Knowledge\\Project Vocabulary and Decision Brief.md",
+      "summary": "For requirement work with repeated domain ambiguity, trial a project-local vocabulary and decision brief under codex-requirement-authoring; validate its effect on one real follow-on workflow before promoting it to a reusable subskill or rule.",
+      "source": "https://github.com/mattpocock/skills;release=v1.1.0;local-gap-review-2026-07-18",
+      "verified": false
+    },
+    {
+      "id": "concept-provider-boundary",
+      "name": "Provider Capability Boundary",
+      "path": "30-Knowledge\\Provider Capability Boundary.md",
+      "summary": "Route an OpenAI-compatible provider only to chat or embeddings interfaces it actually supports; retain specialized image, audio, full-text, and domain APIs.",
+      "source": "memory-api-routing",
+      "verified": true
+    },
+    {
+      "id": "concept-subskill-packaging-boundary",
+      "name": "Subskill Packaging Boundary",
+      "path": "30-Knowledge\\Subskill Packaging Boundary.md",
+      "summary": "Use subskill-style packaging inside an existing owner when a capability needs its own contract or tests but does not justify a new top-level skill; promote it only after independent evidence shows a separate owner boundary.",
+      "source": "codex-skill-packaging-iteration-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-top-level-owner-governance",
+      "name": "Top-Level Owner Governance",
+      "path": "30-Knowledge\\Top-Level Owner Governance.md",
+      "summary": "A top-level owner can evolve only with explicit current-iteration user authority, an evidence-backed boundary comparison, a rollback or migration condition, and validation; otherwise retain the owner and improve it internally.",
+      "source": "authorized-top-level-owner-economy-review-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-visual-format-selection",
+      "name": "Visual Format Selection",
+      "path": "30-Knowledge\\Visual Format Selection.md",
+      "summary": "Select image format from the reader task and delivery constraints before generation or conversion. Mermaid and SVG are conditional structural/editable formats; generated and photographic visuals should normally be PNG or JPG according to transparency, fidelity, and size needs.",
+      "source": "local-image-workflow-refinement-2026-07-18; baoyu-skills-review-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-jme-formatting-guardrails",
+      "name": "XLW1 JME Formatting Guardrails",
+      "path": "30-Knowledge\\XLW1 JME Formatting Guardrails.md",
+      "summary": "In XLW1, preserve black headings, Word-native single-column equations, superscript body citations with baseline references, template first-odd-even header behavior, and ordinary table-cell fonts; validate by Word-to-PDF rendering rather than DOCX inspection alone.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-source-figure-integrity",
+      "name": "XLW1 Source Figure Integrity",
+      "path": "30-Knowledge\\XLW1 Source Figure Integrity.md",
+      "summary": "XLW1 final figures must remain traceable to thesis or author-owned source figures; retain axes, borders, annotations, and experimental traces, and allow only non-substantive clarity improvements such as high-resolution export, mild sharpening, and padding.",
+      "source": "source-xlw1-api-conversation-evidence;thesis_figures_selected_refined/figure_refinement_contract.md",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-template-header-visual-object-fidelity",
+      "name": "XLW1 Template Header and Visual Object Fidelity",
+      "path": "30-Knowledge\\XLW1 Template Header and Visual Object Fidelity.md",
+      "summary": "For XLW1, inspect the supplied JME template's actual header parts and editable table cells before changing typography; use the template's unpublished-manuscript header state and do not alter fonts embedded inside source images.",
+      "source": "source-xlw1-supplied-jme-template",
+      "verified": true
+    },
+    {
+      "id": "concept-xlw1-version-authority",
+      "name": "XLW1 Version Authority",
+      "path": "30-Knowledge\\XLW1 Version Authority.md",
+      "summary": "For XLW1 manuscript work, identify the source DOCX from the newest explicit user instruction, record its path and SHA-256 before changing it, and write each structural revision to a separately named process-folder output.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "evidence-book-shelf-relearning-20260806",
+      "name": "2026-08-06 全书架重新学习记录",
+      "path": "30-Knowledge\\2026-08-06 全书架重新学习记录.md",
+      "summary": "Use the private book shelf as complementary models; derive guarded review lenses, link them to existing Agent functional units, and require local evidence before promotion.",
+      "source": "F:/codex/.runtime/evidence/experience-book-shelf-learning-20260806.json",
+      "verified": true
+    },
+    {
+      "id": "historical-learning-reconciliation-20260806",
+      "name": "2026-08-06 历史学习资产全面复训记录",
+      "path": "30-Knowledge\\2026-08-06 历史学习资产全面复训记录.md",
+      "summary": "全历史复训必须覆盖曾经学习过的源码项目、运行时方法、Owner Skill、子 Skill、upstream 原文、知识记录、项目经验、工具安装与验证脚本；旧摘要只能作为索引，不能替代当前源文件和功能证据。先按最终目标分类，再按 source -> local adaptation -> runtime -> test -> knowledge writeback 复核；不因单一来源或单一速度版本直接改变全局结构。",
+      "source": "F:/codex/.codex/project/historical-learning-reconciliation-20260806.json; local source snapshots; current owner tests",
+      "verified": true
+    },
+    {
+      "id": "module-academic-text-style",
+      "name": "Academic Text Style Module",
+      "path": "10-Modules\\Academic Text Style Module.md",
+      "summary": "Route academic prose style work to codex-text-style when expression clarity or register must improve without changing the research record.",
+      "source": "F:/codex/skills/codex-text-style/SKILL.md",
+      "verified": true
+    },
+    {
+      "id": "module-exact-word-layout",
+      "name": "Exact Word Layout Module",
+      "path": "10-Modules\\Exact Word Layout Module.md",
+      "summary": "Route fragile locked-template Word layout edits to codex-exact-word-layout when the acceptance criterion is rendered page fidelity rather than simple DOCX text mutation.",
+      "source": "F:/codex/skills/codex-exact-word-layout/SKILL.md",
+      "verified": true
+    },
+    {
+      "id": "module-image-workflow",
+      "name": "Image Workflow Module",
+      "path": "10-Modules\\Image Workflow Module.md",
+      "summary": "Delete a local knowledge image only after upload, HTTPS retrieval, complete reference replacement, quarantine copy, committed manifest, and zero remaining local references all succeed.",
+      "source": "user-request-2026-07-14-image-hosting",
+      "verified": true
+    },
+    {
+      "id": "module-knowledge-system",
+      "name": "Knowledge System Module",
+      "path": "10-Modules\\Knowledge System Module.md",
+      "summary": "Promote knowledge into a global skill only when it is non-trivial, specific, verified, reusable, non-duplicate, and has scope and invalidation conditions.",
+      "source": "user-request-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "portable-path-configuration",
+      "name": "Portable Path Configuration",
+      "path": "30-Knowledge\\Portable Path Configuration.md",
+      "summary": "Git-tracked skills, knowledge records, manifests, and public docs must use logical roots or repository-relative paths; machine-specific roots belong in the local portable profile or environment variables.",
+      "source": "codex-skill-portability",
+      "verified": true
+    },
+    {
+      "id": "project-xlw1-manuscript-knowledge",
+      "name": "XLW1 Manuscript Knowledge Map",
+      "path": "30-Knowledge\\XLW1 Manuscript Knowledge Map.md",
+      "summary": "Route XLW1 requests through its source-authority, JME-formatting, figure-integrity, and refinement-workflow notes before changing the manuscript.",
+      "source": "source-xlw1-api-conversation-evidence",
+      "verified": true
+    },
+    {
+      "id": "subskill-figure-optimization",
+      "name": "Figure Optimization Subskill",
+      "path": "10-Modules\\Figure Optimization Subskill.md",
+      "summary": "Use codex-image-workflow-figure-optimization for data-faithful scientific figure re-rendering, user-requested or inferred dimensions, publication typography, arbitrary supported raster/vector exports, and layout repair; do not use generative image redraws for quantitative plots.",
+      "source": "user-supplied-skill-package-2026-07-17",
+      "verified": true
+    },
+    {
+      "id": "workflow-academic-research",
+      "name": "Academic Research Workflow",
+      "path": "20-Workflows\\Academic Research Workflow.md",
+      "summary": "Use the codex-text-style academic research workflow submodule to plan multi-step work with source locators and evidence status before specialist reading, writing, code, or figure actions.",
+      "source": "F:/codex/skills/codex-text-style/references/academic-workflow-contract.md",
+      "verified": true
+    },
+    {
+      "id": "workflow-academic-text-style",
+      "name": "Academic Text Style Workflow",
+      "path": "20-Workflows\\Academic Text Style Workflow.md",
+      "summary": "Establish a bounded academic style profile, revise only expression, compare against the source, and report unresolved meaning or evidence risk.",
+      "source": "F:/codex/skills/codex-text-style",
+      "verified": true
+    },
+    {
+      "id": "workflow-codebase-graph-evidence",
+      "name": "Codebase Graph Evidence Workflow",
+      "path": "20-Workflows\\Codebase Graph Evidence Workflow.md",
+      "summary": "For repository-scale learning, let the Global Experience Agent warm the canonical F-codex graph, use currently callable codebase-memory-mcp tools for routing evidence, then verify every claim against cited source files before editing or reporting.",
+      "source": "codebase-memory-mcp-validation-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "workflow-content-production",
+      "name": "Content Production Workflow",
+      "path": "30-Knowledge\\Content Production Workflow.md",
+      "summary": "Produce reader-facing content from a source-aware brief through outline, draft, optional asset handoff, and review; keep publication and high-authority external actions separate from drafting.",
+      "source": "local-content-production-refinement-2026-07-18;https://github.com/JimLiu/baoyu-skills;commit=6b7a2e417500561a5ecdd0b168332f4142584617",
+      "verified": true
+    },
+    {
+      "id": "workflow-exact-word-layout",
+      "name": "Exact Word Layout Workflow",
+      "path": "20-Workflows\\Exact Word Layout Workflow.md",
+      "summary": "For locked-template DOCX layout repairs, preserve the authoritative file, patch only the smallest local OOXML or Word COM surface, then trust rendered page QA over structural checks when they disagree.",
+      "source": "xlw1-jme-layout-iterations;F:/codex/skills/codex-exact-word-layout",
+      "verified": true
+    },
+    {
+      "id": "workflow-global-iteration-candidate-report",
+      "name": "Global Iteration Candidate Report",
+      "path": "30-Knowledge\\Global Iteration Candidate Report.md",
+      "summary": "After a completed global iteration, generate an advisory candidate report so the user can make explicit promotion, test, retirement, or external-authority decisions.",
+      "source": "local-global-experience-system-refinement-2026-07-18",
+      "verified": true
+    },
+    {
+      "id": "workflow-integrated-experience-feedback-loop",
+      "name": "Integrated Experience Feedback Loop",
+      "path": "20-Workflows\\Integrated Experience Feedback Loop.md",
+      "summary": "Integrated experience work routes knowledge, generated visuals, hosted images, error reports, and verified lessons through their owning modules instead of merging those modules.",
+      "source": "architecture-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "workflow-local-experience-iteration",
+      "name": "Local Experience Iteration Workflow",
+      "path": "20-Workflows\\Local Experience Iteration Workflow.md",
+      "summary": "Build whole local experience iterations from bounded metadata and verified project artifacts before considering matched raw sessions.",
+      "source": "F:/codex/skills/codex-experience-capture;F:/codex/skills/codex-conversation-continuity",
+      "verified": true
+    },
+    {
+      "id": "workflow-mind-map-knowledge",
+      "name": "Mind Map Knowledge Workflow",
+      "path": "20-Workflows\\Mind Map Knowledge Workflow.md",
+      "summary": "Keep Markdown and typed links canonical; use MindMaster, Mermaid, and exported images only as reproducible derived views.",
+      "source": "user-request-2026-07-14",
+      "verified": true
+    },
+    {
+      "id": "workflow-project-creation-from-experience",
+      "name": "Project Creation From Experience Workflow",
+      "path": "20-Workflows\\Project Creation From Experience Workflow.md",
+      "summary": "New project creation should turn folder evidence into lifecycle files, project-local skills, storage indexes, runtime preflight, error feedback, and verified retrospectives before promoting global lessons.",
+      "source": "xlw1-project-iteration-2026-07-15",
+      "verified": true
+    },
+    {
+      "id": "workflow-solution-visualization",
+      "name": "Solution Visualization Workflow",
+      "path": "30-Knowledge\\Solution Visualization Workflow.md",
+      "summary": "After written reasoning is established, choose a Chinese explanatory visual only when it materially reduces reasoning effort. Preserve Mermaid for reviewable relationship/procedure logic, SVG for deterministic geometry, PNG for chart-like quantitative views, and a sanitized generated raster only for complex conceptual explanation.",
+      "source": "user-request-2026-07-19; solution-visualization-planner-test-2026-07-19",
+      "verified": false
+    },
+    {
+      "id": "workflow-xlw1-manuscript-refinement",
+      "name": "XLW1 Manuscript Refinement Workflow",
+      "path": "20-Workflows\\XLW1 Manuscript Refinement Workflow.md",
+      "summary": "Execute XLW1 refinement in the order source authority, structure, technical evidence chain, natural Chinese academic prose, JME formatting, and rendered PDF QA; preserve references and source evidence unless the user explicitly changes them.",
+      "source": "source-xlw1-api-conversation-evidence;$EXTERNAL_WORKSPACE/xlw1/.codex/project/WORKFLOWS.md",
+      "verified": true
+    },
+    {
+      "id": "workflow-zotero",
+      "name": "Zotero Reference Workflow",
+      "path": "20-Workflows\\Zotero Reference Workflow.md",
+      "summary": "Recover the Zotero numeric user ID from /keys/<key> metadata before calling /users/{id}; never record the key itself.",
+      "source": "memory-zotero-api-setup",
+      "verified": true
+    }
+  ]
+}

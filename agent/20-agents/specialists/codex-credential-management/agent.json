@@ -1,0 +1,52 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-credential-management",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-credential-management/SKILL.md"
+                ],
+    "id":  "codex-credential-management",
+    "owner":  "codex-credential-management",
+    "plane":  "platform",
+    "stage":  "dispatch",
+    "canonical_skill":  "skills/codex-credential-management/SKILL.md",
+    "triggers":  [
+                     "credential state",
+                     "provider routing",
+                     "authentication diagnostics"
+                 ],
+    "consumes":  [
+                     "provider metadata",
+                     "secure credential source",
+                     "explicit authority"
+                 ],
+    "produces":  [
+                     "redacted authentication state",
+                     "provider route evidence"
+                 ],
+    "verification":  "no secret echo, correct auth source, and redacted diagnostics",
+    "tool_gate":  "credential",
+    "incoming":  [
+                     {
+                         "from":  "codex-runtime-environments",
+                         "artifact":  "runtime provider boundary",
+                         "event":  "credential_route_required"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-tool-installation",
+                         "artifact":  "redacted capability state",
+                         "event":  "missing_tool_confirmed"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "redacted provider route",
+                         "event":  "provider_ready"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

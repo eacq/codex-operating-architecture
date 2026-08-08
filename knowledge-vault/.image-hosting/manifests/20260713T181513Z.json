@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "committed",
+  "provider": "bilibili-article-cover",
+  "created_at": "20260713T181513Z",
+  "entries": [
+    {
+      "source": "assets\\hostable\\mindmaps\\experience-knowledge-architecture.png",
+      "sha256": "6944d8f1099f013b2c1c27676925bbed9de9b7c8e246472629feeece0adebdb3",
+      "remote_url": "https://article.biliimg.com/bfs/new_dyn/50965f510ff5a14259c5ee34dcacaff4687543502.png",
+      "documents": [
+        "30-Knowledge\\Experience and Knowledge Architecture.md"
+      ],
+      "quarantine": "$IMAGE_QUARANTINE_ROOT/20260713T181513Z/assets/hostable/mindmaps/experience-knowledge-architecture.png"
+    }
+  ]
+}

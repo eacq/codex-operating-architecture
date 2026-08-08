@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "model": "loopx-resource-policy",
+  "owner": "codex-self-evolution",
+  "purpose": "Choose an evidence-backed LoopX resource level on a local desktop without discarding higher-cost capabilities.",
+  "speed_quality_contract": {
+    "principle": "Optimize speed only by selecting among function-preserving execution versions; never trade away required capability, safety, evidence, rollback, or authority.",
+    "primary_metric": "time_to_decidable_next_action",
+    "secondary_metrics": ["elapsed_turn_time", "model_and_tool_round_trips", "user_wait_time", "quota_consumption"],
+    "additional_metrics": ["task_wall_clock_time", "operation_wall_clock_time", "host_reported_worked_time", "agent_session_wall_clock_time", "child_agent_wall_clock_time", "controller_wall_clock_time", "tool_wait_time", "recovery_retry_time", "validation_writeback_time"],
+    "measurement_contract": {
+      "clock": "UTC wall clock",
+      "start_event": "host-task-accepted-when-available; otherwise operation-start-with-explicit-incomplete-task-status",
+      "end_event": "accepted-save-point-or-final-verified-result",
+      "required_dimensions": ["requested_mode", "effective_mode", "step_timings", "task_started_at", "task_completed_at", "task_wall_clock_seconds", "task_time_status", "operation_started_at", "operation_completed_at", "operation_wall_clock_seconds", "host_reported_worked_seconds", "agent_session_started_at", "agent_session_wall_clock_seconds", "child_agent_wall_clock_seconds", "controller_wall_clock_seconds", "step_time_sum_seconds", "unaccounted_time_seconds"],
+      "equivalence_key": ["required_function_set", "acceptance_criteria", "authority_scope", "validation_profile"],
+      "comparison_rule": "Compare only equivalent function and acceptance envelopes; keep step and end-to-end metrics together.",
+      "metric_selection_by_goal": {
+        "user_outcome": ["time_to_decidable_next_action", "task_wall_clock_time", "host_reported_worked_time", "user_visible_complete_time"],
+        "agent_session": ["agent_session_wall_clock_time", "child_agent_wall_clock_time", "handoff_time", "tool_wait_time", "recovery_retry_time"],
+        "agent_coordination": ["handoff_time", "tool_wait_time", "recovery_retry_time"],
+        "controller": ["controller_wall_clock_time", "model_and_tool_round_trips", "unaccounted_time_seconds"],
+        "script": ["step_time_sum_seconds", "operation_wall_clock_time", "operation_duration_seconds"],
+        "validation_and_writeback": ["validation_writeback_time", "required_validation_result"]
+      }
+    },
+    "quality_floor": ["required_function_set", "owner_route", "authority_check", "privacy_redaction", "evidence_boundary", "rollback_boundary", "required_validation", "typed_exit"],
+    "selection_rule": "Choose the fastest version that can still satisfy the current goal, evidence gap, quality floor, and stop condition.",
+    "escalation_rule": "Switch upward only when the current version cannot answer the next decision or close the evidence gap without losing the quality floor.",
+    "deescalation_rule": "Switch downward after evidence becomes decisive or the frontier is unchanged; do not reduce required validation or safety checks.",
+    "speed_never_buys": ["missing_functionality", "skipped_validation", "weaker_privacy", "weaker_rollback", "authority_expansion", "unbounded_polling"],
+    "comparison_rule": "Compare speed signals only between runs with equivalent required capability and acceptance criteria; a faster but incomplete run is not an improvement."
+  },
+  "required_function_set": ["goal_and_intent_route", "owner_handoff", "evidence_capture", "authority_and_privacy_gate", "rollback_or_recovery_boundary", "typed_exit", "required_validation"],
+  "timing_optimization_contract": {
+    "layers": ["user_outcome", "agent_session", "controller_operation", "tool_wait", "recovery_retry", "validation_writeback", "resource_version"],
+    "optimization_order": ["preserve_quality_floor", "measure_complete_task_and_host_views", "separate_session_and_operation_time", "reduce_repeated_wait_or_writeback", "select_function_preserving_execution_version", "reverify_equivalence"],
+    "preliminary_routing": {
+      "bounded_local_change": "Auto with explicit ChangedPaths; retain Fast when no high-risk path is in scope",
+      "cross_owner_or_architecture_change": "Balanced or Full according to evidence gap; keep owner and rollback gates",
+      "global_iteration_closeout": "Full; do not replace the final repository and global-interface validation",
+      "repeated_same_evidence": "reuse only when source revision, policy, authority, acceptance envelope, and validation profile match"
+    },
+    "no_regression_gates": ["required_function_set", "evidence_boundary", "authority_scope", "privacy_redaction", "rollback_ready", "typed_exit", "equivalent_validation"],
+    "candidate_rule": "A timing improvement is retained only when at least two equivalent observations improve a declared layer without degrading another required layer; one observation remains a candidate."
+  },
+  "levels": {
+    "economy": {
+      "default_when": "small bounded task or evidence is already decisive",
+      "parallel_lanes": 1,
+      "worker_rounds_per_turn": 1,
+      "visible_panes": false,
+      "auto_wake": false,
+      "polling": "material-event-or-user-turn"
+    },
+    "balanced": {
+      "default_when": "the goal spans turns but does not yet justify continuous or visible coordination",
+      "parallel_lanes": 1,
+      "worker_rounds_per_turn": 1,
+      "visible_panes": false,
+      "auto_wake": false,
+      "polling": "low-frequency-or-material-event"
+    },
+    "full": {
+      "default_when": "additional lanes, visible handoffs, or repeated rounds are necessary to close a material evidence gap",
+      "parallel_lanes": 3,
+      "worker_rounds_per_turn": 3,
+      "visible_panes": true,
+      "auto_wake": "only-with-explicit-targeted-wake-reason",
+      "polling": "bounded-cadence-with-quota-ceiling"
+    }
+  },
+  "execution_versions": {
+    "economy": {
+      "quality_role": "complete required function set with compact context and one bounded lane",
+      "speed_levers": ["reuse_local_evidence", "batch_read_only_checks", "avoid_visible_coordination", "stop_when_next_decision_is_decidable"],
+      "switch_up_when": "the next decision needs additional evidence, roles, or repeated rounds"
+    },
+    "balanced": {
+      "quality_role": "complete required function set with resumable multi-turn evidence accumulation",
+      "speed_levers": ["retain_compact_state", "use_low_frequency_polling", "parallelize_only_isolated_read_only_checks"],
+      "switch_up_when": "a material evidence gap remains after bounded turns"
+    },
+    "full": {
+      "quality_role": "complete required function set with additional lanes, visible handoffs, and repeated evidence rounds",
+      "speed_levers": ["parallelize_independent_lanes", "keep_handoffs_visible", "use_bounded_replicates", "preserve_quota_ceiling"],
+      "switch_down_when": "the evidence frontier is unchanged, the goal is decidable, or additional lanes no longer improve evidence"
+    }
+  },
+  "selection_contract": {
+    "required_inputs": ["goal_value", "evidence_gap", "quota_budget", "authority", "stop_condition", "recovery_condition"],
+    "escalation_rule": "increase one level only when the current level cannot answer the next decision with acceptable evidence",
+    "deescalation_rule": "return to a lower level after evidence becomes decisive or the frontier is unchanged",
+    "no_hot_loop": true,
+    "no_authority_expansion": true,
+    "high_risk_actions_remain_gated": ["external_launch", "external_write", "publication", "merge", "credential_use", "production_sync"]
+  },
+  "verification_profiles": {
+    "balanced": {
+      "purpose": "preliminary evidence for bounded work; not a global closeout substitute",
+      "checks": ["codebase-memory-ui-preflight", "changed-script-syntax", "repository-text-encoding", "global-interface-validation", "diff-whitespace-check"],
+      "completion_boundary": "Full required for global iteration, publication, release, or final architecture closeout"
+    },
+    "auto": {
+      "low_risk_default": "Fast",
+      "high_risk_fallback": "Full",
+      "high_risk_path_patterns": [
+        "^(agent|config|scripts|skills)/",
+        "(^|/)Invoke-.*\\.ps1$",
+        "(^|/)Test-.*\\.ps1$",
+        "(^|/)SKILL\\.md$",
+        "(^|/)AGENTS\\.md$",
+        "(^|/)module-registry\\.json$"
+      ],
+      "quality_floor_preserved": ["required_validation", "authority_check", "privacy_redaction", "rollback_or_recovery_boundary", "typed_exit"]
+    }
+  }
+}

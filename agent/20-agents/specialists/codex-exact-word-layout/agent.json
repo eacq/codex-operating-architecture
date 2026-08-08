@@ -1,0 +1,57 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-exact-word-layout",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-exact-word-layout/SKILL.md"
+                ],
+    "id":  "codex-exact-word-layout",
+    "owner":  "codex-exact-word-layout",
+    "plane":  "capability",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-exact-word-layout/SKILL.md",
+    "triggers":  [
+                     "locked Word template",
+                     "pagination fidelity",
+                     "OOXML repair"
+                 ],
+    "consumes":  [
+                     "source DOCX",
+                     "layout constraints",
+                     "render baseline"
+                 ],
+    "produces":  [
+                     "render-verified DOCX",
+                     "layout QA evidence"
+                 ],
+    "verification":  "structural validation plus rendered page comparison",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-office-cli",
+                         "artifact":  "structured office artifact",
+                         "event":  "exact_layout_required"
+                     },
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "exact-layout brief",
+                         "event":  "word_layout_specialist_selected"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-file-organization",
+                         "artifact":  "render-verified deliverable",
+                         "event":  "delivery_state_ready"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "render-verified DOCX",
+                         "event":  "specialist_result_returned"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

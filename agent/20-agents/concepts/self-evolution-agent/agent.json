@@ -1,0 +1,26 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "concept:self-evolution-agent",
+    "kind":  "concept-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "self-evolution-agent",
+    "owners":  [
+                   "codex-self-evolution",
+                   "codex-architecture-iteration",
+                   "codex-skill-packaging",
+                   "codex-skill-portability",
+                   "codex-experience-capture",
+                   "codex-knowledge-system"
+               ],
+    "resources":  [
+                      "config/agent-system.json",
+                      "module-registry.json",
+                      "ARCHITECTURE.md",
+                      "skills/codex-experience-capture/subskills/skill-evolution-optimization/SKILL.md"
+                  ],
+    "purpose":  "observe the Agent, evolve its owner and capability contracts, validate replacement, score skill-evolution candidates through experience capture, and settle publication boundaries",
+    "child_policy":  "executable-under-current-authority"
+}

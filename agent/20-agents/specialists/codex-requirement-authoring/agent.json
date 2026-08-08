@@ -1,0 +1,62 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-requirement-authoring",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-requirement-authoring/SKILL.md"
+                ],
+    "id":  "codex-requirement-authoring",
+    "owner":  "codex-requirement-authoring",
+    "plane":  "control",
+    "stage":  "contract",
+    "canonical_skill":  "skills/codex-requirement-authoring/SKILL.md",
+    "triggers":  [
+                     "ambiguous goal",
+                     "acceptance criteria",
+                     "requirement normalization"
+                 ],
+    "consumes":  [
+                     "user direction",
+                     "evidence bundle",
+                     "authority boundary"
+                 ],
+    "produces":  [
+                     "normalized requirement brief",
+                     "acceptance criteria"
+                 ],
+    "verification":  "every acceptance criterion has observable proof and inferred assumptions remain explicit",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-conversation-continuity",
+                         "artifact":  "bounded context",
+                         "event":  "goal_context_restored"
+                     },
+                     {
+                         "from":  "codex-information-gathering",
+                         "artifact":  "ranked evidence bundle",
+                         "event":  "requirements_grounded"
+                     },
+                     {
+                         "from":  "codex-project-optimization",
+                         "artifact":  "project requirements surface",
+                         "event":  "requirements_refresh_requested"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-information-gathering",
+                         "artifact":  "evidence questions",
+                         "event":  "evidence_requested"
+                     },
+                     {
+                         "to":  "codex-workflow-design",
+                         "artifact":  "normalized requirement brief",
+                         "event":  "workflow_ready"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

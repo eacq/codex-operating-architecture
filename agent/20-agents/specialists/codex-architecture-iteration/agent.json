@@ -1,0 +1,63 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-architecture-iteration",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-architecture-iteration/SKILL.md"
+                ],
+    "id":  "codex-architecture-iteration",
+    "owner":  "codex-architecture-iteration",
+    "plane":  "control",
+    "stage":  "savepoint",
+    "canonical_skill":  "skills/codex-architecture-iteration/SKILL.md",
+    "triggers":  [
+                     "owner topology",
+                     "contract evolution",
+                     "module merge or split"
+                 ],
+    "consumes":  [
+                     "unit topology review",
+                     "verified handoff evidence",
+                     "current authorization"
+                 ],
+    "produces":  [
+                     "architecture decision",
+                     "registry update",
+                     "rollback or migration boundary"
+                 ],
+    "verification":  "owner-network correspondence, topology validation, and global interface validation",
+    "tool_gate":  "top_owner_change",
+    "incoming":  [
+                     {
+                         "from":  "codex-skill-portability",
+                         "artifact":  "portability boundary evidence",
+                         "event":  "architecture_review_requested"
+                     },
+                     {
+                         "from":  "codex-knowledge-system",
+                         "artifact":  "linked topology evidence",
+                         "event":  "owner_economy_review"
+                     },
+                     {
+                         "from":  "codex-learning",
+                         "artifact":  "owner-fit comparison",
+                         "event":  "adaptation_review"
+                     },
+                     {
+                         "from":  "codex-file-organization",
+                         "artifact":  "replacement and rollback proof",
+                         "event":  "structure_verified"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-self-evolution",
+                         "artifact":  "verified architecture decision",
+                         "event":  "save_point_returned"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

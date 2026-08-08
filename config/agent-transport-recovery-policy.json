@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "agent-transport-recovery-policy",
+  "owner": "codex-self-evolution",
+  "supporting_owners": ["codex-error-feedback", "codex-conversation-continuity"],
+  "purpose": "Stop transport failures before they turn into an indefinitely waiting Codex, Global Experience Agent, or child-Agent task; preserve durable state and return an explicit restart instruction.",
+  "applies_to": ["codex", "global-experience-agent", "specialist-agent", "concept-agent", "child-agent"],
+  "detection": {
+    "only_before_completion": true,
+    "host_watchdog": {
+      "enabled": true,
+      "snapshot_source": "codex_app__list_threads plus codex_app__wait_threads",
+      "stall_threshold_seconds": 180,
+      "classification": "host-stall-suspected",
+      "conditions": ["thread status is active", "latest turn is inProgress", "either no assistant/tool marker exists or the latest tool marker is still inProgress beyond the threshold"],
+      "automatic_action": "persist-marker-and-prompt",
+      "never_force_kill": true,
+      "user_message": "检测到 Codex 任务长时间没有输出或工具事件。为避免继续卡住，请重启 Codex 或受影响主机；任务不会被自动强制终止。重启后先 Resume，再 Continue。",
+      "next_action": "restart Codex or the affected host, then Resume from the durable marker before Continue"
+    },
+    "completed_markers": ["response.completed", "task.completed", "turn_finished"],
+    "fatal_patterns": [
+      {"id": "stream-disconnected-before-completion", "pattern": "(?i)stream disconnected before completion", "classification": "transport-disconnect"},
+      {"id": "request-send-failure", "pattern": "(?i)error sending request for url", "classification": "transport-send-failure"},
+      {"id": "peer-closed-tls", "pattern": "(?i)peer closed connection without sending TLS close_notify", "classification": "transport-tls-close"},
+      {"id": "unexpected-eof", "pattern": "(?i)unexpected eof", "classification": "transport-unexpected-eof"},
+      {"id": "transport-closed", "pattern": "(?i)transport closed", "classification": "transport-closed"},
+      {"id": "tls-handshake-failed", "pattern": "(?i)TLS handshake (failed|failure)", "classification": "transport-tls-handshake"},
+      {"id": "connection-reset", "pattern": "(?i)connection reset by peer|connection reset", "classification": "transport-reset"},
+      {"id": "broken-pipe", "pattern": "(?i)broken pipe", "classification": "transport-broken-pipe"},
+      {"id": "request-timeout", "pattern": "(?i)(request|connection) timed out|timeout while waiting for (a )?response", "classification": "transport-timeout"}
+    ]
+  },
+  "recovery": {
+    "automatic_retry": "disabled_after_classification",
+    "retry_reason": "A missing completion marker makes stream replay unsafe unless the owner proves idempotency.",
+    "state_status": "blocked-restart-required",
+    "exit_type": "restart-required",
+    "preserve_session": true,
+    "preserve_pending_writes": true,
+    "child_propagation": "parent-visible",
+    "resume_boundary": "restart Codex or the affected host, then Resume from the durable session before Continue"
+  },
+  "user_prompt": {
+    "language": "zh-CN",
+    "message": "检测到传输层在响应完成前中断。为避免任务继续卡住，请重启 Codex；如果重启后仍报错，再检查代理/网络，然后从保存点或新任务继续。当前会话状态和未应用写入已保留。",
+    "required_fields": ["component", "classification", "session_id", "preserved_state", "next_action"],
+    "never_include": ["credentials", "authorization_headers", "cookies", "raw_prompt", "raw_completion", "full_tool_payload"]
+  },
+  "verification": {
+    "classifier": "agent/40-runtime/Get-AgentTransportRecoverySignal.ps1",
+    "host_detector": "agent/40-runtime/Get-AgentHostRecoverySignal.ps1",
+    "runtime": "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+    "test": "scripts/Test-AgentTransportRecovery.ps1",
+    "host_test": "scripts/Test-AgentHostTransportRecovery.ps1"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Skill Portability"
+  short_description: "Separate reusable skills from private local configuration"
+  default_prompt: "Use $codex-skill-portability to prepare these skills for a clean clone and first-use setup."

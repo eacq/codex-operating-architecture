@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Experience Capture"
+  short_description: "Extract reusable lessons from completed Codex work"
+  default_prompt: "Use $codex-experience-capture to handle this task with verified reusable practices."

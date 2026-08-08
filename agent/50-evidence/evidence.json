@@ -1,0 +1,18 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "evidence:catalog",
+    "kind":  "evidence-catalog",
+    "sources":  [
+                    "config/agent-system.json",
+                    "agent/agent-filesystem.json"
+                ],
+    "session_state":  ".codex/project/agent-sessions",
+    "agent_memory":  ".codex/project/agent-memory",
+    "lifecycle_state":  ".codex/project/state.json",
+    "project_experience":  ".codex/project/EXPERIENCE.md",
+    "candidate_state":  ".codex/project/experience-candidates.json",
+    "runtime_evidence":  ".runtime/evidence",
+    "privacy_contract":  "durable agent sessions and Agent memory stores are local ignored metadata and evidence; raw private sessions, credentials, and secrets never enter Git",
+    "tracked_payload_rule":  "derived evidence may be tracked only through its canonical owner and privacy gate"
+}

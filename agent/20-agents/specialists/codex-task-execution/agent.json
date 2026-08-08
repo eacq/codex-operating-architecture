@@ -1,0 +1,112 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-task-execution",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-task-execution/SKILL.md"
+                ],
+    "id":  "codex-task-execution",
+    "owner":  "codex-task-execution",
+    "plane":  "control",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-task-execution/SKILL.md",
+    "triggers":  [
+                     "implementation",
+                     "verification",
+                     "content delivery"
+                 ],
+    "consumes":  [
+                     "bounded task contract",
+                     "workflow",
+                     "selected specialist resources"
+                 ],
+    "produces":  [
+                     "verified deliverable",
+                     "current-task test evidence"
+                 ],
+    "verification":  "narrowest proving check plus delivery review",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-tool-installation",
+                         "artifact":  "installation proof",
+                         "event":  "execution_resource_ready"
+                     },
+                     {
+                         "from":  "codex-workflow-design",
+                         "artifact":  "owner handoff chain",
+                         "event":  "execution_ready"
+                     },
+                     {
+                         "from":  "codex-error-feedback",
+                         "artifact":  "verified repair path",
+                         "event":  "retest_requested"
+                     },
+                     {
+                         "from":  "codex-text-style",
+                         "artifact":  "constraint-preserving revision",
+                         "event":  "specialist_result_returned"
+                     },
+                     {
+                         "from":  "codex-image-workflow",
+                         "artifact":  "verified visual asset",
+                         "event":  "specialist_result_returned"
+                     },
+                     {
+                         "from":  "codex-office-cli",
+                         "artifact":  "validated Office artifact or Document/Chunk parse record",
+                         "event":  "specialist_result_returned"
+                     },
+                     {
+                         "from":  "codex-exact-word-layout",
+                         "artifact":  "render-verified DOCX",
+                         "event":  "specialist_result_returned"
+                     },
+                     {
+                         "from":  "codex-runtime-environments",
+                         "artifact":  "environment proof",
+                         "event":  "runtime_ready"
+                     },
+                     {
+                         "from":  "codex-credential-management",
+                         "artifact":  "redacted provider route",
+                         "event":  "provider_ready"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-text-style",
+                         "artifact":  "text delivery brief",
+                         "event":  "text_specialist_selected"
+                     },
+                     {
+                         "to":  "codex-image-workflow",
+                         "artifact":  "visual delivery brief",
+                         "event":  "image_specialist_selected"
+                     },
+                     {
+                         "to":  "codex-office-cli",
+                         "artifact":  "office operation brief or document parse request",
+                         "event":  "office_specialist_selected"
+                     },
+                     {
+                         "to":  "codex-exact-word-layout",
+                         "artifact":  "exact-layout brief",
+                         "event":  "word_layout_specialist_selected"
+                     },
+                     {
+                         "to":  "codex-error-feedback",
+                         "artifact":  "failed proving check",
+                         "event":  "error_feedback_required"
+                     },
+                     {
+                         "to":  "codex-experience-capture",
+                         "artifact":  "verified deliverable evidence",
+                         "event":  "outcome_observed"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

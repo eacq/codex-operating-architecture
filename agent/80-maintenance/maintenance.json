@@ -1,0 +1,23 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "maintenance:filesystem",
+    "kind":  "maintenance-catalog",
+    "sources":  [
+                    "agent/agent-filesystem.json"
+                ],
+    "owner":  "codex-file-organization",
+    "architecture_owner":  "codex-architecture-iteration",
+    "sync":  "agent/80-maintenance/Sync-AgentFilesystem.ps1",
+    "resolver":  "agent/80-maintenance/Resolve-AgentFilesystemPath.ps1",
+    "test":  "agent/80-maintenance/Test-AgentFilesystem.ps1",
+    "protected_paths":  [
+                            ".git",
+                            ".codex",
+                            ".runtime",
+                            ".history-cache",
+                            "config.toml",
+                            "auth.json"
+                        ],
+    "generated_file_count":  54
+}

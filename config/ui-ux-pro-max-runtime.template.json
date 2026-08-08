@@ -1,0 +1,9 @@
+{
+  "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "source_commit": "ec1f2a9027e270c9a4e8e3dbc243136fa9d32505",
+  "runtime_root": ".runtime/work/network-learning/ui-ux-pro-max-skill",
+  "entrypoint": "src/ui-ux-pro-max/scripts/search.py",
+  "license": "MIT",
+  "authority": "reference and recommendation layer only; local visual-design-agent retains artifact, validation, credential, and publication ownership"
+}

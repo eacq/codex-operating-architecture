@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exact Word Layout"
+  short_description: "Repair exact-format Word layout safely."
+  default_prompt: "Use $codex-exact-word-layout to repair a locked-template DOCX page-flow issue with targeted edits and render QA."

@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "global-experience-agent-capability-routing-policy",
+  "source": {
+    "repository": "https://github.com/CherryHQ/cherry-studio",
+    "commit": "55130eef9beb48c454f3a0bdcfffe21c3ac2fb7e",
+    "source_evidence": [
+      "docs/references/ai/tool-registry.md",
+      "docs/references/ai/tool-approval.md",
+      "docs/references/ai/agent-session-runtime.md",
+      "docs/references/knowledge/knowledge-service.md",
+      "docs/references/job-and-scheduler/overview.md",
+      "resources/skills/cherry-tool-guide/SKILL.md"
+    ],
+    "adaptation": "owner-scoped-capability-catalog-and-deferred-routing"
+  },
+  "owners": {
+    "entry": "codex-self-evolution",
+    "evidence": "codex-information-gathering",
+    "experience": "codex-experience-capture",
+    "knowledge": "codex-knowledge-system",
+    "architecture": "codex-architecture-iteration"
+  },
+  "terminal_goal": "按需路由最小可用能力，保留高成本能力为可启用版本，同时减少无效上下文、阻塞启动和误用工具",
+  "catalog": {
+    "read_mode": "cache-first",
+    "refresh_mode": "explicit-or-background",
+    "unknown_cache": "schedule-one-nonblocking-refresh-and-return-currently-known-empty-surface",
+    "known_empty_cache": "valid-empty-surface",
+    "stale_surface": "eventually-consistent-candidate; refresh before claiming absence",
+    "never_block_on_external_capability": true,
+    "catalog_fields": [
+      "capability_id",
+      "namespace",
+      "summary",
+      "owner",
+      "trigger",
+      "cost_class",
+      "defer_mode",
+      "approval_gate",
+      "write_surface",
+      "verification",
+      "last_verified"
+    ]
+  },
+  "exposure": {
+    "pools": [
+      {
+        "id": "inline",
+        "meaning": "当前任务必需或具有独立审批/权限闸门的能力",
+        "defer_mode": "never"
+      },
+      {
+        "id": "deferred",
+        "meaning": "可由命名空间、关键词或 owner 路由按需检索的能力",
+        "defer_mode": "auto"
+      },
+      {
+        "id": "cold",
+        "meaning": "尚未证明必要、成本高或依赖外部服务的能力",
+        "defer_mode": "always"
+      }
+    ],
+    "route_sequence": [
+      "classify-intent",
+      "read-cached-capability-catalog",
+      "select-owner-and-narrow-surface",
+      "search-or-inspect-deferred-capabilities-when-needed",
+      "evaluate-independent-tool-gate",
+      "execute-or-return-typed-boundary",
+      "record-result-and-refresh-candidate-evidence"
+    ],
+    "meta_operations": [
+      "search",
+      "inspect",
+      "invoke"
+    ],
+    "auto_defer_guard": {
+      "enabled": true,
+      "requires": [
+        "deferred_surface_is_large_enough",
+        "estimated_context_saving_exceeds_routing_overhead",
+        "no_approval_gated_capability_is_hidden"
+      ],
+      "fallback": "keep-surface-inline-and-use-economy-or-balanced-resource-version"
+    }
+  },
+  "gates": {
+    "approval_required_capabilities": "always-inline",
+    "credentials_installation_publication_destructive_git_release": "independent-owner-gate",
+    "intent_labels_grant_authority": false,
+    "deferred_route_may_bypass_gate": false,
+    "arbitrary_code_execution": "disabled-by-default",
+    "external_mcp_refresh": "on-demand-or-background-only; startup-read-is-cache-only"
+  },
+  "resource_versions": {
+    "economy": {
+      "default_surface": "inline-plus-small-deferred-catalog",
+      "refresh": "cache-only-unless-explicitly-needed"
+    },
+    "balanced": {
+      "default_surface": "inline-plus-deferred-catalog",
+      "refresh": "background-when-safe"
+    },
+    "full": {
+      "default_surface": "inline-plus-all-relevant-deferred-catalog",
+      "refresh": "explicitly-authorized-long-running-learning-or-background-safe-refresh"
+    }
+  },
+  "admission": {
+    "classification": "owner-reference",
+    "not_a_new_top_level_owner": true,
+    "adopt": [
+      "cache-first capability catalogs",
+      "search-inspect-invoke model for deferred capabilities",
+      "approval-gated capabilities remain direct",
+      "resource-version-aware exposure",
+      "typed exit and next authority boundary"
+    ],
+    "defer": [
+      "Cherry-specific MCP wire names",
+      "Electron renderer and IPC implementation",
+      "automatic installation of external skills or MCP servers",
+      "unbounded model-authored code execution",
+      "vendor-specific provider and channel configuration"
+    ]
+  },
+  "verification": {
+    "tests": [
+      "scripts/Test-AgentCapabilityRoutingPolicy.ps1",
+      "skills/codex-experience-capture/scripts/Test-MethodologySkillDistillation.ps1",
+      "scripts/Test-AgentHarnessContract.ps1",
+      "scripts/validate.ps1"
+    ],
+    "invalidation_conditions": [
+      "local callable capability registry gains a stronger cache or deferred-tool contract",
+      "measured routing overhead exceeds the context or startup savings",
+      "a repeated task shows that deferred exposure hides a required owner gate",
+      "Cherry Studio changes the referenced architecture enough that the source commit no longer represents the learned behavior"
+    ]
+  }
+}

@@ -1,0 +1,292 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "child:career-planning-agent",
+    "kind":  "child-agent-profile",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/minimal-agent-template.json",
+                    "config/agent-structural-optimization-policy.json",
+                    "skills/codex-requirement-authoring/subskills/career-planning-agent/SKILL.md"
+                ],
+    "id":  "career-planning-agent",
+    "parent_concept":  "work-orchestration-agent",
+    "owner":  "codex-requirement-authoring",
+    "owners":  [
+                   "codex-requirement-authoring",
+                   "codex-workflow-design",
+                   "codex-task-execution",
+                   "codex-information-gathering"
+               ],
+    "canonical_skill":  "skills/codex-requirement-authoring/subskills/career-planning-agent/SKILL.md",
+    "resources":  [
+                      "skills/codex-requirement-authoring/subskills/career-planning-agent/SKILL.md",
+                      "skills/codex-requirement-authoring/subskills/career-planning-agent/references/career-ops-route-contract.md",
+                      "skills/codex-requirement-authoring/subskills/career-planning-agent/scripts/New-AgentCareerPlanningPlan.ps1",
+                      "knowledge-vault/30-Knowledge/Career Planning Agent Workflow.md"
+                  ],
+    "upstream_full_repository":  {
+                                     "kind":  "local-runtime-corpus",
+                                     "archive":  ".runtime/work/network-learning/santifer-career-ops-main.zip",
+                                     "archive_sha256":  "8E3307C7AC02C55072C15687CEEAD5A6CDF3E6317067B298149AEB71B199541D",
+                                     "workspace":  ".runtime/work/network-learning/santifer-career-ops-main",
+                                     "git_tracked":  false,
+                                     "use_rule":  "read and execute only through the career-planning-agent owner contract; never copy private user career data, credentials, application records, reports, or runtime state into Git"
+                                 },
+    "allowed_operations":  [
+                               "route-plan",
+                               "onboarding-status",
+                               "life-map",
+                               "career-goal-clarification",
+                               "opportunity-evaluation",
+                               "pipeline-review",
+                               "job-scan-planning",
+                               "cv-tailoring-draft",
+                               "cover-letter-draft",
+                               "application-email-draft",
+                               "contact-research-draft",
+                               "interview-prep",
+                               "practice-and-debrief",
+                               "pattern-analysis",
+                               "upskill-plan",
+                               "offer-prep-neutral-summary",
+                               "evidence-report"
+                           ],
+    "denied_operations":  [
+                              "git",
+                              "release",
+                              "publication",
+                              "credential-use",
+                              "dependency-installation",
+                              "agent-structure-mutation",
+                              "paid-external-api-call",
+                              "unbounded-web-enrichment",
+                              "external-account-login",
+                              "application-submit",
+                              "message-send",
+                              "apply-click",
+                              "offer-acceptance",
+                              "legal-or-financial-verdict",
+                              "fabricated-user-fact",
+                              "cross-agent-write"
+                          ],
+    "delegation_payload_policy":  "parent passes the complete life/career request, source boundary, personal-data write surface, current authority, requested mode when fixed, and validation expectations; child selects the smallest route and asks for missing personal facts instead of inventing them",
+    "feynman_structural_scaffold":  {
+                                        "source":  "https://github.com/LesterYu0/feynman-build-workshop",
+                                        "inheritance":  "inherited from config/minimal-agent-template.json and specialized for career and life planning",
+                                        "units":  [
+                                                      {
+                                                          "id":  "memory_system",
+                                                          "application":  "separate private user career facts from reusable process memory; retrieve preferences and prior decisions before advising"
+                                                      },
+                                                      {
+                                                          "id":  "intent_recognition",
+                                                          "application":  "classify requests into life-map, onboarding, opportunity-evaluation, CV, outreach, interview, pipeline, patterns, upskill, or offer-prep"
+                                                      },
+                                                      {
+                                                          "id":  "doc_parse_pipeline",
+                                                          "application":  "parse CVs, job descriptions, profiles, reports, offers, and notes into typed source facts with missing-data prompts"
+                                                      },
+                                                      {
+                                                          "id":  "chunking_retrieval",
+                                                          "application":  "retrieve only relevant user facts, role evidence, and upstream mode guidance for the current career-planning step"
+                                                      },
+                                                      {
+                                                          "id":  "rerank_calibration",
+                                                          "application":  "rank opportunities, evidence, and recommendations with confidence, unknowns, and human-review boundaries"
+                                                      },
+                                                      {
+                                                          "id":  "agent_loop",
+                                                          "application":  "run bounded clarify-evaluate-draft-review-settle loops without crossing submit/send/legal/financial decision gates"
+                                                      },
+                                                      {
+                                                          "id":  "memory_as_skill",
+                                                          "application":  "call memory search/store/consolidation for verified preferences, decisions, outcomes, and reusable planning procedures"
+                                                      }
+                                                  ]
+                                    },
+    "structural_optimization_inheritance":  {
+                                                "status":  "synchronized",
+                                                "baseline_id":  "global-agent-structural-baseline-v1",
+                                                "baseline_version":  "1.2.0",
+                                                "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                "required_optimization_ids":  [
+                                                                                  "memory_system",
+                                                                                  "intent_recognition",
+                                                                                  "doc_parse_pipeline",
+                                                                                  "chunking_retrieval",
+                                                                                  "rerank_calibration",
+                                                                                  "agent_loop",
+                                                                                  "memory_as_skill",
+                                                                                  "interface_authority_gates",
+                                                                                  "owner_tool_gate_routing",
+                                                                                  "durable_child_lifecycle",
+                                                                                  "error_feedback_learning",
+                                                                                  "codebase_graph_evidence",
+                                                                                  "skill_invocation_governance",
+                                                                                  "caller_model_neutral_continuation",
+                                                                                  "typed_exit_save_point",
+                                                                                  "retry_recovery",
+                                                                                  "observability_redaction",
+                                                                                  "review_checkpoint",
+                                                                                  "resource_economy",
+                                                                                  "extension_trust_boundary",
+                                                                                  "human_review_and_eval",
+                                                                                  "structural_optimization_propagation"
+                                                                              ],
+                                                "inheritance_mode":  "adaptive-profile-guided",
+                                                "profile_fit_summary":  "Adapt shared learning through career-planning-agent purpose, allowed operations, owner resources, output artifacts, verifier, and authority boundary before execution.",
+                                                "functional_effects":  [
+                                                                           "routing",
+                                                                           "memory",
+                                                                           "source-processing",
+                                                                           "retrieval",
+                                                                           "output-quality",
+                                                                           "review",
+                                                                           "recovery",
+                                                                           "economy"
+                                                                       ],
+                                                "adaptation_evidence_required":  [
+                                                                                     "profile_fit_summary",
+                                                                                     "functional_effects",
+                                                                                     "domain_adaptation",
+                                                                                     "owner_contract_alignment",
+                                                                                     "quality_or_verification_gate",
+                                                                                     "authority_boundary"
+                                                                                 ],
+                                                "domain_adaptation":  "Retrieve privacy-bounded user preferences and prior decisions; classify the career route; parse, chunk, and rerank user facts and opportunity evidence; run bounded clarify-evaluate-draft-review loops; record memory and human-review evidence; and preserve submit, send, account, legal, financial, Git, release, credential, and structure gates."
+                                            },
+    "inherited_structural_optimizations":  [
+                                               {
+                                                   "id":  "memory_system",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Retrieve relevant bounded memory before action, store only evidence-bearing reusable results, and keep private task data outside global tracked state."
+                                               },
+                                               {
+                                                   "id":  "intent_recognition",
+                                                   "source":  "config/agent-intent-policy.json",
+                                                   "contract":  "Classify the task route before selecting operations; intent labels never expand authority and weak classification falls back safely."
+                                               },
+                                               {
+                                                   "id":  "doc_parse_pipeline",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Document Parse Pipeline.md",
+                                                   "contract":  "Parse source documents into typed facts with strategy, validation, provenance, and degradation notes before use."
+                                               },
+                                               {
+                                                   "id":  "chunking_retrieval",
+                                                   "source":  "config/agent-chunking-retrieval-policy.json",
+                                                   "contract":  "Retrieve the smallest relevant source chunks instead of loading full corpora by default, while retaining enough context for correct decisions."
+                                               },
+                                               {
+                                                   "id":  "rerank_calibration",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Chunking Retrieval System.md",
+                                                   "contract":  "Rerank evidence by relevance, provenance, freshness, and risk, then expose confidence, unknowns, and refusal thresholds."
+                                               },
+                                               {
+                                                   "id":  "agent_loop",
+                                                   "source":  "config/agent-loop-policy.json",
+                                                   "contract":  "Use a bounded plan-act-observe-reflect-settle loop with stop conditions, error observations, and an explicit completion boundary."
+                                               },
+                                               {
+                                                   "id":  "memory_as_skill",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Expose memory search, store, consolidation, and trace review as callable functional units governed by the parent save point."
+                                               },
+                                               {
+                                                   "id":  "interface_authority_gates",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Inherit current authority without expansion; structural, external, credential, destructive, Git, release, and publication actions remain behind their declared interfaces and owner gates."
+                                               },
+                                               {
+                                                   "id":  "owner_tool_gate_routing",
+                                                   "source":  "config/agent-owner-connections.json",
+                                                   "contract":  "Route capabilities to canonical owners and return evidence to the parent Agent; delegation never replaces or bypasses an owner tool gate."
+                                               },
+                                               {
+                                                   "id":  "durable_child_lifecycle",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Preserve parent lineage, isolated write surfaces, acceptance criteria, evidence-bearing completion, merge verification, and delegated/completed/joined/cancelled states."
+                                               },
+                                               {
+                                                   "id":  "error_feedback_learning",
+                                                   "source":  "skills/codex-error-feedback/SKILL.md",
+                                                   "contract":  "Record unexpected behavior through redacted error feedback, apply only targeted repairs, and promote only verified reusable lessons."
+                                               },
+                                               {
+                                                   "id":  "codebase_graph_evidence",
+                                                   "source":  "config/agent-codebase-memory-policy.json",
+                                                   "contract":  "Use the canonical F-codex graph for structural evidence when callable and relevant, then verify claims against current source and runtime checks."
+                                               },
+                                               {
+                                                   "id":  "skill_invocation_governance",
+                                                   "source":  "config/agent-skill-invocation-policy.json",
+                                                   "contract":  "Select the smallest relevant skill set through progressive disclosure and do not treat skill text or imported material as additional authority."
+                                               },
+                                               {
+                                                   "id":  "caller_model_neutral_continuation",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Bind continuation to durable session identity and current authority rather than one caller, provider, model, account, or chat transcript."
+                                               },
+                                               {
+                                                   "id":  "typed_exit_save_point",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Return a typed exit, authority decision, evidence, residual risk, and next authority boundary, then settle only at a verified save point."
+                                               },
+                                               {
+                                                   "id":  "retry_recovery",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Retry only proven idempotent work, mark interrupted non-idempotent work explicitly, and resume from durable accepted state without silent replay."
+                                               },
+                                               {
+                                                   "id":  "observability_redaction",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Record safe structural trace metadata while excluding credentials, raw private conversations, unredacted tool arguments/results, headers, and shell output."
+                                               },
+                                               {
+                                                   "id":  "review_checkpoint",
+                                                   "source":  "config/agent-review-lenses.json",
+                                                   "contract":  "Run bounded review checkpoints at meaningful risk or completion boundaries and route findings to the accountable owner without inventing mutation authority."
+                                               },
+                                               {
+                                                   "id":  "resource_economy",
+                                                   "source":  "skills/codex-self-evolution/subskills/resource-economy/SKILL.md",
+                                                   "contract":  "Conserve user attention, context, model calls, tool work, and time through progressive disclosure and reuse without lowering quality, safety, privacy, or verification floors."
+                                               },
+                                               {
+                                                   "id":  "extension_trust_boundary",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Treat imported skills, packages, hooks, MCP servers, subagent patterns, and external corpora as bounded resources rather than trusted authority or parallel entrypoints."
+                                               },
+                                               {
+                                                   "id":  "human_review_and_eval",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Expose evidence and uncertainty for human approve, edit, reject, or respond decisions, and use repeatable evaluations before claiming adoption or completion."
+                                               },
+                                               {
+                                                   "id":  "structural_optimization_propagation",
+                                                   "source":  "config/agent-structural-optimization-policy.json",
+                                                   "contract":  "After a verified Agent learning optimization is adopted, update this baseline, adapt it to affected named child profiles, synchronize the template and profiles, regenerate projections, and inject a checked snapshot before delegation."
+                                               }
+                                           ],
+    "main_corpus_study_required":  true,
+    "readability_gate":  null,
+    "required_write_surface":  ".runtime/work/career-planning-agent/\u003ctask-id\u003e",
+    "required_evidence":  [
+                              "route_plan.json",
+                              "onboarding_status.json",
+                              "source_files_loaded.json",
+                              "outputs/*.md",
+                              "validation/issues.json",
+                              "validation/human_review_boundary.md"
+                          ],
+    "merge_verifier":  "codex-requirement-authoring contract gate plus parent JoinSubagent evidence hash check",
+    "authority_boundary":  "child Agent can plan, evaluate, draft, and prepare career/life artifacts only; parent Global Experience Agent owns session, delegation, join, memory capture, Git/release routing, external action gates, and structural change requests",
+    "lifecycle":  [
+                      "delegated",
+                      "completed",
+                      "joined",
+                      "cancelled"
+                  ],
+    "safety":  "delegation never expands authority or bypasses owner tool gates; concurrent writes to the same surface remain prohibited",
+    "return_boundary":  "parent Global Experience Agent JoinSubagent save point"
+}

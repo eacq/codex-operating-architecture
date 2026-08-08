@@ -1,0 +1,68 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-knowledge-system",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-knowledge-system/SKILL.md"
+                ],
+    "id":  "codex-knowledge-system",
+    "owner":  "codex-knowledge-system",
+    "plane":  "evidence",
+    "stage":  "next",
+    "canonical_skill":  "skills/codex-knowledge-system/SKILL.md",
+    "triggers":  [
+                     "durable concept",
+                     "workflow learning",
+                     "linked retrieval"
+                 ],
+    "consumes":  [
+                     "verified experience",
+                     "learning record",
+                     "workflow hash"
+                 ],
+    "produces":  [
+                     "linked knowledge note",
+                     "learning index",
+                     "knowledge map"
+                 ],
+    "verification":  "bidirectional links, provenance, and generated-index validation",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-error-feedback",
+                         "artifact":  "verified repair lesson",
+                         "event":  "knowledge_link_requested"
+                     },
+                     {
+                         "from":  "codex-office-cli",
+                         "artifact":  "validated Document/Chunk parse record",
+                         "event":  "knowledge_intake_ready"
+                     },
+                     {
+                         "from":  "codex-experience-capture",
+                         "artifact":  "verified experience",
+                         "event":  "durable_knowledge_requested"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-skill-packaging",
+                         "artifact":  "governing knowledge",
+                         "event":  "functional_packaging_requested"
+                     },
+                     {
+                         "to":  "codex-learning",
+                         "artifact":  "known-method context",
+                         "event":  "next_learning_snapshot"
+                     },
+                     {
+                         "to":  "codex-architecture-iteration",
+                         "artifact":  "linked topology evidence",
+                         "event":  "owner_economy_review"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

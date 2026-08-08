@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "content-layout-adaptation-template",
+  "scope": ["raster", "presentation", "drawio", "architecture", "scientific-figure", "infographic", "card-series"],
+  "content_to_layout": [
+    {
+      "content_id": "内容标识",
+      "visual_region_id": "区域/容器/节点标识",
+      "role": "image|text|icon|node|group|legend",
+      "safe_area": {"left": 0, "top": 0, "right": 0, "bottom": 0},
+      "fit_mode": "contain|native|reflow|grouped",
+      "overflow_action": "resize|reflow|regroup|remove-structure"
+    }
+  ],
+  "relation_to_connector": [
+    {
+      "relation_id": "关系标识",
+      "connector_id": "连线/箭头标识",
+      "from": "起点",
+      "to": "终点",
+      "port_policy": "attach-to-intended-port",
+      "routing_policy": "short-clear-layered"
+    }
+  ],
+  "checks": [
+    "layout topology matches actual semantic content",
+    "no empty or redundant container",
+    "no content outside intended region",
+    "no clipping or border/title collision",
+    "no important element obscures another element",
+    "connectors attach to intended elements",
+    "final render can trigger structural revision"
+  ]
+}

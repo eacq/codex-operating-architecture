@@ -1,0 +1,1171 @@
+{
+  "schema_version": 1,
+  "canonical_source": "Obsidian Markdown notes under knowledge-vault",
+  "generated_artifacts": [
+    "40-Maps/Codex Knowledge Map.md",
+    "40-Maps/Codex Knowledge Map.txt"
+  ],
+  "mindmaster_working_files": [],
+  "hostable_export_directory": "assets/hostable/mindmaps",
+  "remote_images": [
+    {
+      "source": "assets\\hostable\\mindmaps\\experience-knowledge-architecture.png",
+      "remote_url": "https://article.biliimg.com/bfs/new_dyn/6ac19d8ea7bdab76894510f076d5f046687543502.png",
+      "documents": [
+        "30-Knowledge\\Experience and Knowledge Architecture.md"
+      ],
+      "sha256": "6944d8f1099f013b2c1c27676925bbed9de9b7c8e246472629feeece0adebdb3",
+      "migration_manifest": ".image-hosting/manifests/20260713T184753Z.json"
+    }
+  ],
+  "notes": [
+    {
+      "id": "Global Experience System",
+      "name": "Global Experience System",
+      "type": "untyped",
+      "path": "00-Home/Global Experience System.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "type": "index",
+      "path": "00-Home/Home.md",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Agent Memory System",
+        "Codebase Memory MCP",
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Figure Optimization Subskill",
+        "Global Experience System",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge Index",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Literature Discovery Workflow",
+        "Mind Map Knowledge Workflow",
+        "Mother Skill Refinement",
+        "Paper Reading and Evidence Workflow",
+        "Portable Path Configuration",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary",
+        "Research Knowledge Module",
+        "Scientific Figure Workflow",
+        "Verified Experience Promotion",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "Knowledge System Module",
+      "name": "Knowledge System Module",
+      "type": "untyped",
+      "path": "00-Home/Knowledge System Module.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "Knowledge System Module",
+      "name": "Knowledge System Module",
+      "type": "untyped",
+      "path": "01-Inbox/Knowledge System Module.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "inbox-guide",
+      "name": "README",
+      "type": "index",
+      "path": "01-Inbox/README.md",
+      "links": [
+        "Knowledge System Module"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "module-academic-text-style",
+      "name": "Academic Text Style Module",
+      "type": "module",
+      "path": "10-Modules/Academic Text Style Module.md",
+      "links": [
+        "Academic Text Style Workflow",
+        "Exact Word Layout Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "module-exact-word-layout",
+      "name": "Exact Word Layout Module",
+      "type": "module",
+      "path": "10-Modules/Exact Word Layout Module.md",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "subskill-figure-optimization",
+      "name": "Figure Optimization Subskill",
+      "type": "subskill",
+      "path": "10-Modules/Figure Optimization Subskill.md",
+      "links": [
+        "Image Workflow Module",
+        "Scientific Figure Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "module-image-workflow",
+      "name": "Image Workflow Module",
+      "type": "module",
+      "path": "10-Modules/Image Workflow Module.md",
+      "links": [
+        "Figure Optimization Subskill",
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "module-knowledge-system",
+      "name": "Knowledge System Module",
+      "type": "module",
+      "path": "10-Modules/Knowledge System Module.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Project Knowledge Boundary",
+        "Research Knowledge Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Learning Audience Boundary",
+      "name": "Learning Audience Boundary",
+      "type": "untyped",
+      "path": "10-Modules/Learning Audience Boundary.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "module-research-knowledge",
+      "name": "Research Knowledge Module",
+      "type": "module",
+      "path": "10-Modules/Research Knowledge Module.md",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-academic-research",
+      "name": "Academic Research Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Academic Research Workflow.md",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Local Experience Iteration Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-academic-text-style",
+      "name": "Academic Text Style Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Academic Text Style Workflow.md",
+      "links": [
+        "Academic Text Style Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-academic-writing",
+      "name": "Academic Writing and Citation Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Academic Writing and Citation Workflow.md",
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-codebase-graph-evidence",
+      "name": "Codebase Graph Evidence Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Codebase Graph Evidence Workflow.md",
+      "links": [
+        "Codebase Memory MCP",
+        "Experience and Knowledge Architecture",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-exact-word-layout",
+      "name": "Exact Word Layout Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Exact Word Layout Workflow.md",
+      "links": [
+        "Exact Word Layout Module",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-image-hosting",
+      "name": "Image Hosting and Cleanup Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Image Hosting and Cleanup Workflow.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-integrated-experience-feedback-loop",
+      "name": "Integrated Experience Feedback Loop",
+      "type": "workflow",
+      "path": "20-Workflows/Integrated Experience Feedback Loop.md",
+      "links": [
+        "Experience System Error Feedback",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-literature-discovery",
+      "name": "Literature Discovery Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Literature Discovery Workflow.md",
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-local-experience-iteration",
+      "name": "Local Experience Iteration Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Local Experience Iteration Workflow.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-mind-map-knowledge",
+      "name": "Mind Map Knowledge Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Mind Map Knowledge Workflow.md",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-paper-reading",
+      "name": "Paper Reading and Evidence Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Paper Reading and Evidence Workflow.md",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": "user",
+      "user_anki": true,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-project-creation-from-experience",
+      "name": "Project Creation From Experience Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Project Creation From Experience Workflow.md",
+      "links": [
+        "Experience System Error Feedback",
+        "Knowledge System Module",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-scientific-figure",
+      "name": "Scientific Figure Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Scientific Figure Workflow.md",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Figure Optimization Subskill",
+        "Provider Capability Boundary"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-xlw1-manuscript-refinement",
+      "name": "XLW1 Manuscript Refinement Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/XLW1 Manuscript Refinement Workflow.md",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-zotero",
+      "name": "Zotero Reference Workflow",
+      "type": "workflow",
+      "path": "20-Workflows/Zotero Reference Workflow.md",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "evidence-book-shelf-relearning-20260806",
+      "name": "2026-08-06 全书架重新学习记录",
+      "type": "workflow",
+      "path": "30-Knowledge/2026-08-06 全书架重新学习记录.md",
+      "links": [
+        "Agent Memory System",
+        "Agent Skill Evolution Optimization",
+        "Global Experience System",
+        "Learning Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "historical-learning-reconciliation-20260806",
+      "name": "2026-08-06 历史学习资产全面复训记录",
+      "type": "workflow",
+      "path": "30-Knowledge/2026-08-06 历史学习资产全面复训记录.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-academic-manuscript-revision-boundaries",
+      "name": "Academic Manuscript Revision Boundaries",
+      "type": "concept",
+      "path": "30-Knowledge/Academic Manuscript Revision Boundaries.md",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Academic Writing and Citation Workflow",
+        "Exact Word Layout Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Agent Chunking Retrieval System",
+      "name": "Agent Chunking Retrieval System",
+      "type": "information-unit",
+      "path": "30-Knowledge/Agent Chunking Retrieval System.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Agent Document Parse Pipeline",
+      "name": "Agent Document Parse Pipeline",
+      "type": "information-unit",
+      "path": "30-Knowledge/Agent Document Parse Pipeline.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-agent-intent-recognition-system",
+      "name": "Agent Intent Recognition System",
+      "type": "knowledge",
+      "path": "30-Knowledge/Agent Intent Recognition System.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "Agent Loop System",
+      "name": "Agent Loop System",
+      "type": "information-unit",
+      "path": "30-Knowledge/Agent Loop System.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-agent-memory-system",
+      "name": "Agent Memory System",
+      "type": "concept",
+      "path": "30-Knowledge/Agent Memory System.md",
+      "links": [
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-agent-skill-evolution-optimization",
+      "name": "Agent Skill Evolution Optimization",
+      "type": "concept",
+      "path": "30-Knowledge/Agent Skill Evolution Optimization.md",
+      "links": [
+        "2026-08-06 全书架重新学习记录",
+        "Agent Memory System",
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Agent Skill Invocation Governance",
+      "name": "Agent Skill Invocation Governance",
+      "type": "information-unit",
+      "path": "30-Knowledge/Agent Skill Invocation Governance.md",
+      "links": [
+        "Agent Loop System",
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-baoyu-skills-network-learning",
+      "name": "Baoyu Skills Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Baoyu Skills Network Learning.md",
+      "links": [
+        "Content Production Workflow",
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance",
+        "Subskill Packaging Boundary",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Career Planning Agent Workflow",
+      "name": "Career Planning Agent Workflow",
+      "type": "untyped",
+      "path": "30-Knowledge/Career Planning Agent Workflow.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-cherry-studio-capability-routing",
+      "name": "Cherry Studio Capability Routing and Durable Workflow Learning",
+      "type": "information-unit",
+      "path": "30-Knowledge/Cherry Studio Capability Routing and Durable Workflow Learning.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-codebase-memory-mcp",
+      "name": "Codebase Memory MCP",
+      "type": "concept",
+      "path": "30-Knowledge/Codebase Memory MCP.md",
+      "links": [
+        "Codebase Graph Evidence Workflow",
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-content-production",
+      "name": "Content Production Workflow",
+      "type": "workflow",
+      "path": "30-Knowledge/Content Production Workflow.md",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience System Error Feedback",
+        "Learning Governance",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-experience-knowledge-architecture",
+      "name": "Experience and Knowledge Architecture",
+      "type": "concept",
+      "path": "30-Knowledge/Experience and Knowledge Architecture.md",
+      "links": [
+        "Global Experience System",
+        "Image Hosting and Cleanup Workflow",
+        "Information and Functional Unit Principle",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-experience-knowledge-subskill-refinement",
+      "name": "Experience Knowledge Subskill Refinement",
+      "type": "concept",
+      "path": "30-Knowledge/Experience Knowledge Subskill Refinement.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Subskill Packaging Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-experience-error-feedback",
+      "name": "Experience System Error Feedback",
+      "type": "concept",
+      "path": "30-Knowledge/Experience System Error Feedback.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "GitHub README Presentation Network Learning",
+      "name": "GitHub README Presentation Network Learning",
+      "type": "untyped",
+      "path": "30-Knowledge/GitHub README Presentation Network Learning.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-global-experience-system",
+      "name": "Global Experience System",
+      "type": "concept",
+      "path": "30-Knowledge/Global Experience System.md",
+      "links": [
+        "Agent Intent Recognition System",
+        "Agent Loop System",
+        "Agent Memory System",
+        "Experience Knowledge Subskill Refinement",
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Global Iteration Candidate Report",
+        "Information and Functional Unit Principle",
+        "Local Experience Iteration Workflow",
+        "Minimal Agent Architecture Template",
+        "Pi Agent Harness Network Learning",
+        "Top-Level Owner Governance",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "workflow-global-iteration-candidate-report",
+      "name": "Global Iteration Candidate Report",
+      "type": "workflow",
+      "path": "30-Knowledge/Global Iteration Candidate Report.md",
+      "links": [
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-header-frame-body-wrap-diagnostic",
+      "name": "Header Frame Body Wrap Diagnostic",
+      "type": "concept",
+      "path": "30-Knowledge/Header Frame Body Wrap Diagnostic.md",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-information-functional-unit-principle",
+      "name": "Information and Functional Unit Principle",
+      "type": "concept",
+      "path": "30-Knowledge/Information and Functional Unit Principle.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Knowledge System Module",
+        "Learning Governance",
+        "Pi Agent Harness Network Learning",
+        "Top-Level Owner Governance",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-learning-audience-boundary",
+      "name": "Learning Audience Boundary",
+      "type": "concept",
+      "path": "30-Knowledge/Learning Audience Boundary.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "both",
+      "user_anki": true,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-learning-governance",
+      "name": "Learning Governance",
+      "type": "concept",
+      "path": "30-Knowledge/Learning Governance.md",
+      "links": [
+        "Information and Functional Unit Principle",
+        "Knowledge System Module",
+        "Pi Agent Harness Network Learning",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Local Experience Iteration Workflow",
+      "name": "Local Experience Iteration Workflow",
+      "type": "untyped",
+      "path": "30-Knowledge/Local Experience Iteration Workflow.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-locked-template-docx-package-invariants",
+      "name": "Locked Template DOCX Package Invariants",
+      "type": "concept",
+      "path": "30-Knowledge/Locked Template DOCX Package Invariants.md",
+      "links": [
+        "Exact Word Layout Module",
+        "Exact Word Layout Workflow",
+        "Header Frame Body Wrap Diagnostic",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "LoopX Control Plane",
+      "name": "LoopX Control Plane",
+      "type": "untyped",
+      "path": "30-Knowledge/LoopX Control Plane.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-matt-pocock-skills-method-system-relearning",
+      "name": "Matt Pocock Skills Method System Relearning",
+      "type": "concept",
+      "path": "30-Knowledge/Matt Pocock Skills Method System Relearning.md",
+      "links": [
+        "Codebase Graph Evidence Workflow",
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance",
+        "Matt Pocock Skills Network Learning",
+        "Oh My Codex and OMX Lite Network Learning",
+        "Project Vocabulary and Decision Brief",
+        "Subskill Packaging Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-matt-pocock-skills-network-learning",
+      "name": "Matt Pocock Skills Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Matt Pocock Skills Network Learning.md",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Global Experience System",
+        "Subskill Packaging Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Minimal Agent Architecture Template",
+      "name": "Minimal Agent Architecture Template",
+      "type": "information-unit",
+      "path": "30-Knowledge/Minimal Agent Architecture Template.md",
+      "links": [
+        "Agent Loop System",
+        "Agent Memory System",
+        "Agent Skill Invocation Governance",
+        "Global Experience System"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-mother-skill-refinement",
+      "name": "Mother Skill Refinement",
+      "type": "concept",
+      "path": "30-Knowledge/Mother Skill Refinement.md",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Nature Scientific Figure Workflow",
+      "name": "Nature Scientific Figure Workflow",
+      "type": "untyped",
+      "path": "30-Knowledge/Nature Scientific Figure Workflow.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-oh-my-codex-omx-lite-network-learning",
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Oh My Codex and OMX Lite Network Learning.md",
+      "links": [
+        "Codebase Memory MCP",
+        "Global Experience System",
+        "Matt Pocock Skills Network Learning",
+        "Subskill Packaging Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-pi-agent-harness-network-learning",
+      "name": "Pi Agent Harness Network Learning",
+      "type": "concept",
+      "path": "30-Knowledge/Pi Agent Harness Network Learning.md",
+      "links": [
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance",
+        "Matt Pocock Skills Method System Relearning",
+        "Oh My Codex and OMX Lite Network Learning",
+        "Top-Level Owner Governance"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "portable-path-configuration",
+      "name": "Portable Path Configuration",
+      "type": "concept",
+      "path": "30-Knowledge/Portable Path Configuration.md",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge Tooling",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "PPT Master Deck Factory Workflow",
+      "name": "PPT Master Deck Factory Workflow",
+      "type": "untyped",
+      "path": "30-Knowledge/PPT Master Deck Factory Workflow.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-project-creation-capability",
+      "name": "Project Creation Capability",
+      "type": "concept",
+      "path": "30-Knowledge/Project Creation Capability.md",
+      "links": [
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Project Creation From Experience Workflow",
+        "Project Knowledge Boundary"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-project-boundary",
+      "name": "Project Knowledge Boundary",
+      "type": "concept",
+      "path": "30-Knowledge/Project Knowledge Boundary.md",
+      "links": [
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-project-vocabulary-decision-brief",
+      "name": "Project Vocabulary and Decision Brief",
+      "type": "workflow",
+      "path": "30-Knowledge/Project Vocabulary and Decision Brief.md",
+      "links": [
+        "Learning Governance",
+        "Project Creation Capability",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-provider-boundary",
+      "name": "Provider Capability Boundary",
+      "type": "concept",
+      "path": "30-Knowledge/Provider Capability Boundary.md",
+      "links": [
+        "Literature Discovery Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "Reverse Skill Collaboration Control Plane",
+      "name": "Reverse Skill Collaboration Control Plane",
+      "type": "untyped",
+      "path": "30-Knowledge/Reverse Skill Collaboration Control Plane.md",
+      "links": [],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "workflow-solution-visualization",
+      "name": "Solution Visualization Workflow",
+      "type": "workflow",
+      "path": "30-Knowledge/Solution Visualization Workflow.md",
+      "links": [
+        "Global Experience System",
+        "Image Workflow Module",
+        "Visual Format Selection"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-subskill-packaging-boundary",
+      "name": "Subskill Packaging Boundary",
+      "type": "concept",
+      "path": "30-Knowledge/Subskill Packaging Boundary.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-top-level-owner-governance",
+      "name": "Top-Level Owner Governance",
+      "type": "architecture-governance",
+      "path": "30-Knowledge/Top-Level Owner Governance.md",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Mother Skill Refinement"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-experience-promotion",
+      "name": "Verified Experience Promotion",
+      "type": "concept",
+      "path": "30-Knowledge/Verified Experience Promotion.md",
+      "links": [
+        "Knowledge System Module",
+        "Project Knowledge Boundary"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "concept-visual-format-selection",
+      "name": "Visual Format Selection",
+      "type": "workflow",
+      "path": "30-Knowledge/Visual Format Selection.md",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience and Knowledge Architecture",
+        "Global Experience System"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-xlw1-jme-formatting-guardrails",
+      "name": "XLW1 JME Formatting Guardrails",
+      "type": "concept",
+      "path": "30-Knowledge/XLW1 JME Formatting Guardrails.md",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "project-xlw1-manuscript-knowledge",
+      "name": "XLW1 Manuscript Knowledge Map",
+      "type": "project",
+      "path": "30-Knowledge/XLW1 Manuscript Knowledge Map.md",
+      "links": [
+        "Project Knowledge Boundary",
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-xlw1-source-figure-integrity",
+      "name": "XLW1 Source Figure Integrity",
+      "type": "concept",
+      "path": "30-Knowledge/XLW1 Source Figure Integrity.md",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-xlw1-template-header-visual-object-fidelity",
+      "name": "XLW1 Template Header and Visual Object Fidelity",
+      "type": "concept",
+      "path": "30-Knowledge/XLW1 Template Header and Visual Object Fidelity.md",
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "concept-xlw1-version-authority",
+      "name": "XLW1 Version Authority",
+      "type": "concept",
+      "path": "30-Knowledge/XLW1 Version Authority.md",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow"
+      ],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
+      "id": "source-knowledge-tooling",
+      "name": "Knowledge Tooling",
+      "type": "source",
+      "path": "90-Sources/Knowledge Tooling.md",
+      "links": [
+        "Knowledge System Module",
+        "Mind Map Knowledge Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Verified Experience Promotion"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    },
+    {
+      "id": "source-xlw1-api-conversation-evidence",
+      "name": "XLW1 API Conversation Evidence",
+      "type": "source",
+      "path": "90-Sources/XLW1 API Conversation Evidence.md",
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ],
+      "learning_audience": null,
+      "user_anki": false,
+      "codex_learning": false
+    }
+  ]
+}

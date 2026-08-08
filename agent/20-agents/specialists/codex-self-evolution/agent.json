@@ -1,0 +1,49 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-self-evolution",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-self-evolution/SKILL.md"
+                ],
+    "id":  "codex-self-evolution",
+    "owner":  "codex-self-evolution",
+    "plane":  "control",
+    "stage":  "harness",
+    "canonical_skill":  "skills/codex-self-evolution/SKILL.md",
+    "triggers":  [
+                     "project entry",
+                     "global experience system",
+                     "agent architecture",
+                     "complete iteration"
+                 ],
+    "consumes":  [
+                     "user goal",
+                     "authority snapshot",
+                     "project lifecycle state"
+                 ],
+    "produces":  [
+                     "bounded task contract",
+                     "owner selection",
+                     "accepted save point"
+                 ],
+    "verification":  "agent topology, harness contract, and save-point settlement",
+    "tool_gate":  "global_iteration",
+    "incoming":  [
+                     {
+                         "from":  "codex-architecture-iteration",
+                         "artifact":  "verified architecture decision",
+                         "event":  "save_point_returned"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-project-optimization",
+                         "artifact":  "project-entry state",
+                         "event":  "project_authority_required"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "status": "installed-adapted-routing-bootstrap-evolution",
+  "upstream": {
+    "repository": "https://github.com/zhaoxuya520/reverse-skill",
+    "license": "MIT-at-root; nested-components-reviewed-separately",
+    "version": "1.0.0",
+    "commit": "d8bf34540cbc1aa34052e1b142576fc36a1f1437",
+    "source_kind": "reviewed-upstream-checkout",
+    "local_release": ".runtime/software/reverse-skill/releases/1.0.0-d8bf3454"
+  },
+  "ownership": {
+    "global_controller": "codex-self-evolution",
+    "experience_owner": "codex-experience-capture",
+    "architecture_owner": "codex-architecture-iteration",
+    "installation_owner": "codex-tool-installation",
+    "knowledge_owner": "codex-knowledge-system"
+  },
+  "adapter": {
+    "skill": "skills/codex-experience-capture/subskills/reverse-skill-collaboration/SKILL.md",
+    "source_grounding": "skills/codex-experience-capture/subskills/reverse-skill-collaboration/references/source-grounding.md",
+    "local_contract": "skills/codex-experience-capture/subskills/reverse-skill-collaboration/references/collaboration-contract.md",
+    "methodology_lens": "skills/codex-experience-capture/subskills/reverse-skill-collaboration/references/technology-nature-lens.md",
+    "router": "skills/codex-experience-capture/subskills/reverse-skill-collaboration/scripts/Invoke-ReverseSkillCollaboration.ps1",
+    "default_enabled": true,
+    "resource_policy": "agent-selects-economy-balanced-full-with-budget-and-authority-gates",
+    "bootstrap_policy": "readiness-first; install only through codex-tool-installation after explicit authorization",
+    "evolution_policy": "capture candidate after outcome/failure; promote only after evidence and transfer checks"
+  },
+  "adopted_surfaces": [
+    "scope and authorization vocabulary",
+    "AI task classification and canonical-owner pre-routing",
+    "on-demand toolchain readiness and owner-gated bootstrap planning",
+    "evidence-backed experience candidate generation and evolution review",
+    "modular recombination and evidence-selected capability evolution",
+    "lead-specialist-verifier-recorder role handoff",
+    "Evidence-Finding-Path decision lineage",
+    "append-only timeline and work-item coverage",
+    "blocked/restart-required durable recovery",
+    "external skill and MCP supply-chain review"
+  ],
+  "deferred_surfaces": [
+    "target-facing reverse/pentest/exploit/privilege-escalation skills",
+    "unreviewed automatic bootstrap and third-party dependency installation",
+    "Kali/Burp/IDA/JDK/Node/Python setup",
+    "global client instruction injection",
+    "network activity and external provider endpoints"
+  ],
+  "verification": [
+    "scripts/Test-ReverseSkillIntegration.ps1",
+    "skills/codex-experience-capture/subskills/reverse-skill-collaboration/scripts/Invoke-ReverseSkillCollaboration.ps1",
+    "skills/codex-experience-capture/scripts/Test-MethodologySkillDistillation.ps1",
+    "scripts/validate-global-install.ps1",
+    "scripts/validate.ps1"
+  ],
+  "authority_boundary": "The adapter adds routing, readiness-first bootstrap planning, and evidence-backed evolution structure; it does not replace the one Global Experience Agent, canonical owner routing, safety gates, or user authorization."
+}

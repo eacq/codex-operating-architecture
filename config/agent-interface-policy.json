@@ -1,0 +1,266 @@
+{
+    "schema_version":  1,
+    "status":  "active",
+    "model":  "global-experience-agent-interface-policy",
+    "default_decision":  "deny",
+    "policy_owner":  "codex-architecture-iteration",
+    "runtime_controller":  "codex-self-evolution",
+    "authority_contract":  {
+                               "default_scope":  "functional",
+                               "scopes":  [
+                                              "none",
+                                              "functional",
+                                              "gated",
+                                              "global-structure"
+                                          ],
+                               "rules":  [
+                                             "caller, model, host, and interface labels never grant authority",
+                                             "functional authority permits registered Agent operations and owner-routed functional-unit changes only",
+                                             "gated authority remains subject to the named owner tool gate",
+                                             "global-structure authority requires the global-control interface plus current non-secret authorization evidence",
+                                             "delegation and continuation never expand the parent authority"
+                                         ],
+                               "evidence_rule":  "record a non-secret reference or bounded statement; never record credentials, tokens, or raw private session content"
+                           },
+    "permission_classes":  [
+                               {
+                                   "id":  "observe",
+                                   "description":  "inspect policy, verify the Agent, and retrieve durable context without changing Agent structure"
+                               },
+                               {
+                                   "id":  "functional-unit-use",
+                                   "description":  "invoke registered internal functional units through their canonical owner and bounded write surfaces"
+                               },
+                               {
+                                   "id":  "gated-action",
+                                   "description":  "request a named Git, release, install, credential, external, iteration, publication, or owner gate"
+                               },
+                               {
+                                   "id":  "agent-structure",
+                                   "description":  "change Agent topology, owners, permissions, interfaces, runtime contracts, tool gates, or structural manifests"
+                               },
+                               {
+                                   "id":  "agent-review",
+                                   "description":  "Run cross-book review lenses (deliberate reasoning, risk review, boundary check) before gated actions"
+                               }
+                           ],
+    "interfaces":  [
+                       {
+                           "id":  "human",
+                           "audience":  "people",
+                           "permissions":  [
+                                               "observe",
+                                               "functional-unit-use",
+                                               "gated-action",
+                                               "agent-review"
+                                           ],
+                           "structural_mutation":  "deny",
+                           "rule":  "people may use registered Agent functions and request gated work; structural change requires an explicit global-control call"
+                       },
+                       {
+                           "id":  "llm",
+                           "audience":  "large-language-models",
+                           "permissions":  [
+                                               "observe",
+                                               "functional-unit-use",
+                                               "agent-review"
+                                           ],
+                           "structural_mutation":  "deny",
+                           "rule":  "an LLM may retrieve, continue, route, and use registered functional units under current authority, but cannot self-elevate or directly edit Agent structure"
+                       },
+                       {
+                           "id":  "internal-functional-unit",
+                           "audience":  "root-concept-specialist-and-child-agents",
+                           "permissions":  [
+                                               "observe",
+                                               "functional-unit-use",
+                                               "agent-review"
+                                           ],
+                           "structural_mutation":  "deny",
+                           "rule":  "internal units may change only registered owner-owned functional surfaces inside the parent task contract; structural surfaces must return to the root authorization boundary"
+                       },
+                       {
+                           "id":  "global-control",
+                           "audience":  "explicitly-authorized-human-or-host-supervised-controller",
+                           "permissions":  [
+                                               "observe",
+                                               "functional-unit-use",
+                                               "gated-action",
+                                               "agent-structure",
+                                               "agent-review"
+                                           ],
+                           "structural_mutation":  "allow-with-global-structure-authority",
+                           "rule":  "this is the only interface that can authorize changes to any Agent aspect, and it still routes implementation through codex-architecture-iteration, the agent_structure gate, save points, rollback, and verification"
+                       }
+                   ],
+    "operation_permissions":  {
+                                  "VerifyAgent":  "observe",
+                                  "ClassifyIntent":  "observe",
+                                  "DescribeFilesystem":  "observe",
+                                  "ResolveAgentPath":  "observe",
+                                  "DescribeInterfaces":  "observe",
+                                  "EvaluateAccess":  "observe",
+                                  "RetrieveContext":  "observe",
+                                  "StartWork":  "functional-unit-use",
+                                  "StoreMemory":  "functional-unit-use",
+                                  "SearchMemory":  "functional-unit-use",
+                                  "ConsolidateMemory":  "functional-unit-use",
+                                  "RenderMemorySnapshot":  "functional-unit-use",
+                                  "RouteOwner":  "functional-unit-use",
+                                  "DelegateSubagent":  "functional-unit-use",
+                                  "CompleteSubagent":  "functional-unit-use",
+                                  "JoinSubagent":  "functional-unit-use",
+                                  "CancelSubagent":  "functional-unit-use",
+                                  "CandidateReport":  "functional-unit-use",
+                                  "CompleteIteration":  "gated-action",
+                                  "RequestStructureChange":  "agent-structure",
+                                  "Resume":  "functional-unit-use",
+                                  "Abort":  "functional-unit-use",
+                                  "ReviewAgent":  "agent-review"
+                              },
+    "structural_surfaces":  [
+                                "config/agent-system.json",
+                                "config/global-experience-agent-registry.json",
+                                "config/agent-owner-connections.json",
+                                "config/agent-interface-policy.json",
+                                "config/agent-architecture-diagram.json",
+                                "module-registry.json",
+                                "agent/agent-filesystem.json",
+                                "agent/00-root",
+                                "agent/10-interfaces",
+                                "agent/20-agents",
+                                "agent/30-resources",
+                                "agent/40-runtime",
+                                "agent/40-runtime/Invoke-AgentMemoryStore.py",
+                                "config/agent-intent-policy.json",
+                                "agent/50-evidence",
+                                "agent/60-exits",
+                                "agent/70-presentation",
+                                "agent/80-maintenance",
+                                "agent/90-local",
+                                "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+                                "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                "agent/40-runtime/Get-AgentHarnessState.ps1",
+                                "agent/80-maintenance/Sync-AgentFilesystem.ps1",
+                                "agent/80-maintenance/Resolve-AgentFilesystemPath.ps1",
+                                "agent/80-maintenance/Test-AgentFilesystem.ps1",
+                                "scripts/Invoke-GlobalExperienceAgent.ps1",
+                                "scripts/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                "scripts/Get-AgentHarnessState.ps1",
+                                "scripts/Test-AgentSystemTopology.ps1",
+                                "scripts/Test-AgentHarnessContract.ps1",
+                                "scripts/Test-AgentInterfacePolicy.ps1",
+                                "scripts/New-AgentArchitectureDiagram.ps1",
+                                "ARCHITECTURE.md",
+                                "docs/AGENT-ARCHITECTURE.md",
+                                "config/agent-review-lenses.json"
+                            ],
+    "structure_change_contract":  {
+                                      "interface":  "global-control",
+                                      "authority_scope":  "global-structure",
+                                      "authorization_evidence_required":  true,
+                                      "owner":  "codex-architecture-iteration",
+                                      "tool_gate":  "agent_structure",
+                                      "preconditions":  [
+                                                            "current explicit authority",
+                                                            "idle session or accepted save point",
+                                                            "declared target surfaces",
+                                                            "rollback boundary",
+                                                            "runtime, registry, topology, diagram, and validation alignment"
+                                                        ],
+                                      "execution_rule":  "the runtime authorizes and routes the request; the owner controller performs bounded edits and returns evidence to the root Agent save point"
+                                  },
+    "exits":  [
+                  {
+                      "id":  "response",
+                      "audience":  [
+                                       "human",
+                                       "llm"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "evidence",
+                      "audience":  [
+                                       "human",
+                                       "llm",
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "save-point",
+                      "audience":  [
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "handoff",
+                      "audience":  [
+                                       "human",
+                                       "llm",
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "authorization-required",
+                      "audience":  [
+                                       "human",
+                                       "llm",
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "blocked"
+                  },
+                  {
+                      "id":  "gated-action-request",
+                      "audience":  [
+                                       "human",
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "global-structure-change-request",
+                      "audience":  [
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  },
+                  {
+                      "id":  "error-feedback",
+                      "audience":  [
+                                       "human",
+                                       "llm",
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "failed"
+                  },
+                  {
+                      "id":  "agent-reviewed",
+                      "audience":  [
+                                       "human",
+                                       "llm",
+                                       "internal-functional-unit",
+                                       "global-control"
+                                   ],
+                      "status":  "passed"
+                  }
+              ],
+    "exit_contract":  {
+                          "required_fields":  [
+                                                  "type",
+                                                  "status",
+                                                  "audience",
+                                                  "authority_decision",
+                                                  "next_authority_boundary"
+                                              ],
+                          "rule":  "every runtime result exposes a typed machine-readable exit; denied structural requests are blocked before durable session mutation"
+                      }
+}

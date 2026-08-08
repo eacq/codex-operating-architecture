@@ -1,0 +1,53 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-tool-installation",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-tool-installation/SKILL.md"
+                ],
+    "id":  "codex-tool-installation",
+    "owner":  "codex-tool-installation",
+    "plane":  "platform",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-tool-installation/SKILL.md",
+    "triggers":  [
+                     "software installation",
+                     "tool update",
+                     "plugin setup"
+                 ],
+    "consumes":  [
+                     "necessity evidence",
+                     "trusted source",
+                     "current install authority"
+                 ],
+    "produces":  [
+                     "installation proof",
+                     "rollback record",
+                     "capability smoke test"
+                 ],
+    "verification":  "source, checksum or version, target path, rollback, and smoke test",
+    "tool_gate":  "install",
+    "incoming":  [
+                     {
+                         "from":  "codex-credential-management",
+                         "artifact":  "redacted capability state",
+                         "event":  "missing_tool_confirmed"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "installation proof",
+                         "event":  "execution_resource_ready"
+                     },
+                     {
+                         "to":  "codex-runtime-environments",
+                         "artifact":  "installed executable boundary",
+                         "event":  "runtime_integration_required"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

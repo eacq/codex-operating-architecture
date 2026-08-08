@@ -1,0 +1,1272 @@
+{
+    "schema_version":  4,
+    "status":  "active",
+    "model":  "agent-system",
+    "template":  {
+                     "source":  "https://github.com/earendil-works/pi",
+                     "source_commit":  "dd6bea41efa8caa7a10fe5a6401676dc5699f83f",
+                     "source_evidence":  [
+                                             "packages/agent/docs/agent-harness.md",
+                                             "packages/agent/docs/durable-harness.md",
+                                             "packages/agent/src/harness/agent-harness.ts",
+                                             "packages/agent/src/harness/types.ts",
+                                             "packages/coding-agent/docs/session-format.md",
+                                             "packages/coding-agent/docs/rpc.md"
+                                         ],
+                     "adaptation":  "method-system-adaptation",
+                     "runtime_policy":  "do-not-install-pi-runtime-by-default"
+                 },
+    "harness":  {
+                    "owner":  "codex-self-evolution",
+                    "role":  "orchestration layer above owner skills and deterministic scripts",
+                    "responsibilities":  [
+                                             "project_entry",
+                                             "task_contract",
+                                             "authority_snapshot",
+                                             "resource_selection",
+                                             "phase_control",
+                                             "caller_and_model_abstraction",
+                                             "subagent_lifecycle",
+                                             "tool_gate_routing",
+                                             "save_point_acceptance",
+                                             "closeout_boundary"
+                                         ],
+                    "interfaces":  [
+                                       "skills/codex-self-evolution/SKILL.md",
+                                       "agent/agent-filesystem.json",
+                                       "agent/40-runtime/Get-AgentHarnessState.ps1",
+                                       "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+                                       "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                       "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                       "scripts/Test-AgentHarnessContract.ps1",
+                                       "scripts/Test-GlobalExperienceAgent.ps1",
+                                       "scripts/Test-AgentSystemTopology.ps1",
+                                       "scripts/Test-AgentOwnerConnections.ps1",
+                                       "scripts/Test-GlobalExperienceAgentRegistry.ps1"
+                                   ]
+                },
+    "global_experience_agent_entry":  {
+                                          "default_route":  "every Codex project entry starts or resumes Global Experience Agent durable work through agent/40-runtime/Invoke-GlobalExperienceAgent.ps1 after codex-self-evolution project entry unless the user explicitly authorizes a turn-level skip",
+                                          "startup_policy":  {
+                                                                 "default":  "auto-start-or-resume",
+                                                                 "skip_requires":  "explicit user authorization for this turn",
+                                                                 "startup_operations":  [
+                                                                                            "Run StartWork",
+                                                                                            "Resume",
+                                                                                            "Continue"
+                                                                                        ],
+                                                                 "skip_does_not_bypass":  [
+                                                                                              "codex-self-evolution lifecycle entry",
+                                                                                              "Codebase Memory F-codex startup and indexing when applicable",
+                                                                                              "safety, privacy, rollback, and validation gates",
+                                                                                              "owner routing",
+                                                                                              "permission checks"
+                                                                                          ],
+                                                                 "authority_boundary":  "automatic Agent startup records durable work and retrieves relevant records only; it does not authorize Git, release, installation, credential, publication, destructive cleanup, top-owner, or Agent-structure mutation"
+                                                             },
+                                          "applies_to":  [
+                                                             "all Codex project entries by default unless explicit user-authorized skip",
+                                                             "global experience system",
+                                                             "experience capture",
+                                                             "learning and external method adoption",
+                                                             "owner or skill structure",
+                                                             "information and functional unit topology",
+                                                             "agent architecture",
+                                                             "global iteration",
+                                                             "auto-Git or release synchronization"
+                                                         ],
+                                          "entry_protocol":  [
+                                                                 "load project authority",
+                                                                 "refresh F-codex graph when callable",
+                                                                 "retrieve relevant Agent memory when useful",
+                                                                 "classify Auto intent before operation permission evaluation",
+                                                                 "create bounded task contract",
+                                                                 "select smallest owner/resource set",
+                                                                 "create turn snapshot",
+                                                                 "route gated actions to owners"
+                                                             ],
+                                          "transfer_rule":  "legacy skill-first global experience work is treated as a harness resource call; the skill remains the owner, but the harness owns entry state, resource selection, tool gates, and closeout"
+                                      },
+    "agent_runtime":  {
+                          "controller":  "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+                          "implementation":  "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+                          "loop_policy":  "config/agent-loop-policy.json",
+                          "transport_recovery_policy":  "config/agent-transport-recovery-policy.json",
+                          "transport_recovery_classifier":  "agent/40-runtime/Get-AgentTransportRecoverySignal.ps1",
+                          "host_recovery_detector":  "agent/40-runtime/Get-AgentHostRecoverySignal.ps1",
+                          "modes":  [
+                                        "Inspect",
+                                        "Verify",
+                                        "Run",
+                                        "Continue",
+                                        "Resume",
+                                        "Abort"
+                                    ],
+                          "operations":  [
+                                             "Auto",
+                                             "ClassifyIntent",
+                                             "VerifyAgent",
+                                             "DescribeFilesystem",
+                                             "ResolveAgentPath",
+                                             "DescribeInterfaces",
+                                             "EvaluateAccess",
+                                             "RetrieveContext",
+                                             "StartWork",
+                                             "StoreMemory",
+                                             "SearchMemory",
+                                             "ConsolidateMemory",
+                                             "RenderMemorySnapshot",
+                                             "RouteOwner",
+                                             "DelegateSubagent",
+                                             "CompleteSubagent",
+                                             "JoinSubagent",
+                                             "CancelSubagent",
+                                             "CompleteIteration",
+                                             "CandidateReport",
+                                             "RequestStructureChange"
+                                         ],
+                          "durable_state_root":  ".codex/project/agent-sessions",
+                          "state_files":  [
+                                              "state.json",
+                                              "events.jsonl"
+                                          ],
+                          "run_contract":  [
+                                               "accept bounded goal and authority",
+                                               "record caller, model, compatible host, interface, and authority scope labels",
+                                               "deny unauthorized operations before durable session mutation",
+                                               "create durable session entry",
+                                               "create immutable turn snapshot",
+                                               "select resources and tool gate",
+                                               "persist operation and tool-call lifecycle",
+                                               "flush pending writes after tool result",
+                                               "commit accepted or interrupted save point"
+                                           ],
+                          "continue_contract":  "an authorized caller or compatible model continues an idle session by id, updates caller/model history, retrieves durable records and child state, and executes one registered operation",
+                          "resume_contract":  "reconstruct from durable state across caller or model changes, mark unfinished non-idempotent operations interrupted, and resume only from a safe boundary",
+                          "abort_contract":  "clear steer and followUp, preserve nextTurn and pending writes, settle to idle, and persist the abort boundary",
+                          "privacy_contract":  "durable agent sessions and Agent memory stores are local ignored metadata and evidence; raw private sessions, credentials, and secrets never enter Git",
+                          "execution_rule":  "the agent invokes only registered local operations, classifies Auto requests through config/agent-intent-policy.json, evaluates config/agent-interface-policy.json before side effects, resolves root, concept, specialist, and child agents through the agent registry, and routes gated or structural mutation through the named owner controller",
+                          "memory_contract":  "Agent memory uses a local SQLite/FTS5 store with typed memory classes, TTL, supersession, consolidation, and frozen snapshot rendering. It is exposed as a registered memory-as-skill functional unit through config/agent-memory-skill-policy.json: callers search before store when prior records may apply, use upsert or supersession instead of unbounded append, retrieve on demand instead of injecting the whole store, review complete memory-action traces at save points, and iterate the scaffold only through measured behavior. Human, LLM, and internal-functional-unit callers may use registered memory operations under current authority; structural changes to the memory system still require global-control and the agent_structure gate."
+                      },
+    "filesystem":  {
+                       "root":  "agent",
+                       "manifest":  "agent/agent-filesystem.json",
+                       "owner":  "codex-file-organization",
+                       "architecture_owner":  "codex-architecture-iteration",
+                       "projection_sync":  "agent/80-maintenance/Sync-AgentFilesystem.ps1",
+                       "resolver":  "agent/80-maintenance/Resolve-AgentFilesystemPath.ps1",
+                       "drift_test":  "agent/80-maintenance/Test-AgentFilesystem.ps1",
+                       "canonical_runtime_root":  "agent/40-runtime",
+                       "state_reader":  "agent/40-runtime/Get-AgentHarnessState.ps1",
+                       "local_state_root":  ".codex/project/agent-sessions",
+                       "rule":  "the agent directory is the physical Agent topology; generated manifests point to canonical owner resources and never copy owner implementations"
+                   },
+    "agent_registry":  {
+                           "source":  "config/global-experience-agent-registry.json",
+                           "interface_policy":  "config/agent-interface-policy.json",
+                           "root_agent":  "global-experience-agent",
+                           "specialist_source":  "config/agent-owner-connections.json",
+                           "concept_policy":  "compose existing owners without duplicating top-level skill ownership",
+                           "child_policy":  "executable bounded children with durable state, evidence-bearing completion, merge verification, and cancellation",
+                           "caller_model_policy":  "session identity is durable and independent of caller or model labels; labels never expand authority"
+                       },
+    "owner_network":  {
+                          "source":  "config/agent-owner-connections.json",
+                          "authority":  "module-registry.json",
+                          "presentation":  "config/agent-architecture-diagram.json",
+                          "active_owner_count":  23,
+                          "runtime_operation":  "RouteOwner",
+                          "connection_contract":  [
+                                                      "every active registry owner has exactly one canonical owner node",
+                                                      "every owner node resolves to its canonical skill resource",
+                                                      "plane and stage match the architecture presentation mapping",
+                                                      "every connection names a durable artifact and return event",
+                                                      "every owner has incoming and outgoing handoffs",
+                                                      "the complete owner graph is reachable from and can return to codex-self-evolution",
+                                                      "tool-gated owners retain their registered gate and evidence-only routing never executes the side effect"
+                                                  ]
+                      },
+    "resources":  {
+                      "selection_policy":  "experience-first progressive disclosure with graph evidence when available",
+                      "information_units":  [
+                                                "knowledge-vault/30-Knowledge/Global Experience System.md",
+                                                "knowledge-vault/30-Knowledge/Pi Agent Harness Network Learning.md",
+                                                "knowledge-vault/30-Knowledge/Information and Functional Unit Principle.md",
+                                                "knowledge-vault/30-Knowledge/Learning Governance.md",
+                                                "knowledge-vault/30-Knowledge/Agent Memory System.md",
+                                                "config/agent-memory-skill-policy.json",
+                                                "config/candidate-processing-policy.json",
+                                                "knowledge-vault/30-Knowledge/Agent Skill Evolution Optimization.md",
+                                                "knowledge-vault/30-Knowledge/Agent Skill Invocation Governance.md",
+                                                "knowledge-vault/30-Knowledge/Minimal Agent Architecture Template.md",
+                                                "config/agent-skill-invocation-policy.json",
+                                                "config/minimal-agent-template.json",
+                                                "config/agent-structural-optimization-policy.json",
+                                                "knowledge-vault/30-Knowledge/Agent Intent Recognition System.md",
+                                                "knowledge-vault/30-Knowledge/Cherry Studio Capability Routing and Durable Workflow Learning.md",
+                                                "config/agent-capability-routing-policy.json",
+                                                "knowledge-vault/30-Knowledge/Agent Document Parse Pipeline.md",
+                                                "knowledge-vault/30-Knowledge/Agent Chunking Retrieval System.md",
+                                                "knowledge-vault/30-Knowledge/Agent Loop System.md",
+                                                "knowledge-vault/30-Knowledge/Codebase Memory MCP.md",
+                                                "knowledge-vault/20-Workflows/Codebase Graph Evidence Workflow.md",
+                                                "config/agent-loop-policy.json",
+                                                "config/agent-transport-recovery-policy.json",
+                                                "config/agent-loop-policy.json",
+                                                "config/agent-chunking-retrieval-policy.json",
+                                                "config/agent-codebase-memory-policy.json",
+                                                "config/agent-interface-policy.json",
+                                                "knowledge-vault/30-Knowledge/Nature Scientific Figure Workflow.md",
+                                                "skills/codex-image-workflow/subskills/figure-optimization/references/scientific-figure-contract.md",
+                                                "knowledge-vault/30-Knowledge/PPT Master Deck Factory Workflow.md",
+                                                "skills/codex-office-cli/subskills/ppt-deck-factory/references/ppt-master-route-contract.md",
+                                                "skills/codex-office-cli/subskills/ppt-deck-factory/references/ppt-child-agent-darwin-learning.md",
+                                                "knowledge-vault/30-Knowledge/Career Planning Agent Workflow.md",
+                                                "skills/codex-requirement-authoring/subskills/career-planning-agent/references/career-ops-route-contract.md",
+                                                "docs/SKILL-TERMINOLOGY.md",
+                                                ".codex/project/EXPERIENCE.md",
+                                                "config/agent-review-lenses.json"
+                                            ],
+                      "functional_units":  [
+                                               "skills/codex-self-evolution/SKILL.md",
+                                               "skills/codex-information-gathering/SKILL.md",
+                                               "skills/codex-information-gathering/subskills/chunking-retrieval/SKILL.md",
+                                               "skills/codex-information-gathering/scripts/Invoke-AgentChunkingRetrieval.ps1",
+                                               "skills/codex-information-gathering/scripts/Invoke-AgentChunkingRetrieval.py",
+                                               "skills/codex-requirement-authoring/SKILL.md",
+                                               "skills/codex-workflow-design/SKILL.md",
+                                               "skills/codex-task-execution/SKILL.md",
+                                               "skills/codex-architecture-iteration/SKILL.md",
+                                               "skills/codex-learning/SKILL.md",
+                                               "skills/codex-conversation-continuity/SKILL.md",
+                                               "skills/codex-experience-capture/SKILL.md",
+                                               "skills/codex-experience-capture/subskills/experience-agent-access/SKILL.md",
+                                               "skills/codex-experience-capture/scripts/Invoke-ExperienceAgentAccess.ps1",
+                                               "skills/codex-experience-capture/scripts/Test-ExperienceAgentAccess.ps1",
+                                               "skills/codex-experience-capture/scripts/New-MinimalAgentPlan.ps1",
+                                               "skills/codex-experience-capture/scripts/Test-MinimalAgentTemplate.ps1",
+                                               "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                               "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+                                               "scripts/Test-AgentStructuralOptimizationPropagation.ps1",
+                                               "skills/codex-experience-capture/subskills/methodology-skill-distillation/SKILL.md",
+                                               "skills/codex-experience-capture/scripts/Test-MethodologySkillDistillation.ps1",
+                                               "skills/codex-experience-capture/subskills/skill-evolution-optimization/SKILL.md",
+                                               "skills/codex-experience-capture/scripts/Invoke-SkillEvolutionOptimizationGate.ps1",
+                                               "skills/codex-experience-capture/scripts/Invoke-ExperienceBookShelfLearning.ps1",
+                                               "skills/codex-experience-capture/scripts/Invoke-ExperienceBookShelfLearning.py",
+                                               "skills/codex-experience-capture/scripts/Test-SkillEvolutionOptimization.ps1",
+                                               "skills/codex-experience-capture/scripts/Test-ExperienceBookShelfLearning.ps1",
+                                               "skills/codex-knowledge-system/SKILL.md",
+                                               "skills/codex-error-feedback/SKILL.md",
+                                               "skills/codex-exact-word-layout/SKILL.md",
+                                               "skills/codex-image-workflow/SKILL.md",
+                                               "skills/codex-image-workflow/subskills/figure-optimization/SKILL.md",
+                                               "skills/codex-image-workflow/subskills/figure-optimization/scripts/Validate-ScientificFigureSource.ps1",
+                                               "skills/codex-image-workflow/subskills/figure-optimization/scripts/Test-ScientificFigureWorkflow.ps1",
+                                               "skills/codex-office-cli/SKILL.md",
+                                               "skills/codex-office-cli/subskills/doc-parse-pipeline/SKILL.md",
+                                               "skills/codex-office-cli/subskills/ppt-deck-factory/SKILL.md",
+                                               "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/Resolve-PptMasterWorkspace.ps1",
+                                               "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/Resolve-AgentPptTemplateCatalog.ps1",
+                                               "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/New-AgentPptDeckFactoryPlan.ps1",
+                                               "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/Test-AgentPptDeckFactory.ps1",
+                                               "skills/codex-requirement-authoring/subskills/career-planning-agent/SKILL.md",
+                                               "skills/codex-requirement-authoring/subskills/career-planning-agent/scripts/New-AgentCareerPlanningPlan.ps1",
+                                               "scripts/Test-AgentCareerPlanningAgent.ps1",
+                                               "skills/codex-office-cli/scripts/Invoke-AgentDocParsePipeline.ps1",
+                                               "skills/codex-office-cli/scripts/Invoke-AgentDocParsePipeline.py",
+                                               "skills/codex-text-style/SKILL.md",
+                                               "skills/codex-file-organization/SKILL.md",
+                                               "skills/codex-credential-management/SKILL.md",
+                                               "skills/codex-tool-installation/SKILL.md",
+                                               "skills/codex-runtime-environments/SKILL.md",
+                                               "skills/codex-git-operations/SKILL.md",
+                                               "skills/codex-project-optimization/SKILL.md",
+                                               "skills/codex-skill-packaging/SKILL.md",
+                                               "skills/codex-skill-portability/SKILL.md",
+                                               "config/agent-owner-connections.json",
+                                               "config/agent-loop-policy.json",
+                                               "config/agent-chunking-retrieval-policy.json",
+                                               "config/agent-codebase-memory-policy.json",
+                                               "config/agent-capability-routing-policy.json",
+                                               "config/agent-memory-skill-policy.json",
+                                               "config/candidate-processing-policy.json",
+                                               "config/agent-skill-invocation-policy.json",
+                                               "config/agent-intent-policy.json",
+                                               "config/global-experience-agent-registry.json",
+                                               "agent/agent-filesystem.json",
+                                               "agent/40-runtime/Get-AgentHarnessState.ps1",
+                                               "agent/40-runtime/Invoke-AgentMemoryStore.py",
+                                               "agent/40-runtime/TransportRecovery.ps1",
+                                               "agent/40-runtime/Get-AgentTransportRecoverySignal.ps1",
+                                               "agent/40-runtime/HostTransportRecovery.ps1",
+                                               "agent/40-runtime/Get-AgentHostRecoverySignal.ps1",
+                                               "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+                                               "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                               "scripts/Test-AgentIntentRecognition.ps1",
+                                               "scripts/Test-AgentCapabilityRoutingPolicy.ps1",
+                                               "scripts/Test-AgentLoopPolicy.ps1",
+                                               "scripts/Test-AgentTransportRecovery.ps1",
+                                               "scripts/Test-AgentHostTransportRecovery.ps1",
+                                               "agent/80-maintenance/Resolve-AgentFilesystemPath.ps1",
+                                               "agent/80-maintenance/Sync-AgentFilesystem.ps1",
+                                               "agent/80-maintenance/Test-AgentFilesystem.ps1",
+                                               "scripts/Test-AgentHarnessContract.ps1",
+                                               "scripts/Test-AgentMemoryAsSkillPolicy.ps1",
+                                               "scripts/Test-AgentSkillInvocationPolicy.ps1",
+                                               "scripts/Test-AgentCodebaseMemoryPolicy.ps1",
+                                               "scripts/Test-AgentChunkingRetrieval.ps1",
+                                               "scripts/Test-AgentDocParsePipeline.ps1",
+                                               "scripts/Test-GlobalExperienceAgent.ps1",
+                                               "scripts/Test-AgentSystemTopology.ps1",
+                                               "scripts/Test-GlobalExperienceAgentRegistry.ps1",
+                                               "scripts/validate.ps1",
+                                               "config/agent-review-lenses.json"
+                                           ]
+                  },
+    "phase_model":  {
+                        "phases":  [
+                                       "idle",
+                                       "turn",
+                                       "compaction",
+                                       "branch_summary",
+                                       "retry"
+                                   ],
+                        "structural_mutation_rule":  "structural changes require idle or verified save-point boundaries",
+                        "snapshot_rule":  "runtime-like updates affect future routing snapshots and must not rewrite the evidence used by an active proof"
+                    },
+    "runtime_config":  {
+                           "latest_config_units":  [
+                                                       "active model/provider choice",
+                                                       "thinking or reasoning level",
+                                                       "available tool gates",
+                                                       "active tool-gate subset",
+                                                       "selected resources",
+                                                       "stream or execution options",
+                                                       "system prompt or project instructions"
+                                                   ],
+                           "getter_rule":  "reads return the latest harness configuration for future routing, not the in-flight proof snapshot",
+                           "setter_rule":  "runtime-like changes made during a turn update the next snapshot at a save point and never rewrite the active evidence request"
+                       },
+    "turn_snapshot":  {
+                          "snapshot_units":  [
+                                                 "persisted session evidence",
+                                                 "resolved resources",
+                                                 "resolved project instructions",
+                                                 "model/provider metadata",
+                                                 "thinking level",
+                                                 "all available tools",
+                                                 "active tools",
+                                                 "execution options",
+                                                 "derived session id"
+                                             ],
+                          "creation_rule":  "create one immutable decision snapshot for each bounded task turn or verification proof",
+                          "save_point_refresh_rule":  "after assistant/tool-result completion, refresh future context/model/tool/resource state before another provider-like step"
+                      },
+    "queue_operations":  {
+                             "turn_safe_operations":  [
+                                                          "steer",
+                                                          "followUp",
+                                                          "nextTurn",
+                                                          "abort",
+                                                          "runtime config setters"
+                                                      ],
+                             "structural_operations":  [
+                                                           "prompt",
+                                                           "skill",
+                                                           "promptFromTemplate",
+                                                           "compact",
+                                                           "navigateTree"
+                                                       ],
+                             "busy_rule":  "structural operations are rejected while busy; queue operations are accepted only at documented safe points",
+                             "drain_rule":  "queue drains are ordered and evidence-bearing; failed queue notifications roll back or route to error feedback"
+                         },
+    "pending_session_writes":  {
+                                   "write_shapes":  [
+                                                        "candidate session entry without generated id",
+                                                        "pending write enqueue record",
+                                                        "pending write applied record",
+                                                        "deterministic target reference"
+                                                    ],
+                                   "persistence_rule":  "accepted pending writes are durable before public success is reported",
+                                   "flush_points":  [
+                                                        "save point",
+                                                        "operation settlement",
+                                                        "failure cleanup"
+                                                    ],
+                                   "ordering_rule":  "agent-emitted messages and tool results are persisted before queued extension or lifecycle writes for that turn"
+                               },
+    "tool_registry":  {
+                          "registry_units":  [
+                                                 "tool gate definitions",
+                                                 "tool owner",
+                                                 "active tool names",
+                                                 "idempotency metadata",
+                                                 "retry-safety metadata",
+                                                 "provenance"
+                                             ],
+                          "read_update_semantics":  "tool reads expose current registry state; active-tool updates validate uniqueness, existence, owner, and authority before commit",
+                          "persistence_rule":  "active tool changes are branch-scoped durable configuration when they affect future routing",
+                          "rejection_rule":  "duplicate tool names, duplicate active names, invalid active tools, and ungated side effects are rejected"
+                      },
+    "model_registry":  {
+                           "registry_units":  [
+                                                  "provider id",
+                                                  "model id",
+                                                  "api identifier",
+                                                  "auth source label",
+                                                  "last-known model list",
+                                                  "explicit refresh boundary",
+                                                  "stream behavior owner"
+                                              ],
+                           "provider_rule":  "providers own metadata, auth, model listing, and stream behavior; the harness selects models through a registry facade",
+                           "refresh_rule":  "model reads use last-known state; dynamic refresh is explicit, side-effect-free discovery",
+                           "auth_rule":  "auth failures remain visible and redacted; silent fallback after stored-credential failure is not allowed"
+                       },
+    "hook_system":  {
+                        "event_model":  [
+                                            "typed event",
+                                            "observer",
+                                            "result-producing handler",
+                                            "event-specific reducer",
+                                            "cleanup",
+                                            "source metadata",
+                                            "facade context"
+                                        ],
+                        "observer_rule":  "observers are passive and their returns are ignored",
+                        "handler_rule":  "result-producing handlers reduce by event-specific semantics such as transform chaining, patch accumulation, first cancel, or early block",
+                        "context_rule":  "hooks receive stable facades rather than raw internals or unordered session writes",
+                        "error_rule":  "hook failures after commit do not roll back committed state; they route through normalized harness or error-feedback handling"
+                    },
+    "observability":  {
+                          "event_contract":  [
+                                                 "trace id",
+                                                 "span id",
+                                                 "parent span id",
+                                                 "start",
+                                                 "end",
+                                                 "error",
+                                                 "safe event payload"
+                                             ],
+                          "minimal_events":  [
+                                                 "pi.agent.prompt",
+                                                 "pi.agent.skill",
+                                                 "pi.agent.compaction",
+                                                 "pi.agent.branch_navigation",
+                                                 "pi.agent.session.append_entry",
+                                                 "pi.ai.provider.request"
+                                             ],
+                          "adapter_rule":  "core lifecycle emits stable safe events; runtime adapters decide whether to bridge them to logs, OpenTelemetry, Sentry, or local reports",
+                          "redaction_rule":  "prompts, completions, tool args, tool results, shell output, file contents, headers, and secrets are unsafe by default"
+                      },
+    "durable_recovery":  {
+                             "durable_entries":  [
+                                                     "queue_enqueued",
+                                                     "queue_consumed",
+                                                     "pending_write_enqueued",
+                                                     "pending_write_applied",
+                                                     "operation_started",
+                                                     "operation_finished",
+                                                     "operation_interrupted",
+                                                     "error_feedback_recorded",
+                                                     "restart_prompted",
+                                                     "turn_started",
+                                                     "turn_finished",
+                                                     "provider_request_started",
+                                                     "provider_request_finished",
+                                                     "tool_call_started",
+                                                     "tool_call_finished"
+                                                 ],
+                             "host_restore_rule":  "the host recreates models, tools, resources, hooks, auth providers, and extension handlers before reducing durable state",
+                             "default_policy":  "mark unfinished provider requests and unsafe tool calls interrupted; retry only from durable boundaries or with owner-proven idempotency"
+                         },
+    "session_entry_schema":  {
+                                 "version":  "pi-jsonl-tree-v3-aligned",
+                                 "entry_types":  [
+                                                     "session",
+                                                     "message",
+                                                     "model_change",
+                                                     "thinking_level_change",
+                                                     "compaction",
+                                                     "branch_summary",
+                                                     "custom",
+                                                     "custom_message",
+                                                     "label",
+                                                     "session_info",
+                                                     "leaf"
+                                                 ],
+                                 "tree_rule":  "entries form a branchable tree through id, parentId, and durable leaf movement",
+                                 "context_rule":  "compaction entries may carry retainedTail so newer checkpoints can rebuild context without walking stale raw history"
+                             },
+    "abort_semantics":  {
+                            "allowed_phase":  "turn",
+                            "effects":  [
+                                            "signal cancellation",
+                                            "clear steer queue",
+                                            "clear followUp queue",
+                                            "preserve nextTurn queue",
+                                            "preserve pending session writes",
+                                            "flush durable writes at save point, settlement, or failure cleanup"
+                                        ],
+                            "barrier_rule":  "abort waits for safe settlement and never discards accepted durable writes"
+                        },
+    "compaction_and_branching":  {
+                                     "structural_rule":  "compaction and tree navigation are idle-only structural mutations",
+                                     "branch_summary_rule":  "branch summaries capture abandoned-branch context before navigation affects future turns",
+                                     "retry_events":  [
+                                                          "retry_scheduled",
+                                                          "retry_attempt_start",
+                                                          "retry_finished"
+                                                      ],
+                                     "auto_compaction_rule":  "auto-compaction remains a candidate until a deterministic decision point and no-regression tests exist"
+                                 },
+    "event_loop":  [
+                       {
+                           "phase":  "intake",
+                           "event":  "user_goal_received",
+                           "owner":  "codex-self-evolution",
+                           "output":  "bounded task contract with authority and quality floor"
+                       },
+                       {
+                           "phase":  "orient",
+                           "event":  "experience_context_loaded",
+                           "owner":  "codex-self-evolution",
+                           "output":  "project authority, verified experience, graph evidence, and required skills"
+                       },
+                       {
+                           "phase":  "select",
+                           "event":  "agent_resources_selected",
+                           "owner":  "codex-self-evolution",
+                           "output":  "smallest accountable owner set and progressive-disclosure files"
+                       },
+                       {
+                           "phase":  "act",
+                           "event":  "tool_gate_requested",
+                           "owner":  "specialist owner",
+                           "output":  "approved, denied, deferred, or evidence-only action"
+                       },
+                       {
+                           "phase":  "observe",
+                           "event":  "tool_result_recorded",
+                           "owner":  "executing owner",
+                           "output":  "current-task evidence, failure report, or next bounded step"
+                       },
+                       {
+                           "phase":  "settle",
+                           "event":  "save_point_committed",
+                           "owner":  "verification owner",
+                           "output":  "validated state, rollback boundary, and closeout evidence"
+                       }
+                   ],
+    "agent_exit_alignment":  {
+                                 "exit_protocol":  [
+                                                       "record tool results or error feedback",
+                                                       "run narrowest proving check",
+                                                       "accept or reject save point",
+                                                       "update lifecycle state or candidate records",
+                                                       "generate current candidate report after complete global iterations",
+                                                       "route Git, release, installation, credential, publication, and top-owner actions through their gates",
+                                                       "emit a typed interface exit with the authority decision and next authority boundary",
+                                                       "report residual risk and next authority boundary"
+                                                   ],
+                                 "save_point_outputs":  [
+                                                            "global-experience-agent-last-run.json",
+                                                            "complete iteration proof",
+                                                            "candidate report",
+                                                            "publication envelope",
+                                                            "validated Git commit",
+                                                            "verified release evidence"
+                                                        ],
+                                 "alignment_rule":  "no global experience task is complete until its output, proof, lifecycle/candidate state, and any Git or publication boundary are aligned with the agent save point",
+                                 "handoff_rule":  "when work exits to a specialist owner, the handoff names inputs, authority, expected artifact, verification, rollback or blocked condition, and return event",
+                                 "interface_policy":  "config/agent-interface-policy.json",
+                                 "typed_exits":  [
+                                                     "response",
+                                                     "evidence",
+                                                     "save-point",
+                                                     "handoff",
+                                                     "authorization-required",
+                                                     "gated-action-request",
+                                                     "global-structure-change-request",
+                                                     "error-feedback"
+                                                 ]
+                             },
+    "human_review_and_evals":  {
+                                   "review_decisions":  [
+                                                            "approve",
+                                                            "edit",
+                                                            "reject",
+                                                            "respond"
+                                                        ],
+                                   "review_rule":  "human review pauses at authority boundaries, preserves durable state, and resumes only from an accepted decision or a clarified response",
+                                   "eval_surfaces":  [
+                                                         "topology contract tests",
+                                                         "harness contract tests",
+                                                         "global experience agent run test",
+                                                         "architecture diagram test",
+                                                         "global validation",
+                                                         "global install validation",
+                                                         "candidate report",
+                                                         "complete iteration proof"
+                                                     ],
+                                   "eval_rule":  "agent behavior changes must have repeatable tests or dataset-like fixtures before they are treated as implemented functionality"
+                               },
+    "tool_gates":  [
+                       {
+                           "name":  "git",
+                           "owner":  "codex-git-operations",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "release",
+                           "owner":  "codex-git-operations",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "install",
+                           "owner":  "codex-tool-installation",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "credential",
+                           "owner":  "codex-credential-management",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "external",
+                           "owner":  "codex-self-evolution",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "global_iteration",
+                           "owner":  "codex-self-evolution",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "top_owner_change",
+                           "owner":  "codex-architecture-iteration",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "agent_structure",
+                           "owner":  "codex-architecture-iteration",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       },
+                       {
+                           "name":  "agent_review",
+                           "owner":  "codex-experience-capture",
+                           "lifecycle":  [
+                                             "requested",
+                                             "preflighted",
+                                             "reviewed",
+                                             "authorized",
+                                             "executed",
+                                             "observed",
+                                             "verified",
+                                             "captured_or_reported"
+                                         ]
+                       }
+                   ],
+    "session":  {
+                    "tree_policy":  "metadata and evidence form a tree of resumable branches; raw private sessions and secrets stay out of Git",
+                    "storage_units":  [
+                                          "metadata header",
+                                          "tree entry",
+                                          "leaf entry",
+                                          "compaction checkpoint",
+                                          "branch summary",
+                                          "custom extension entry",
+                                          "tool result evidence"
+                                      ],
+                    "local_sources":  [
+                                          "conversation-continuity catalog",
+                                          "project lifecycle state",
+                                          "candidate records",
+                                          "error feedback reports",
+                                          "rollback snapshots",
+                                          "publication envelope",
+                                          "release evidence"
+                                      ],
+                    "save_points":  [
+                                        "verified rollback snapshot",
+                                        "complete iteration proof",
+                                        "publication envelope",
+                                        "validated Git commit",
+                                        "verified release evidence"
+                                    ]
+                },
+    "extensions":  {
+                       "surfaces":  [
+                                        "imported upstream packages",
+                                        "MCP servers",
+                                        "hooks",
+                                        "project-local executable resources",
+                                        "runtime plugins",
+                                        "subagent patterns"
+                                    ],
+                       "admission_gate":  "source review, trust scope, rollback, validation, and current authority",
+                       "raw_pi_extension_policy":  "do-not-load-by-default"
+                   },
+    "recovery":  {
+                     "retryable_operations":  [
+                                                  "graph preflight",
+                                                  "source refresh",
+                                                  "compaction or summarization",
+                                                  "read-only validation"
+                                              ],
+                     "non_retryable_without_owner_proof":  [
+                                                               "credential mutation",
+                                                               "installation",
+                                                               "destructive cleanup",
+                                                               "publication",
+                                                               "remote release",
+                                                               "non-idempotent tool call"
+                                                           ],
+                     "failure_route":  "structured error feedback before promotion or repeated repair",
+                     "transport_failures":  {
+                                                "policy":  "config/agent-transport-recovery-policy.json",
+                                                "classifier":  "agent/40-runtime/Get-AgentTransportRecoverySignal.ps1",
+                                                "rule":  "known transport failures before completion stop automatic retry, persist state, and return a restart-required prompt",
+                                                "preserve":  [
+                                                                 "session state",
+                                                                 "pending writes",
+                                                                 "child lineage",
+                                                                 "error classification"
+                                                             ],
+                                                "resume":  "restart Codex or the affected host, then Resume before Continue"
+                                            },
+                     "host_watchdog":  {
+                                           "policy":  "config/agent-transport-recovery-policy.json",
+                                           "detector":  "agent/40-runtime/Get-AgentHostRecoverySignal.ps1",
+                                          "rule":  "Codex app snapshots with a stale inProgress turn and no output/tool event, or with a stale inProgress tool marker, return a restart-required prompt",
+                                           "threshold_seconds":  180,
+                                           "action":  "persist host-recovery marker and prompt without force-killing"
+                                       }
+                 },
+    "subagents":  {
+                      "policy":  "executable-under-current-authority",
+                      "registry":  "config/global-experience-agent-registry.json",
+                      "lifecycle":  [
+                                        "delegated",
+                                        "completed",
+                                        "joined",
+                                        "cancelled",
+                                        "restart-required"
+                                    ],
+                      "required_conditions":  [
+                                                  "registered specialist, concept, or child agent profile",
+                                                  "parent session and child lineage",
+                                                  "isolated write surfaces",
+                                                  "shared acceptance criteria",
+                                                  "feynman structural scaffold",
+                                                  "merge verifier",
+                                                  "current authority"
+                                              ],
+                      "named_profiles":  [
+                                             {
+                                                 "id":  "visual-design-agent",
+                                                 "parent_concept":  "delivery-agent",
+                                                 "owner":  "codex-image-workflow",
+                                                 "skill":  "skills/codex-image-workflow/subskills/visual-design-agent/SKILL.md",
+                                                 "runtime_corpus":  ".runtime/work/network-learning/ppt-master/full-repo/workspace/ppt-master-main",
+                                                 "write_surface":  ".runtime/work/visual-design-agent/\u003ctask-id\u003e",
+                                                 "feynman_structural_scaffold":  [
+                                                                                     "memory_system",
+                                                                                     "intent_recognition",
+                                                                                     "doc_parse_pipeline",
+                                                                                     "chunking_retrieval",
+                                                                                     "rerank_calibration",
+                                                                                     "agent_loop",
+                                                                                     "memory_as_skill"
+                                                                                 ],
+                                                 "delegation_rule":  "Global Experience Agent owns task/session/authority/save point; the child owns visual brief, visual route planning, design-system selection, route-specific artifact coordination, validation evidence, and reusable template return only.",
+                                                 "denied":  [
+                                                                "Git",
+                                                                "release",
+                                                                "publication",
+                                                                "credential use",
+                                                                "dependency installation",
+                                                                "Agent structure mutation",
+                                                                "paid external calls"
+                                                            ],
+                                                 "structural_optimization_inheritance":  {
+                                                                                             "status":  "synchronized",
+                                                                                             "baseline_id":  "global-agent-structural-baseline-v1",
+                                                                                             "baseline_version":  "1.2.0",
+                                                                                             "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                                                             "required_optimization_ids":  [
+                                                                                                                               "memory_system",
+                                                                                                                               "intent_recognition",
+                                                                                                                               "doc_parse_pipeline",
+                                                                                                                               "chunking_retrieval",
+                                                                                                                               "rerank_calibration",
+                                                                                                                               "agent_loop",
+                                                                                                                               "memory_as_skill",
+                                                                                                                               "interface_authority_gates",
+                                                                                                                               "owner_tool_gate_routing",
+                                                                                                                               "durable_child_lifecycle",
+                                                                                                                               "error_feedback_learning",
+                                                                                                                               "codebase_graph_evidence",
+                                                                                                                               "skill_invocation_governance",
+                                                                                                                               "caller_model_neutral_continuation",
+                                                                                                                               "typed_exit_save_point",
+                                                                                                                               "retry_recovery",
+                                                                                                                               "observability_redaction",
+                                                                                                                               "review_checkpoint",
+                                                                                                                               "resource_economy",
+                                                                                                                               "extension_trust_boundary",
+                                                                                                                               "human_review_and_eval",
+                                                                                                                               "structural_optimization_propagation"
+                                                                                                                           ],
+                                                                                             "inheritance_mode":  "adaptive-profile-guided",
+                                                                                             "profile_fit_summary":  "Adapt shared learning through visual-design-agent purpose, route-specific visual methods, reusable template artifacts, verifier, and authority boundary before execution.",
+                                                                                             "functional_effects":  [
+                                                                                                                        "routing",
+                                                                                                                        "source-processing",
+                                                                                                                        "retrieval",
+                                                                                                                        "tool-use",
+                                                                                                                        "output-quality",
+                                                                                                                        "review",
+                                                                                                                        "recovery",
+                                                                                                                        "economy"
+                                                                                                                    ],
+                                                                                             "adaptation_evidence_required":  [
+                                                                                                                                  "profile_fit_summary",
+                                                                                                                                  "functional_effects",
+                                                                                                                                  "domain_adaptation",
+                                                                                                                                  "owner_contract_alignment",
+                                                                                                                                  "quality_or_verification_gate",
+                                                                                                                                  "authority_boundary"
+                                                                                                                              ]
+                                                                                         }
+                                             },
+                                             {
+                                                 "id":  "career-planning-agent",
+                                                 "parent_concept":  "work-orchestration-agent",
+                                                 "owner":  "codex-requirement-authoring",
+                                                 "skill":  "skills/codex-requirement-authoring/subskills/career-planning-agent/SKILL.md",
+                                                 "runtime_corpus":  ".runtime/work/network-learning/santifer-career-ops-main",
+                                                 "write_surface":  ".runtime/work/career-planning-agent/\u003ctask-id\u003e",
+                                                 "feynman_structural_scaffold":  [
+                                                                                     "memory_system",
+                                                                                     "intent_recognition",
+                                                                                     "doc_parse_pipeline",
+                                                                                     "chunking_retrieval",
+                                                                                     "rerank_calibration",
+                                                                                     "agent_loop",
+                                                                                     "memory_as_skill"
+                                                                                 ],
+                                                 "delegation_rule":  "Global Experience Agent owns task/session/authority/save point; the child owns career/life planning route selection, onboarding checks, evidence-grounded drafts, validation, and return evidence only.",
+                                                 "denied":  [
+                                                                "Git",
+                                                                "release",
+                                                                "publication",
+                                                                "credential use",
+                                                                "dependency installation",
+                                                                "Agent structure mutation",
+                                                                "paid external calls",
+                                                                "application submit/send/apply click",
+                                                                "fabricated user facts",
+                                                                "legal or financial verdicts"
+                                                            ],
+                                                 "structural_optimization_inheritance":  {
+                                                                                             "status":  "synchronized",
+                                                                                             "baseline_id":  "global-agent-structural-baseline-v1",
+                                                                                             "baseline_version":  "1.2.0",
+                                                                                             "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                                                             "required_optimization_ids":  [
+                                                                                                                               "memory_system",
+                                                                                                                               "intent_recognition",
+                                                                                                                               "doc_parse_pipeline",
+                                                                                                                               "chunking_retrieval",
+                                                                                                                               "rerank_calibration",
+                                                                                                                               "agent_loop",
+                                                                                                                               "memory_as_skill",
+                                                                                                                               "interface_authority_gates",
+                                                                                                                               "owner_tool_gate_routing",
+                                                                                                                               "durable_child_lifecycle",
+                                                                                                                               "error_feedback_learning",
+                                                                                                                               "codebase_graph_evidence",
+                                                                                                                               "skill_invocation_governance",
+                                                                                                                               "caller_model_neutral_continuation",
+                                                                                                                               "typed_exit_save_point",
+                                                                                                                               "retry_recovery",
+                                                                                                                               "observability_redaction",
+                                                                                                                               "review_checkpoint",
+                                                                                                                               "resource_economy",
+                                                                                                                               "extension_trust_boundary",
+                                                                                                                               "human_review_and_eval",
+                                                                                                                               "structural_optimization_propagation"
+                                                                                                                           ],
+                                                                                             "inheritance_mode":  "adaptive-profile-guided",
+                                                                                             "profile_fit_summary":  "Adapt shared learning through career-planning-agent purpose, allowed operations, owner resources, output artifacts, verifier, and authority boundary before execution.",
+                                                                                             "functional_effects":  [
+                                                                                                                        "routing",
+                                                                                                                        "memory",
+                                                                                                                        "source-processing",
+                                                                                                                        "retrieval",
+                                                                                                                        "output-quality",
+                                                                                                                        "review",
+                                                                                                                        "recovery",
+                                                                                                                        "economy"
+                                                                                                                    ],
+                                                                                             "adaptation_evidence_required":  [
+                                                                                                                                  "profile_fit_summary",
+                                                                                                                                  "functional_effects",
+                                                                                                                                  "domain_adaptation",
+                                                                                                                                  "owner_contract_alignment",
+                                                                                                                                  "quality_or_verification_gate",
+                                                                                                                                  "authority_boundary"
+                                                                                                                              ]
+                                                                                         }
+                                             }
+                                         ],
+                      "authority_rule":  "delegation inherits but never expands the current authority snapshot",
+                      "continuation_rule":  "child and parent state remain repository-local and caller/model neutral",
+                      "transport_recovery":  "child transport failures write a restart-required durable state; JoinSubagent returns the prompt to the parent instead of waiting indefinitely",
+                      "structural_optimization_propagation":  {
+                                                                  "source":  "config/agent-structural-optimization-policy.json",
+                                                                  "baseline_id":  "global-agent-structural-baseline-v1",
+                                                                  "baseline_version":  "1.2.0",
+                                                                  "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                                  "required_optimization_ids":  [
+                                                                                                    "memory_system",
+                                                                                                    "intent_recognition",
+                                                                                                    "doc_parse_pipeline",
+                                                                                                    "chunking_retrieval",
+                                                                                                    "rerank_calibration",
+                                                                                                    "agent_loop",
+                                                                                                    "memory_as_skill",
+                                                                                                    "interface_authority_gates",
+                                                                                                    "owner_tool_gate_routing",
+                                                                                                    "durable_child_lifecycle",
+                                                                                                    "error_feedback_learning",
+                                                                                                    "codebase_graph_evidence",
+                                                                                                    "skill_invocation_governance",
+                                                                                                    "caller_model_neutral_continuation",
+                                                                                                    "typed_exit_save_point",
+                                                                                                    "retry_recovery",
+                                                                                                    "observability_redaction",
+                                                                                                    "review_checkpoint",
+                                                                                                    "resource_economy",
+                                                                                                    "extension_trust_boundary",
+                                                                                                    "human_review_and_eval",
+                                                                                                    "structural_optimization_propagation"
+                                                                                                ],
+                                                                  "synchronization_controller":  "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+                                                                  "runtime_snapshot_provider":  "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                                                  "inheritance_mode":  "adaptive-profile-guided",
+                                                                  "profile_fit_dimensions":  [
+                                                                                                 "child purpose",
+                                                                                                 "allowed and denied operations",
+                                                                                                 "owner skill contracts",
+                                                                                                 "input and source types",
+                                                                                                 "output artifacts",
+                                                                                                 "domain corpus or upstream method",
+                                                                                                 "quality and readability gates",
+                                                                                                 "merge verifier",
+                                                                                                 "privacy and authority boundary",
+                                                                                                 "error and recovery behavior"
+                                                                                             ],
+                                                                  "adaptation_evidence_required":  [
+                                                                                                       "profile_fit_summary",
+                                                                                                       "functional_effects",
+                                                                                                       "domain_adaptation",
+                                                                                                       "owner_contract_alignment",
+                                                                                                       "quality_or_verification_gate",
+                                                                                                       "authority_boundary"
+                                                                                                   ],
+                                                                  "adoption_rule":  "a verified Global Experience Agent learning optimization is incomplete until it is adapted to affected child profiles, improves a declared functional effect, and aligns template, registered profiles, projections, and delegation snapshots"
+                                                              }
+                  },
+    "architecture_contract":  {
+                                  "constraint_matrix":  [
+                                                            {
+                                                                "scope":  "harness",
+                                                                "required_structures":  [
+                                                                                            "task contract",
+                                                                                            "authority snapshot",
+                                                                                            "agent entry route",
+                                                                                            "interface policy",
+                                                                                            "permission decision",
+                                                                                            "typed exit",
+                                                                                            "phase model",
+                                                                                            "runtime config",
+                                                                                            "turn snapshot",
+                                                                                            "resource ladder",
+                                                                                            "save-point decision"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "project-entry protocol",
+                                                                                           "global-experience-agent entry protocol",
+                                                                                           "outcome-directed iteration protocol",
+                                                                                           "turn-snapshot protocol",
+                                                                                           "closeout protocol"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "single accountable controller",
+                                                                                    "default deny",
+                                                                                    "interface labels never elevate authority",
+                                                                                    "human, llm, and internal units cannot directly mutate Agent structure",
+                                                                                    "only explicitly authorized global-control can route structural mutation",
+                                                                                    "no hidden runtime takeover",
+                                                                                    "no structural mutation outside idle or verified save-point boundaries",
+                                                                                    "busy structural operations reject synchronously",
+                                                                                    "legacy global experience skill work enters as a harness resource call"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "resources",
+                                                                "required_structures":  [
+                                                                                            "information units",
+                                                                                            "functional units",
+                                                                                            "owner skill surfaces",
+                                                                                            "owner connection graph",
+                                                                                            "deterministic scripts",
+                                                                                            "graph evidence"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "progressive disclosure",
+                                                                                           "graph-first orientation when callable",
+                                                                                           "owner-route resolution",
+                                                                                           "source-file verification"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "prefer existing owners",
+                                                                                    "all active owners remain reachable through the harness",
+                                                                                    "evidence-only routing cannot execute a gated side effect",
+                                                                                    "do not store raw private sessions or secrets",
+                                                                                    "project facts stay project-local"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "filesystem",
+                                                                "required_structures":  [
+                                                                                            "single Agent root",
+                                                                                            "numbered lifecycle zones",
+                                                                                            "typed projection manifests",
+                                                                                            "canonical runtime",
+                                                                                            "Owner Skill references",
+                                                                                            "local-state boundary",
+                                                                                            "compatibility adapters"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "authorized structure change",
+                                                                                           "deterministic projection sync",
+                                                                                           "typed path resolution",
+                                                                                           "projection drift test",
+                                                                                           "protected-path enforcement"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "no duplicate Owner Skill implementation",
+                                                                                    "generated files stay below agent root",
+                                                                                    "private local state stays outside agent root",
+                                                                                    "legacy adapters remain forward-only",
+                                                                                    "stale generated files are removed only by marker"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "tool_gates",
+                                                                "required_structures":  [
+                                                                                            "gate owner",
+                                                                                            "lifecycle states",
+                                                                                            "tool registry",
+                                                                                            "active tool names",
+                                                                                            "preflight evidence",
+                                                                                            "verification result",
+                                                                                            "capture or error report"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "requested-to-verified lifecycle",
+                                                                                           "tool-registry update protocol",
+                                                                                           "non-idempotent retry block",
+                                                                                           "structured error feedback on unexpected behavior"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "Git/release/install/credential/external/top-owner/agent-structure actions require their owning gates",
+                                                                                    "successful controllers return machine-readable JSON when called by parent workflows",
+                                                                                    "human-readable command output must be suppressed or captured before parent JSON results",
+                                                                                    "invalid or duplicate active tools are rejected"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "session_and_save_points",
+                                                                "required_structures":  [
+                                                                                            "tree entry",
+                                                                                            "leaf entry",
+                                                                                            "pending session write",
+                                                                                            "queue entry",
+                                                                                            "compaction checkpoint",
+                                                                                            "branch summary",
+                                                                                            "rollback snapshot",
+                                                                                            "publication envelope"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "metadata-only continuity",
+                                                                                           "pending-write flush protocol",
+                                                                                           "queue-drain protocol",
+                                                                                           "rollback verification",
+                                                                                           "publication-envelope binding"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "raw private sessions stay out of Git",
+                                                                                    "proof reuse requires exact HEAD and path-hash match",
+                                                                                    "candidate-only proof cannot satisfy Git publication",
+                                                                                    "accepted writes are not dropped on abort or failure cleanup"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "extensions_and_subagents",
+                                                                "required_structures":  [
+                                                                                            "extension surface inventory",
+                                                                                            "hook system",
+                                                                                            "observability event contract",
+                                                                                            "admission gate",
+                                                                                            "agent registry",
+                                                                                            "subagent lifecycle",
+                                                                                            "merge verifier"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "source review",
+                                                                                           "trust-scope review",
+                                                                                           "hook reducer protocol",
+                                                                                           "safe observability protocol",
+                                                                                           "isolated write-surface handoff",
+                                                                                           "evidence-bearing child completion",
+                                                                                           "merge verification",
+                                                                                           "child cancellation"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "raw Pi extensions are not loaded by default",
+                                                                                    "subagents require registered profiles and bounded authority",
+                                                                                    "external runtimes require explicit current authority",
+                                                                                    "observability subscribers are passive and redacted by default"
+                                                                                ]
+                                                            },
+                                                            {
+                                                                "scope":  "recovery_and_completion",
+                                                                "required_structures":  [
+                                                                                            "retryable operation list",
+                                                                                            "non-retryable boundary list",
+                                                                                            "durable recovery entries",
+                                                                                            "abort semantics",
+                                                                                            "human review decisions",
+                                                                                            "evaluation surfaces",
+                                                                                            "blocked conditions",
+                                                                                            "settlement conditions",
+                                                                                            "agent exit alignment"
+                                                                                        ],
+                                                                "required_protocols":  [
+                                                                                           "safe repair/retest",
+                                                                                           "durable restore protocol",
+                                                                                           "abort barrier protocol",
+                                                                                           "human-review resume protocol",
+                                                                                           "repeatable eval protocol",
+                                                                                           "error-feedback closeout",
+                                                                                           "candidate classification",
+                                                                                           "agent exit protocol"
+                                                                                       ],
+                                                                "constraints":  [
+                                                                                    "rollback failure blocks mutation and Git",
+                                                                                    "verification failure outside repair scope blocks completion",
+                                                                                    "residual risk must be named",
+                                                                                    "unfinished provider streams and unsafe tool calls are not retried automatically",
+                                                                                    "no global experience task exits without proof/state alignment"
+                                                                                ]
+                                                            }
+                                                        ],
+                                  "diagram":  {
+                                                  "path":  "docs/assets/global-experience-agent-architecture.png",
+                                                  "paper_style_path":  "docs/assets/global-experience-agent-architecture-paper-style.png",
+                                                  "paper_style_provenance":  "docs/assets/global-experience-agent-architecture-paper-style.provenance.md",
+                                                  "provenance":  "docs/assets/global-experience-agent-architecture.provenance.md",
+                                                  "generator":  "scripts/New-AgentArchitectureDiagram.ps1",
+                                                  "mapping":  "config/agent-architecture-diagram.json",
+                                                  "owner_network":  "config/agent-owner-connections.json",
+                                                  "agent_registry":  "config/global-experience-agent-registry.json",
+                                                  "interface_policy":  "config/agent-interface-policy.json",
+                                                  "agent_filesystem":  "agent/agent-filesystem.json",
+                                                  "test":  "scripts/Test-AgentArchitectureDiagram.ps1",
+                                                  "theme":  "warm canvas, navy, teal, amber"
+                                              }
+                              },
+    "completion":  {
+                       "settled_when":  [
+                                            "task output exists",
+                                            "narrowest proving check passed",
+                                            "state changes are scoped and reviewable",
+                                            "residual risks are named",
+                                            "reusable lessons are captured or consciously left as candidates"
+                                        ],
+                       "blocked_when":  [
+                                            "required user authority is missing",
+                                            "source evidence cannot be refreshed and local evidence is insufficient",
+                                            "verification fails outside the authorized repair scope",
+                                            "rollback boundary is unclear"
+                                        ]
+                   }
+}

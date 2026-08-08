@@ -1,0 +1,53 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-skill-packaging",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-skill-packaging/SKILL.md"
+                ],
+    "id":  "codex-skill-packaging",
+    "owner":  "codex-skill-packaging",
+    "plane":  "platform",
+    "stage":  "next",
+    "canonical_skill":  "skills/codex-skill-packaging/SKILL.md",
+    "triggers":  [
+                     "skill packaging",
+                     "subskill import",
+                     "discovery interface"
+                 ],
+    "consumes":  [
+                     "owner decision",
+                     "portable source",
+                     "validation contract"
+                 ],
+    "produces":  [
+                     "discoverable skill package",
+                     "interface mapping",
+                     "package validation"
+                 ],
+    "verification":  "owner fit, secret scan, skill validation, migration and global-interface checks",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-knowledge-system",
+                         "artifact":  "governing knowledge",
+                         "event":  "functional_packaging_requested"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-skill-portability",
+                         "artifact":  "validated skill package",
+                         "event":  "portability_review_requested"
+                     },
+                     {
+                         "to":  "codex-git-operations",
+                         "artifact":  "validated discovery interface",
+                         "event":  "publication_scope_ready"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

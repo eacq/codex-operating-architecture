@@ -1,0 +1,288 @@
+{
+    "schema_version":  1,
+    "promotion_policy":  {
+                             "minimum_successes":  3,
+                             "minimum_projects":  2
+                         },
+    "events":  [
+                   {
+                       "package":  "pyyaml",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "PyYAML",
+                       "purpose":  "validation runtime yaml dependency",
+                       "outcome":  "success",
+                       "verification":  "python -c import yaml",
+                       "recorded_at":  "2026-07-23T15:24:12.0829831Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:24:48.5682868Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:24:48.6246227Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:24:48.6446244Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:24:48.6646172Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:24:50.7718255Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:25:02.8723559Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:25:05.0489487Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:25:07.1104745Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:29:17.0460436Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:29:17.4440906Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:29:17.9100113Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:29:18.1487831Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "failed",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:29:31.5189857Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:30:05.0356815Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:30:05.5886213Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:30:05.9790212Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:30:06.1820216Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "failed",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:30:38.1454504Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "failed",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:30:38.1724536Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "failed",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:30:38.1949715Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "failed",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:30:38.2196832Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:31:38.4834565Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:31:38.8295049Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:31:38.9175047Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "unverified",
+                       "verification":  "profile recorded",
+                       "recorded_at":  "2026-07-23T15:31:39.0252092Z"
+                   },
+                   {
+                       "package":  "pyyaml",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "PyYAML",
+                       "purpose":  "validation runtime yaml dependency",
+                       "outcome":  "success",
+                       "verification":  "python -s -c import yaml",
+                       "recorded_at":  "2026-07-23T15:31:44.1890628Z"
+                   },
+                   {
+                       "package":  "python-docx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-docx",
+                       "purpose":  "profile:office-media-basic; Read and write DOCX content.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:32:14.4955290Z"
+                   },
+                   {
+                       "package":  "python-pptx",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "python-pptx",
+                       "purpose":  "profile:office-media-basic; Read and write PPTX slides and notes when supported.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:32:14.5215320Z"
+                   },
+                   {
+                       "package":  "pypdf",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "pypdf",
+                       "purpose":  "profile:office-media-basic; Pure-Python PDF text extraction, split, merge, and metadata operations.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:32:14.5485357Z"
+                   },
+                   {
+                       "package":  "pillow",
+                       "project_root":  "F:\\codex",
+                       "requirement":  "Pillow",
+                       "purpose":  "profile:office-media-basic; Image metadata, conversion, resizing, and verification.",
+                       "outcome":  "success",
+                       "verification":  "pip install",
+                       "recorded_at":  "2026-07-23T15:32:14.5785329Z"
+                   }
+               ]
+}

@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "interface:internal-functional-unit",
+    "kind":  "interface",
+    "sources":  [
+                    "config/agent-interface-policy.json"
+                ],
+    "id":  "internal-functional-unit",
+    "audience":  "root-concept-specialist-and-child-agents",
+    "permissions":  [
+                        "observe",
+                        "functional-unit-use",
+                        "agent-review"
+                    ],
+    "structural_mutation":  "deny",
+    "rule":  "internal units may change only registered owner-owned functional surfaces inside the parent task contract; structural surfaces must return to the root authorization boundary",
+    "default_decision":  "deny",
+    "exits":  [
+                  "evidence",
+                  "save-point",
+                  "handoff",
+                  "authorization-required",
+                  "error-feedback",
+                  "agent-reviewed"
+              ]
+}

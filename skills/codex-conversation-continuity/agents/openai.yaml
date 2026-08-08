@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conversation Continuity"
+  short_description: "Index local Codex history across provider switches."
+  default_prompt: "Use $codex-conversation-continuity to locate relevant local Codex conversations before continuing this task."

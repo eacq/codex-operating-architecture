@@ -1,0 +1,71 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "runtime:controller",
+    "kind":  "runtime-catalog",
+    "sources":  [
+                    "config/agent-system.json",
+                    "agent/agent-filesystem.json"
+                ],
+    "controller":  "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+    "implementation":  "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+    "memory_backend":  "agent/40-runtime/Invoke-AgentMemoryStore.py",
+    "intent_policy":  "config/agent-intent-policy.json",
+    "state_reader":  "agent/40-runtime/Get-AgentHarnessState.ps1",
+    "modes":  [
+                  "Inspect",
+                  "Verify",
+                  "Run",
+                  "Continue",
+                  "Resume",
+                  "Abort"
+              ],
+    "operations":  [
+                       "Auto",
+                       "ClassifyIntent",
+                       "VerifyAgent",
+                       "DescribeFilesystem",
+                       "ResolveAgentPath",
+                       "DescribeInterfaces",
+                       "EvaluateAccess",
+                       "RetrieveContext",
+                       "StartWork",
+                       "StoreMemory",
+                       "SearchMemory",
+                       "ConsolidateMemory",
+                       "RenderMemorySnapshot",
+                       "RouteOwner",
+                       "DelegateSubagent",
+                       "CompleteSubagent",
+                       "JoinSubagent",
+                       "CancelSubagent",
+                       "CompleteIteration",
+                       "CandidateReport",
+                       "RequestStructureChange"
+                   ],
+    "durable_state_root":  ".codex/project/agent-sessions",
+    "state_files":  [
+                        "state.json",
+                        "events.jsonl"
+                    ],
+    "compatibility_adapters":  [
+                                   {
+                                       "legacy":  "scripts/Invoke-GlobalExperienceAgent.ps1",
+                                       "canonical":  "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+                                       "policy":  "forward-only",
+                                       "removal_boundary":  "next-major-release"
+                                   },
+                                   {
+                                       "legacy":  "scripts/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                       "canonical":  "agent/40-runtime/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                       "policy":  "forward-only",
+                                       "removal_boundary":  "next-major-release"
+                                   },
+                                   {
+                                       "legacy":  "scripts/Get-AgentHarnessState.ps1",
+                                       "canonical":  "agent/40-runtime/Get-AgentHarnessState.ps1",
+                                       "policy":  "forward-only",
+                                       "removal_boundary":  "next-major-release"
+                                   }
+                               ]
+}

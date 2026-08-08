@@ -1,0 +1,64 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-experience-capture",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-experience-capture/SKILL.md"
+                ],
+    "id":  "codex-experience-capture",
+    "owner":  "codex-experience-capture",
+    "plane":  "evidence",
+    "stage":  "observe",
+    "canonical_skill":  "skills/codex-experience-capture/SKILL.md",
+    "triggers":  [
+                     "verified iteration",
+                     "Git milestone",
+                     "reusable lesson"
+                 ],
+    "consumes":  [
+                     "tool result",
+                     "test evidence",
+                     "error feedback",
+                     "Git evidence"
+                 ],
+    "produces":  [
+                     "experience candidate",
+                     "candidate report",
+                     "verified ledger entry"
+                 ],
+    "verification":  "source, scope, invalidation, deduplication, and promotion status are explicit",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-git-operations",
+                         "artifact":  "Git milestone evidence",
+                         "event":  "experience_capture_required"
+                     },
+                     {
+                         "from":  "codex-office-cli",
+                         "artifact":  "document parse validation result",
+                         "event":  "parse_experience_observed"
+                     },
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "verified deliverable evidence",
+                         "event":  "outcome_observed"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-error-feedback",
+                         "artifact":  "unexpected-result candidate",
+                         "event":  "failure_classification_required"
+                     },
+                     {
+                         "to":  "codex-knowledge-system",
+                         "artifact":  "verified experience",
+                         "event":  "durable_knowledge_requested"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

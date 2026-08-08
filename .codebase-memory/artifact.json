@@ -1,0 +1,11 @@
+{
+    "schema_version": 2,
+    "commit": "a2a4f0c077a666a823735ec13141d7446f1c5d21",
+    "indexed_at": "2026-08-08T05:51:18Z",
+    "project": "F-codex",
+    "nodes": 10987,
+    "edges": 13666,
+    "original_size": 13893632,
+    "compressed_size": 1824389,
+    "compression_level": 3
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "agent-memory-as-skill-policy",
+  "source": {
+    "primary": "https://github.com/LesterYu0/feynman-build-workshop/tree/main/episodes/07-agent-memory-as-skill",
+    "baseline": "https://github.com/LesterYu0/feynman-build-workshop/tree/main/episodes/01-agent-memory-system",
+    "adaptation": "method-source-only"
+  },
+  "contract": {
+    "owner": "global-experience-agent",
+    "concept_agent": "experience-memory-agent",
+    "capability_kind": "registered-functional-unit",
+    "rule": "Agent memory is a callable skill/action space below the root Agent, not a parallel global experience system entrypoint.",
+    "baseline_from_episode_01": [
+      "classify memory before storing",
+      "store and retrieve with SQLite/FTS5 before adding vector or graph memory",
+      "track temporal validity with created_at, valid_until, and superseded_by",
+      "render stable Frozen Snapshots for reusable prompt-prefix memory",
+      "consolidate stale, duplicate, or high-priority semantic and procedural records"
+    ],
+    "skill_layer_from_episode_07": [
+      "search before store when an existing record may already answer or be updated",
+      "upsert or supersede instead of unbounded append",
+      "retrieve memory on demand instead of injecting the whole store",
+      "review complete memory-action traces at save-point boundaries",
+      "iterate the scaffold with measured behavior rather than static prompt edits"
+    ]
+  },
+  "operations": {
+    "StoreMemory": {
+      "action": "write-or-upsert",
+      "owner": "codex-experience-capture",
+      "preference": "use SearchMemory first unless the memory is newly produced by the current verified result",
+      "dedupe": "content_sha256 deterministic id plus optional supersedes link",
+      "required_metadata": ["memory_type", "layer", "source", "priority", "authority"]
+    },
+    "SearchMemory": {
+      "action": "read",
+      "owner": "codex-conversation-continuity",
+      "preference": "use before decisions where prior project or global experience can reduce repeated steering",
+      "retrieval": "FTS5 first with TTL and supersession filters"
+    },
+    "ConsolidateMemory": {
+      "action": "meta-review",
+      "owner": "codex-experience-capture",
+      "preference": "run at closeout or after noisy memory-action traces",
+      "effects": ["archive stale active records", "freeze high-priority semantic or procedural records", "record consolidation evidence"]
+    },
+    "RenderMemorySnapshot": {
+      "action": "snapshot",
+      "owner": "codex-knowledge-system",
+      "preference": "render stable prompt-prefix memory and append dynamic task context after it",
+      "output": ".codex/project/agent-memory/frozen-snapshot.md"
+    }
+  },
+  "interfaces": {
+    "human": {
+      "allowed": ["SearchMemory", "StoreMemory", "ConsolidateMemory", "RenderMemorySnapshot"],
+      "structure_mutation": "denied"
+    },
+    "llm": {
+      "allowed": ["SearchMemory", "StoreMemory", "ConsolidateMemory", "RenderMemorySnapshot"],
+      "structure_mutation": "denied"
+    },
+    "internal-functional-unit": {
+      "allowed": ["SearchMemory", "StoreMemory", "ConsolidateMemory", "RenderMemorySnapshot"],
+      "structure_mutation": "denied"
+    },
+    "global-control": {
+      "allowed": ["SearchMemory", "StoreMemory", "ConsolidateMemory", "RenderMemorySnapshot", "RequestStructureChange"],
+      "structure_mutation": "only-through-agent_structure-gate"
+    }
+  },
+  "diagnostics": {
+    "metrics": [
+      {
+        "id": "write_search_ratio",
+        "baseline_signal": "writes without reads",
+        "warning_threshold": "> 0.6 over a bounded trace",
+        "target": "< 0.4 after scaffold iteration"
+      },
+      {
+        "id": "memory_growth_per_step",
+        "baseline_signal": "unbounded append",
+        "warning_threshold": "> 50 chars per step",
+        "target": "< 10 chars per step through upsert, supersession, archive, or snapshot"
+      },
+      {
+        "id": "redundant_write_ratio",
+        "baseline_signal": "duplicate records",
+        "warning_threshold": "> 20%",
+        "target": "dedupe through deterministic id or supersession"
+      },
+      {
+        "id": "memory_context_ratio",
+        "baseline_signal": "whole memory injected into prompt",
+        "warning_threshold": "> 40%",
+        "target": "< 25% with on-demand retrieval and Frozen Snapshot"
+      },
+      {
+        "id": "delayed_memory_failure_gap",
+        "baseline_signal": "late failure caused by early missed memory",
+        "warning_threshold": "> 100 steps",
+        "target": "review complete trace at save point and update scaffold or candidate record"
+      }
+    ],
+    "trace_review": {
+      "source": ".codex/project/agent-sessions/<session>/events.jsonl",
+      "save_point_rule": "review memory_action traces before promoting scaffold changes",
+      "promotion_rule": "verified cross-project memory behavior becomes a candidate or canonical policy; raw private traces never enter Git"
+    }
+  },
+  "verification": {
+    "tests": [
+      "scripts/Test-AgentMemorySystem.ps1",
+      "scripts/Test-AgentMemoryAsSkillPolicy.ps1",
+      "scripts/Test-AgentHarnessContract.ps1",
+      "scripts/Test-GlobalExperienceAgent.ps1",
+      "scripts/validate.ps1"
+    ],
+    "no_regression": [
+      "existing StoreMemory/SearchMemory/ConsolidateMemory/RenderMemorySnapshot operations remain callable",
+      "human, llm, and internal-functional-unit cannot directly mutate Agent memory structure",
+      "policy is registered in config/agent-system.json and projected through agent/agent-filesystem.json",
+      "no raw private memory content is tracked in Git"
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-text-style",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-text-style/SKILL.md"
+                ],
+    "id":  "codex-text-style",
+    "owner":  "codex-text-style",
+    "plane":  "capability",
+    "stage":  "execute",
+    "canonical_skill":  "skills/codex-text-style/SKILL.md",
+    "triggers":  [
+                     "academic prose",
+                     "bilingual revision",
+                     "meaning-preserving style"
+                 ],
+    "consumes":  [
+                     "source text",
+                     "protected claims",
+                     "style profile"
+                 ],
+    "produces":  [
+                     "constraint-preserving revision",
+                     "change rationale"
+                 ],
+    "verification":  "claims, numbers, citations, formulas, and markup remain protected",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "text delivery brief",
+                         "event":  "text_specialist_selected"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-image-workflow",
+                         "artifact":  "visual handoff brief",
+                         "event":  "visual_support_selected"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "constraint-preserving revision",
+                         "event":  "specialist_result_returned"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

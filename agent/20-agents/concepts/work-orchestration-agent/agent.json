@@ -1,0 +1,26 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "concept:work-orchestration-agent",
+    "kind":  "concept-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "work-orchestration-agent",
+    "owners":  [
+                   "codex-self-evolution",
+                   "codex-project-optimization",
+                   "codex-conversation-continuity",
+                   "codex-requirement-authoring",
+                   "codex-information-gathering",
+                   "codex-workflow-design",
+                   "codex-task-execution"
+               ],
+    "resources":  [
+                      ".codex/project/REQUIREMENTS.md",
+                      ".codex/project/WORKFLOWS.md",
+                      "config/agent-owner-connections.json"
+                  ],
+    "purpose":  "restore context, normalize goals, gather evidence, design work, and execute through accountable owners",
+    "child_policy":  "executable-under-current-authority"
+}

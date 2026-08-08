@@ -1,0 +1,29 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "interface:human",
+    "kind":  "interface",
+    "sources":  [
+                    "config/agent-interface-policy.json"
+                ],
+    "id":  "human",
+    "audience":  "people",
+    "permissions":  [
+                        "observe",
+                        "functional-unit-use",
+                        "gated-action",
+                        "agent-review"
+                    ],
+    "structural_mutation":  "deny",
+    "rule":  "people may use registered Agent functions and request gated work; structural change requires an explicit global-control call",
+    "default_decision":  "deny",
+    "exits":  [
+                  "response",
+                  "evidence",
+                  "handoff",
+                  "authorization-required",
+                  "gated-action-request",
+                  "error-feedback",
+                  "agent-reviewed"
+              ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "permission-inherited-candidate-processing",
+  "owner": "codex-experience-capture",
+  "architecture_owner": "codex-architecture-iteration",
+  "purpose": "让同一优化任务中明确授予的优化权限自动覆盖当前候选的审查、验证、分类和本地处理。",
+  "inheritance_rule": {
+    "enabled": true,
+    "applies_when": [
+      "用户在全局经验系统、Agent、skill、知识、工作流或架构优化任务中明确授予优化、深度优化、全部权限或同等范围的执行权限",
+      "用户明确要求自行处理候选、处理当前候选或将候选用于结构优化"
+    ],
+    "scope": "current-project-candidate-records-only",
+    "lifetime": "one-shot-per-explicit-user-authorization",
+    "default_processing_mode": "structural-optimization",
+    "ordinary_candidate_permission_mode": "guarded",
+    "formal_promotion_requires_explicit_request": true,
+    "no_periodic_or_unprompted_processing": true
+  },
+  "processing_contract": {
+    "required_steps": [
+      "read current candidate report",
+      "create one local authorization record",
+      "archive every original before mutation",
+      "preserve source wording and evidence paths",
+      "record structural optimization input before clearing derived records",
+      "run the narrowest proving test and regenerate the candidate report",
+      "retain rollback through the archive and repository diff"
+    ],
+    "structural_handoff": [
+      "codex-experience-capture",
+      "codex-knowledge-system",
+      "codex-architecture-iteration"
+    ]
+  },
+  "independent_gates": [
+    "formal promotion",
+    "external action",
+    "credential use",
+    "software installation or update",
+    "publication or upload",
+    "destructive mutation",
+    "Git commit, push, tag, or release",
+    "top-level owner or material Agent-structure change"
+  ],
+  "implementation": {
+    "authorization_path": ".codex/project/candidate-processing-authorization.json",
+    "processor": "skills/codex-experience-capture/scripts/Process-AuthorizedCandidateRecords.ps1",
+    "report": "skills/codex-experience-capture/scripts/New-GlobalIterationCandidateReport.ps1",
+    "active_authorization_status": "authorized",
+    "consumed_authorization_status": "consumed"
+  }
+}

@@ -1,0 +1,52 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-conversation-continuity",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-conversation-continuity/SKILL.md"
+                ],
+    "id":  "codex-conversation-continuity",
+    "owner":  "codex-conversation-continuity",
+    "plane":  "evidence",
+    "stage":  "session",
+    "canonical_skill":  "skills/codex-conversation-continuity/SKILL.md",
+    "triggers":  [
+                     "task continuity",
+                     "provider switch",
+                     "compacted context"
+                 ],
+    "consumes":  [
+                     "metadata-only task lineage",
+                     "project state",
+                     "branch summary"
+                 ],
+    "produces":  [
+                     "conversation metadata catalog",
+                     "bounded context inheritance"
+                 ],
+    "verification":  "metadata retrieval without raw private-session publication",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-project-optimization",
+                         "artifact":  "lifecycle scaffold",
+                         "event":  "session_context_initialized"
+                     },
+                     {
+                         "from":  "codex-git-operations",
+                         "artifact":  "repository checkpoint",
+                         "event":  "task_route_checkpointed"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-requirement-authoring",
+                         "artifact":  "bounded context",
+                         "event":  "goal_context_restored"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

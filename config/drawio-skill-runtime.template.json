@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "skill": "drawio-skill",
+  "drawio_executable": "",
+  "graphviz_executable": "",
+  "python_executable": "",
+  "notes": "Copy this non-secret template to %USERPROFILE%\\.codex\\private-skill-config\\drawio-skill.json and provide host-specific executable paths. Do not store credentials, diagrams, or user presets here."
+}

@@ -1,0 +1,2096 @@
+{
+  "nodes": [
+    {
+      "name": "Global Experience System",
+      "path": "00-Home\\Global Experience System.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Home",
+      "path": "00-Home\\Home.md",
+      "type": "index",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Agent Memory System",
+        "Codebase Memory MCP",
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Figure Optimization Subskill",
+        "Global Experience System",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge Index",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Literature Discovery Workflow",
+        "Mind Map Knowledge Workflow",
+        "Mother Skill Refinement",
+        "Paper Reading and Evidence Workflow",
+        "Portable Path Configuration",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary",
+        "Research Knowledge Module",
+        "Scientific Figure Workflow",
+        "Verified Experience Promotion",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Knowledge System Module",
+      "path": "00-Home\\Knowledge System Module.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Knowledge System Module",
+      "path": "01-Inbox\\Knowledge System Module.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "README",
+      "path": "01-Inbox\\README.md",
+      "type": "index",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module"
+      ]
+    },
+    {
+      "name": "Academic Text Style Module",
+      "path": "10-Modules\\Academic Text Style Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Workflow",
+        "Exact Word Layout Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Exact Word Layout Module",
+      "path": "10-Modules\\Exact Word Layout Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Figure Optimization Subskill",
+      "path": "10-Modules\\Figure Optimization Subskill.md",
+      "type": "subskill",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Workflow Module",
+        "Scientific Figure Workflow"
+      ]
+    },
+    {
+      "name": "Image Workflow Module",
+      "path": "10-Modules\\Image Workflow Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Figure Optimization Subskill",
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ]
+    },
+    {
+      "name": "Knowledge System Module",
+      "path": "10-Modules\\Knowledge System Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Project Knowledge Boundary",
+        "Research Knowledge Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Learning Audience Boundary",
+      "path": "10-Modules\\Learning Audience Boundary.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Research Knowledge Module",
+      "path": "10-Modules\\Research Knowledge Module.md",
+      "type": "module",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Academic Research Workflow",
+      "path": "20-Workflows\\Academic Research Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Local Experience Iteration Workflow"
+      ]
+    },
+    {
+      "name": "Academic Text Style Workflow",
+      "path": "20-Workflows\\Academic Text Style Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Academic Writing and Citation Workflow",
+      "path": "20-Workflows\\Academic Writing and Citation Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Codebase Graph Evidence Workflow",
+      "path": "20-Workflows\\Codebase Graph Evidence Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Codebase Memory MCP",
+        "Experience and Knowledge Architecture",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Exact Word Layout Workflow",
+      "path": "20-Workflows\\Exact Word Layout Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Module",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ]
+    },
+    {
+      "name": "Image Hosting and Cleanup Workflow",
+      "path": "20-Workflows\\Image Hosting and Cleanup Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Scientific Figure Workflow"
+      ]
+    },
+    {
+      "name": "Integrated Experience Feedback Loop",
+      "path": "20-Workflows\\Integrated Experience Feedback Loop.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Literature Discovery Workflow",
+      "path": "20-Workflows\\Literature Discovery Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Paper Reading and Evidence Workflow",
+        "Provider Capability Boundary",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Local Experience Iteration Workflow",
+      "path": "20-Workflows\\Local Experience Iteration Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop"
+      ]
+    },
+    {
+      "name": "Mind Map Knowledge Workflow",
+      "path": "20-Workflows\\Mind Map Knowledge Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Image Workflow Module",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Paper Reading and Evidence Workflow",
+      "path": "20-Workflows\\Paper Reading and Evidence Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "user",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Project Creation From Experience Workflow",
+      "path": "20-Workflows\\Project Creation From Experience Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Knowledge System Module",
+        "Project Knowledge Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Scientific Figure Workflow",
+      "path": "20-Workflows\\Scientific Figure Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Figure Optimization Subskill",
+        "Provider Capability Boundary"
+      ]
+    },
+    {
+      "name": "XLW1 Manuscript Refinement Workflow",
+      "path": "20-Workflows\\XLW1 Manuscript Refinement Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    },
+    {
+      "name": "Zotero Reference Workflow",
+      "path": "20-Workflows\\Zotero Reference Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Writing and Citation Workflow",
+        "Literature Discovery Workflow",
+        "Paper Reading and Evidence Workflow"
+      ]
+    },
+    {
+      "name": "2026-08-06 全书架重新学习记录",
+      "path": "30-Knowledge\\2026-08-06 全书架重新学习记录.md",
+      "type": "workflow",
+      "status": "guarded-derived-learning",
+      "learning_audience": "codex",
+      "links": [
+        "Agent Memory System",
+        "Agent Skill Evolution Optimization",
+        "Global Experience System",
+        "Learning Governance"
+      ]
+    },
+    {
+      "name": "2026-08-06 历史学习资产全面复训记录",
+      "path": "30-Knowledge\\2026-08-06 历史学习资产全面复训记录.md",
+      "type": "workflow",
+      "status": "verified",
+      "learning_audience": "codex",
+      "links": []
+    },
+    {
+      "name": "Academic Manuscript Revision Boundaries",
+      "path": "30-Knowledge\\Academic Manuscript Revision Boundaries.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Academic Text Style Module",
+        "Academic Text Style Workflow",
+        "Academic Writing and Citation Workflow",
+        "Exact Word Layout Workflow"
+      ]
+    },
+    {
+      "name": "Agent Chunking Retrieval System",
+      "path": "30-Knowledge\\Agent Chunking Retrieval System.md",
+      "type": "information-unit",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": []
+    },
+    {
+      "name": "Agent Document Parse Pipeline",
+      "path": "30-Knowledge\\Agent Document Parse Pipeline.md",
+      "type": "information-unit",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": []
+    },
+    {
+      "name": "Agent Intent Recognition System",
+      "path": "30-Knowledge\\Agent Intent Recognition System.md",
+      "type": "knowledge",
+      "status": "active",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Agent Loop System",
+      "path": "30-Knowledge\\Agent Loop System.md",
+      "type": "information-unit",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": []
+    },
+    {
+      "name": "Agent Memory System",
+      "path": "30-Knowledge\\Agent Memory System.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ]
+    },
+    {
+      "name": "Agent Skill Evolution Optimization",
+      "path": "30-Knowledge\\Agent Skill Evolution Optimization.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "2026-08-06 全书架重新学习记录",
+        "Agent Memory System",
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ]
+    },
+    {
+      "name": "Agent Skill Invocation Governance",
+      "path": "30-Knowledge\\Agent Skill Invocation Governance.md",
+      "type": "information-unit",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Agent Loop System",
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance"
+      ]
+    },
+    {
+      "name": "Baoyu Skills Network Learning",
+      "path": "30-Knowledge\\Baoyu Skills Network Learning.md",
+      "type": "concept",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Content Production Workflow",
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance",
+        "Subskill Packaging Boundary",
+        "Visual Format Selection"
+      ]
+    },
+    {
+      "name": "Career Planning Agent Workflow",
+      "path": "30-Knowledge\\Career Planning Agent Workflow.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Cherry Studio Capability Routing and Durable Workflow Learning",
+      "path": "30-Knowledge\\Cherry Studio Capability Routing and Durable Workflow Learning.md",
+      "type": "information-unit",
+      "status": "verified-source-adaptation",
+      "learning_audience": "codex",
+      "links": []
+    },
+    {
+      "name": "Codebase Memory MCP",
+      "path": "30-Knowledge\\Codebase Memory MCP.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Codebase Graph Evidence Workflow",
+        "Experience and Knowledge Architecture",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Content Production Workflow",
+      "path": "30-Knowledge\\Content Production Workflow.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience System Error Feedback",
+        "Learning Governance",
+        "Visual Format Selection"
+      ]
+    },
+    {
+      "name": "Experience and Knowledge Architecture",
+      "path": "30-Knowledge\\Experience and Knowledge Architecture.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Global Experience System",
+        "Image Hosting and Cleanup Workflow",
+        "Information and Functional Unit Principle",
+        "Knowledge System Module",
+        "Learning Audience Boundary",
+        "Mind Map Knowledge Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Experience Knowledge Subskill Refinement",
+      "path": "30-Knowledge\\Experience Knowledge Subskill Refinement.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Integrated Experience Feedback Loop",
+        "Knowledge System Module",
+        "Subskill Packaging Boundary"
+      ]
+    },
+    {
+      "name": "Experience System Error Feedback",
+      "path": "30-Knowledge\\Experience System Error Feedback.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "GitHub README Presentation Network Learning",
+      "path": "30-Knowledge\\GitHub README Presentation Network Learning.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Global Experience System",
+      "path": "30-Knowledge\\Global Experience System.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Agent Intent Recognition System",
+        "Agent Loop System",
+        "Agent Memory System",
+        "Experience Knowledge Subskill Refinement",
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Global Iteration Candidate Report",
+        "Information and Functional Unit Principle",
+        "Local Experience Iteration Workflow",
+        "Minimal Agent Architecture Template",
+        "Pi Agent Harness Network Learning",
+        "Top-Level Owner Governance",
+        "Visual Format Selection"
+      ]
+    },
+    {
+      "name": "Global Iteration Candidate Report",
+      "path": "30-Knowledge\\Global Iteration Candidate Report.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance"
+      ]
+    },
+    {
+      "name": "Header Frame Body Wrap Diagnostic",
+      "path": "30-Knowledge\\Header Frame Body Wrap Diagnostic.md",
+      "type": "concept",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Workflow",
+        "Verified Experience Promotion",
+        "XLW1 JME Formatting Guardrails"
+      ]
+    },
+    {
+      "name": "Information and Functional Unit Principle",
+      "path": "30-Knowledge\\Information and Functional Unit Principle.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Knowledge System Module",
+        "Learning Governance",
+        "Pi Agent Harness Network Learning",
+        "Top-Level Owner Governance",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Learning Audience Boundary",
+      "path": "30-Knowledge\\Learning Audience Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "both",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Learning Governance",
+      "path": "30-Knowledge\\Learning Governance.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Information and Functional Unit Principle",
+        "Knowledge System Module",
+        "Pi Agent Harness Network Learning",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Local Experience Iteration Workflow",
+      "path": "30-Knowledge\\Local Experience Iteration Workflow.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Locked Template DOCX Package Invariants",
+      "path": "30-Knowledge\\Locked Template DOCX Package Invariants.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Exact Word Layout Module",
+        "Exact Word Layout Workflow",
+        "Header Frame Body Wrap Diagnostic",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "LoopX Control Plane",
+      "path": "30-Knowledge\\LoopX Control Plane.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Matt Pocock Skills Method System Relearning",
+      "path": "30-Knowledge\\Matt Pocock Skills Method System Relearning.md",
+      "type": "concept",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Codebase Graph Evidence Workflow",
+        "Experience System Error Feedback",
+        "Global Experience System",
+        "Learning Governance",
+        "Matt Pocock Skills Network Learning",
+        "Oh My Codex and OMX Lite Network Learning",
+        "Project Vocabulary and Decision Brief",
+        "Subskill Packaging Boundary"
+      ]
+    },
+    {
+      "name": "Matt Pocock Skills Network Learning",
+      "path": "30-Knowledge\\Matt Pocock Skills Network Learning.md",
+      "type": "concept",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Global Experience System",
+        "Subskill Packaging Boundary"
+      ]
+    },
+    {
+      "name": "Minimal Agent Architecture Template",
+      "path": "30-Knowledge\\Minimal Agent Architecture Template.md",
+      "type": "information-unit",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Agent Loop System",
+        "Agent Memory System",
+        "Agent Skill Invocation Governance",
+        "Global Experience System"
+      ]
+    },
+    {
+      "name": "Mother Skill Refinement",
+      "path": "30-Knowledge\\Mother Skill Refinement.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience Knowledge Subskill Refinement",
+        "Experience and Knowledge Architecture",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Nature Scientific Figure Workflow",
+      "path": "30-Knowledge\\Nature Scientific Figure Workflow.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Oh My Codex and OMX Lite Network Learning",
+      "path": "30-Knowledge\\Oh My Codex and OMX Lite Network Learning.md",
+      "type": "concept",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Codebase Memory MCP",
+        "Global Experience System",
+        "Matt Pocock Skills Network Learning",
+        "Subskill Packaging Boundary"
+      ]
+    },
+    {
+      "name": "Pi Agent Harness Network Learning",
+      "path": "30-Knowledge\\Pi Agent Harness Network Learning.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Global Experience System",
+        "Information and Functional Unit Principle",
+        "Learning Governance",
+        "Matt Pocock Skills Method System Relearning",
+        "Oh My Codex and OMX Lite Network Learning",
+        "Top-Level Owner Governance"
+      ]
+    },
+    {
+      "name": "Portable Path Configuration",
+      "path": "30-Knowledge\\Portable Path Configuration.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Image Hosting and Cleanup Workflow",
+        "Knowledge Tooling",
+        "Project Knowledge Boundary",
+        "Provider Capability Boundary"
+      ]
+    },
+    {
+      "name": "PPT Master Deck Factory Workflow",
+      "path": "30-Knowledge\\PPT Master Deck Factory Workflow.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Project Creation Capability",
+      "path": "30-Knowledge\\Project Creation Capability.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience System Error Feedback",
+        "Experience and Knowledge Architecture",
+        "Project Creation From Experience Workflow",
+        "Project Knowledge Boundary"
+      ]
+    },
+    {
+      "name": "Project Knowledge Boundary",
+      "path": "30-Knowledge\\Project Knowledge Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Project Vocabulary and Decision Brief",
+      "path": "30-Knowledge\\Project Vocabulary and Decision Brief.md",
+      "type": "workflow",
+      "status": "unknown",
+      "learning_audience": "codex",
+      "links": [
+        "Learning Governance",
+        "Project Creation Capability",
+        "Subskill Packaging Boundary",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Provider Capability Boundary",
+      "path": "30-Knowledge\\Provider Capability Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Literature Discovery Workflow",
+        "Scientific Figure Workflow",
+        "Zotero Reference Workflow"
+      ]
+    },
+    {
+      "name": "Reverse Skill Collaboration Control Plane",
+      "path": "30-Knowledge\\Reverse Skill Collaboration Control Plane.md",
+      "type": "untyped",
+      "status": "guarded-adaptation",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Solution Visualization Workflow",
+      "path": "30-Knowledge\\Solution Visualization Workflow.md",
+      "type": "workflow",
+      "status": "promoted-guarded",
+      "learning_audience": "codex",
+      "links": [
+        "Global Experience System",
+        "Image Workflow Module",
+        "Visual Format Selection"
+      ]
+    },
+    {
+      "name": "Subskill Packaging Boundary",
+      "path": "30-Knowledge\\Subskill Packaging Boundary.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Knowledge System Module",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "Top-Level Owner Governance",
+      "path": "30-Knowledge\\Top-Level Owner Governance.md",
+      "type": "architecture-governance",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Experience and Knowledge Architecture",
+        "Global Experience System",
+        "Mother Skill Refinement"
+      ]
+    },
+    {
+      "name": "Verified Experience Promotion",
+      "path": "30-Knowledge\\Verified Experience Promotion.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Project Knowledge Boundary"
+      ]
+    },
+    {
+      "name": "Visual Format Selection",
+      "path": "30-Knowledge\\Visual Format Selection.md",
+      "type": "workflow",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Baoyu Skills Network Learning",
+        "Experience and Knowledge Architecture",
+        "Global Experience System"
+      ]
+    },
+    {
+      "name": "XLW1 JME Formatting Guardrails",
+      "path": "30-Knowledge\\XLW1 JME Formatting Guardrails.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ]
+    },
+    {
+      "name": "XLW1 Manuscript Knowledge Map",
+      "path": "30-Knowledge\\XLW1 Manuscript Knowledge Map.md",
+      "type": "project",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "Project Knowledge Boundary",
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    },
+    {
+      "name": "XLW1 Source Figure Integrity",
+      "path": "30-Knowledge\\XLW1 Source Figure Integrity.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Refinement Workflow"
+      ]
+    },
+    {
+      "name": "XLW1 Template Header and Visual Object Fidelity",
+      "path": "30-Knowledge\\XLW1 Template Header and Visual Object Fidelity.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity"
+      ]
+    },
+    {
+      "name": "XLW1 Version Authority",
+      "path": "30-Knowledge\\XLW1 Version Authority.md",
+      "type": "concept",
+      "status": "active",
+      "learning_audience": "codex",
+      "links": [
+        "XLW1 API Conversation Evidence",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow"
+      ]
+    },
+    {
+      "name": "Codex Knowledge Map",
+      "path": "40-Maps\\Codex Knowledge Map.md",
+      "type": "untyped",
+      "status": "unknown",
+      "learning_audience": null,
+      "links": []
+    },
+    {
+      "name": "Knowledge Tooling",
+      "path": "90-Sources\\Knowledge Tooling.md",
+      "type": "source",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "Knowledge System Module",
+        "Mind Map Knowledge Workflow",
+        "Paper Reading and Evidence Workflow",
+        "Verified Experience Promotion"
+      ]
+    },
+    {
+      "name": "XLW1 API Conversation Evidence",
+      "path": "90-Sources\\XLW1 API Conversation Evidence.md",
+      "type": "source",
+      "status": "active",
+      "learning_audience": null,
+      "links": [
+        "XLW1 JME Formatting Guardrails",
+        "XLW1 Manuscript Knowledge Map",
+        "XLW1 Manuscript Refinement Workflow",
+        "XLW1 Source Figure Integrity",
+        "XLW1 Version Authority"
+      ]
+    }
+  ],
+  "edges": [
+    [
+      "2026-08-06 全书架重新学习记录",
+      "Agent Memory System"
+    ],
+    [
+      "2026-08-06 全书架重新学习记录",
+      "Agent Skill Evolution Optimization"
+    ],
+    [
+      "2026-08-06 全书架重新学习记录",
+      "Global Experience System"
+    ],
+    [
+      "2026-08-06 全书架重新学习记录",
+      "Learning Governance"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Academic Manuscript Revision Boundaries",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Academic Research Workflow",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Research Workflow",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Research Workflow",
+      "Local Experience Iteration Workflow"
+    ],
+    [
+      "Academic Text Style Module",
+      "Academic Text Style Workflow"
+    ],
+    [
+      "Academic Text Style Module",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Academic Text Style Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Academic Text Style Workflow",
+      "Academic Text Style Module"
+    ],
+    [
+      "Academic Text Style Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Academic Writing and Citation Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Agent Memory System",
+      "Global Experience System"
+    ],
+    [
+      "Agent Memory System",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Agent Memory System",
+      "Learning Governance"
+    ],
+    [
+      "Agent Skill Evolution Optimization",
+      "2026-08-06 全书架重新学习记录"
+    ],
+    [
+      "Agent Skill Evolution Optimization",
+      "Agent Memory System"
+    ],
+    [
+      "Agent Skill Evolution Optimization",
+      "Global Experience System"
+    ],
+    [
+      "Agent Skill Evolution Optimization",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Agent Skill Evolution Optimization",
+      "Learning Governance"
+    ],
+    [
+      "Agent Skill Invocation Governance",
+      "Agent Loop System"
+    ],
+    [
+      "Agent Skill Invocation Governance",
+      "Global Experience System"
+    ],
+    [
+      "Agent Skill Invocation Governance",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Agent Skill Invocation Governance",
+      "Learning Governance"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Content Production Workflow"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Learning Governance"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Baoyu Skills Network Learning",
+      "Visual Format Selection"
+    ],
+    [
+      "Codebase Graph Evidence Workflow",
+      "Codebase Memory MCP"
+    ],
+    [
+      "Codebase Graph Evidence Workflow",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Codebase Graph Evidence Workflow",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Codebase Graph Evidence Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Codebase Graph Evidence Workflow"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Knowledge System Module"
+    ],
+    [
+      "Codebase Memory MCP",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Content Production Workflow",
+      "Baoyu Skills Network Learning"
+    ],
+    [
+      "Content Production Workflow",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Content Production Workflow",
+      "Learning Governance"
+    ],
+    [
+      "Content Production Workflow",
+      "Visual Format Selection"
+    ],
+    [
+      "Exact Word Layout Module",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Exact Word Layout Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Exact Word Layout Workflow",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Global Experience System"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience Knowledge Subskill Refinement",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience System Error Feedback",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Global Experience System"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Knowledge System Module"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Experience and Knowledge Architecture",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Figure Optimization Subskill",
+      "Image Workflow Module"
+    ],
+    [
+      "Figure Optimization Subskill",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Global Experience System",
+      "Agent Intent Recognition System"
+    ],
+    [
+      "Global Experience System",
+      "Agent Loop System"
+    ],
+    [
+      "Global Experience System",
+      "Agent Memory System"
+    ],
+    [
+      "Global Experience System",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Global Experience System",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Global Experience System",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Global Experience System",
+      "Global Iteration Candidate Report"
+    ],
+    [
+      "Global Experience System",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Global Experience System",
+      "Local Experience Iteration Workflow"
+    ],
+    [
+      "Global Experience System",
+      "Minimal Agent Architecture Template"
+    ],
+    [
+      "Global Experience System",
+      "Pi Agent Harness Network Learning"
+    ],
+    [
+      "Global Experience System",
+      "Top-Level Owner Governance"
+    ],
+    [
+      "Global Experience System",
+      "Visual Format Selection"
+    ],
+    [
+      "Global Iteration Candidate Report",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Global Iteration Candidate Report",
+      "Global Experience System"
+    ],
+    [
+      "Global Iteration Candidate Report",
+      "Learning Governance"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Header Frame Body Wrap Diagnostic",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "Home",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Home",
+      "Agent Memory System"
+    ],
+    [
+      "Home",
+      "Codebase Memory MCP"
+    ],
+    [
+      "Home",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Home",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Home",
+      "Figure Optimization Subskill"
+    ],
+    [
+      "Home",
+      "Global Experience System"
+    ],
+    [
+      "Home",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Home",
+      "Image Workflow Module"
+    ],
+    [
+      "Home",
+      "Knowledge Index"
+    ],
+    [
+      "Home",
+      "Knowledge System Module"
+    ],
+    [
+      "Home",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Home",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Home",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Home",
+      "Mother Skill Refinement"
+    ],
+    [
+      "Home",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Home",
+      "Portable Path Configuration"
+    ],
+    [
+      "Home",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Home",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Home",
+      "Research Knowledge Module"
+    ],
+    [
+      "Home",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Home",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Home",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Image Workflow Module"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Image Hosting and Cleanup Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Image Workflow Module",
+      "Figure Optimization Subskill"
+    ],
+    [
+      "Image Workflow Module",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Image Workflow Module",
+      "Knowledge System Module"
+    ],
+    [
+      "Image Workflow Module",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Global Experience System"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Knowledge System Module"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Learning Governance"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Pi Agent Harness Network Learning"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Top-Level Owner Governance"
+    ],
+    [
+      "Information and Functional Unit Principle",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Image Workflow Module"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Knowledge System Module"
+    ],
+    [
+      "Integrated Experience Feedback Loop",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Knowledge System Module",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Knowledge System Module",
+      "Image Workflow Module"
+    ],
+    [
+      "Knowledge System Module",
+      "Learning Audience Boundary"
+    ],
+    [
+      "Knowledge System Module",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Knowledge System Module",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Knowledge System Module",
+      "Research Knowledge Module"
+    ],
+    [
+      "Knowledge System Module",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Knowledge Tooling",
+      "Knowledge System Module"
+    ],
+    [
+      "Knowledge Tooling",
+      "Mind Map Knowledge Workflow"
+    ],
+    [
+      "Knowledge Tooling",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Knowledge Tooling",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Learning Audience Boundary",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Learning Governance",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Learning Governance",
+      "Knowledge System Module"
+    ],
+    [
+      "Learning Governance",
+      "Pi Agent Harness Network Learning"
+    ],
+    [
+      "Learning Governance",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Literature Discovery Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Local Experience Iteration Workflow",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Local Experience Iteration Workflow",
+      "Integrated Experience Feedback Loop"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Exact Word Layout Module"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Exact Word Layout Workflow"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Header Frame Body Wrap Diagnostic"
+    ],
+    [
+      "Locked Template DOCX Package Invariants",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Codebase Graph Evidence Workflow"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Global Experience System"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Learning Governance"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Matt Pocock Skills Network Learning"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Oh My Codex and OMX Lite Network Learning"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Project Vocabulary and Decision Brief"
+    ],
+    [
+      "Matt Pocock Skills Method System Relearning",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Matt Pocock Skills Network Learning",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Image Workflow Module"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Mind Map Knowledge Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Minimal Agent Architecture Template",
+      "Agent Loop System"
+    ],
+    [
+      "Minimal Agent Architecture Template",
+      "Agent Memory System"
+    ],
+    [
+      "Minimal Agent Architecture Template",
+      "Agent Skill Invocation Governance"
+    ],
+    [
+      "Minimal Agent Architecture Template",
+      "Global Experience System"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Experience Knowledge Subskill Refinement"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Mother Skill Refinement",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Codebase Memory MCP"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Matt Pocock Skills Network Learning"
+    ],
+    [
+      "Oh My Codex and OMX Lite Network Learning",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Paper Reading and Evidence Workflow",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Global Experience System"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Information and Functional Unit Principle"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Learning Governance"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Matt Pocock Skills Method System Relearning"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Oh My Codex and OMX Lite Network Learning"
+    ],
+    [
+      "Pi Agent Harness Network Learning",
+      "Top-Level Owner Governance"
+    ],
+    [
+      "Portable Path Configuration",
+      "Image Hosting and Cleanup Workflow"
+    ],
+    [
+      "Portable Path Configuration",
+      "Knowledge Tooling"
+    ],
+    [
+      "Portable Path Configuration",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Portable Path Configuration",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Project Creation Capability",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Project Creation Capability",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Project Creation Capability",
+      "Project Creation From Experience Workflow"
+    ],
+    [
+      "Project Creation Capability",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Experience System Error Feedback"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Knowledge System Module"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Project Creation From Experience Workflow",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Project Knowledge Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Project Knowledge Boundary",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Project Vocabulary and Decision Brief",
+      "Learning Governance"
+    ],
+    [
+      "Project Vocabulary and Decision Brief",
+      "Project Creation Capability"
+    ],
+    [
+      "Project Vocabulary and Decision Brief",
+      "Subskill Packaging Boundary"
+    ],
+    [
+      "Project Vocabulary and Decision Brief",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Provider Capability Boundary",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "README",
+      "Knowledge System Module"
+    ],
+    [
+      "Research Knowledge Module",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Paper Reading and Evidence Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Research Knowledge Module",
+      "Scientific Figure Workflow"
+    ],
+    [
+      "Research Knowledge Module",
+      "Zotero Reference Workflow"
+    ],
+    [
+      "Scientific Figure Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Scientific Figure Workflow",
+      "Figure Optimization Subskill"
+    ],
+    [
+      "Scientific Figure Workflow",
+      "Provider Capability Boundary"
+    ],
+    [
+      "Solution Visualization Workflow",
+      "Global Experience System"
+    ],
+    [
+      "Solution Visualization Workflow",
+      "Image Workflow Module"
+    ],
+    [
+      "Solution Visualization Workflow",
+      "Visual Format Selection"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Knowledge System Module"
+    ],
+    [
+      "Subskill Packaging Boundary",
+      "Verified Experience Promotion"
+    ],
+    [
+      "Top-Level Owner Governance",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Top-Level Owner Governance",
+      "Global Experience System"
+    ],
+    [
+      "Top-Level Owner Governance",
+      "Mother Skill Refinement"
+    ],
+    [
+      "Verified Experience Promotion",
+      "Knowledge System Module"
+    ],
+    [
+      "Verified Experience Promotion",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "Visual Format Selection",
+      "Baoyu Skills Network Learning"
+    ],
+    [
+      "Visual Format Selection",
+      "Experience and Knowledge Architecture"
+    ],
+    [
+      "Visual Format Selection",
+      "Global Experience System"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 API Conversation Evidence",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 JME Formatting Guardrails",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "Project Knowledge Boundary"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Knowledge Map",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Manuscript Refinement Workflow",
+      "XLW1 Version Authority"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Source Figure Integrity",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 JME Formatting Guardrails"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "XLW1 Template Header and Visual Object Fidelity",
+      "XLW1 Source Figure Integrity"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 API Conversation Evidence"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 Manuscript Knowledge Map"
+    ],
+    [
+      "XLW1 Version Authority",
+      "XLW1 Manuscript Refinement Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Academic Writing and Citation Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Literature Discovery Workflow"
+    ],
+    [
+      "Zotero Reference Workflow",
+      "Paper Reading and Evidence Workflow"
+    ]
+  ]
+}

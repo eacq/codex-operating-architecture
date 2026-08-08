@@ -1,0 +1,57 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-learning",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-learning/SKILL.md"
+                ],
+    "id":  "codex-learning",
+    "owner":  "codex-learning",
+    "plane":  "evidence",
+    "stage":  "snapshot",
+    "canonical_skill":  "skills/codex-learning/SKILL.md",
+    "triggers":  [
+                     "capability gap",
+                     "external method comparison",
+                     "network learning"
+                 ],
+    "consumes":  [
+                     "qualifying gap evidence",
+                     "trusted sources",
+                     "owner-fit constraints"
+                 ],
+    "produces":  [
+                     "dated learning record",
+                     "adaptation candidate"
+                 ],
+    "verification":  "reversible local comparison and post-learning owner review",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-information-gathering",
+                         "artifact":  "capability-gap evidence",
+                         "event":  "learning_candidate_found"
+                     },
+                     {
+                         "from":  "codex-knowledge-system",
+                         "artifact":  "known-method context",
+                         "event":  "next_learning_snapshot"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-workflow-design",
+                         "artifact":  "adapted method record",
+                         "event":  "method_ready_for_workflow"
+                     },
+                     {
+                         "to":  "codex-architecture-iteration",
+                         "artifact":  "owner-fit comparison",
+                         "event":  "adaptation_review"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

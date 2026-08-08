@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Skill Packaging"
+  short_description: "Package consolidate and maintain global Codex skills"
+  default_prompt: "Use $codex-skill-packaging to handle this task with verified reusable practices."

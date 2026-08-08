@@ -1,0 +1,27 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "interface:llm",
+    "kind":  "interface",
+    "sources":  [
+                    "config/agent-interface-policy.json"
+                ],
+    "id":  "llm",
+    "audience":  "large-language-models",
+    "permissions":  [
+                        "observe",
+                        "functional-unit-use",
+                        "agent-review"
+                    ],
+    "structural_mutation":  "deny",
+    "rule":  "an LLM may retrieve, continue, route, and use registered functional units under current authority, but cannot self-elevate or directly edit Agent structure",
+    "default_decision":  "deny",
+    "exits":  [
+                  "response",
+                  "evidence",
+                  "handoff",
+                  "authorization-required",
+                  "error-feedback",
+                  "agent-reviewed"
+              ]
+}

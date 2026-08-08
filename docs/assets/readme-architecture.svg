@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Codex Operating Architecture</title>
+  <desc id="desc">A friendly overview of the Codex lifecycle from project entry to verified knowledge, visuals, release gates, and portable configuration.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="55%" stop-color="#eef7ff"/>
+      <stop offset="100%" stop-color="#f4edff"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#4f8cff"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#2d3748" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#5b6472"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Segoe UI", "Noto Sans", Arial, sans-serif; fill: #243044; }
+      .subtitle { font: 500 17px "Segoe UI", "Noto Sans", Arial, sans-serif; fill: #5b6472; }
+      .label { font: 700 20px "Segoe UI", "Noto Sans", Arial, sans-serif; fill: #243044; }
+      .small { font: 500 14px "Segoe UI", "Noto Sans", Arial, sans-serif; fill: #5b6472; }
+      .white { fill: #ffffff; }
+      .line { stroke: #5b6472; stroke-width: 2.6; fill: none; marker-end: url(#arrow); opacity: 0.78; }
+      .soft { filter: url(#shadow); }
+    </style>
+  </defs>
+  <rect width="1200" height="680" rx="34" fill="url(#bg)"/>
+  <circle cx="105" cy="112" r="52" fill="#ffdf91" opacity="0.72"/>
+  <circle cx="1090" cy="118" r="68" fill="#bfe9d6" opacity="0.68"/>
+  <circle cx="1070" cy="565" r="58" fill="#ffd1dc" opacity="0.62"/>
+  <text x="70" y="70" class="title">Codex Operating Architecture</text>
+  <text x="72" y="100" class="subtitle">Project lifecycle, verified experience, linked knowledge, friendly visuals, and release gates in one loop.</text>
+
+  <rect x="445" y="220" width="310" height="190" rx="32" fill="url(#core)" class="soft"/>
+  <text x="600" y="286" text-anchor="middle" font-family="Segoe UI, Noto Sans, Arial" font-size="28" font-weight="800" fill="#fff">codex-self-evolution</text>
+  <text x="600" y="323" text-anchor="middle" font-family="Segoe UI, Noto Sans, Arial" font-size="16" font-weight="600" fill="#eef4ff">route only the modules needed</text>
+  <text x="600" y="352" text-anchor="middle" font-family="Segoe UI, Noto Sans, Arial" font-size="16" font-weight="600" fill="#eef4ff">keep project facts local</text>
+
+  <g class="soft">
+    <rect x="70" y="165" width="250" height="118" rx="24" fill="#ffffff"/>
+    <rect x="70" y="165" width="250" height="14" rx="7" fill="#ffb86b"/>
+    <text x="195" y="214" text-anchor="middle" class="label">Project Entry</text>
+    <text x="195" y="242" text-anchor="middle" class="small">requirements + workflows</text>
+    <text x="195" y="264" text-anchor="middle" class="small">.codex stays local</text>
+  </g>
+
+  <g class="soft">
+    <rect x="70" y="405" width="250" height="118" rx="24" fill="#ffffff"/>
+    <rect x="70" y="405" width="250" height="14" rx="7" fill="#8fd3ff"/>
+    <text x="195" y="454" text-anchor="middle" class="label">Safe Execution</text>
+    <text x="195" y="482" text-anchor="middle" class="small">runtime + tools + tests</text>
+    <text x="195" y="504" text-anchor="middle" class="small">install only with notice</text>
+  </g>
+
+  <g class="soft">
+    <rect x="880" y="165" width="250" height="118" rx="24" fill="#ffffff"/>
+    <rect x="880" y="165" width="250" height="14" rx="7" fill="#a7f3d0"/>
+    <text x="1005" y="214" text-anchor="middle" class="label">Knowledge System</text>
+    <text x="1005" y="242" text-anchor="middle" class="small">Obsidian + maps</text>
+    <text x="1005" y="264" text-anchor="middle" class="small">Codex learning != Anki</text>
+  </g>
+
+  <g class="soft">
+    <rect x="880" y="405" width="250" height="118" rx="24" fill="#ffffff"/>
+    <rect x="880" y="405" width="250" height="14" rx="7" fill="#c4b5fd"/>
+    <text x="1005" y="454" text-anchor="middle" class="label">Release Gate</text>
+    <text x="1005" y="482" text-anchor="middle" class="small">changelog + docs + visuals</text>
+    <text x="1005" y="504" text-anchor="middle" class="small">public, portable, verified</text>
+  </g>
+
+  <g class="soft">
+    <rect x="444" y="510" width="312" height="86" rx="22" fill="#ffffff"/>
+    <text x="600" y="548" text-anchor="middle" class="label">Portable Profile</text>
+    <text x="600" y="576" text-anchor="middle" class="small">provider, paths, tools, secrets stay local</text>
+  </g>
+
+  <path d="M320 225 C370 226 392 250 440 278" class="line"/>
+  <path d="M318 465 C382 455 412 407 452 374" class="line"/>
+  <path d="M755 278 C806 250 826 226 878 225" class="line"/>
+  <path d="M748 373 C803 402 827 454 878 465" class="line"/>
+  <path d="M600 410 L600 505" class="line"/>
+  <path d="M1005 405 C1012 350 1013 310 1005 284" class="line"/>
+  <path d="M880 468 C780 586 430 586 320 468" class="line"/>
+
+  <g>
+    <rect x="92" y="604" width="1016" height="42" rx="21" fill="#ffffff" opacity="0.78"/>
+    <text x="600" y="631" text-anchor="middle" class="small">Update rule: every version ships a readable note; complex changes get a simple visual that shows the problem and the fix.</text>
+  </g>
+</svg>

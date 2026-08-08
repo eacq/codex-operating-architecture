@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Text and Research"
+  short_description: "Revise prose and plan source-grounded research."
+  default_prompt: "Use $codex-text-style to revise academic prose or plan source-grounded research work."

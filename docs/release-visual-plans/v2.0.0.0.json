@@ -1,0 +1,14 @@
+﻿{
+    "schema_version":  1,
+    "version":  "2.0.0.0",
+    "mode":  "Public",
+    "release_note":  "docs/release-notes/v2.0.0.0.md",
+    "impact_areas":  [
+                         "Release documentation",
+                         "Automation gates",
+                         "Skill architecture"
+                     ],
+    "visual_action":  "reuse-approved-raster-release-visual",
+    "privacy":  "Use sanitized repository-level labels only; never include credentials, private sessions, local user paths, or private payloads.",
+    "layout":  "Keep release highlights scannable: latest release block in README, concise release-note summary, and an approved PNG visual. Use image labels only where they improve comprehension and apply the shared in-image-text rules. Mermaid and SVG are not reader-facing Markdown visuals."
+}

@@ -1,0 +1,279 @@
+{
+  "schema_version": 2,
+  "model": "global-experience-agent-module-map",
+  "owner_network": "config/agent-owner-connections.json",
+  "agent_registry": "config/global-experience-agent-registry.json",
+  "interface_policy": "config/agent-interface-policy.json",
+  "agent_filesystem": "agent/agent-filesystem.json",
+  "root_agent": "global-experience-agent",
+  "concept_agent_count": 5,
+  "specialist_agent_count": 23,
+  "child_lifecycle": ["delegated", "completed", "joined", "cancelled"],
+  "interface_band": {
+    "title_en": "INTERFACES AND AUTHORITY",
+    "default_rule_en": "DEFAULT DENY | LABELS NEVER ELEVATE AUTHORITY | DENY BEFORE SESSION WRITE",
+    "interfaces": [
+      { "id": "human", "label_en": "HUMAN", "scope_en": "FUNCTIONS + GATED REQUESTS", "color": "#2B7A78" },
+      { "id": "llm", "label_en": "LLM", "scope_en": "FUNCTIONS ONLY", "color": "#405A8A" },
+      { "id": "internal-functional-unit", "label_en": "INTERNAL UNITS", "scope_en": "OWNER-BOUNDED", "color": "#6E63A7" },
+      { "id": "global-control", "label_en": "GLOBAL CONTROL", "scope_en": "ALL ASPECTS WITH EXPLICIT AUTHORITY", "color": "#C48418" }
+    ],
+    "exit_summary_en": "TYPED EXITS: RESPONSE | EVIDENCE | SAVE POINT | HANDOFF | AUTH REQUIRED | GATED | STRUCTURE | ERROR | REVIEW"
+  },
+  "title_zh": "全局经验 Agent：可持续执行、跨模型续作与模块对应",
+  "title_en": "Global Experience Agent Architecture and Module Correspondence",
+  "subtitle_zh": "一个持久根 Agent · 五个概念 Agent · 二十三个专业 Agent · 可执行子 Agent",
+  "subtitle_en": "1 root | 5 concept | 23 specialist | executable children",
+  "runtime_steps": [
+    { "id": "contract", "index": "01", "label_zh": "开始工作", "label_en": "START WORK" },
+    { "id": "session", "index": "02", "label_zh": "检索记录", "label_en": "RETRIEVE" },
+    { "id": "snapshot", "index": "03", "label_zh": "跨调用者续作", "label_en": "CONTINUE" },
+    { "id": "dispatch", "index": "04", "label_zh": "Agent 选择", "label_en": "SELECT AGENT" },
+    { "id": "execute", "index": "05", "label_zh": "门禁执行", "label_en": "EXECUTE" },
+    { "id": "observe", "index": "06", "label_zh": "结果观测", "label_en": "OBSERVE" },
+    { "id": "savepoint", "index": "07", "label_zh": "接受保存点", "label_en": "SAVE POINT" },
+    { "id": "next", "index": "08", "label_zh": "下一调用者", "label_en": "NEXT CALLER" }
+  ],
+  "planes": [
+    {
+      "id": "control",
+      "index": "A",
+      "title_zh": "控制面",
+      "title_en": "CONTROL PLANE",
+      "correspondence_zh": "定义目标、计划、执行和结构边界",
+      "correspondence_en": "defines goal, plan, execution, and structure",
+      "color": "#2B7A78",
+      "fill": "#F2F8F7",
+      "modules": [
+        {
+          "owner": "codex-self-evolution",
+          "stage": "harness",
+          "responsibility_zh": "Agent 总控与生命周期",
+          "responsibility_en": "Agent harness and lifecycle",
+          "durable_output_zh": "会话状态与保存点",
+          "durable_output_en": "session state and save point"
+        },
+        {
+          "owner": "codex-requirement-authoring",
+          "stage": "contract",
+          "responsibility_zh": "目标澄清与任务契约",
+          "responsibility_en": "goal clarification and task contract",
+          "durable_output_zh": "规范化需求简报",
+          "durable_output_en": "normalized requirement brief"
+        },
+        {
+          "owner": "codex-workflow-design",
+          "stage": "dispatch",
+          "responsibility_zh": "计划、依赖与验收链",
+          "responsibility_en": "plan, dependencies, and acceptance chain",
+          "durable_output_zh": "可执行工作流",
+          "durable_output_en": "executable workflow"
+        },
+        {
+          "owner": "codex-task-execution",
+          "stage": "execute",
+          "responsibility_zh": "实施与完成闭环",
+          "responsibility_en": "implementation and completion loop",
+          "durable_output_zh": "已验证交付物",
+          "durable_output_en": "verified deliverable"
+        },
+        {
+          "owner": "codex-architecture-iteration",
+          "stage": "savepoint",
+          "responsibility_zh": "Owner 拓扑与契约演进",
+          "responsibility_en": "owner topology and contract evolution",
+          "durable_output_zh": "架构审查记录",
+          "durable_output_en": "architecture review record"
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "index": "B",
+      "title_zh": "证据与经验面",
+      "title_en": "EVIDENCE AND EXPERIENCE",
+      "correspondence_zh": "为快照、观测与下一回合提供可信上下文",
+      "correspondence_en": "feeds trustworthy context into snapshot, observation, and next turn",
+      "color": "#6E63A7",
+      "fill": "#F6F4FB",
+      "modules": [
+        {
+          "owner": "codex-information-gathering",
+          "stage": "snapshot",
+          "responsibility_zh": "来源、仓库与图谱证据",
+          "responsibility_en": "source, repository, and graph evidence",
+          "durable_output_zh": "证据包",
+          "durable_output_en": "evidence bundle"
+        },
+        {
+          "owner": "codex-learning",
+          "stage": "snapshot",
+          "responsibility_zh": "外部方法学习与适配",
+          "responsibility_en": "external method learning and adaptation",
+          "durable_output_zh": "学习记录",
+          "durable_output_en": "learning record"
+        },
+        {
+          "owner": "codex-conversation-continuity",
+          "stage": "session",
+          "responsibility_zh": "任务与上下文连续性",
+          "responsibility_en": "task and context continuity",
+          "durable_output_zh": "元数据目录",
+          "durable_output_en": "metadata catalog"
+        },
+        {
+          "owner": "codex-experience-capture",
+          "stage": "observe",
+          "responsibility_zh": "验证结果提炼与候选化",
+          "responsibility_en": "verified-result extraction and candidacy",
+          "durable_output_zh": "经验候选与报告",
+          "durable_output_en": "experience candidate and report"
+        },
+        {
+          "owner": "codex-knowledge-system",
+          "stage": "next",
+          "responsibility_zh": "链接知识与长期检索",
+          "responsibility_en": "linked knowledge and durable retrieval",
+          "durable_output_zh": "知识库与账本",
+          "durable_output_en": "knowledge vault and ledger"
+        },
+        {
+          "owner": "codex-error-feedback",
+          "stage": "observe",
+          "responsibility_zh": "失败诊断、修复与复测",
+          "responsibility_en": "failure diagnosis, repair, and retest",
+          "durable_output_zh": "已验证错误报告",
+          "durable_output_en": "verified error report"
+        }
+      ]
+    },
+    {
+      "id": "capability",
+      "index": "C",
+      "title_zh": "交付能力面",
+      "title_en": "DELIVERY CAPABILITIES",
+      "correspondence_zh": "由 Agent 在执行阶段选择并调用",
+      "correspondence_en": "selected and invoked by the Agent during execution",
+      "color": "#4B8C69",
+      "fill": "#F2F8F4",
+      "modules": [
+        {
+          "owner": "codex-exact-word-layout",
+          "stage": "execute",
+          "responsibility_zh": "精确 Word 版式修复",
+          "responsibility_en": "exact Word layout repair",
+          "durable_output_zh": "渲染验证 DOCX",
+          "durable_output_en": "render-verified DOCX"
+        },
+        {
+          "owner": "codex-image-workflow",
+          "stage": "execute",
+          "responsibility_zh": "图像生成、选择与来源",
+          "responsibility_en": "image generation, selection, and provenance",
+          "durable_output_zh": "视觉资产与来源记录",
+          "durable_output_en": "visual asset and provenance"
+        },
+        {
+          "owner": "codex-office-cli",
+          "stage": "execute",
+          "responsibility_zh": "Office 与 PDF 自动化",
+          "responsibility_en": "Office and PDF automation",
+          "durable_output_zh": "经校验办公文档",
+          "durable_output_en": "validated Office artifact"
+        },
+        {
+          "owner": "codex-text-style",
+          "stage": "execute",
+          "responsibility_zh": "学术与双语表达修订",
+          "responsibility_en": "academic and bilingual style revision",
+          "durable_output_zh": "受约束文本修订",
+          "durable_output_en": "constraint-preserving revision"
+        },
+        {
+          "owner": "codex-file-organization",
+          "stage": "savepoint",
+          "responsibility_zh": "文件组织、清理与回滚",
+          "responsibility_en": "file organization, cleanup, and rollback",
+          "durable_output_zh": "可回滚文件状态",
+          "durable_output_en": "rollback-ready file state"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "index": "D",
+      "title_zh": "平台与工具门禁面",
+      "title_en": "PLATFORM AND TOOL GATES",
+      "correspondence_zh": "负责环境、权限、发布与可移植性边界",
+      "correspondence_en": "owns environment, authority, publication, and portability boundaries",
+      "color": "#D99A2B",
+      "fill": "#FBF7ED",
+      "modules": [
+        {
+          "owner": "codex-credential-management",
+          "stage": "dispatch",
+          "responsibility_zh": "凭据与 Provider 路由",
+          "responsibility_en": "credential and provider routing",
+          "durable_output_zh": "脱敏认证状态",
+          "durable_output_en": "redacted auth state"
+        },
+        {
+          "owner": "codex-tool-installation",
+          "stage": "execute",
+          "responsibility_zh": "工具安装与校验",
+          "responsibility_en": "tool installation and validation",
+          "durable_output_zh": "安装验证记录",
+          "durable_output_en": "installation proof"
+        },
+        {
+          "owner": "codex-runtime-environments",
+          "stage": "dispatch",
+          "responsibility_zh": "运行环境与依赖隔离",
+          "responsibility_en": "runtime and dependency isolation",
+          "durable_output_zh": "环境证明",
+          "durable_output_en": "environment proof"
+        },
+        {
+          "owner": "codex-git-operations",
+          "stage": "savepoint",
+          "responsibility_zh": "Git、版本与发布门禁",
+          "responsibility_en": "Git, version, and release gates",
+          "durable_output_zh": "提交或发布信封",
+          "durable_output_en": "commit or publication envelope"
+        },
+        {
+          "owner": "codex-project-optimization",
+          "stage": "session",
+          "responsibility_zh": "项目生命周期初始化",
+          "responsibility_en": "project lifecycle initialization",
+          "durable_output_zh": "项目状态骨架",
+          "durable_output_en": "project lifecycle scaffold"
+        },
+        {
+          "owner": "codex-skill-packaging",
+          "stage": "next",
+          "responsibility_zh": "Skill 封装与接口校验",
+          "responsibility_en": "skill packaging and interface validation",
+          "durable_output_zh": "可发现 Skill 包",
+          "durable_output_en": "discoverable skill package"
+        },
+        {
+          "owner": "codex-skill-portability",
+          "stage": "dispatch",
+          "responsibility_zh": "隐私安全的跨环境迁移",
+          "responsibility_en": "privacy-safe cross-environment transfer",
+          "durable_output_zh": "脱敏移植配置",
+          "durable_output_en": "sanitized portability profile"
+        }
+      ]
+    }
+  ],
+  "closed_loop": {
+    "label_zh": "验证结果 → 经验与知识沉淀 → 任意授权调用者或模型继续工作",
+    "label_en": "verified result -> experience and knowledge -> caller/model-neutral continuation"
+  },
+  "completion": {
+    "label_zh": "完成条件：输出存在 · 验证通过 · 子 Agent 收口 · 保存点接受 · 状态写回 · 风险已说明",
+    "label_en": "complete when output, proof, child settlement, save point, aligned state, and named risk all exist"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "global-experience-agent-skill-invocation-policy",
+  "source": {
+    "primary": "https://github.com/mattpocock/skills",
+    "commit": "ed37663cc5fbef691ddfecd080dff42f7e7e350d",
+    "source_evidence": [
+      "README.md",
+      "skills/productivity/writing-great-skills/SKILL.md",
+      "skills/productivity/writing-great-skills/GLOSSARY.md",
+      "skills/engineering/tdd/SKILL.md",
+      "skills/engineering/diagnosing-bugs/SKILL.md",
+      "skills/engineering/code-review/SKILL.md",
+      "skills/engineering/to-tickets/SKILL.md",
+      "skills/engineering/wayfinder/SKILL.md",
+      "CHANGELOG.md"
+    ],
+    "adaptation": "method-source-only",
+    "installation_decision": "do-not-install-upstream-skills-by-default"
+  },
+  "contract": {
+    "owner": "codex-self-evolution",
+    "architecture_owner": "codex-architecture-iteration",
+    "capability_kind": "skill-invocation-governance",
+    "rule": "The Global Experience Agent treats skills as small, predictable, owner-routed functional units with explicit invocation boundaries, completion criteria, and verification; upstream skills are learned from, not copied or granted authority.",
+    "terminal_goal_contribution": [
+      "reduce accidental skill invocation by separating human-only orchestration from model-reachable discipline",
+      "reduce context load by keeping top-level skill descriptions trigger-focused and pushing branch-only reference behind context pointers",
+      "reduce premature completion by requiring checkable completion criteria for actionable steps",
+      "improve implementation quality by preferring red-capable feedback loops, pre-agreed seams, tracer-bullet work slices, and two-axis review"
+    ]
+  },
+  "invocation_classes": {
+    "model_invoked": {
+      "local_mapping": "discovery-interface-or-owner-internal-subskill-with-model-facing-description",
+      "allowed_callers": ["human", "llm", "internal-functional-unit", "global-control"],
+      "description_rule": "front-load the leading word, encode one trigger branch per distinct condition, and avoid restating body content",
+      "context_load_rule": "keep model-visible descriptions short because every visible trigger competes for attention each turn",
+      "split_rule": "split only when an independent leading word or owner handoff must be reachable by the model"
+    },
+    "user_invoked": {
+      "local_mapping": "human-requested router-or-command path that is not automatically selected by a model",
+      "allowed_callers": ["human", "global-control"],
+      "description_rule": "human-facing summary only; it must not become an autonomous model trigger",
+      "cognitive_load_rule": "use a router or decision guide when too many human-only entrypoints require memorization",
+      "structural_rule": "a user-invoked workflow may route to model-invoked functional units, but must not silently invoke another human-only workflow"
+    }
+  },
+  "information_hierarchy": {
+    "model_visible_surface": {
+      "active_top_level_owner_count": 23,
+      "max_recommended_description_chars": 240,
+      "max_owner_internal_description_chars": 220,
+      "max_imported_wrapper_description_chars": 140,
+      "rule": "Top-level model-visible SKILL descriptions stay trigger-focused and under the recommended length unless a separately recorded safety boundary requires more text.",
+      "fallback": "Move branch-only detail into the owner body, an owner-internal subskill, or a directly linked reference.",
+      "imported_wrapper_rule": "Codex Home imported compatibility wrappers use a short owner-routed description and must never advertise themselves as top-level entries; upstream SKILL.md files remain preserved reference material, not generated discovery surfaces."
+    },
+    "agent_like_skill_economy": {
+      "parent_skill_rule": "A parent skill is a specialist Agent entry surface: it owns the trigger, authority boundary, handoffs, and exit criteria, while branch-only execution detail belongs in owner-internal subskills or references.",
+      "subskill_rule": "A subskill is an owner-internal functional unit: split it out when it has a distinct trigger, write surface, proof loop, or reusable procedure; merge it back when it only restates the parent or has no independent verification.",
+      "merge_rule": "Merge duplicate skills or subskills when they share trigger, maintained knowledge, artifacts, safety boundary, and verifier; keep one compatibility pointer for one release when discovery names changed.",
+      "split_rule": "Split a skill only when the split reduces model-visible ambiguity or isolates a different tool gate, artifact lifecycle, or safety boundary.",
+      "upstream_rule": "Upstream imported SKILL.md files remain reference material under wrappers; they do not define owner authority, model-visible triggers, or structural entrypoints.",
+      "concept_agent_rule": "Concept Agents compose existing parent skills and subskills; they never create parallel top-level skills or bypass owner gates."
+    },
+    "steps": {
+      "rule": "inline only the ordered actions every run needs",
+      "completion_criterion": "each step that changes state or makes a claim must end at a checkable, preferably exhaustive condition"
+    },
+    "reference": {
+      "rule": "keep definitions, rules, and caveats co-located; move branch-only or shared reference behind a context pointer",
+      "pointer_rule": "the pointer wording controls whether the agent reliably loads the reference; sharpen wording before inlining large reference"
+    },
+    "pruning": {
+      "rule": "prefer one source of truth, remove sediment and no-op lines, and use positive target behavior plus hard guardrails only where needed",
+      "owner_economy": "revise an existing owner or owner-internal subskill before adding a top-level owner"
+    }
+  },
+  "workflow_adaptations": {
+    "alignment": {
+      "source_pattern": "grilling and grill-with-docs",
+      "local_owner": "codex-requirement-authoring",
+      "rule": "lookup facts from files/tools first; ask the human only consequential decisions; ask one blocking decision at a time when live input is required"
+    },
+    "task_slicing": {
+      "source_pattern": "to-tickets and wayfinder",
+      "local_owner": "codex-workflow-design",
+      "rule": "large or foggy work becomes named decision tickets; implementation work becomes tracer-bullet vertical slices with blocking edges; wide refactors use expand-contract batches"
+    },
+    "implementation": {
+      "source_pattern": "tdd and implement",
+      "local_owner": "codex-task-execution",
+      "rule": "when tests are warranted, agree or infer the public seam, create a red-capable check before the fix or feature, implement one vertical slice, then run targeted checks regularly and full validation at closeout"
+    },
+    "debugging": {
+      "source_pattern": "diagnosing-bugs",
+      "local_owner": "codex-error-feedback",
+      "rule": "first build a tight red-capable loop for the user symptom; minimise before hypothesising; instrument one prediction at a time; close with regression proof or an explicit missing-seam finding"
+    },
+    "review": {
+      "source_pattern": "code-review",
+      "local_owner": "codex-architecture-iteration",
+      "rule": "review substantial diffs against two separate axes: repo standards and originating spec; do not let one axis mask the other"
+    },
+    "module_design": {
+      "source_pattern": "codebase-design and improve-codebase-architecture",
+      "local_owner": "codex-architecture-iteration",
+      "rule": "prefer deep modules: small interface, large hidden behavior, clean seam, tests through the interface, and locality for future fixes"
+    }
+  },
+  "rejected_or_deferred": [
+    {
+      "item": "raw upstream installation",
+      "reason": "the current Agent already has owner-routed skills, interface gates, and release validation; installing upstream skills would add overlapping triggers and external update drift"
+    },
+    {
+      "item": "unconditional parallel review subagents",
+      "reason": "local collaboration rules only spawn subagents under explicit user or skill instruction; the adapted policy keeps the two-axis review concept without making parallel execution mandatory"
+    },
+    {
+      "item": "external issue-tracker workflow",
+      "reason": "GitHub/Linear/local tracker publication remains gated; local Agent decision tickets can be represented as lifecycle/workflow artifacts first"
+    }
+  ],
+  "verification": {
+    "tests": [
+      "scripts/Test-AgentSkillInvocationPolicy.ps1",
+      "scripts/Test-AgentHarnessContract.ps1",
+      "scripts/Test-AgentSystemTopology.ps1",
+      "scripts/validate.ps1"
+    ],
+    "no_regression": [
+      "human, llm, internal-functional-unit, and global-control interface permissions remain governed by config/agent-interface-policy.json",
+      "no user-invoked upstream workflow becomes an automatic model trigger",
+      "no upstream runtime, plugin, credential, or external tracker is installed",
+      "skill-invocation policy is registered as an information unit and verified as a functional unit"
+    ],
+    "invalidation_conditions": [
+      "mattpocock/skills materially changes its invocation taxonomy",
+      "local Agent interface policy changes caller authority semantics",
+      "a repeated local failure shows that router or model-invoked boundaries cause missed work or false invocation"
+    ]
+  }
+}

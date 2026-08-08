@@ -1,0 +1,7 @@
+interface:
+  display_name: "Image Workflow: Figure Optimization"
+  short_description: "Standardize academic figures, fonts, arbitrary dimensions, resolution, and exports."
+  default_prompt: "Use $codex-image-workflow-figure-optimization to optimize this scientific figure while preserving numerical fidelity."
+
+policy:
+  allow_implicit_invocation: true

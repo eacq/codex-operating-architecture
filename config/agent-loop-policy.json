@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "global-experience-agent-loop-policy",
+  "owner": "codex-self-evolution",
+  "source": {
+    "repository": "https://github.com/LesterYu0/feynman-build-workshop",
+    "path": "episodes/06-agent-loop",
+    "adaptation": "control-plane-method-adaptation"
+  },
+  "purpose": "make the Global Experience Agent loop bounded, observable, recoverable, and deployable without importing external agent frameworks or hosted model dependencies",
+  "control_plane": {
+    "relationship_to_c01_c05": "C01 memory, C02 intent, C03 document parsing, C04 chunking retrieval, and C05 rerank calibration form the data plane; C06 Agent Loop is the control plane that decides the next bounded operation, observes results, and settles save points.",
+    "local_runtime": "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+    "state_projection": "agent/40-runtime/Get-AgentHarnessState.ps1",
+    "test": "scripts/Test-AgentLoopPolicy.ps1"
+  },
+  "loop_contract": {
+    "phases": ["plan", "act", "observe", "reflect", "settle"],
+    "phase_mapping": {
+      "plan": ["user_goal_received", "experience_context_loaded", "agent_resources_selected"],
+      "act": ["tool_gate_requested", "tool_call_started", "tool_call_finished"],
+      "observe": ["tool_result_recorded", "error_feedback_recorded"],
+      "reflect": ["narrowest_proving_check_selected", "candidate_or_memory_update_selected"],
+      "settle": ["save_point_committed", "typed_exit_returned"]
+    },
+    "one_step_rule": "each Continue/Run operation executes or routes at most one registered bounded operation before settlement; additional work becomes nextTurn, FollowUp, or a new authorized Continue call",
+    "owner_rule": "the loop may request specialist work, but owner tool gates remain the only place where gated side effects execute"
+  },
+  "control_points": {
+    "max_iterations": {
+      "default": 10,
+      "hard_rule": "never use while-true execution for autonomous agent progress; every bounded loop declares an iteration ceiling",
+      "overflow_behavior": "return partial evidence, current save point, and next authority boundary instead of silently continuing"
+    },
+    "error_recovery": {
+      "rule": "tool or parser failures become explicit Observation/ErrorFeedback records, never empty strings or hidden crashes",
+      "retry_rule": "retry only read-only or owner-proven idempotent operations; non-idempotent tool calls are marked interrupted until an owner proves retry safety"
+    },
+    "transport_recovery": {
+      "policy": "config/agent-transport-recovery-policy.json",
+      "classifier": "agent/40-runtime/Get-AgentTransportRecoverySignal.ps1",
+      "rule": "when a known transport failure occurs before a completion marker, stop automatic retry, persist the durable boundary, and return a typed restart-required prompt",
+      "applies_to": ["codex", "global-experience-agent", "specialist-agent", "concept-agent", "child-agent"],
+      "preserve": ["session state", "pending writes", "child lineage", "error hash and classification"],
+      "resume_rule": "after the user restarts Codex or the affected host, Resume from the durable session before Continue",
+      "false_positive_rule": "ordinary validation, parser, authorization, and business errors continue through the normal error path"
+    },
+    "host_watchdog": {
+      "policy": "config/agent-transport-recovery-policy.json",
+      "detector": "agent/40-runtime/Get-AgentHostRecoverySignal.ps1",
+      "rule": "after a Codex app thread snapshot, a long-running inProgress turn with no assistant/tool marker, or with a stale inProgress tool marker, becomes host-stall-suspected and returns a restart-required prompt",
+      "threshold_seconds": 180,
+      "action": "persist a durable host-recovery marker and prompt; never force-kill",
+      "resume_rule": "after restart, Resume from the durable marker before Continue",
+      "false_positive_rule": "recent active turns, completed turns, completed tool markers, and insufficient snapshots remain non-stalled"
+    },
+    "context_budget": {
+      "rule": "preserve system/project authority, active task contract, latest save point, and recent bounded observations; summarize or retrieve older context through Agent memory or Codebase Memory instead of carrying raw transcripts",
+      "minimum_retained_turns": 3,
+      "no_regression": "context economy must not skip authority, privacy, rollback, source verification, or validation gates"
+    },
+    "termination": {
+      "stop_conditions": ["finish_action", "final_answer_signal", "max_iterations", "save_point_settled", "authority_boundary_reached", "verification_failed"],
+      "triple_fallback_rule": "a final response must not depend on a single marker; accept finish action, explicit final-answer signal, or hard iteration/authority boundary as stop evidence",
+      "failure_behavior": "if termination is reached without complete proof, emit a typed partial or blocked exit with residual risk"
+    }
+  },
+  "harness_requirements": {
+    "configuration": ["max_iterations", "context_budget_policy", "retry_policy", "timeout_or_external_gate_policy"],
+    "system_prompt_contract": "agent-facing instructions must include allowed operations, output/exit format, tool-gate boundaries, refusal/uncertainty behavior, and finish conditions",
+    "tool_schema_contract": "registered tools expose owner, parameters, side-effect class, idempotency, retry safety, and verification expectations",
+    "tracing": ["iteration", "phase", "event", "owner", "operation", "tool_gate", "result_type", "latency_or_duration", "error", "safe_event_payload"],
+    "error_handler": "normalize timeout, rate limit, parameter, authorization, and unknown-tool failures into explicit observations or error-feedback reports"
+  },
+  "authority_boundary": {
+    "allowed_without_extra_gate": ["local policy projection", "read-only loop verification", "metadata-only trace validation", "owner route preview"],
+    "requires_owner_gate": ["external framework installation", "OpenAI API or hosted model loop execution", "FastAPI service exposure", "new public endpoint", "background autonomous runner", "non-idempotent retry", "structural owner changes"],
+    "privacy_rule": "loop traces in Git contain only safe metadata, path evidence, hashes, statuses, and typed exits; raw prompts, credentials, private transcripts, headers, and tool payloads remain unsafe by default",
+    "source_verification_rule": "episode 06 informs the control-plane contract; current local runtime, manifests, and tests remain final proof"
+  },
+  "evaluation_contract": {
+    "required_checks": ["bounded_iteration_ceiling", "explicit_error_observation", "context_budget_retention", "multi_condition_termination", "owner_gate_preservation", "typed_exit"],
+    "minimum_baseline": {
+      "max_iterations": 10,
+      "termination_conditions": 3,
+      "owner_gate_preserved": true,
+      "raw_private_trace_in_git": false
+    },
+    "test": "scripts/Test-AgentLoopPolicy.ps1"
+  }
+}

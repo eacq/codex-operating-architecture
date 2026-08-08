@@ -1,0 +1,59 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-project-optimization",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-project-optimization/SKILL.md"
+                ],
+    "id":  "codex-project-optimization",
+    "owner":  "codex-project-optimization",
+    "plane":  "platform",
+    "stage":  "session",
+    "canonical_skill":  "skills/codex-project-optimization/SKILL.md",
+    "triggers":  [
+                     "missing project lifecycle",
+                     "project initialization",
+                     "lifecycle reconciliation"
+                 ],
+    "consumes":  [
+                     "project files",
+                     "Git state",
+                     "user objective"
+                 ],
+    "produces":  [
+                     "project lifecycle scaffold",
+                     "requirements",
+                     "workflows",
+                     "state"
+                 ],
+    "verification":  "project authority files exist and managed interfaces preserve user content",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-self-evolution",
+                         "artifact":  "project-entry state",
+                         "event":  "project_authority_required"
+                     },
+                     {
+                         "from":  "codex-skill-portability",
+                         "artifact":  "first-use profile",
+                         "event":  "target_project_initialization"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-conversation-continuity",
+                         "artifact":  "lifecycle scaffold",
+                         "event":  "session_context_initialized"
+                     },
+                     {
+                         "to":  "codex-requirement-authoring",
+                         "artifact":  "project requirements surface",
+                         "event":  "requirements_refresh_requested"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

@@ -1,0 +1,31 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "interface:global-control",
+    "kind":  "interface",
+    "sources":  [
+                    "config/agent-interface-policy.json"
+                ],
+    "id":  "global-control",
+    "audience":  "explicitly-authorized-human-or-host-supervised-controller",
+    "permissions":  [
+                        "observe",
+                        "functional-unit-use",
+                        "gated-action",
+                        "agent-structure",
+                        "agent-review"
+                    ],
+    "structural_mutation":  "allow-with-global-structure-authority",
+    "rule":  "this is the only interface that can authorize changes to any Agent aspect, and it still routes implementation through codex-architecture-iteration, the agent_structure gate, save points, rollback, and verification",
+    "default_decision":  "deny",
+    "exits":  [
+                  "evidence",
+                  "save-point",
+                  "handoff",
+                  "authorization-required",
+                  "gated-action-request",
+                  "global-structure-change-request",
+                  "error-feedback",
+                  "agent-reviewed"
+              ]
+}

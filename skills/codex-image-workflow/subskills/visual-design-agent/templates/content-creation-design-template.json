@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "kind": "visual-content-creation-template",
+  "source_adaptation": "JimLiu/baoyu-skills@6b7a2e4",
+  "required_fields": ["content_goal", "reader", "content_structure", "visual_route", "format", "aspect_ratio", "information_topology", "style_dimensions", "palette", "typography", "density", "prompt_files", "reference_image_policy", "content_to_layout_mapping", "container_and_connector_policy", "final_render_correction", "validation", "provenance"],
+  "style_dimensions": {
+    "card_series": ["style", "layout", "palette"],
+    "infographic": ["information_topology", "rendering_style", "aspect_ratio"],
+    "cover": ["type", "palette", "rendering", "text_density", "mood"],
+    "article_illustration": ["semantic_type", "style", "palette"],
+    "content_diagram": ["semantic_type", "editability", "theme"],
+    "slide_deck": ["texture", "atmosphere", "typography", "density"]
+  },
+  "safety": ["save prompt before raster generation", "regenerate bad embedded text rather than bitmap patching", "preserve selected owner gates", "exclude credentials private content and unlicensed assets"],
+  "layout_policy": {
+    "topology_rule": "regions, containers, nodes, labels, and connectors follow actual semantic content and relationships",
+    "container_rule": "a container exists only when it has corresponding content or a documented grouping role",
+    "safe_area_rule": "content remains inside intended regions and connectors attach to intended ports without clipping or collision",
+    "correction_loop": ["place final content", "render", "inspect", "resize/reflow/regroup/remove structure", "render again"]
+  },
+  "reliability": "one active image job by default; raise to two only after current-task health check"
+}

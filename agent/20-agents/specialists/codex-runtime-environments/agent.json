@@ -1,0 +1,58 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-runtime-environments",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-runtime-environments/SKILL.md"
+                ],
+    "id":  "codex-runtime-environments",
+    "owner":  "codex-runtime-environments",
+    "plane":  "platform",
+    "stage":  "dispatch",
+    "canonical_skill":  "skills/codex-runtime-environments/SKILL.md",
+    "triggers":  [
+                     "runtime selection",
+                     "dependency isolation",
+                     "project launcher"
+                 ],
+    "consumes":  [
+                     "runtime requirements",
+                     "dependency manifest",
+                     "isolation boundary"
+                 ],
+    "produces":  [
+                     "environment proof",
+                     "reproducible launcher",
+                     "dependency record"
+                 ],
+    "verification":  "runtime probe and isolated dependency import or command test",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-workflow-design",
+                         "artifact":  "runtime requirements",
+                         "event":  "runtime_preflight_requested"
+                     },
+                     {
+                         "from":  "codex-tool-installation",
+                         "artifact":  "installed executable boundary",
+                         "event":  "runtime_integration_required"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-credential-management",
+                         "artifact":  "runtime provider boundary",
+                         "event":  "credential_route_required"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "environment proof",
+                         "event":  "runtime_ready"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

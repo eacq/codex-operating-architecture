@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Workflow Design"
+  short_description: "Design repeatable observable and recoverable workflows"
+  default_prompt: "Use $codex-workflow-design to handle this task with verified reusable practices."

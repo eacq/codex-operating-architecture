@@ -1,0 +1,76 @@
+# Codex Global Experience Agent
+
+[中文说明 / Chinese README](README.md)
+
+> A collaboration-oriented local Codex root Agent: user intent, Agent Memory, verified local experience, and model capability work together under explicit authority and validation.
+
+## Start here
+
+| Goal | Start with |
+|---|---|
+| Enter a structured workflow for a new project | `$codex-self-evolution` |
+| Diagnose an unexpected outcome | `$codex-error-feedback` |
+| Learn from an external method or repository | `$codex-learning` |
+| Improve user-facing documentation | `$github-readme-presentation` |
+
+Reuse project facts, verified experience, and deterministic tools first. Use model work, web research, image generation, or external dependencies only when they materially improve the result.
+
+## Global Experience Agent
+
+The global experience system now operates as one durable **Global Experience Agent**. Its physical repository architecture lives under [`agent/`](agent/README.md): ten numbered zones correspond to root entry, permission interfaces, concept/specialist/child Agents, resources, runtime, evidence, exits, presentation, maintenance, and the local-state boundary. The 23 Owner Skills remain the only implementations; Agent manifests reference them without copying capability.
+
+The canonical entrypoint is `agent/40-runtime/Invoke-GlobalExperienceAgent.ps1`. `agent/80-maintenance/Sync-AgentFilesystem.ps1` builds the deterministic directory projection, `Resolve-AgentFilesystemPath.ps1` resolves typed module ids, and `Test-AgentFilesystem.ps1` rejects drift between configuration and physical files. The former `scripts/` entrypoints are forward-only compatibility adapters until the next major release.
+
+![Global Experience Agent architecture and module correspondence](docs/assets/global-experience-agent-architecture-paper-style.png)
+
+## How it works
+
+The user supplies the outcome and authority. The system chooses the smallest necessary owner set; experience, knowledge, and tools complete reusable work; the model contributes reasoning or creation; verification and error feedback decide what may be retained, committed, or released.
+
+![Labeled collaboration roles and verification loop](docs/assets/readme-collaboration-loop-labeled.png)
+
+## The system
+
+![Operating architecture overview: route, workflows, knowledge, verify, release, and learn](docs/assets/readme-architecture-overview-labeled.png)
+
+![Unlabeled Codebase Memory MCP architecture graph](docs/assets/codebase-memory-mcp-graph.png)
+
+The graph is refreshed by Codebase Memory MCP at project entry. This README uses an unlabeled PNG rendered by its upstream Three.js graph console, exposing architecture density without publishing paths, sessions, or source text.
+
+- **Route** work to an existing owner instead of duplicating capability.
+- **Parse** documents through `codex-office-cli`, normalizing text, CSV, basic Office, and PDF preflight results into `Document`/`Chunk` records with content, structure, performance, and robustness validation before Agent memory or knowledge intake.
+- **Retain** project knowledge locally; promote only cross-project verified lessons.
+- **Protect** credentials, raw sessions, and local private paths from Git.
+- **Evolve** only when a change has observable contribution and no-regression evidence.
+
+## Reliable delivery
+
+![Transactional file organization loop: isolate, backup, organize, validate, replace, and recover](docs/assets/file-organization-architecture-labeled.png)
+
+![Privacy-safe file organization concept: collect, classify, protect, and archive](docs/assets/file-organization-concept-labeled.png)
+
+Global iteration uses isolation, backup, validation, replacement, and recoverable rollback. Reader-facing images, explanations, and release material are checked for existence, legibility, and delivery format; PNG/JPG/WebP are used for ordinary reader delivery rather than Mermaid/SVG sources.
+
+## Quick start
+
+```powershell
+git clone <repository-url> <architecture-root>
+Set-Location <architecture-root>
+.\scripts\install-global.ps1 -Mode Junction
+.\scripts\validate.ps1
+```
+
+See [Iteration Status](docs/ITERATION-STATUS.md), [Changelog / 更新日志](CHANGELOG.md), [portable configuration](docs/PORTABLE-SKILL-DISTRIBUTION.md), and [publication rules](docs/GITHUB-PUBLISHING.md) for maintenance details.
+
+<!-- BEGIN MANAGED BLOCK: latest-release -->
+## Latest Release / 最新发布
+
+- Version: `1.0.0.0`
+- Channel: `Private` / 私有
+- Release note: [docs/release-notes/v1.0.0.0.md](docs/release-notes/v1.0.0.0.md)
+- Highlights: Lifecycle controller, Release documentation, Knowledge and experience, Skill architecture, Automation gates
+- Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
+- README optimization: audited with github-readme-presentation; provenance: [docs/release-readme-audits/v1.0.0.0.json](docs/release-readme-audits/v1.0.0.0.json)
+- README 优化已通过已安装的 GitHub README 与 Profile 展示工作流复核；不引入无证据的指标或跟踪组件。
+- 中文：本次发布会同步刷新 README、发布说明和必要的图示/排版材料。
+<!-- END MANAGED BLOCK: latest-release -->

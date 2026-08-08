@@ -1,0 +1,57 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-error-feedback",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-error-feedback/SKILL.md"
+                ],
+    "id":  "codex-error-feedback",
+    "owner":  "codex-error-feedback",
+    "plane":  "evidence",
+    "stage":  "observe",
+    "canonical_skill":  "skills/codex-error-feedback/SKILL.md",
+    "triggers":  [
+                     "unexpected behavior",
+                     "failed validation",
+                     "wrong route"
+                 ],
+    "consumes":  [
+                     "observed symptom",
+                     "reproduction evidence",
+                     "one root-cause hypothesis"
+                 ],
+    "produces":  [
+                     "structured error report",
+                     "verified repair evidence"
+                 ],
+    "verification":  "same failure probe passes and workflow-error review is settled",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-experience-capture",
+                         "artifact":  "unexpected-result candidate",
+                         "event":  "failure_classification_required"
+                     },
+                     {
+                         "from":  "codex-task-execution",
+                         "artifact":  "failed proving check",
+                         "event":  "error_feedback_required"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-knowledge-system",
+                         "artifact":  "verified repair lesson",
+                         "event":  "knowledge_link_requested"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "verified repair path",
+                         "event":  "retest_requested"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

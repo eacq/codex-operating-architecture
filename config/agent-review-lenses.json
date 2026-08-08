@@ -1,0 +1,189 @@
+{
+    "source":  "book-shelf-learning-v2-20260723",
+    "schema_version":  1,
+    "lenses":  [
+                   {
+                       "id":  "deliberate-reasoning-checkpoint",
+                       "description":  "Before any gated action, pause for a deliberate reasoning step. From Kahneman\u0027s System 2: slow, analytical thinking catches biases that fast routing misses.",
+                       "books":  9,
+                       "six_hats_role":  "blue_hat",
+                       "apply_to":  [
+                                        "intent_classification",
+                                        "tool_gate_authorization",
+                                        "structure_change_request"
+                                    ],
+                       "behavior":  "After fast intent routing (L0/L1), if the operation is gated, run a deliberation checkpoint: re-verify goal alignment, check for alternatives, assess risk level."
+                   },
+                   {
+                       "id":  "feedback-loop-risk-review",
+                       "description":  "Every gated action should have an explicit risk review step. From complexity theory: systems without feedback loops drift into failure modes.",
+                       "books":  8,
+                       "six_hats_role":  "black_hat",
+                       "apply_to":  [
+                                        "git_operations",
+                                        "release_operations",
+                                        "credential_operations",
+                                        "structural_mutations"
+                                    ],
+                       "behavior":  "Before executing a gated action, classify risk level (low/medium/high/critical), identify rollback path, and confirm that all prerequisite lifecycle gates passed."
+                   },
+                   {
+                       "id":  "analogy-transfer-with-boundary-check",
+                       "description":  "When applying knowledge from one domain to another (e.g., book insight to Agent architecture), explicitly check domain boundaries. From Hofstadter: analogies are powerful but leaky.",
+                       "books":  8,
+                       "six_hats_role":  "white_hat",
+                       "apply_to":  [
+                                        "experience_promotion",
+                                        "methodology_adoption",
+                                        "external_learning"
+                                    ],
+                       "behavior":  "Before adopting an external pattern or promoting a candidate experience, identify at least one domain-boundary difference and verify the transfer still holds."
+                   },
+                   {
+                       "id":  "structure-and-principle-extraction",
+                       "description":  "Extract underlying structural principles rather than copying surface patterns. From Minto: top-down structure reveals the essential logic.",
+                       "books":  7,
+                       "six_hats_role":  "white_hat",
+                       "apply_to":  [
+                                        "skill_design",
+                                        "owner_structure",
+                                        "workflow_design"
+                                    ],
+                       "behavior":  "When designing or modifying Agent structure, first state the governing principle, then derive the specific change from that principle."
+                   },
+                   {
+                       "id":  "model-selection-before-action",
+                       "description":  "Choose the right mental model before acting. From Page: different problems need different models; using the wrong model produces worse results than using no model.",
+                       "books":  4,
+                       "six_hats_role":  "green_hat",
+                       "apply_to":  [
+                                        "requirement_analysis",
+                                        "iteration_design",
+                                        "error_diagnosis"
+                                    ],
+                       "behavior":  "Before selecting an owner or designing a workflow, explicitly enumerate at least two candidate models/approaches and state why the chosen one fits."
+                   },
+                   {
+                       "id":  "combinatorial-recursive-capability-evolution",
+                       "description":  "Agent capabilities should evolve through combination of existing components, not by adding top-level modules. From Arthur: all technologies are combinations of existing technologies.",
+                       "books":  1,
+                       "six_hats_role":  "green_hat",
+                       "apply_to":  [
+                                        "skill_packaging",
+                                        "owner_growth",
+                                        "iteration_design"
+                                    ],
+                       "behavior":  "Before creating a new top-level owner, verify that the capability cannot be composed from 2+ existing owners. New capabilities should be subskills of existing owners."
+                   },
+                   {
+                       "id":  "fast-slow-routing-and-bias-checks",
+                       "description":  "Separate fast L0/L1 routing (System 1) from slow deliberation (System 2). From Kahneman: intuitive judgments are fast but biased; override with deliberate analysis for high-stakes decisions.",
+                       "books":  1,
+                       "six_hats_role":  "blue_hat",
+                       "apply_to":  [
+                                        "intent_classification",
+                                        "authorization_decisions"
+                                    ],
+                       "behavior":  "Fast routing is acceptable for read-only operations and metadata changes. Gated operations must pass through the slow deliberation checkpoint before authorization."
+                   },
+                   {
+                       "id":  "multi-model-triangulation",
+                       "description":  "Use multiple models to triangulate before a decision. From Page: the wisdom of many-model thinking outperforms any single model.",
+                       "books":  1,
+                       "six_hats_role":  "yellow_hat",
+                       "apply_to":  [
+                                        "iteration_design",
+                                        "error_diagnosis",
+                                        "candidate_evaluation"
+                                    ],
+                       "behavior":  "For complex decisions (iteration design, candidate promotion, error root cause), consult at least two information sources or evaluative dimensions before concluding."
+                   },
+                   {
+                       "id":  "separated-review-roles",
+                       "description":  "Separate thinking into distinct roles to avoid cognitive interference. From de Bono: parallel thinking with six hat roles produces better decisions than adversarial argument.",
+                       "books":  1,
+                       "six_hats_role":  "blue_hat",
+                       "apply_to":  [
+                                        "candidate_evaluation",
+                                        "error_review",
+                                        "iteration_closeout"
+                                    ],
+                       "behavior":  "During review, explicitly cycle through white (facts), red (intuition), black (risks), yellow (value), green (alternatives), and blue (process) perspectives."
+                   },
+                   {
+                       "id":  "thought-experiment-counterexample-probes",
+                       "description":  "Stress-test assumptions with counterexamples. From Dennett: intuition pumps reveal hidden assumptions by constructing extreme or inverted cases.",
+                       "books":  1,
+                       "six_hats_role":  "black_hat",
+                       "apply_to":  [
+                                        "candidate_evaluation",
+                                        "safety_check",
+                                        "verification"
+                                    ],
+                       "behavior":  "Before accepting a candidate or closing an iteration, construct at least one counterexample probe: \u0027What would break this?\u0027 or \u0027When would this fail?\u0027"
+                   },
+                   {
+                       "id":  "top-down-pyramid-communication",
+                       "description":  "Present outcomes top-down: conclusion first, supporting evidence below. From Minto: the pyramid structure respects the reader\u0027s need for immediate understanding.",
+                       "books":  1,
+                       "six_hats_role":  "blue_hat",
+                       "apply_to":  [
+                                        "candidate_reports",
+                                        "exit_messages",
+                                        "closeout_summaries"
+                                    ],
+                       "behavior":  "In Agent exit messages and candidate reports, lead with the conclusion or decision, then provide supporting evidence in descending order of importance."
+                   },
+                   {
+                       "id":  "analogy-and-abstraction-transfer",
+                       "description":  "Categorization and analogy are the core of cognition. From Hofstadter: understanding is analogical mapping from known categories to new situations.",
+                       "books":  1,
+                       "six_hats_role":  "white_hat",
+                       "apply_to":  [
+                                        "experience_promotion",
+                                        "knowledge_system"
+                                    ],
+                       "behavior":  "When promoting experience, explicitly state the source category (domain), target category (Agent system), and the analogical mapping between them."
+                   },
+                   {
+                       "id":  "complex-systems-feedback-and-emergence",
+                       "description":  "Complex systems exhibit emergent behavior not predictable from component analysis alone. From complexity theory: feedback loops create non-linear outcomes.",
+                       "books":  1,
+                       "six_hats_role":  "yellow_hat",
+                       "apply_to":  [
+                                        "iteration_design",
+                                        "global_iteration",
+                                        "error_diagnosis"
+                                    ],
+                       "behavior":  "After any multi-owner change, verify that the emergent system behavior (not just individual component tests) matches expectations."
+                   },
+                   {
+                       "id":  "deep-structure-first-principles",
+                       "description":  "Push past surface patterns to find deep structural principles. From deep thinking methodology: first principles are invariants that survive context changes.",
+                       "books":  1,
+                       "six_hats_role":  "white_hat",
+                       "apply_to":  [
+                                        "architecture_design",
+                                        "owner_structure",
+                                        "requirement_analysis"
+                                    ],
+                       "behavior":  "When facing a complex problem, decompose it to first principles before designing a solution. Ask \u0027What is invariant here?\u0027 and \u0027What is context-dependent?\u0027"
+                   }
+               ],
+    "architecture_owner":  "codex-architecture-iteration",
+    "six_hats_roles":  {
+                           "roles":  {
+                                         "yellow_hat":  "Value, benefit, optimism: What improvement does this bring? Why is it worth doing?",
+                                         "blue_hat":  "Process control, meta-review: Are all gates passed? Is the review sequence correct?",
+                                         "white_hat":  "Facts, data, evidence: What do we know? What information is missing?",
+                                         "black_hat":  "Risks, caution, critical assessment: What could fail? What are the downsides?",
+                                         "red_hat":  "Intuition, emotion, gut feel: What feels risky or promising?",
+                                         "green_hat":  "Creativity, alternatives, possibilities: What other approaches exist? Can we compose differently?"
+                                     },
+                           "description":  "From Edward de Bono\u0027s Six Thinking Hats: parallel thinking roles for structured review"
+                       },
+    "owner":  "codex-experience-capture",
+    "model":  "agent-review-lenses",
+    "principle":  "Cross-book derived review lenses for Agent self-optimization. Each lens maps a book-derived insight to a concrete Agent behavior.",
+    "status":  "active"
+}

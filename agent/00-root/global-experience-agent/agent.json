@@ -1,0 +1,55 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "root:global-experience-agent",
+    "kind":  "root-agent",
+    "sources":  [
+                    "config/agent-system.json",
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "global-experience-agent",
+    "owner":  "codex-self-evolution",
+    "purpose":  "retrieve durable records, contract and continue work, select or delegate agents, route gated capabilities, observe results, learn, and settle save points",
+    "entrypoint":  "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+    "capabilities":  [
+                         "inspect",
+                         "classify-intent",
+                         "describe-filesystem",
+                         "resolve-agent-path",
+                         "describe-interfaces",
+                         "evaluate-access",
+                         "retrieve-context",
+                         "start-work",
+                         "store-memory",
+                         "search-memory",
+                         "consolidate-memory",
+                         "render-memory-snapshot",
+                         "continue-work",
+                         "route-specialist",
+                         "delegate-subagent",
+                         "complete-subagent",
+                         "join-subagent",
+                         "cancel-subagent",
+                         "complete-iteration",
+                         "candidate-report",
+                         "request-structure-change",
+                         "resume",
+                         "abort"
+                     ],
+    "filesystem":  "agent/agent-filesystem.json",
+    "interfaces":  [
+                       "human",
+                       "llm",
+                       "internal-functional-unit",
+                       "global-control"
+                   ],
+    "concepts":  [
+                     "work-orchestration-agent",
+                     "experience-memory-agent",
+                     "delivery-agent",
+                     "platform-agent",
+                     "self-evolution-agent"
+                 ],
+    "specialist_count":  23,
+    "exit_count":  9
+}

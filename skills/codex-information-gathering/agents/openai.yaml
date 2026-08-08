@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Information Gathering"
+  short_description: "Collect evidence before decisions and implementation"
+  default_prompt: "Use $codex-information-gathering to handle this task with verified reusable practices."

@@ -1,0 +1,57 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-workflow-design",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-workflow-design/SKILL.md"
+                ],
+    "id":  "codex-workflow-design",
+    "owner":  "codex-workflow-design",
+    "plane":  "control",
+    "stage":  "dispatch",
+    "canonical_skill":  "skills/codex-workflow-design/SKILL.md",
+    "triggers":  [
+                     "multi-step plan",
+                     "repeatable workflow",
+                     "handoff design"
+                 ],
+    "consumes":  [
+                     "normalized requirement brief",
+                     "verified surfaces",
+                     "owner boundaries"
+                 ],
+    "produces":  [
+                     "dependency-aware workflow",
+                     "owner handoff chain"
+                 ],
+    "verification":  "acceptance-to-validation traceability and explicit authority checkpoints",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-learning",
+                         "artifact":  "adapted method record",
+                         "event":  "method_ready_for_workflow"
+                     },
+                     {
+                         "from":  "codex-requirement-authoring",
+                         "artifact":  "normalized requirement brief",
+                         "event":  "workflow_ready"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-runtime-environments",
+                         "artifact":  "runtime requirements",
+                         "event":  "runtime_preflight_requested"
+                     },
+                     {
+                         "to":  "codex-task-execution",
+                         "artifact":  "owner handoff chain",
+                         "event":  "execution_ready"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

@@ -1,0 +1,60 @@
+$ErrorActionPreference = 'Stop'
+$root = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$iteration = Get-Content -LiteralPath (Join-Path $root 'scripts\Invoke-CompleteGlobalExperienceIteration.ps1') -Raw -Encoding UTF8
+$commit = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\Invoke-VerifiedPrivateCommit.ps1') -Raw -Encoding UTF8
+$lockRecovery = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\Repair-CodexGitIndexLock.ps1') -Raw -Encoding UTF8
+$presentationAudit = Get-Content -LiteralPath (Join-Path $root 'skills\codex-git-operations\scripts\New-GlobalReadmePresentationAudit.ps1') -Raw -Encoding UTF8
+if ($lockRecovery -match '(?m)^\s*exit\s+0\s*$') { throw 'Git lock recovery can terminate its parent publication controller.' }
+if ($presentationAudit -match '(?m)^\s*exit\s+0\s*$') { throw 'README presentation audit can terminate its parent publication controller.' }
+if ($iteration -notmatch '\[switch\]\$AutoCommit') { throw 'Complete global iteration does not expose the AutoCommit gate.' }
+if ($iteration -notmatch '\[switch\]\$CandidateOnly') { throw 'Complete global iteration does not expose the candidate-only fast path.' }
+if ($iteration -notmatch 'full Git worktree has no tracked, staged, or untracked repository changes') { throw 'Candidate-only mode does not reject repository changes.' }
+if ($iteration -notmatch 'step_timings') { throw 'Complete global iteration does not record timing telemetry.' }
+$isolated = Get-Content -LiteralPath (Join-Path $root 'scripts\Invoke-IsolatedGlobalExperienceIteration.ps1') -Raw -Encoding UTF8
+if ($isolated -notmatch 'step_timings') { throw 'Isolated global iteration does not record internal timing telemetry.' }
+if ($isolated -notmatch 'validate replaced global system pass 1') { throw 'Isolated global iteration does not split post-replacement validation timing.' }
+if ($isolated -notmatch 'LightweightDirectoryCleanup') { throw 'Isolated global iteration does not use lightweight active cleanup.' }
+if ($isolated -notmatch 'Copy-ChangedPathOverlay') { throw 'Isolated global iteration does not use changed-path sandbox overlay.' }
+if ($isolated -match 'robocopy \$root \$sandbox') { throw 'Isolated global iteration still overlays the full active tree into the sandbox.' }
+if ($isolated -match 'core\.autocrlf=false clone') { throw 'Isolated global iteration forces LF checkout during sandbox clone.' }
+if ($isolated -match 'config core\.autocrlf false') { throw 'Isolated global iteration forces sandbox checkout policy away from the repository policy.' }
+if ($iteration -notmatch 'AutoCommit requires -Staged') { throw 'AutoCommit does not require an explicit staged scope.' }
+if ($iteration -notmatch '-SkipCompleteIteration -CommitOnly') { throw 'AutoCommit does not reuse the verified iteration proof for local-only commit.' }
+$cleanup = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -Raw -Encoding UTF8
+if ($cleanup -notmatch '--ignored' -or $cleanup -notmatch '--exclude-standard') { throw 'Cleanup does not consider ignored disposable cache files.' }
+if ($cleanup -notmatch '\(exclude\)\.runtime/\*\*' -or $cleanup -notmatch '\(exclude\)\.codex/\*\*') { throw 'Cleanup does not exclude protected roots at the Git pathspec layer.' }
+if ($cleanup -notmatch 'candidate-parents-only') { throw 'Cleanup does not expose candidate-parent directory cleanup telemetry.' }
+$rollback = Get-Content -LiteralPath (Join-Path $root 'skills\codex-file-organization\scripts\New-PreIterationRollbackSnapshot.ps1') -Raw -Encoding UTF8
+if ($rollback -notmatch 'git-tracked-untracked-ignored') { throw 'Rollback snapshot does not record Git-backed file inventory.' }
+if ($rollback -notmatch 'robocopy-filtered-tree') { throw 'Rollback snapshot does not record filtered robocopy copy engine.' }
+if ($rollback -notmatch 'dotnet-sha256-stream') { throw 'Rollback snapshot does not record the optimized .NET hash engine.' }
+if ($rollback -notmatch 'short-prefix') { throw 'Rollback snapshot does not preserve the short path-budget snapshot naming policy.' }
+if ($rollback -notmatch 'private-skill-config') { throw 'Rollback snapshot does not exclude private local profile roots.' }
+if ($rollback -notmatch '\(exclude\)\.runtime/\*\*' -or $rollback -notmatch '\(exclude\)\.codex/\*\*') { throw 'Rollback snapshot does not exclude protected roots at the Git pathspec layer.' }
+$gate = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -Raw -Encoding UTF8
+if ($gate -notmatch 'Candidate-only global iteration proof cannot satisfy the Git publication gate') { throw 'Git publication gate does not reject candidate-only proof.' }
+if ($gate -notmatch 'ls-files --others --exclude-standard') { throw 'Git publication gate does not consider untracked paths in non-staged mode.' }
+if ($commit -notmatch '\[switch\]\$CommitOnly') { throw 'Verified private commit does not expose local-only commit mode.' }
+if ($commit -notmatch 'if \(-not \$CommitOnly\)') { throw 'Local-only commit mode does not protect the push boundary.' }
+if ($commit -notmatch 'mixed worktree') { throw 'Verified private commit does not reject mixed worktrees.' }
+if ($commit -notmatch 'publication-envelope\.json') { throw 'Verified private commit does not write a publication envelope.' }
+if ($commit -notmatch 'Test-CurrentCompleteIterationProof') { throw 'Verified private commit cannot reuse a current complete iteration proof.' }
+if ($commit -notmatch '\$iterationStatusReady = Test-Path' -or $commit -match '\$selected -contains ''docs/ITERATION-STATUS\.md''') { throw 'Verified private commit still conflates iteration-status freshness with selected-path membership.' }
+if ($commit -notmatch 'Test-GitPublicationMetadata\.ps1''\) -RepositoryRoot \$root -Staged \| Out-Null') { throw 'Verified private commit can leak publication metadata output into the parent JSON stream.' }
+if ($commit -notmatch 'git -C \$root commit -m \$Message \| Out-Null') { throw 'Verified private commit can leak git commit output into the parent JSON stream.' }
+if ($commit -notmatch 'push origin HEAD \| Out-Null') { throw 'Verified private commit can leak git push output into the parent JSON stream.' }
+if ($commit -notmatch 'Repair-CodexGitStatusNoise\.ps1') { throw 'Verified private commit does not safely refresh post-commit status-only entries.' }
+if ($commit -notmatch 'staged-git-paths-only') { throw 'Publication envelope does not define a staged-only publication surface.' }
+$metadata = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-GitPublicationMetadata.ps1') -Raw -Encoding UTF8
+if ($metadata -notmatch 'publication-envelope\.json') { throw 'Publication metadata gate does not require the publication envelope.' }
+if ($metadata -notmatch 'local/private-state boundary') { throw 'Publication metadata gate does not verify the publication privacy boundary.' }
+if ($metadata -match 'changed -notcontains \$auditPath' -or $metadata -notmatch 'Get-Content -LiteralPath \$auditFullPath') { throw 'Publication metadata gate still requires a changed audit path instead of accepting a matching current audit.' }
+$validate = Get-Content -LiteralPath (Join-Path $root 'scripts\validate.ps1') -Raw -Encoding UTF8
+if ($validate -notmatch 'validate_skills\.py') { throw 'Repository validation does not use the batch skill validator.' }
+$scriptOptimization = Get-Content -LiteralPath (Join-Path $root 'skills\codex-workflow-design\scripts\Invoke-ScriptAssetOptimization.ps1') -Raw -Encoding UTF8
+if ($scriptOptimization -notmatch 'isolated-global-iteration\.json') { throw 'Script asset optimization does not inspect isolated iteration step timings.' }
+$scan = Get-Content -LiteralPath (Join-Path $root 'scripts\scan_repository.py') -Raw -Encoding UTF8
+if ($scan -notmatch 'ls-files') { throw 'Repository scan does not use Git path authority.' }
+if ($scan -notmatch 'iter_filesystem_candidate_files') { throw 'Repository scan does not keep a filesystem fallback.' }
+if ($scan -notmatch 'EXCLUDED') { throw 'Repository scan does not preserve protected-root exclusions.' }
+Write-Host 'Auto-commit iteration integration test passed.'

@@ -1,0 +1,23 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "concept:platform-agent",
+    "kind":  "concept-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "platform-agent",
+    "owners":  [
+                   "codex-runtime-environments",
+                   "codex-credential-management",
+                   "codex-tool-installation",
+                   "codex-file-organization",
+                   "codex-git-operations"
+               ],
+    "resources":  [
+                      ".codex/project/state.json",
+                      "module-registry.json"
+                  ],
+    "purpose":  "provide runtime, credential, installation, file-state, Git, version, and release capabilities behind their gates",
+    "child_policy":  "executable-under-current-authority"
+}

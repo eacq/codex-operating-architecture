@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "status": "installed-adapted-core",
+  "upstream": {
+    "repository": "https://github.com/huangruiteng/loopx",
+    "license": "MIT",
+    "version": "0.4.1",
+    "commit": "22b57a76e18736c31fe749867292f3feeb62f27b",
+    "source_kind": "reviewed-upstream-checkout"
+  },
+  "ownership": {
+    "global_controller": "codex-self-evolution",
+    "project_control_plane": "codex-self-evolution-loopx-control-plane",
+    "runtime_installation": "codex-tool-installation",
+    "error_feedback": "codex-error-feedback",
+    "knowledge": "codex-knowledge-system",
+    "publication": "codex-git-operations"
+  },
+  "windows_adapter": {
+    "install_script": "scripts/Install-LoopX.ps1",
+    "entrypoint": "scripts/Invoke-LoopX.ps1",
+    "command_shim": "scripts/loopx.cmd",
+    "current_manifest": ".runtime/software/loopx/current.json",
+    "python_policy": "prefer Codex bundled Python 3.11+; do not modify user PATH"
+  },
+  "adopted_surfaces": [
+    "durable project goals and state projection",
+    "typed todo ownership and task leases",
+    "quota-aware should-run and spend-after-writeback",
+    "heartbeat scheduler hints and turn receipts",
+    "evidence-backed handoff and recovery classification",
+    "read-first doctor/status/diagnose/review packet surfaces",
+    "Issue-Fix revision-pinned context, feasibility, reviewer separation, and PR lifecycle routes",
+    "Auto ML hypothesis/window/replicate/guardrail/result-ledger routes",
+    "Auto Research proposer/executor/evaluator frontier, quota, evidence, and targeted-wake routes",
+    "GEA-selected economy/balanced/full local-desktop resource levels",
+    "representative CLI and package-path verification"
+  ],
+  "deferred_surfaces": [
+    "Lark and OpenViking providers",
+    "public dashboard and external projections",
+    "Unix shell profile mutation",
+    "macOS LaunchAgents",
+    "autonomous production control"
+  ],
+  "verification": [
+    "scripts/Test-LoopXIntegration.ps1",
+    "scripts/Test-LoopXTrajectory.ps1",
+    "scripts/Test-AgentHarnessContract.ps1",
+    "scripts/Test-AgentStructuralOptimizationPropagation.ps1",
+    "scripts/validate.ps1",
+    "scripts/validate-global-install.ps1"
+  ],
+  "authority_boundary": "LoopX does not replace the one Global Experience Agent or bypass existing owner/tool gates."
+}

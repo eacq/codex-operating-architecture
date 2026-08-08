@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "kind": "content-frame-adaptation-template",
+  "frame_policy": "content-driven",
+  "mapping": [
+    {
+      "content_id": "内容标识",
+      "frame_id": "框标识",
+      "role": "image|text|icon|group",
+      "safe_area": {"left": 0, "top": 0, "right": 0, "bottom": 0},
+      "fit_mode": "contain|native|grouped",
+      "overflow_action": "resize|reflow|remove-frame"
+    }
+  ],
+  "checks": [
+    "frame count equals actual grouped content count",
+    "no empty frame",
+    "no content outside frame safe area",
+    "no title or border hidden by content",
+    "no important element obscures another element",
+    "render again after correction"
+  ]
+}

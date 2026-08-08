@@ -1,0 +1,60 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-git-operations",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-git-operations/SKILL.md"
+                ],
+    "id":  "codex-git-operations",
+    "owner":  "codex-git-operations",
+    "plane":  "platform",
+    "stage":  "savepoint",
+    "canonical_skill":  "skills/codex-git-operations/SKILL.md",
+    "triggers":  [
+                     "Git milestone",
+                     "commit",
+                     "release",
+                     "remote synchronization"
+                 ],
+    "consumes":  [
+                     "scoped changed paths",
+                     "validation proof",
+                     "publication metadata",
+                     "current authority"
+                 ],
+    "produces":  [
+                     "validated commit",
+                     "publication envelope",
+                     "release evidence"
+                 ],
+    "verification":  "repository route, exact scope, metadata, privacy, remote, tag, and visibility evidence as applicable",
+    "tool_gate":  "git",
+    "incoming":  [
+                     {
+                         "from":  "codex-file-organization",
+                         "artifact":  "rollback-ready file state",
+                         "event":  "git_gate_requested"
+                     },
+                     {
+                         "from":  "codex-skill-packaging",
+                         "artifact":  "validated discovery interface",
+                         "event":  "publication_scope_ready"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-experience-capture",
+                         "artifact":  "Git milestone evidence",
+                         "event":  "experience_capture_required"
+                     },
+                     {
+                         "to":  "codex-conversation-continuity",
+                         "artifact":  "repository checkpoint",
+                         "event":  "task_route_checkpointed"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

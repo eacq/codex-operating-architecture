@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "agent-chunking-retrieval-policy",
+  "owner": "codex-information-gathering",
+  "source": {
+    "repository": "https://github.com/LesterYu0/feynman-build-workshop",
+    "path": "episodes/04-chunking-retrieval; episodes/05-rerank-calibration",
+    "adaptation": "method-system-adaptation"
+  },
+  "purpose": "turn parsed Agent Document chunks into retrieval-ready evidence with measurable recall before memory, knowledge, or specialist handoff",
+  "input_contract": {
+    "preferred_source": "agent-doc-parse-pipeline Document/Chunk output",
+    "accepted_sources": ["plain text", "chunks JSONL", "parsed Document JSON"],
+    "required_chunk_fields": ["id", "text"],
+    "optional_chunk_fields": ["metadata", "page", "table_id", "line_no", "source_path"]
+  },
+  "layer_policy": [
+    {
+      "layer": "L1",
+      "name": "flat chunking and retrieval",
+      "default": true,
+      "strategies": ["recursive", "fixed", "semantic-candidate", "late-candidate", "contextual-candidate", "contextual-rrf-rerank-candidate", "rerank-calibrated"],
+      "local_baseline": "recursive chunking plus BM25-lite lexical retrieval, deterministic rerank, confidence calibration, and refusal threshold",
+      "use_when": "standard RAG, Agent memory search, evidence narrowing, and source-targeted retrieval"
+    },
+    {
+      "layer": "L2",
+      "name": "structured expansion",
+      "strategies": ["raptor-candidate", "graphrag-candidate"],
+      "gate": "external or LLM-backed summarization/entity extraction remains a gated candidate",
+      "use_when": "cross-chunk reasoning is frequent enough to justify additional cost and validation"
+    },
+    {
+      "layer": "L3",
+      "name": "ontology-constrained retrieval",
+      "strategies": ["ontology-rag-candidate", "og-rag-candidate"],
+      "gate": "ontology/schema creation or external ontology use requires owner route and current authority",
+      "use_when": "law, compliance, medicine, industrial standards, or another domain with strict schema boundaries"
+    }
+  ],
+  "selection_rules": [
+    {
+      "condition": "domain ontology exists or strict schema boundary is required",
+      "route": "L3 ontology-constrained retrieval"
+    },
+    {
+      "condition": "answers require vertical overview-to-detail reasoning",
+      "route": "L2 RAPTOR candidate after L1 baseline measurement"
+    },
+    {
+      "condition": "answers require horizontal entity relationship traversal",
+      "route": "L2 GraphRAG candidate after L1 baseline measurement"
+    },
+    {
+      "condition": "general text, FAQ, logs, project notes, or Agent memory",
+      "route": "L1 recursive baseline"
+    },
+    {
+      "condition": "high recall is required and latency/cost budget allows",
+      "route": "L1 contextual plus RRF/rerank candidate"
+    }
+  ],
+  "local_executable": {
+    "subskill": "skills/codex-information-gathering/subskills/chunking-retrieval/SKILL.md",
+    "runner": "skills/codex-information-gathering/scripts/Invoke-AgentChunkingRetrieval.ps1",
+    "python": "skills/codex-information-gathering/scripts/Invoke-AgentChunkingRetrieval.py",
+    "test": "scripts/Test-AgentChunkingRetrieval.ps1",
+    "dependencies": "python standard library only"
+  },
+  "rerank_calibration_contract": {
+    "source_path": "episodes/05-rerank-calibration",
+    "steps": ["retrieve_top_k", "rerank_candidates", "calibrate_confidence", "apply_refusal_threshold"],
+    "local_rerank": "deterministic lexical cross-feature rerank over BM25 score, term coverage, exact phrase match, and chunk id tie-breaks",
+    "calibration": {
+      "method": "temperature-scaled logistic confidence over normalized local rerank features",
+      "default_temperature": 1.0,
+      "default_refusal_threshold": 0.35
+    },
+    "refusal_rule": "if top calibrated confidence is below threshold, return a refusal decision instead of treating retrieval as answerable",
+    "external_reranker_rule": "cross-encoder, Cohere, BGE, FlashRank, or other model-backed rerankers remain gated candidates and must report calibration metrics before durable use"
+  },
+  "evaluation_contract": {
+    "metrics": ["recall_at_1", "recall_at_3", "recall_at_5", "mrr", "answer_accuracy", "expected_calibration_error", "brier_score", "false_accept_rate", "false_refusal_rate"],
+    "minimum_for_agent_baseline": {
+      "recall_at_3": 1.0,
+      "mrr": 0.5,
+      "false_accept_rate": 0.0
+    },
+    "rule": "record retrieval and calibration metrics when a chunking, rerank, or threshold strategy affects durable memory, knowledge, or architecture claims"
+  },
+  "authority_boundary": {
+    "allowed_without_extra_gate": ["local chunking", "local lexical retrieval", "local deterministic rerank", "local confidence calibration", "local refusal thresholding", "local evaluation over non-secret task data"],
+    "requires_owner_gate": ["LLM contextualization", "reranker API use", "embedding provider use", "vector database installation", "GraphRAG extraction", "RAPTOR summarization", "ontology creation or import"],
+    "privacy_rule": "retrieval indexes over private task data remain ignored local state unless explicitly promoted through verified knowledge rules",
+    "source_verification_rule": "retrieved chunks route attention; current source files, parsed document validation, and tests remain final proof"
+  }
+}

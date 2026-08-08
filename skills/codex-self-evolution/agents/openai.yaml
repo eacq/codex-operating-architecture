@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Self Evolution"
+  short_description: "Continuously improve Codex workflows from verified experience"
+  default_prompt: "Use $codex-self-evolution to route this project task, check lifecycle state, and capture verified reusable experience."

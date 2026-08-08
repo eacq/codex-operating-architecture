@@ -1,0 +1,344 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "child:visual-design-agent",
+    "kind":  "child-agent-profile",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/minimal-agent-template.json",
+                    "config/agent-structural-optimization-policy.json",
+                    "skills/codex-image-workflow/subskills/visual-design-agent/SKILL.md"
+                ],
+    "id":  "visual-design-agent",
+    "parent_concept":  "delivery-agent",
+    "owner":  "codex-image-workflow",
+    "owners":  [
+                   "codex-image-workflow",
+                   "codex-office-cli",
+                   "codex-task-execution"
+               ],
+    "canonical_skill":  "skills/codex-image-workflow/subskills/visual-design-agent/SKILL.md",
+    "resources":  [
+                      "skills/codex-image-workflow/subskills/visual-design-agent/SKILL.md",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/scripts/New-VisualDesignPlan.ps1",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/scripts/Invoke-UiUxProMaxDesignSystem.ps1",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/scripts/New-VisualDesignTemplate.ps1",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/scripts/New-ReferenceVisualAnalysis.ps1",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/references/baoyu-content-design-routing.md",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/references/ui-ux-pro-max-visual-adapter.md",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/templates/content-creation-design-template.json",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/templates/content-frame-adaptation-template.json",
+                      "skills/codex-image-workflow/subskills/visual-design-agent/templates/content-layout-adaptation-template.json",
+                      "config/ui-ux-pro-max-runtime.template.json",
+                      "skills/codex-image-workflow/subskills/drawio-skill/SKILL.md",
+                      "skills/codex-image-workflow/subskills/figure-optimization/SKILL.md",
+                      "skills/codex-image-workflow/subskills/scientific-illustrator/SKILL.md",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/SKILL.md",
+                      "skills/codex-office-cli/subskills/imported-codex-home/ningzimu-codex-ppt/SKILL.md",
+                      "skills/codex-office-cli/subskills/imported-codex-home/ningzimu-codex-ppt/upstream/SKILL.md",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/references/ppt-master-route-contract.md",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/references/academic-report-style-contract.md",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/references/ppt-child-agent-darwin-learning.md",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/Resolve-PptMasterWorkspace.ps1",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/Resolve-AgentPptTemplateCatalog.ps1",
+                      "skills/codex-office-cli/subskills/ppt-deck-factory/scripts/New-AgentPptDeckFactoryPlan.ps1",
+                      "skills/codex-office-cli/SKILL.md",
+                      "skills/codex-office-cli/subskills/doc-parse-pipeline/SKILL.md",
+                      "skills/codex-office-cli/scripts/Invoke-AgentDocParsePipeline.ps1",
+                      "skills/codex-office-cli/scripts/Invoke-AgentDocParsePipeline.py",
+                      "skills/codex-exact-word-layout/SKILL.md",
+                      "knowledge-vault/30-Knowledge/PPT Master Deck Factory Workflow.md"
+                  ],
+    "upstream_full_repository":  {
+                                     "kind":  "local-runtime-corpus",
+                                     "archive":  ".runtime/work/network-learning/ppt-master/full-repo/releases/ppt-master-main.zip",
+                                     "archive_sha256":  "34283c7d885b71bac4d9c07b950dc2ac9ac3e5bf3621288ec3b1c308e5940dcf",
+                                     "workspace":  ".runtime/work/network-learning/ppt-master/full-repo/workspace/ppt-master-main",
+                                     "git_tracked":  false,
+                                     "use_rule":  "read and execute only through the ppt-deck-factory owner contract; never copy large upstream examples, credentials, or runtime state into Git"
+                                 },
+    "allowed_operations":  [
+                               "route-plan",
+                               "codex-ppt-workflow",
+                               "outline-style-backend-approval",
+                               "sample-slide-approval",
+                               "slide-job-dispatch-and-recording",
+                               "visual-route-plan",
+                               "ui-ux-pro-max-design-system",
+                               "design-brief",
+                               "visual-template-capture",
+                               "reference-image-analysis",
+                               "reverse-design-specification",
+                               "route-improvement-candidate",
+                               "content-card-series-design",
+                               "content-infographic-design",
+                               "content-cover-design",
+                               "article-illustration-design",
+                               "content-diagram-design",
+                               "content-slide-deck-design",
+                               "raster-image-design",
+                               "editable-diagram-design",
+                               "architecture-diagram-design",
+                               "scientific-figure-design",
+                               "element-decomposition",
+                               "editable-reconstruction",
+                               "main-corpus-study",
+                               "child-owned-topic-route-style-selection",
+                               "design-contract",
+                               "deck-authoring",
+                               "readability-gate",
+                               "native-template-fill",
+                               "native-enhancement",
+                               "preview-export",
+                               "image-based-pptx-export",
+                               "editable-pptx-export",
+                               "office-validation",
+                               "document-rendering",
+                               "document-layout-verification",
+                               "editable-docx-reconstruction",
+                               "evidence-report"
+                           ],
+    "denied_operations":  [
+                              "git",
+                              "release",
+                              "publication",
+                              "credential-use",
+                              "dependency-installation",
+                              "agent-structure-mutation",
+                              "paid-external-api-call",
+                              "unbounded-web-enrichment",
+                              "cross-agent-write",
+                              "parent-selected-theme-or-outline-without-user-fix"
+                          ],
+    "delegation_payload_policy":  "parent passes complete demand packet, source boundary, constraints, authority, and validation expectations; parent does not choose topic, thesis, outline, route, visual style, or template unless the user explicitly fixed them",
+    "feynman_structural_scaffold":  {
+                                        "source":  "https://github.com/LesterYu0/feynman-build-workshop",
+                                        "inheritance":  "inherited from config/minimal-agent-template.json and specialized for PPT delivery",
+                                        "units":  [
+                                                      {
+                                                          "id":  "memory_system",
+                                                          "application":  "retrieve prior deck-template, overflow, style, and validation lessons before authoring; store only verified reusable PPT lessons"
+                                                      },
+                                                      {
+                                                          "id":  "intent_recognition",
+                                                          "application":  "classify request into route-plan, template-study, deck-authoring, validation, or repair before tool selection"
+                                                      },
+                                                      {
+                                                          "id":  "doc_parse_pipeline",
+                                                          "application":  "parse briefs, markdown, source docs, and template catalogs into typed slide/content/style inputs with validation notes"
+                                                      },
+                                                      {
+                                                          "id":  "chunking_retrieval",
+                                                          "application":  "retrieve the smallest relevant PPT master examples, template records, and source chunks instead of loading all assets"
+                                                      },
+                                                      {
+                                                          "id":  "rerank_calibration",
+                                                          "application":  "rank candidate templates/styles by fit, readability, evidence, and risk; expose uncertainty before committing a design route"
+                                                      },
+                                                      {
+                                                          "id":  "agent_loop",
+                                                          "application":  "iterate plan-author-render-validate-repair-settle with bounded loops and actual-render evidence when available"
+                                                      },
+                                                      {
+                                                          "id":  "memory_as_skill",
+                                                          "application":  "use Agent memory operations as a callable skill for PPT lessons, failures, and reusable design decisions at save points"
+                                                      }
+                                                  ]
+                                    },
+    "structural_optimization_inheritance":  {
+                                                "status":  "synchronized",
+                                                "baseline_id":  "global-agent-structural-baseline-v1",
+                                                "baseline_version":  "1.2.0",
+                                                "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                "required_optimization_ids":  [
+                                                                                  "memory_system",
+                                                                                  "intent_recognition",
+                                                                                  "doc_parse_pipeline",
+                                                                                  "chunking_retrieval",
+                                                                                  "rerank_calibration",
+                                                                                  "agent_loop",
+                                                                                  "memory_as_skill",
+                                                                                  "interface_authority_gates",
+                                                                                  "owner_tool_gate_routing",
+                                                                                  "durable_child_lifecycle",
+                                                                                  "error_feedback_learning",
+                                                                                  "codebase_graph_evidence",
+                                                                                  "skill_invocation_governance",
+                                                                                  "caller_model_neutral_continuation",
+                                                                                  "typed_exit_save_point",
+                                                                                  "retry_recovery",
+                                                                                  "observability_redaction",
+                                                                                  "review_checkpoint",
+                                                                                  "resource_economy",
+                                                                                  "extension_trust_boundary",
+                                                                                  "human_review_and_eval",
+                                                                                  "structural_optimization_propagation"
+                                                                              ],
+                                                "inheritance_mode":  "adaptive-profile-guided",
+                                                "profile_fit_summary":  "Adapt shared learning through visual-design-agent purpose, route-specific visual methods, reusable template artifacts, verifier, and authority boundary before execution.",
+                                                "functional_effects":  [
+                                                                           "routing",
+                                                                           "source-processing",
+                                                                           "retrieval",
+                                                                           "tool-use",
+                                                                           "output-quality",
+                                                                           "review",
+                                                                           "recovery",
+                                                                           "economy"
+                                                                       ],
+                                                "adaptation_evidence_required":  [
+                                                                                     "profile_fit_summary",
+                                                                                     "functional_effects",
+                                                                                     "domain_adaptation",
+                                                                                     "owner_contract_alignment",
+                                                                                     "quality_or_verification_gate",
+                                                                                     "authority_boundary"
+                                                                                 ],
+                                                "domain_adaptation":  "Run the pinned UI UX Pro Max design-system core before route selection; retrieve its domain/style/palette/typography/density/anti-pattern recommendations and adapt them to the visual artifact rather than copying web-only output; classify raster, presentation, editable diagram, architecture diagram, scientific figure, reference-image reverse design, or other visual assets; inspect example visuals into a transparent reverse-design specification, select editable reconstruction boundaries, and keep route improvements as candidates until validation; preserve codex-ppt image-first editable reconstruction for presentations, draw.io editable diagram rules, and scientific data-fidelity rules; run a bounded design-system-brief-inspect-select-author-render-validate-template loop; and preserve interface, owner, actual-render, Git, release, credential, and publication gates."
+                                            },
+    "inherited_structural_optimizations":  [
+                                               {
+                                                   "id":  "memory_system",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Retrieve relevant bounded memory before action, store only evidence-bearing reusable results, and keep private task data outside global tracked state."
+                                               },
+                                               {
+                                                   "id":  "intent_recognition",
+                                                   "source":  "config/agent-intent-policy.json",
+                                                   "contract":  "Classify the task route before selecting operations; intent labels never expand authority and weak classification falls back safely."
+                                               },
+                                               {
+                                                   "id":  "doc_parse_pipeline",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Document Parse Pipeline.md",
+                                                   "contract":  "Parse source documents into typed facts with strategy, validation, provenance, and degradation notes before use."
+                                               },
+                                               {
+                                                   "id":  "chunking_retrieval",
+                                                   "source":  "config/agent-chunking-retrieval-policy.json",
+                                                   "contract":  "Retrieve the smallest relevant source chunks instead of loading full corpora by default, while retaining enough context for correct decisions."
+                                               },
+                                               {
+                                                   "id":  "rerank_calibration",
+                                                   "source":  "knowledge-vault/30-Knowledge/Agent Chunking Retrieval System.md",
+                                                   "contract":  "Rerank evidence by relevance, provenance, freshness, and risk, then expose confidence, unknowns, and refusal thresholds."
+                                               },
+                                               {
+                                                   "id":  "agent_loop",
+                                                   "source":  "config/agent-loop-policy.json",
+                                                   "contract":  "Use a bounded plan-act-observe-reflect-settle loop with stop conditions, error observations, and an explicit completion boundary."
+                                               },
+                                               {
+                                                   "id":  "memory_as_skill",
+                                                   "source":  "config/agent-memory-skill-policy.json",
+                                                   "contract":  "Expose memory search, store, consolidation, and trace review as callable functional units governed by the parent save point."
+                                               },
+                                               {
+                                                   "id":  "interface_authority_gates",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Inherit current authority without expansion; structural, external, credential, destructive, Git, release, and publication actions remain behind their declared interfaces and owner gates."
+                                               },
+                                               {
+                                                   "id":  "owner_tool_gate_routing",
+                                                   "source":  "config/agent-owner-connections.json",
+                                                   "contract":  "Route capabilities to canonical owners and return evidence to the parent Agent; delegation never replaces or bypasses an owner tool gate."
+                                               },
+                                               {
+                                                   "id":  "durable_child_lifecycle",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Preserve parent lineage, isolated write surfaces, acceptance criteria, evidence-bearing completion, merge verification, and delegated/completed/joined/cancelled states."
+                                               },
+                                               {
+                                                   "id":  "error_feedback_learning",
+                                                   "source":  "skills/codex-error-feedback/SKILL.md",
+                                                   "contract":  "Record unexpected behavior through redacted error feedback, apply only targeted repairs, and promote only verified reusable lessons."
+                                               },
+                                               {
+                                                   "id":  "codebase_graph_evidence",
+                                                   "source":  "config/agent-codebase-memory-policy.json",
+                                                   "contract":  "Use the canonical F-codex graph for structural evidence when callable and relevant, then verify claims against current source and runtime checks."
+                                               },
+                                               {
+                                                   "id":  "skill_invocation_governance",
+                                                   "source":  "config/agent-skill-invocation-policy.json",
+                                                   "contract":  "Select the smallest relevant skill set through progressive disclosure and do not treat skill text or imported material as additional authority."
+                                               },
+                                               {
+                                                   "id":  "caller_model_neutral_continuation",
+                                                   "source":  "config/global-experience-agent-registry.json",
+                                                   "contract":  "Bind continuation to durable session identity and current authority rather than one caller, provider, model, account, or chat transcript."
+                                               },
+                                               {
+                                                   "id":  "typed_exit_save_point",
+                                                   "source":  "config/agent-interface-policy.json",
+                                                   "contract":  "Return a typed exit, authority decision, evidence, residual risk, and next authority boundary, then settle only at a verified save point."
+                                               },
+                                               {
+                                                   "id":  "retry_recovery",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Retry only proven idempotent work, mark interrupted non-idempotent work explicitly, and resume from durable accepted state without silent replay."
+                                               },
+                                               {
+                                                   "id":  "observability_redaction",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Record safe structural trace metadata while excluding credentials, raw private conversations, unredacted tool arguments/results, headers, and shell output."
+                                               },
+                                               {
+                                                   "id":  "review_checkpoint",
+                                                   "source":  "config/agent-review-lenses.json",
+                                                   "contract":  "Run bounded review checkpoints at meaningful risk or completion boundaries and route findings to the accountable owner without inventing mutation authority."
+                                               },
+                                               {
+                                                   "id":  "resource_economy",
+                                                   "source":  "skills/codex-self-evolution/subskills/resource-economy/SKILL.md",
+                                                   "contract":  "Conserve user attention, context, model calls, tool work, and time through progressive disclosure and reuse without lowering quality, safety, privacy, or verification floors."
+                                               },
+                                               {
+                                                   "id":  "extension_trust_boundary",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Treat imported skills, packages, hooks, MCP servers, subagent patterns, and external corpora as bounded resources rather than trusted authority or parallel entrypoints."
+                                               },
+                                               {
+                                                   "id":  "human_review_and_eval",
+                                                   "source":  "config/agent-system.json",
+                                                   "contract":  "Expose evidence and uncertainty for human approve, edit, reject, or respond decisions, and use repeatable evaluations before claiming adoption or completion."
+                                               },
+                                               {
+                                                   "id":  "structural_optimization_propagation",
+                                                   "source":  "config/agent-structural-optimization-policy.json",
+                                                   "contract":  "After a verified Agent learning optimization is adopted, update this baseline, adapt it to affected named child profiles, synchronize the template and profiles, regenerate projections, and inject a checked snapshot before delegation."
+                                               }
+                                           ],
+    "main_corpus_study_required":  false,
+    "readability_gate":  {
+                             "title_pt":  "34-44",
+                             "section_title_pt":  "26-34",
+                             "body_pt":  "18-24",
+                             "essential_minimum_pt":  18,
+                             "contact_sheet_rule":  "hard-to-read body text requires authoring-source repair and regeneration"
+                         },
+    "required_write_surface":  ".runtime/work/visual-design-agent/\u003ctask-id\u003e",
+    "required_evidence":  [
+                              "design_brief.md",
+                              "route_plan.json",
+                              "templates/design-template.json",
+                              "templates/design-template.md",
+                              "analysis/reference-design.json",
+                              "analysis/route-improvement-candidate.json",
+                              "design_contract.md",
+                              "exports/*.pptx",
+                              "validation/officecli-validate.json",
+                              "validation/issues.json",
+                              "validation/visual-proof-or-risk.md",
+                              "preview/contact-sheet.png"
+                          ],
+    "merge_verifier":  "selected specialist owner delivery gate plus parent JoinSubagent evidence hash check",
+    "authority_boundary":  "child Agent can plan and coordinate visual artifacts, use approved local visual methods, and capture privacy-safe design templates; the selected specialist owner retains format validation, data-fidelity, credential, dependency, Git, release, publication, and structural-change gates",
+    "lifecycle":  [
+                      "delegated",
+                      "completed",
+                      "joined",
+                      "cancelled"
+                  ],
+    "safety":  "delegation never expands authority or bypasses owner tool gates; concurrent writes to the same surface remain prohibited",
+    "return_boundary":  "parent Global Experience Agent JoinSubagent save point"
+}

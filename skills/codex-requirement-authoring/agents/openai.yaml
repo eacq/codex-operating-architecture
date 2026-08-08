@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Requirement Authoring"
+  short_description: "Understand and write precise actionable requirements"
+  default_prompt: "Use $codex-requirement-authoring to handle this task with verified reusable practices."

@@ -1,0 +1,120 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "child:template",
+    "kind":  "child-agent-template",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/minimal-agent-template.json"
+                ],
+    "template":  "config/minimal-agent-template.json",
+    "id_pattern":  "parent-session/child-id",
+    "policy":  "executable-under-current-authority",
+    "states":  [
+                   "delegated",
+                   "completed",
+                   "joined",
+                   "cancelled"
+               ],
+    "required_contract":  [
+                              "parent session",
+                              "registered agent profile",
+                              "bounded goal",
+                              "authority hash",
+                              "isolated write surfaces",
+                              "acceptance criteria",
+                              "merge verification"
+                          ],
+    "completion_contract":  [
+                                "result summary",
+                                "repository-relative evidence with hashes",
+                                "verification"
+                            ],
+    "join_contract":  [
+                          "completed child",
+                          "accepted or rejected disposition",
+                          "named merge verifier",
+                          "verification evidence"
+                      ],
+    "planner":  "skills/codex-experience-capture/scripts/New-MinimalAgentPlan.ps1",
+    "default_behavior":  "design-only unless called with Delegate and Apply from an idle parent session",
+    "safety":  "delegation never expands authority or bypasses owner tool gates; concurrent writes to the same surface remain prohibited",
+    "structural_optimization_inheritance":  {
+                                                "source":  "config/agent-structural-optimization-policy.json",
+                                                "baseline_id":  "global-agent-structural-baseline-v1",
+                                                "baseline_version":  "1.2.0",
+                                                "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                "synchronization_controller":  "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+                                                "runtime_snapshot_provider":  "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                                "inheritance_mode":  "adaptive-profile-guided",
+                                                "profile_fit_dimensions":  [
+                                                                               "child purpose",
+                                                                               "allowed and denied operations",
+                                                                               "owner skill contracts",
+                                                                               "input and source types",
+                                                                               "output artifacts",
+                                                                               "domain corpus or upstream method",
+                                                                               "quality and readability gates",
+                                                                               "merge verifier",
+                                                                               "privacy and authority boundary",
+                                                                               "error and recovery behavior"
+                                                                           ],
+                                                "delegation_behavior":  "inject current snapshot and profile adaptation for every delegated Agent and fail closed when a named child profile is stale or lacks functional effect evidence"
+                                            },
+    "structural_optimization_template":  {
+                                             "source":  "config/agent-structural-optimization-policy.json",
+                                             "baseline_id":  "global-agent-structural-baseline-v1",
+                                             "baseline_version":  "1.2.0",
+                                             "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                             "required_optimization_ids":  [
+                                                                               "memory_system",
+                                                                               "intent_recognition",
+                                                                               "doc_parse_pipeline",
+                                                                               "chunking_retrieval",
+                                                                               "rerank_calibration",
+                                                                               "agent_loop",
+                                                                               "memory_as_skill",
+                                                                               "interface_authority_gates",
+                                                                               "owner_tool_gate_routing",
+                                                                               "durable_child_lifecycle",
+                                                                               "error_feedback_learning",
+                                                                               "codebase_graph_evidence",
+                                                                               "skill_invocation_governance",
+                                                                               "caller_model_neutral_continuation",
+                                                                               "typed_exit_save_point",
+                                                                               "retry_recovery",
+                                                                               "observability_redaction",
+                                                                               "review_checkpoint",
+                                                                               "resource_economy",
+                                                                               "extension_trust_boundary",
+                                                                               "human_review_and_eval",
+                                                                               "structural_optimization_propagation"
+                                                                           ],
+                                             "synchronization_controller":  "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+                                             "runtime_snapshot_provider":  "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                             "inheritance_mode":  "adaptive-profile-guided",
+                                             "profile_fit_dimensions":  [
+                                                                            "child purpose",
+                                                                            "allowed and denied operations",
+                                                                            "owner skill contracts",
+                                                                            "input and source types",
+                                                                            "output artifacts",
+                                                                            "domain corpus or upstream method",
+                                                                            "quality and readability gates",
+                                                                            "merge verifier",
+                                                                            "privacy and authority boundary",
+                                                                            "error and recovery behavior"
+                                                                        ],
+                                             "adaptation_rule":  "Do not copy learned results into every child Agent as fixed instructions. First compare the learning with the child profile\u0027s purpose, allowed operations, denied operations, owner skills, input types, output artifacts, quality gates, and merge verifier. Then write a profile adaptation that states how the learning changes routing, evidence selection, tool use, output quality, review, or recovery for that child. If no functional contribution can be stated and tested, keep the learning at the root as a candidate instead of synchronizing it.",
+                                             "functional_effect_rule":  "Every synchronized child profile must declare at least one functional effect category for the inherited baseline: routing, memory, source-processing, retrieval, tool-use, output-quality, review, recovery, or economy. A synchronized profile that only repeats the baseline id set without a domain adaptation and functional effect evidence is stale.",
+                                             "adaptation_evidence_required":  [
+                                                                                  "profile_fit_summary",
+                                                                                  "functional_effects",
+                                                                                  "domain_adaptation",
+                                                                                  "owner_contract_alignment",
+                                                                                  "quality_or_verification_gate",
+                                                                                  "authority_boundary"
+                                                                              ],
+                                             "rule":  "verified cross-Agent learning optimizations synchronize to the template and registered child profiles only after profile-fit adaptation; every delegation receives the current checked snapshot and profile functional adaptation"
+                                         }
+}

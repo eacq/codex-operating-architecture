@@ -1,0 +1,115 @@
+﻿{
+    "schema_version":  1,
+    "version":  "2.3.0.0",
+    "mode":  "Private",
+    "owner":  "codex-task-execution/github-readme-presentation",
+    "upstream_sources":  [
+                             {
+                                 "repository":  "oil-oil/beautify-github-readme",
+                                 "license":  "MIT",
+                                 "commit":  "e337ceac3d78cc37315296ee2c3d2a18407d052e",
+                                 "role":  "repository README hierarchy, evidence, and first-use path"
+                             },
+                             {
+                                 "repository":  "rzashakeri/beautify-github-profile",
+                                 "license":  "CC0-1.0",
+                                 "commit":  "34f41124c4b32fa9b4ae9504966a1d0f46080aaf",
+                                 "role":  "profile-component catalog and reader-value review"
+                             }
+                         ],
+    "mode_selected":  "README release refresh",
+    "evidence":  {
+                     "release_note":  "docs/release-notes/v2.3.0.0.md",
+                     "changed_paths":  [
+                                           "AGENTS.md",
+                                           "ARCHITECTURE.md",
+                                           "CHANGELOG.md",
+                                           "config/agent-architecture-diagram.json",
+                                           "config/agent-owner-connections.json",
+                                           "config/agent-system.json",
+                                           "config/global-AGENTS.md",
+                                           "config/global-experience-agent-registry.json",
+                                           "docs/AGENT-ARCHITECTURE.md",
+                                           "docs/assets/global-experience-agent-architecture.png",
+                                           "docs/assets/global-experience-agent-architecture.provenance.md",
+                                           "docs/assets/global-experience-agent-architecture-paper-style.png",
+                                           "docs/assets/global-experience-agent-architecture-paper-style.provenance.md",
+                                           "docs/ITERATION-STATUS.md",
+                                           "docs/SKILL-TERMINOLOGY.md",
+                                           "knowledge/skill-architecture-review-2026-07-14.md",
+                                           "knowledge-vault/30-Knowledge/Global Experience System.md",
+                                           "knowledge-vault/30-Knowledge/Pi Agent Harness Network Learning.md",
+                                           "knowledge-vault/50-Learning/codex-learning.json",
+                                           "module-registry.json",
+                                           "README.md",
+                                           "scripts/Get-AgentHarnessState.ps1",
+                                           "scripts/Invoke-GlobalExperienceAgent.ps1",
+                                           "scripts/Invoke-GlobalExperienceAgentRuntime.ps1",
+                                           "scripts/Invoke-IsolatedGlobalExperienceIteration.ps1",
+                                           "scripts/New-AgentArchitectureDiagram.ps1",
+                                           "scripts/Test-AgentArchitectureDiagram.ps1",
+                                           "scripts/Test-AgentHarnessContract.ps1",
+                                           "scripts/Test-AgentOwnerConnections.ps1",
+                                           "scripts/Test-AgentSystemTopology.ps1",
+                                           "scripts/Test-GlobalExperienceAgent.ps1",
+                                           "scripts/Test-GlobalExperienceAgentRegistry.ps1",
+                                           "scripts/validate.ps1",
+                                           "skills/codex-architecture-iteration/SKILL.md",
+                                           "skills/codex-conversation-continuity/SKILL.md",
+                                           "skills/codex-experience-capture/scripts/Process-AuthorizedCandidateRecords.ps1",
+                                           "skills/codex-experience-capture/scripts/Test-AuthorizedCandidateProcessing.ps1",
+                                           "skills/codex-experience-capture/SKILL.md",
+                                           "skills/codex-experience-capture/subskills/global-experience-system/SKILL.md",
+                                           "skills/codex-git-operations/SKILL.md",
+                                           "skills/codex-image-workflow/SKILL.md",
+                                           "skills/codex-self-evolution/SKILL.md",
+                                           "skills/codex-task-execution/SKILL.md"
+                                       ],
+                     "impact_areas":  [
+                                          "Lifecycle controller",
+                                          "Release documentation",
+                                          "Knowledge and experience",
+                                          "Skill architecture",
+                                          "Automation gates"
+                                      ]
+                 },
+    "design_system":  "docs/readme-design-system.json",
+    "reading_order_contract":  [
+                                   "value proposition",
+                                   "first successful action",
+                                   "collaboration mechanism",
+                                   "architecture visual",
+                                   "channels and detailed guarantees",
+                                   "release evidence"
+                               ],
+    "visual_decision":  {
+                            "action":  "use-approved-raster-visual-system",
+                            "format":  "PNG",
+                            "raster_assets":  [
+                                                  "docs/assets/readme-collaboration-loop.png",
+                                                  "docs/assets/readme-collaboration-loop-labeled.png",
+                                                  "docs/assets/readme-architecture-overview-labeled.png",
+                                                  "docs/assets/file-organization-architecture-labeled.png",
+                                                  "docs/assets/codebase-memory-mcp-graph.png"
+                                              ],
+                            "reader_delivery_rule":  "Reader-facing Markdown uses approved PNG assets. Mermaid and SVG sources remain internal editable references and are never linked as reader-facing visuals.",
+                            "animation_policy":  "GIF generation and overwrite are opt-in: release refreshes do not modify an existing GIF unless the user explicitly requests it.",
+                            "text_policy":  "Choose text-free conceptual imagery or concise labeled/legend visuals by reader need. Architecture and transactional workflow explanations require reviewed labeled visuals; when image text is used, the design system requires unified palette, typography, language, contrast, exact-text, and clipping review."
+                        },
+    "decisions":  [
+                      "Refresh both README language variants with the current release, evidence links, and impact summary.",
+                      "Make the release note lead with verified user-facing changes; keep visual and audit mechanics out of its primary reading path.",
+                      "Preserve project-native Markdown and verified claims; do not add unverified metrics, compatibility claims, counters, trackers, or profile widgets.",
+                      "Use an approved raster visual only when the impact is multi-area; select text-free or labeled presentation by reader need, not as decoration."
+                  ],
+    "preview_checks":  [
+                           "GitHub-safe Markdown",
+                           "release-note link",
+                           "both README variants",
+                           "reading-order headings",
+                           "existing architecture visual placement",
+                           "reader-value and dependency review",
+                           "format-selection record"
+                       ],
+    "publication_boundary":  "This optimization is mandatory before a release commit. Public remote push, tag, and GitHub Release remain separately authorized by the release command."
+}

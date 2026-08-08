@@ -1,0 +1,15 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "presentation:architecture",
+    "kind":  "presentation-catalog",
+    "sources":  [
+                    "config/agent-system.json",
+                    "config/agent-architecture-diagram.json"
+                ],
+    "diagram_contract":  "config/agent-architecture-diagram.json",
+    "architecture_document":  "docs/AGENT-ARCHITECTURE.md",
+    "private_asset":  "docs/assets/codex-global-experience-agent-architecture.png",
+    "public_asset":  "docs/assets/public/codex-global-experience-agent-architecture.png",
+    "source_of_truth":  "Agent behavior comes from contracts and runtime; diagrams are generated views"
+}

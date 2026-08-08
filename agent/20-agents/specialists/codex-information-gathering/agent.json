@@ -1,0 +1,52 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "specialist:codex-information-gathering",
+    "kind":  "specialist-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json",
+                    "config/agent-owner-connections.json",
+                    "skills/codex-information-gathering/SKILL.md"
+                ],
+    "id":  "codex-information-gathering",
+    "owner":  "codex-information-gathering",
+    "plane":  "evidence",
+    "stage":  "snapshot",
+    "canonical_skill":  "skills/codex-information-gathering/SKILL.md",
+    "triggers":  [
+                     "repository orientation",
+                     "evidence search",
+                     "impact analysis"
+                 ],
+    "consumes":  [
+                     "decision question",
+                     "project authority",
+                     "callable evidence sources"
+                 ],
+    "produces":  [
+                     "ranked evidence bundle",
+                     "source-targeted findings"
+                 ],
+    "verification":  "fresh graph coverage plus cited source-file confirmation",
+    "tool_gate":  null,
+    "incoming":  [
+                     {
+                         "from":  "codex-requirement-authoring",
+                         "artifact":  "evidence questions",
+                         "event":  "evidence_requested"
+                     }
+                 ],
+    "outgoing":  [
+                     {
+                         "to":  "codex-learning",
+                         "artifact":  "capability-gap evidence",
+                         "event":  "learning_candidate_found"
+                     },
+                     {
+                         "to":  "codex-requirement-authoring",
+                         "artifact":  "ranked evidence bundle",
+                         "event":  "requirements_grounded"
+                     }
+                 ],
+    "return_boundary":  "root Agent save point"
+}

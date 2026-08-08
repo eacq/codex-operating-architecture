@@ -1,0 +1,191 @@
+{
+    "schema_version":  1,
+    "status":  "active",
+    "model":  "minimal-agent-architecture-template",
+    "owner":  "codex-experience-capture",
+    "root_controller":  "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1",
+    "purpose":  "Create the smallest bounded child-Agent contract that can complete a task under the Global Experience Agent without adding a new controller or expanding authority.",
+    "required_units":  {
+                           "identity":  [
+                                            "child_id",
+                                            "agent_profile",
+                                            "parent_session_id"
+                                        ],
+                           "authority":  [
+                                             "authority_scope",
+                                             "authority_evidence_or_summary",
+                                             "inherited_not_expanded"
+                                         ],
+                           "task":  [
+                                        "bounded_goal",
+                                        "inputs",
+                                        "excluded_scope"
+                                    ],
+                           "resources":  [
+                                             "selected_owners",
+                                             "selected_resources",
+                                             "tool_gates"
+                                         ],
+                           "work_surface":  [
+                                                "isolated_write_surfaces",
+                                                "read_surfaces"
+                                            ],
+                           "completion":  [
+                                              "acceptance_criteria",
+                                              "result_evidence",
+                                              "merge_verification"
+                                          ],
+                           "lifecycle":  [
+                                             "delegated",
+                                             "completed",
+                                             "joined",
+                                             "cancelled"
+                                         ],
+                           "safety":  [
+                                          "privacy_boundary",
+                                          "non_retryable_boundaries",
+                                          "error_feedback_route"
+                                      ],
+                           "feynman_structural_scaffold":  [
+                                                               "memory_system",
+                                                               "intent_recognition",
+                                                               "doc_parse_pipeline",
+                                                               "chunking_retrieval",
+                                                               "rerank_calibration",
+                                                               "agent_loop",
+                                                               "memory_as_skill"
+                                                           ],
+                           "structural_optimization_inheritance":  [
+                                                                       "baseline_id",
+                                                                       "baseline_version",
+                                                                       "baseline_sha256",
+                                                                       "required_optimization_ids",
+                                                                       "inheritance_mode",
+                                                                       "profile_fit_dimensions",
+                                                                       "functional_effects_for_named_profiles",
+                                                                       "domain_adaptation_for_named_profiles",
+                                                                       "runtime_snapshot"
+                                                                   ]
+                       },
+    "feynman_structural_scaffold":  {
+                                        "source":  "https://github.com/LesterYu0/feynman-build-workshop",
+                                        "inheritance_rule":  "Every future child Agent plan and registered child Agent profile must declare these seven structural units unless a narrower local test explicitly proves the unit is not applicable.",
+                                        "units":  [
+                                                      {
+                                                          "id":  "memory_system",
+                                                          "episode":  "01-agent-memory-system",
+                                                          "contract":  "declare task-local memory surfaces, retrieval-before-action rule, evidence-bearing store rule, and private-data boundary"
+                                                      },
+                                                      {
+                                                          "id":  "intent_recognition",
+                                                          "episode":  "02-intent-recognition",
+                                                          "contract":  "classify the request into a child-owned route before selecting resources or operations; intent labels never grant authority"
+                                                      },
+                                                      {
+                                                          "id":  "doc_parse_pipeline",
+                                                          "episode":  "03-doc-parse-pipeline",
+                                                          "contract":  "parse source documents into typed content with strategy, validation, and degradation notes before using them as facts"
+                                                      },
+                                                      {
+                                                          "id":  "chunking_retrieval",
+                                                          "episode":  "04-chunking-retrieval",
+                                                          "contract":  "chunk and retrieve only the smallest relevant source context instead of loading whole corpora by default"
+                                                      },
+                                                      {
+                                                          "id":  "rerank_calibration",
+                                                          "episode":  "05-rerank-calibration",
+                                                          "contract":  "rerank retrieved evidence and expose confidence, unknown, and refusal thresholds for weak evidence"
+                                                      },
+                                                      {
+                                                          "id":  "agent_loop",
+                                                          "episode":  "06-agent-loop",
+                                                          "contract":  "run bounded plan-act-observe-reflect-settle loops with stop conditions and explicit error observations"
+                                                      },
+                                                      {
+                                                          "id":  "memory_as_skill",
+                                                          "episode":  "07-agent-memory-as-skill",
+                                                          "contract":  "expose memory operations as a callable functional unit with search-before-store, upsert/supersession, and save-point trace review"
+                                                      }
+                                                  ],
+                                        "required_evidence":  [
+                                                                  "route_plan",
+                                                                  "memory_scope",
+                                                                  "intent_label",
+                                                                  "source_parse_or_skip_reason",
+                                                                  "retrieval_and_rerank_notes",
+                                                                  "loop_settlement",
+                                                                  "memory_trace_or_skip_reason"
+                                                              ]
+                                    },
+    "profile_rule":  {
+                         "concept_agents":  "Use a concept Agent when a task spans several existing owners but shares one collaboration outcome.",
+                         "specialist_agents":  "Use a specialist owner Agent when one owner owns the trigger, artifact lifecycle, and verifier.",
+                         "default_profile":  "work-orchestration-agent",
+                         "fallback":  "If profile evidence is weak, design only and do not delegate until the parent caller chooses a profile."
+                     },
+    "delegation_rule":  "Delegation may call DelegateSubagent only from an idle parent session with ChildId, registered AgentId, isolated WriteSurface, AcceptanceCriteria, Verification, and a current adaptive optimization snapshot. The runtime synchronizes the snapshot automatically and fails closed for a stale named profile or a named profile that lacks functional adaptation evidence. It never executes the child task by itself.",
+    "merge_rule":  "A child result can be joined only after CompleteSubagent records repository-relative evidence hashes and the parent verifier accepts or rejects the result.",
+    "privacy_rule":  "Never place credentials, tokens, raw private conversations, cookies, or unredacted command output in the template plan, child state, or Agent memory.",
+    "invalidation_conditions":  [
+                                    "config/global-experience-agent-registry.json changes child lifecycle semantics",
+                                    "config/agent-interface-policy.json changes delegation authority",
+                                    "agent/40-runtime/Invoke-GlobalExperienceAgent.ps1 changes DelegateSubagent parameters",
+                                    "config/agent-structural-optimization-policy.json changes without adaptive synchronization"
+                                ],
+    "structural_optimization_inheritance":  {
+                                                "source":  "config/agent-structural-optimization-policy.json",
+                                                "baseline_id":  "global-agent-structural-baseline-v1",
+                                                "baseline_version":  "1.2.0",
+                                                "baseline_sha256":  "b50dd79f7e75080245709750e85a0fdb5a24d19a7b20dedf65faf95e02ee1210",
+                                                "required_optimization_ids":  [
+                                                                                  "memory_system",
+                                                                                  "intent_recognition",
+                                                                                  "doc_parse_pipeline",
+                                                                                  "chunking_retrieval",
+                                                                                  "rerank_calibration",
+                                                                                  "agent_loop",
+                                                                                  "memory_as_skill",
+                                                                                  "interface_authority_gates",
+                                                                                  "owner_tool_gate_routing",
+                                                                                  "durable_child_lifecycle",
+                                                                                  "error_feedback_learning",
+                                                                                  "codebase_graph_evidence",
+                                                                                  "skill_invocation_governance",
+                                                                                  "caller_model_neutral_continuation",
+                                                                                  "typed_exit_save_point",
+                                                                                  "retry_recovery",
+                                                                                  "observability_redaction",
+                                                                                  "review_checkpoint",
+                                                                                  "resource_economy",
+                                                                                  "extension_trust_boundary",
+                                                                                  "human_review_and_eval",
+                                                                                  "structural_optimization_propagation"
+                                                                              ],
+                                                "synchronization_controller":  "agent/80-maintenance/Sync-ChildAgentStructuralOptimizations.ps1",
+                                                "runtime_snapshot_provider":  "agent/40-runtime/Get-AgentStructuralOptimizationSnapshot.ps1",
+                                                "inheritance_mode":  "adaptive-profile-guided",
+                                                "profile_fit_dimensions":  [
+                                                                               "child purpose",
+                                                                               "allowed and denied operations",
+                                                                               "owner skill contracts",
+                                                                               "input and source types",
+                                                                               "output artifacts",
+                                                                               "domain corpus or upstream method",
+                                                                               "quality and readability gates",
+                                                                               "merge verifier",
+                                                                               "privacy and authority boundary",
+                                                                               "error and recovery behavior"
+                                                                           ],
+                                                "adaptation_rule":  "Do not copy learned results into every child Agent as fixed instructions. First compare the learning with the child profile\u0027s purpose, allowed operations, denied operations, owner skills, input types, output artifacts, quality gates, and merge verifier. Then write a profile adaptation that states how the learning changes routing, evidence selection, tool use, output quality, review, or recovery for that child. If no functional contribution can be stated and tested, keep the learning at the root as a candidate instead of synchronizing it.",
+                                                "functional_effect_rule":  "Every synchronized child profile must declare at least one functional effect category for the inherited baseline: routing, memory, source-processing, retrieval, tool-use, output-quality, review, recovery, or economy. A synchronized profile that only repeats the baseline id set without a domain adaptation and functional effect evidence is stale.",
+                                                "adaptation_evidence_required":  [
+                                                                                     "profile_fit_summary",
+                                                                                     "functional_effects",
+                                                                                     "domain_adaptation",
+                                                                                     "owner_contract_alignment",
+                                                                                     "quality_or_verification_gate",
+                                                                                     "authority_boundary"
+                                                                                 ],
+                                                "rule":  "verified cross-Agent learning optimizations synchronize to the template and registered child profiles only after profile-fit adaptation; every delegation receives the current checked snapshot and profile functional adaptation"
+                                            }
+}

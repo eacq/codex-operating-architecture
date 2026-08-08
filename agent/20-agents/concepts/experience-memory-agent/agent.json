@@ -1,0 +1,30 @@
+{
+    "schema_version":  1,
+    "generated_by":  "agent-filesystem-projection",
+    "projection_id":  "concept:experience-memory-agent",
+    "kind":  "concept-agent",
+    "sources":  [
+                    "config/global-experience-agent-registry.json"
+                ],
+    "id":  "experience-memory-agent",
+    "owners":  [
+                   "codex-conversation-continuity",
+                   "codex-learning",
+                   "codex-experience-capture",
+                   "codex-knowledge-system",
+                   "codex-error-feedback"
+               ],
+    "resources":  [
+                      ".codex/project/EXPERIENCE.md",
+                      ".codex/project/agent-memory",
+                      "knowledge/experience-ledger.md",
+                      "knowledge-vault/30-Knowledge/Global Experience System.md",
+                      "knowledge-vault/30-Knowledge/Agent Memory System.md",
+                      "knowledge-vault/30-Knowledge/Agent Skill Evolution Optimization.md",
+                      "config/agent-memory-skill-policy.json",
+                      "skills/codex-experience-capture/subskills/skill-evolution-optimization/SKILL.md",
+                      "skills/codex-experience-capture/scripts/Invoke-ExperienceBookShelfLearning.ps1"
+                  ],
+    "purpose":  "retrieve, search-before-store, upsert or supersede, consolidate, freeze, evaluate, repair, scan local private book shelves into derived learning lenses, score skill candidates, enforce strict improvement gates, promote, link, review memory-action traces, and return durable experience memory for later callers",
+    "child_policy":  "executable-under-current-authority"
+}
