@@ -66,7 +66,7 @@ Set-Location <architecture-root>
 ## Latest Release / 最新发布
 
 - Version: `1.0.0.0`
-- Channel: `Private` / 私有
+- Channel: `Public` / 公开
 - Release note: [docs/release-notes/v1.0.0.0.md](docs/release-notes/v1.0.0.0.md)
 - Highlights: Lifecycle controller, Release documentation, Knowledge and experience, Skill architecture, Automation gates
 - Visual: [docs/assets/release-visual-highlights-labeled.png](docs/assets/release-visual-highlights-labeled.png)
