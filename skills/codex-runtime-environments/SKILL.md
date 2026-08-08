@@ -9,6 +9,13 @@ Keep the canonical base definition and usage ledger in `$ARCHITECTURE_ROOT\runti
 
 Use `$ARCHITECTURE_ROOT\scripts\Resolve-CodexRunRoot.ps1` for runtime scratch space: `.runtime\tmp` for disposable validation fixtures, `.runtime\work` for candidate clones or generated workspaces that may survive until review, and `.runtime\cache` for reusable local caches. Do not default to `%TEMP%`, `%LOCALAPPDATA%`, `$HOME\.cache`, or scattered project folders for Codex-managed runtime work unless an external tool forces that location and the exception is recorded.
 
+Use `scripts/Release-UsedTaskProcesses.ps1` to release task-scoped leftover
+processes after a bounded task: it matches a configured process name and scope
+pattern, filters by minimum age and a protected-process list (Codex app, Codebase
+Memory MCP, proxy, Adobe, MCP servers), and defaults to dry-run until `-Apply`.
+Run `scripts/Test-ReleaseUsedTaskProcesses.ps1` for the deterministic contract
+check.
+
 Use `scripts/Manage-CodexEnvironment.ps1`:
 
 1. Run `status` before mutation.

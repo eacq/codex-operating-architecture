@@ -11,6 +11,7 @@
 - Latest verified Agent capability surface: owner-routed document parse pipeline under `codex-office-cli`, exposed through Global Experience Agent state, resources, knowledge, manifests, and validation.
 - Latest verified repair: structural optimization baseline hashing normalizes UTF-8 text line endings, preventing Windows Git checkout from creating false propagation drift.
 - Latest verified learning: distilled the `msitarzewski/agency-agents` specialist-design method into `skills/codex-experience-capture/references/agency-agents-specialist-design.md`, a linked knowledge note, and a deterministic distillation test; raw upstream installers are rejected.
+- Latest verified timing/resource optimization: `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports diversified timing layers and system total time across all past sessions; the GEA runtime now persists the full timing block into session state at every save point; `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` provides safe dry-run-first task-process release.
 
 ## 中文
 
@@ -21,3 +22,7 @@
 - 最新已验证学习：已将 `msitarzewski/agency-agents` 的专业 Agent 设计方法蒸馏为
   `skills/codex-experience-capture/references/agency-agents-specialist-design.md`、
   关联知识笔记与确定性蒸馏测试；明确拒绝上游安装器与批量 Agent TOML 安装。
+- 最新已验证计时/资源优化：`scripts/Invoke-HistoricalTimingAnalysis.ps1` 输出覆盖全部历史
+  会话的多样化计时分层与系统全时间；GEA 运行时在每次保存点持久化完整计时块；
+  `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` 提供保守
+  dry-run 优先的任务进程释放。

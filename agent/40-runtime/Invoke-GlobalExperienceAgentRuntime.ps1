@@ -179,6 +179,14 @@ function Add-DurableEntry([string]$Type, [object]$Data) {
 }
 
 function Save-AgentState {
+    $persistedTiming = New-AgentTiming -CompletedAt ([DateTime]::UtcNow) -SessionStartedAt ([string]$script:state.created_at)
+    if ($script:state -is [System.Collections.IDictionary]) {
+        $script:state['timing'] = $persistedTiming
+    } elseif ($script:state.PSObject.Properties.Name -contains 'timing') {
+        $script:state.timing = $persistedTiming
+    } else {
+        $script:state | Add-Member -NotePropertyName timing -NotePropertyValue $persistedTiming
+    }
     Write-AgentJsonAtomic -Path $script:statePath -Value $script:state
 }
 
@@ -1306,6 +1314,7 @@ if ($Mode -in @('Run', 'Continue')) {
                 policy = ConvertTo-AgentPath (Join-Path $root 'config\agent-transport-recovery-policy.json')
                 restart_required = $false
             }
+            timing = $null
         }
         Add-DurableEntry 'session' ([ordered]@{session_id=$SessionId;agent_id='global-experience-agent';model='global-experience-agent';manifest='config/agent-system.json';registry=ConvertTo-AgentPath $agentRegistryPath;source_commit=$manifest.template.source_commit;caller_context=$callerContext}) | Out-Null
     } else {

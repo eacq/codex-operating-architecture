@@ -18,6 +18,15 @@
   contract anatomy, evidence discipline, minimal-change scope self-check) with
   a linked knowledge note and deterministic distillation test; upstream
   installers and bulk agent TOML installs are explicitly rejected.
+- Add diversified historical timing analysis across all past Agent sessions
+  (system total time, session wall clock, active span, controller operation,
+  idle, validation writeback, task and host-worked layers) via
+  `scripts/Invoke-HistoricalTimingAnalysis.ps1`, and persist the full GEA
+  timing block into durable session state at every save point so every future
+  task retains complete timing metrics.
+- Add safe-by-default task-process release
+  (`skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1`)
+  with a protected-process list and deterministic contract test.
 
 ### Chinese / 中文
 
@@ -30,6 +39,11 @@
   `codex-experience-capture` 下的 owner-internal 参考（专业契约结构、证据纪律、
   最小变更范围自检），并配套知识笔记与确定性蒸馏测试；明确拒绝上游安装器与批量
   Agent TOML 安装。
+- 新增覆盖全部历史 Agent 会话的多样化计时分析（系统全时间、会话墙钟、活跃跨度、
+  控制器操作、空闲、验证写回、任务与宿主工作时长分层），
+  并让每次保存点把完整 GEA 计时块持久化进会话状态，使未来每个任务都保留完整计时指标。
+- 新增保守默认的任务进程释放脚本（进程名+范围令牌+最小年龄+保护名单，默认 dry-run）
+  及其确定性契约测试。
 
 ## 2.1.0.0 - 2026-07-23
 
