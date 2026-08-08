@@ -214,6 +214,8 @@ $totalIdleSeconds = Get-LayerSum $layerStats 'agent_session' 'idle_seconds'
 $totalValidationSeconds = [math]::Round((($layerStats | Where-Object { $_.layer -eq 'validation_writeback' } | ForEach-Object { [double]$_.seconds }) | Measure-Object -Sum).Sum, 1)
 $totalTaskWallSeconds = Get-LayerSum $layerStats 'user_outcome' 'task_wall_clock_seconds'
 $totalHostWorkedSeconds = Get-LayerSum $layerStats 'user_outcome' 'host_reported_worked_seconds'
+$codexMeasuredTaskCount = ($sessions | Where-Object { $_.task_time_status -eq 'measured-from-caller-task-start' } | Measure-Object).Count
+$codexHostWorkedRecordCount = ($sessions | Where-Object { $_.host_reported_worked_seconds -ne $null } | Measure-Object).Count
 
 $result = [ordered]@{
     schema_version = 1
@@ -238,6 +240,18 @@ $result = [ordered]@{
         total_validation_writeback_seconds = $totalValidationSeconds
         total_task_wall_clock_seconds = $totalTaskWallSeconds
         total_host_reported_worked_seconds = $totalHostWorkedSeconds
+        codex_measured_task_count = $codexMeasuredTaskCount
+        codex_task_wall_clock_total_seconds = $totalTaskWallSeconds
+        codex_host_worked_record_count = $codexHostWorkedRecordCount
+        codex_host_worked_total_seconds = $totalHostWorkedSeconds
+    }
+    codex_runtime = [ordered]@{
+        measured_task_record_count = $codexMeasuredTaskCount
+        task_wall_clock_total_seconds = $totalTaskWallSeconds
+        host_reported_worked_record_count = $codexHostWorkedRecordCount
+        host_reported_worked_total_seconds = $totalHostWorkedSeconds
+        definition = 'Codex actual run time per task = wall clock from task acceptance (or save-point resume anchor) to the accepted save point; host-reported worked time is captured when the host exposes it'
+        optimization_target = 'Record Codex actual runtime on every task and reduce it via batched tool calls, local-evidence reuse, bounded context, and avoiding repeated full validation; Full validation stays for global closeout'
     }
     layer_summaries = $layerSummaries
     top_sessions_by_wall_clock = $topSessions
@@ -261,6 +275,10 @@ if ($Apply) {
     $lines += ('- Total active span: ' + $system.total_active_span_seconds + 's; total controller operation time: ' + $system.total_controller_operation_seconds + 's; total idle: ' + $system.total_idle_seconds + 's')
     $lines += ('- Total validation/writeback time: ' + $system.total_validation_writeback_seconds + 's')
     $lines += ('- Total task wall clock: ' + $system.total_task_wall_clock_seconds + 's; total host reported worked time: ' + $system.total_host_reported_worked_seconds + 's')
+    $lines += @('','## Codex Actual Runtime (optimization target)','')
+    $lines += ('- Measured task records (caller task start supplied): ' + $system.codex_measured_task_count)
+    $lines += ('- Codex task wall clock total: ' + $system.codex_task_wall_clock_total_seconds + 's; host-reported worked records: ' + $system.codex_host_worked_record_count + ' (' + $system.codex_host_worked_total_seconds + 's)')
+    $lines += ('- Target: ' + $result.codex_runtime.optimization_target)
     $lines += @('','## Top Sessions by Wall Clock','')
     foreach ($t in $topSessions) {
         $lines += ('- ' + $t.session_id + ' (' + $t.goal + '): session=' + $t.session_seconds + 's ops=' + $t.operation_sum_seconds + 's (' + $t.operation_count + ') idle=' + $t.idle_seconds + 's turns=' + $t.turns)

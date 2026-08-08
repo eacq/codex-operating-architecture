@@ -27,6 +27,12 @@
 - Add safe-by-default task-process release
   (`skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1`)
   with a protected-process list and deterministic contract test.
+- Record Codex actual runtime as a first-class timing metric: task wall clock
+  is measured from the caller task-start anchor (save-point resume boundary)
+  to the accepted save point, host-reported worked time is captured when the
+  host exposes it, and `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports a
+  `codex_runtime` layer with measured-task count, totals, and an optimization
+  target.
 
 ### Chinese / 中文
 
@@ -44,6 +50,10 @@
   并让每次保存点把完整 GEA 计时块持久化进会话状态，使未来每个任务都保留完整计时指标。
 - 新增保守默认的任务进程释放脚本（进程名+范围令牌+最小年龄+保护名单，默认 dry-run）
   及其确定性契约测试。
+- 将 Codex 实际运行时间作为一等计时指标记录：任务墙钟从调用方任务起始锚点
+  （保存点续跑边界）测到接受的保存点，宿主上报工作时长在宿主暴露时记录；
+  `scripts/Invoke-HistoricalTimingAnalysis.ps1` 输出 `codex_runtime` 分层
+  （已测任务数、总量与优化目标）。
 
 ## 2.1.0.0 - 2026-07-23
 
