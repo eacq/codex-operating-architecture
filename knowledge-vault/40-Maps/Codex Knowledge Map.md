@@ -9,6 +9,7 @@ mindmap
       Top-Level Owner Governance Codex
     concept
       Academic Manuscript Revision Boundaries Codex
+      Agency Agents Specialist Design Method Codex
       Agent Memory System Codex
       Agent Skill Evolution Optimization Codex
       Baoyu Skills Network Learning Codex

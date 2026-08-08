@@ -43,6 +43,14 @@
       "verified": false
     },
     {
+      "id": "agency-agents-specialist-design-method",
+      "name": "Agency Agents Specialist Design Method",
+      "path": "30-Knowledge\\Agency Agents Specialist Design Method.md",
+      "summary": "Design specialists as deliverable-focused contracts (trigger-precise description, critical rules, deliverables with evidence, workflow, success metrics), organize them into an indexed roster, and route multi-specialist work through explicit owner handoffs; adapt upstream method only, never bulk-install upstream agents.",
+      "source": "https://github.com/msitarzewski/agency-agents at commit ebe9c99acb5c96f9468de368d8bead775387d1a7 (MIT)",
+      "verified": true
+    },
+    {
       "id": "concept-academic-manuscript-revision-boundaries",
       "name": "Academic Manuscript Revision Boundaries",
       "path": "30-Knowledge\\Academic Manuscript Revision Boundaries.md",

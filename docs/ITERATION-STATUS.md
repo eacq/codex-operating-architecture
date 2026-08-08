@@ -10,6 +10,7 @@
 - Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.
 - Latest verified Agent capability surface: owner-routed document parse pipeline under `codex-office-cli`, exposed through Global Experience Agent state, resources, knowledge, manifests, and validation.
 - Latest verified repair: structural optimization baseline hashing normalizes UTF-8 text line endings, preventing Windows Git checkout from creating false propagation drift.
+- Latest verified learning: distilled the `msitarzewski/agency-agents` specialist-design method into `skills/codex-experience-capture/references/agency-agents-specialist-design.md`, a linked knowledge note, and a deterministic distillation test; raw upstream installers are rejected.
 
 ## 中文
 
@@ -17,3 +18,6 @@
 - 已注册活动模块数：23
 - 说明门禁：每次已验证的实现迭代都必须更新本状态文件、CHANGELOG.md、中文 README 与 README.en.md；版本变化还必须更新对应的双语发布说明，并确保 CHANGELOG.md 存在该精确版本的条目。
 - 公开转化门禁：公开 skill 仅保留通用工作流。接收者的服务商、路径、软件和非秘密偏好必须保留在本地私有配置中。
+- 最新已验证学习：已将 `msitarzewski/agency-agents` 的专业 Agent 设计方法蒸馏为
+  `skills/codex-experience-capture/references/agency-agents-specialist-design.md`、
+  关联知识笔记与确定性蒸馏测试；明确拒绝上游安装器与批量 Agent TOML 安装。

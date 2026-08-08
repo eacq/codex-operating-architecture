@@ -13,6 +13,11 @@
   repository and `v1.0` for the public repository.
 - Fix Windows `core.autocrlf` line-ending conversion so structural optimization
   baseline hashes remain stable across Git checkout and runtime validation.
+- Distill the `msitarzewski/agency-agents` specialist-design method into an
+  owner-internal reference under `codex-experience-capture` (specialist
+  contract anatomy, evidence discipline, minimal-change scope self-check) with
+  a linked knowledge note and deterministic distillation test; upstream
+  installers and bulk agent TOML installs are explicitly rejected.
 
 ### Chinese / 中文
 
@@ -21,6 +26,10 @@
   生命周期门禁、知识工作流和验证工具。
 - 保留私有/公共发布边界：私有仓库使用 `private-v1.0`，公共仓库使用 `v1.0`。
 - 同步 README、发布说明与可视化材料至 `1.0.0.0`，并将迭代状态与发布审计刷新为公共发布模式。
+- 将 `msitarzewski/agency-agents` 的专业 Agent 设计方法蒸馏为
+  `codex-experience-capture` 下的 owner-internal 参考（专业契约结构、证据纪律、
+  最小变更范围自检），并配套知识笔记与确定性蒸馏测试；明确拒绝上游安装器与批量
+  Agent TOML 安装。
 
 ## 2.1.0.0 - 2026-07-23
 

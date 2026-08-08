@@ -10,6 +10,7 @@ Codex Knowledge System
 			-> Academic Text Style Workflow
 			-> Academic Writing and Citation Workflow
 			-> Exact Word Layout Workflow
+		Agency Agents Specialist Design Method [Codex]
 		Agent Memory System [Codex]
 			-> Global Experience System
 			-> Information and Functional Unit Principle

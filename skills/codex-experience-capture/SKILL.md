@@ -64,6 +64,11 @@ It adapts source methods into owner-scoped skills, references, knowledge notes,
 or candidates through source grounding, triple verification, RIA++ shaping,
 linking, and trigger pressure tests.
 
+For the distilled specialist-design contract from
+`msitarzewski/agency-agents` (trigger-precise agent anatomy, evidence
+discipline, minimal-change scope self-check, roster/orchestration boundary),
+see `references/agency-agents-specialist-design.md`.
+
 When a task needs multi-Agent collaboration, explicit role handoffs, durable
 work-item/timeline replay, Evidence-Finding-Path lineage, or external skill/MCP
 supply-chain review, read

@@ -452,6 +452,16 @@
       "codex_learning": true
     },
     {
+      "id": "agency-agents-specialist-design-method",
+      "name": "Agency Agents Specialist Design Method",
+      "type": "concept",
+      "path": "30-Knowledge/Agency Agents Specialist Design Method.md",
+      "links": [],
+      "learning_audience": "codex",
+      "user_anki": false,
+      "codex_learning": true
+    },
+    {
       "id": "Agent Chunking Retrieval System",
       "name": "Agent Chunking Retrieval System",
       "type": "information-unit",
