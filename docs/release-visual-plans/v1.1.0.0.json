@@ -1,12 +1,10 @@
-﻿{
+{
     "schema_version":  1,
     "version":  "1.1.0.0",
     "mode":  "Private",
     "release_note":  "docs/release-notes/v1.1.0.0.md",
     "impact_areas":  [
-                         "Release documentation",
-                         "Skill architecture",
-                         "Lifecycle controller"
+                         "Skill architecture"
                      ],
     "visual_action":  "reuse-approved-raster-release-visual",
     "privacy":  "Use sanitized repository-level labels only; never include credentials, private sessions, local user paths, or private payloads.",

@@ -193,9 +193,9 @@ if ($Apply) {
         $generated.Add('docs/assets/codebase-memory-mcp-graph.png')
     }
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-visual-plans') | Out-Null
-    $visualPlan | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $root $planRelative) -Encoding UTF8
+    [IO.File]::WriteAllText((Join-Path $root $planRelative), ($visualPlan | ConvertTo-Json -Depth 5), [Text.UTF8Encoding]::new($false))
     New-Item -ItemType Directory -Force -Path (Join-Path $root 'docs\release-readme-audits') | Out-Null
-    $readmeOptimization | ConvertTo-Json -Depth 7 | Set-Content -LiteralPath (Join-Path $root $readmeAuditRelative) -Encoding UTF8
+    [IO.File]::WriteAllText((Join-Path $root $readmeAuditRelative), ($readmeOptimization | ConvertTo-Json -Depth 7), [Text.UTF8Encoding]::new($false))
 }
 $generated.Add($planRelative)
 $generated.Add($readmeAuditRelative)
@@ -212,7 +212,7 @@ if (Test-Path -LiteralPath $architecturePath) {
         (ConvertFrom-Utf8Base64 '6K+lIFBORyDlnKjmr4/mrKEgcmVsZWFzZSDml7bnlLEgQ29kZWJhc2UgTWVtb3J5IE1DUCDnmoQgVGhyZWUuanMg5o6n5Yi25Y+w6YeN5paw57Si5byV5bm25riy5p+T44CC5a6D5Y+q5ZGI546w57uT5p6E5a+G5bqm77yM5LiN5YyF5ZCr6Lev5b6E44CB5Lya6K+d5oiW5rqQ56CB5paH5pys44CCR0lGIOS7heWcqOeUqOaIt+aYjuehruimgeaxgueUn+aIkOaIluabtOaWsOaXtuaJjeS8muWGmeWFpe+8m+WFtuS7liByZWxlYXNlIOS/neeVmeW3suaciSBHSUbjgII=')
     )
     $updatedArchitecture = Set-ManagedBlock -Content $architectureContent -Name 'codebase-memory-architecture-graph' -Lines $architectureLines
-    if ($Apply) { Set-Content -LiteralPath $architecturePath -Value $updatedArchitecture.TrimEnd() -Encoding UTF8 }
+    if ($Apply) { [IO.File]::WriteAllText($architecturePath, $updatedArchitecture.TrimEnd(), [Text.UTF8Encoding]::new($false)) }
     $generated.Add($architectureRelative)
 }
 
@@ -263,7 +263,7 @@ foreach ($readme in @('README.md','README.en.md')) {
     $path = Join-Path $root $readme
     $content = Get-Content -LiteralPath $path -Raw -Encoding UTF8
     $updated = Set-ManagedBlock -Content $content -Name 'latest-release' -Lines $readmeBlock
-    if ($Apply) { Set-Content -LiteralPath $path -Value $updated.TrimEnd() -Encoding UTF8 }
+    if ($Apply) { [IO.File]::WriteAllText($path, $updated.TrimEnd(), [Text.UTF8Encoding]::new($false)) }
     $generated.Add($readme)
 }
 
@@ -306,7 +306,7 @@ if (Test-Path -LiteralPath $releaseNotePath) {
         "- Presentation review: [$readmeAuditRelative]($readmeAuditRelative)."
     )
     $updatedNote = Set-ManagedBlock -Content $note -Name 'release-readme-visual-refresh' -Lines $noteBlock
-    if ($Apply) { Set-Content -LiteralPath $releaseNotePath -Value $updatedNote.TrimEnd() -Encoding UTF8 }
+    if ($Apply) { [IO.File]::WriteAllText($releaseNotePath, $updatedNote.TrimEnd(), [Text.UTF8Encoding]::new($false)) }
     $generated.Add($releaseNoteRelative)
 }
 

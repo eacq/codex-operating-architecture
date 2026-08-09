@@ -64,7 +64,7 @@ if ($ApplyLifecycleState) {
     $state | Add-Member -NotePropertyName last_iteration_status -NotePropertyValue 'completed' -Force
     $state | Add-Member -NotePropertyName last_release_tag -NotePropertyValue $Tag -Force
     $state | Add-Member -NotePropertyName last_release_url -NotePropertyValue $release.url -Force
-    $state | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $statePath -Encoding UTF8
+    [IO.File]::WriteAllText($statePath, ($state | ConvertTo-Json -Depth 6), [Text.UTF8Encoding]::new($false))
 }
 $stopwatch.Stop()
 

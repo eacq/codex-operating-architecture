@@ -132,7 +132,7 @@ function Write-PublicationEnvelope([string[]]$StagedPaths, [string]$Hash, [bool]
         result = 'publication-envelope-ready'
     }
     $envelopePath = Join-Path $root '.codex\project\publication-envelope.json'
-    $envelope | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $envelopePath -Encoding UTF8
+    [IO.File]::WriteAllText($envelopePath, ($envelope | ConvertTo-Json -Depth 6), [Text.UTF8Encoding]::new($false))
     return $envelope
 }
 

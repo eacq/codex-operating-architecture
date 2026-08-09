@@ -601,6 +601,7 @@
 
 ### English
 
+- Publish the verified experience-system release metadata, private tag, and release notes for the current version.
 - Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
 - Reset current private release metadata and associated user-facing files to `1.1.0.0 / v1.1`.
 - Record the verified global-iteration speed work in the private release summary: protected ignored roots are excluded at the Git pathspec layer before cleanup and rollback candidate collection, candidate report processing prefilters for `status: candidate`, and the full replacement proof remains safety-gated.
@@ -609,6 +610,7 @@
 
 ### Chinese / 中文
 
+- 同步发布当前版本的经验系统发布元数据、私有标签与发布说明。
 - 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
 - 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
 - 将当前 Private 发布元数据和关联用户可见文件重置并同步为 `1.1.0.0 / v1.1`。

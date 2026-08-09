@@ -185,7 +185,7 @@ if ($Apply) {
         $state | Add-Member -NotePropertyName last_release_tag -NotePropertyValue $Tag -Force
         if ($releaseUrl) { $state | Add-Member -NotePropertyName last_release_url -NotePropertyValue $releaseUrl -Force }
         $state | Add-Member -NotePropertyName updated_at -NotePropertyValue (Get-Date).ToString('o') -Force
-        $state | ConvertTo-Json | Set-Content -LiteralPath $statePath -Encoding UTF8
+        [IO.File]::WriteAllText($statePath, ($state | ConvertTo-Json), [Text.UTF8Encoding]::new($false))
     }
 }
 
