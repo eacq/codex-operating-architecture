@@ -1,6 +1,39 @@
 # Changelog / 更新日志
 
+## 1.0.1.0 - 2026-08-09
+
+### English
+
+- Refine the self-evolution controller into a routing parent with internal global-iteration and publication-gate subskills.
+- Package experience capture, knowledge, and error-feedback modes as owner-internal subskills while preserving their parent discovery surfaces.
+- Regenerate linked knowledge, learning outputs, and mind-map artifacts for the verified architecture changes.
+
+### Chinese / 中文
+
+- 同步记录本次已验证的经验系统迭代，确保更新日志与版本化行为一致。
+- 新增母 skill 提炼与内部子 skill 门禁拆分规则，减少顶层入口膨胀。
+- 将经验、知识与错误反馈的长流程下沉为 owner 内部子 skill，并保留父入口发现边界。
+
 ## 1.0.0.0 - 2026-08-08
+
+### Post-release maintenance - 2026-08-09
+
+- Scope the isolated-iteration rollback Git bundle to `HEAD` by default while
+  retaining `-IncludeAllGitRefs` for explicit full-ref recovery; the exact
+  file snapshot and SHA-256 manifest remain authoritative.
+- Make customer-visible Codex task wall-clock time the primary LoopX
+  optimization metric with the highest weighted objective, while retaining
+  quality, privacy, authority, rollback, and validation as hard floors.
+- Use the Codex app `read_thread` timing fields (`startedAt`, `completedAt`,
+  `durationMs`) as the preferred customer-time source. Compute customer wall
+  clock from interval union for parallel turns, retain `durationMs` sum as
+  active-work only, and cross-check with independent monotonic and screenshot
+  suboperation timing without storing conversation content.
+- Require explicit turn scope before accepting a thread timing snapshot, so
+  historical turns from the same Codex conversation cannot inflate a task.
+- Parameterize rollback snapshot copy concurrency and set the default to
+  robocopy `/MT:32`; file inventory and source/target SHA-256 verification are
+  unchanged.
 
 ### English
 

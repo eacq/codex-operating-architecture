@@ -11,6 +11,32 @@ $projectPath = Join-Path $root '.codex\project'
 $sessionsRoot = Join-Path $projectPath 'agent-sessions'
 $outputDir = Join-Path $projectPath 'timing-analysis'
 
+function Write-AtomicUtf8NoBom {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][string]$Value
+    )
+    $directory = Split-Path -Parent $Path
+    New-Item -ItemType Directory -Force -Path $directory | Out-Null
+    $tempPath = Join-Path $directory ('.' + [IO.Path]::GetFileName($Path) + '.' + [guid]::NewGuid().ToString('N') + '.tmp')
+    try {
+        [IO.File]::WriteAllText($tempPath, $Value, [Text.UTF8Encoding]::new($false))
+        if ([IO.File]::Exists($Path)) {
+            try {
+                [IO.File]::Replace($tempPath, $Path, $null, $true)
+            } catch {
+                Move-Item -LiteralPath $tempPath -Destination $Path -Force
+            }
+        } else {
+            [IO.File]::Move($tempPath, $Path)
+        }
+    } finally {
+        if ([IO.File]::Exists($tempPath)) {
+            Remove-Item -LiteralPath $tempPath -Force -ErrorAction SilentlyContinue
+        }
+    }
+}
+
 function ConvertTo-IsoUtc([object]$Value) {
     if ($null -eq $Value -or [string]::IsNullOrWhiteSpace([string]$Value)) { return $null }
     try { return [datetime]::Parse([string]$Value, [Globalization.CultureInfo]::InvariantCulture, [Globalization.DateTimeStyles]::AdjustToUniversal) } catch { return $null }
@@ -144,6 +170,13 @@ function Get-SessionRecord {
         has_timing_block = $hasTimingBlock
         task_time_status = [string]$timing.task_time_status
         task_wall_clock_seconds = if ($timing) { $timing.task_wall_clock_seconds } else { $null }
+        customer_visible_complete_seconds = if ($timing) { $timing.customer_visible_complete_seconds } else { $null }
+        customer_visible_time_source = if ($timing) { [string]$timing.customer_visible_time_source } else { $null }
+        client_task_wall_clock_seconds = if ($timing -and $timing.client_timing) { $timing.client_timing.client_task_wall_clock_seconds } else { $null }
+        client_turn_duration_sum_seconds = if ($timing -and $timing.client_timing) { $timing.client_timing.client_turn_duration_sum_seconds } else { $null }
+        external_monotonic_seconds = if ($timing) { $timing.external_monotonic_seconds } else { $null }
+        screenshot_capture_seconds = if ($timing) { $timing.screenshot_capture_seconds } else { $null }
+        cross_validation_status = if ($timing) { [string]$timing.cross_validation_status } else { $null }
         host_reported_worked_seconds = if ($timing) { $timing.host_reported_worked_seconds } else { $null }
         operation_wall_clock_seconds = if ($timing) { $timing.operation_wall_clock_seconds } else { $null }
         controller_wall_clock_seconds = if ($timing) { $timing.controller_wall_clock_seconds } else { $null }
@@ -171,6 +204,11 @@ foreach ($s in $sessions) {
     Add-LayerStat $layerStats 'functional_unit' 'tool_call_seconds' $s.tool_call_sum_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'agent_session' 'idle_seconds' $s.idle_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'user_outcome' 'task_wall_clock_seconds' $s.task_wall_clock_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'user_outcome' 'customer_visible_complete_seconds' $s.customer_visible_complete_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'user_outcome' 'codex_client_task_wall_clock_seconds' $s.client_task_wall_clock_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'agent_session' 'client_turn_duration_sum_seconds' $s.client_turn_duration_sum_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'external_cross_check' 'external_monotonic_seconds' $s.external_monotonic_seconds ("session:" + $s.session_id)
+    Add-LayerStat $layerStats 'screenshot_suboperation' 'screenshot_capture_seconds' $s.screenshot_capture_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'user_outcome' 'host_reported_worked_seconds' $s.host_reported_worked_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'controller_operation' 'operation_wall_clock_seconds' $s.operation_wall_clock_seconds ("session:" + $s.session_id)
     Add-LayerStat $layerStats 'controller_operation' 'controller_wall_clock_seconds' $s.controller_wall_clock_seconds ("session:" + $s.session_id)
@@ -178,6 +216,11 @@ foreach ($s in $sessions) {
 
 $task = Read-JsonOrNull (Join-Path $projectPath 'task-timing-last.json')
 if ($task) {
+    Add-LayerStat $layerStats 'user_outcome' 'customer_visible_complete_seconds' $task.user_visible_complete_seconds 'task-timing-last.json'
+    Add-LayerStat $layerStats 'user_outcome' 'codex_client_task_wall_clock_seconds' $task.client_timing.client_task_wall_clock_seconds 'task-timing-last.json'
+    Add-LayerStat $layerStats 'agent_session' 'client_turn_duration_sum_seconds' $task.client_timing.client_turn_duration_sum_seconds 'task-timing-last.json'
+    Add-LayerStat $layerStats 'external_cross_check' 'external_monotonic_seconds' $task.external_monotonic_seconds 'task-timing-last.json'
+    Add-LayerStat $layerStats 'screenshot_suboperation' 'screenshot_capture_seconds' $task.screenshot_capture_seconds 'task-timing-last.json'
     Add-LayerStat $layerStats 'user_outcome' 'task_wall_clock_seconds' $task.task_wall_clock_seconds 'task-timing-last.json'
     Add-LayerStat $layerStats 'user_outcome' 'host_reported_worked_seconds' $task.host_reported_worked_seconds 'task-timing-last.json'
 }
@@ -266,6 +309,11 @@ $totalOperationSeconds = Get-LayerSum $layerStats 'controller_operation' 'operat
 $totalIdleSeconds = Get-LayerSum $layerStats 'agent_session' 'idle_seconds'
 $totalValidationSeconds = [math]::Round((($layerStats | Where-Object { $_.layer -eq 'validation_writeback' } | ForEach-Object { [double]$_.seconds }) | Measure-Object -Sum).Sum, 1)
 $totalTaskWallSeconds = Get-LayerSum $layerStats 'user_outcome' 'task_wall_clock_seconds'
+$totalCustomerVisibleSeconds = Get-LayerSum $layerStats 'user_outcome' 'customer_visible_complete_seconds'
+$totalClientTaskWallSeconds = Get-LayerSum $layerStats 'user_outcome' 'codex_client_task_wall_clock_seconds'
+$totalClientTurnDurationSeconds = Get-LayerSum $layerStats 'agent_session' 'client_turn_duration_sum_seconds'
+$totalExternalMonotonicSeconds = Get-LayerSum $layerStats 'external_cross_check' 'external_monotonic_seconds'
+$totalScreenshotSeconds = Get-LayerSum $layerStats 'screenshot_suboperation' 'screenshot_capture_seconds'
 $totalHostWorkedSeconds = Get-LayerSum $layerStats 'user_outcome' 'host_reported_worked_seconds'
 $codexMeasuredTaskCount = ($sessions | Where-Object { $_.task_time_status -eq 'measured-from-caller-task-start' } | Measure-Object).Count
 $codexHostWorkedRecordCount = ($sessions | Where-Object { $_.host_reported_worked_seconds -ne $null } | Measure-Object).Count
@@ -337,6 +385,11 @@ $result = [ordered]@{
         total_idle_seconds = $totalIdleSeconds
         total_validation_writeback_seconds = $totalValidationSeconds
         total_task_wall_clock_seconds = $totalTaskWallSeconds
+        total_customer_visible_complete_seconds = $totalCustomerVisibleSeconds
+        total_codex_client_task_wall_clock_seconds = $totalClientTaskWallSeconds
+        total_client_turn_duration_sum_seconds = $totalClientTurnDurationSeconds
+        total_external_monotonic_seconds = $totalExternalMonotonicSeconds
+        total_screenshot_capture_seconds = $totalScreenshotSeconds
         total_host_reported_worked_seconds = $totalHostWorkedSeconds
         codex_measured_task_count = $codexMeasuredTaskCount
         codex_task_wall_clock_total_seconds = $totalTaskWallSeconds
@@ -346,7 +399,10 @@ $result = [ordered]@{
         functional_unit_tool_call_seconds = $toolCallTotalSeconds
     }
     timing_sources = [ordered]@{
-        external_system_time = 'task wall clock from caller task-start anchor to save point (Codex response view); host-reported worked time captured when the host exposes it'
+        codex_client_time = 'codex_app__read_thread startedAt/completedAt/durationMs; customer wall clock is interval union and duration sum is active-work only'
+        external_system_time = 'independent monotonic Stopwatch supplied by the caller; never silently substituted for Codex client time when client data exists'
+        screenshot_time = 'independent screenshot suboperation Stopwatch; diagnostic only, not a whole-task duration'
+        lifecycle_fallback = 'task wall clock from caller task-start anchor to save point, used only when client and host timing are unavailable'
         internal_timers = 'operation_started/finished, tool_call_started/finished, controller and script step timers'
     }
     composite_time = [ordered]@{
@@ -364,7 +420,7 @@ $result = [ordered]@{
         task_wall_clock_total_seconds = $totalTaskWallSeconds
         host_reported_worked_record_count = $codexHostWorkedRecordCount
         host_reported_worked_total_seconds = $totalHostWorkedSeconds
-        definition = 'Codex actual run time per task = wall clock from task acceptance (or save-point resume anchor) to the accepted save point; host-reported worked time is captured when the host exposes it'
+        definition = 'Codex customer-visible run time per task = interval union of completed client turns from codex_app__read_thread; durationMs sum is retained as active-work and is not used as customer wall clock for parallel turns'
         optimization_target = 'Record Codex actual runtime on every task and reduce it via batched tool calls, local-evidence reuse, bounded context, and avoiding repeated full validation; Full validation stays for global closeout'
     }
     layer_summaries = $layerSummaries
@@ -377,7 +433,7 @@ if ($Apply) {
     New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
     $jsonPath = Join-Path $outputDir 'historical-timing-analysis.json'
     $mdPath = Join-Path $outputDir 'historical-timing-analysis.md'
-    [IO.File]::WriteAllText($jsonPath, (($result | ConvertTo-Json -Depth 10) + [Environment]::NewLine), [Text.UTF8Encoding]::new($false))
+    Write-AtomicUtf8NoBom -Path $jsonPath -Value (($result | ConvertTo-Json -Depth 10) + [Environment]::NewLine)
     $lines = @('# Historical Timing Analysis','',('Generated: ' + $result.generated_at),'',('Sessions: ' + $result.session_count + '; timing blocks: ' + $result.session_timing_block_count + '; missing caller task timing: ' + $result.session_missing_caller_task_timing),'','## Layer Summaries','')
     foreach ($l in $layerSummaries) {
         $lines += ('- ' + $l.layer + ' / ' + $l.metric + ': count=' + $l.count + ' sum=' + $l.sum_seconds + 's mean=' + $l.mean_seconds + 's median=' + $l.median_seconds + 's max=' + $l.max_seconds + 's')
@@ -388,7 +444,8 @@ if ($Apply) {
     $lines += ('- Total session wall clock: ' + $system.total_session_wall_clock_seconds + 's')
     $lines += ('- Total active span: ' + $system.total_active_span_seconds + 's; total controller operation time: ' + $system.total_controller_operation_seconds + 's; total idle: ' + $system.total_idle_seconds + 's')
     $lines += ('- Total validation/writeback time: ' + $system.total_validation_writeback_seconds + 's')
-    $lines += ('- Total task wall clock: ' + $system.total_task_wall_clock_seconds + 's; total host reported worked time: ' + $system.total_host_reported_worked_seconds + 's')
+    $lines += ('- Customer-visible complete time: ' + $system.total_customer_visible_complete_seconds + 's; Codex client task wall clock: ' + $system.total_codex_client_task_wall_clock_seconds + 's; client active-work duration sum: ' + $system.total_client_turn_duration_sum_seconds + 's')
+    $lines += ('- Lifecycle task wall clock: ' + $system.total_task_wall_clock_seconds + 's; external monotonic cross-check: ' + $system.total_external_monotonic_seconds + 's; screenshot suboperations: ' + $system.total_screenshot_capture_seconds + 's; host worked: ' + $system.total_host_reported_worked_seconds + 's')
     $lines += @('','## Codex Actual Runtime (optimization target)','')
     $lines += ('- Measured task records (caller task start supplied): ' + $system.codex_measured_task_count)
     $lines += ('- Codex task wall clock total: ' + $system.codex_task_wall_clock_total_seconds + 's; host-reported worked records: ' + $system.codex_host_worked_record_count + ' (' + $system.codex_host_worked_total_seconds + 's)')
@@ -410,7 +467,7 @@ if ($Apply) {
         $lines += ('- ' + $t.session_id + ' (' + $t.goal + '): session=' + $t.session_seconds + 's ops=' + $t.operation_sum_seconds + 's (' + $t.operation_count + ') idle=' + $t.idle_seconds + 's turns=' + $t.turns)
     }
     $lines += @('','## Decision','','Baseline captured across all past tasks. Optimizations require function-preserving candidates with two equivalent observations per declared layer; Full validation remains for global closeout.')
-    [IO.File]::WriteAllText($mdPath, ($lines -join "`n"), [Text.UTF8Encoding]::new($false))
+    Write-AtomicUtf8NoBom -Path $mdPath -Value ($lines -join "`n")
     if ($Ledger) {
         $ledgerDir = Join-Path $outputDir 'session-timing-ledger'
         New-Item -ItemType Directory -Force -Path $ledgerDir | Out-Null
@@ -429,7 +486,7 @@ if ($Apply) {
                 operations = @($sessionRecord.op_rows)
                 tool_calls = @($sessionRecord.tool_rows)
             }
-            [IO.File]::WriteAllText((Join-Path $ledgerDir ($safeId + '.json')), (($ledgerPayload | ConvertTo-Json -Depth 8) + [Environment]::NewLine), [Text.UTF8Encoding]::new($false))
+            Write-AtomicUtf8NoBom -Path (Join-Path $ledgerDir ($safeId + '.json')) -Value (($ledgerPayload | ConvertTo-Json -Depth 8) + [Environment]::NewLine)
             $ledgerCount++
         }
         $result['ledger_artifacts'] = '.codex/project/timing-analysis/session-timing-ledger'

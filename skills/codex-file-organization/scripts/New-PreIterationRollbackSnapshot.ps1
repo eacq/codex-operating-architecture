@@ -2,6 +2,7 @@
 param(
     [Parameter(Mandatory = $true)] [string]$ProjectRoot,
     [Parameter(Mandatory = $true)] [string]$BackupRoot,
+    [ValidateRange(1, 128)] [int]$CopyThreads = 32,
     [switch]$Apply
 )
 
@@ -132,6 +133,7 @@ $record = [ordered]@{
     protected_paths_excluded = $true
     file_inventory = if ($usedGitFileInventory) { 'git-tracked-untracked-ignored' } else { 'filesystem-fallback' }
     copy_engine = 'robocopy-filtered-tree'
+    copy_threads = $CopyThreads
     hash_engine = 'dotnet-sha256-stream'
     snapshot_name_policy = 'short-prefix'
     apply_performed = [bool]$Apply
@@ -140,7 +142,7 @@ $record = [ordered]@{
 if (-not $Apply) { $record | ConvertTo-Json -Depth 4; exit 0 }
 
 [IO.Directory]::CreateDirectory($payload) | Out-Null
-& robocopy $root $payload /E /MT:8 /XD $snapshotExcludeDirs /XF $snapshotExcludeFiles | Out-Null
+& robocopy $root $payload /E "/MT:$CopyThreads" /XD $snapshotExcludeDirs /XF $snapshotExcludeFiles | Out-Null
 if ($LASTEXITCODE -gt 7) { throw "Rollback snapshot copy failed with robocopy exit code $LASTEXITCODE." }
 $manifestFiles = New-Object System.Collections.Generic.List[object]
 foreach ($file in $files) {

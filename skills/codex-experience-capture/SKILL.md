@@ -63,6 +63,13 @@ experience-system skill, read
 It adapts source methods into owner-scoped skills, references, knowledge notes,
 or candidates through source grounding, triple verification, RIA++ shaping,
 linking, and trigger pressure tests.
+Newly learned capabilities should default to autonomous selection when their
+owner, positive and negative triggers, cost class, authority boundary,
+verification rule, and pressure-test evidence are recorded in
+`config/agent-autonomous-capability-decision-policy.json`. Autonomous
+selection produces a plan; it never replaces an owner gate or authorizes
+installation, credentials, publication, destructive work, Git, release, or
+production actions.
 
 For the distilled specialist-design contract from
 `msitarzewski/agency-agents` (trigger-precise agent anatomy, evidence

@@ -157,7 +157,7 @@ if ($CandidateOnly) {
     }
 } else {
     Invoke-TimedStep 'isolated-replacement-iteration' {
-        $script:isolatedIteration = & (Join-Path $root 'scripts/Invoke-IsolatedGlobalExperienceIteration.ps1') -RepositoryRoot $root -Apply -Replace | ConvertFrom-Json
+        $script:isolatedIteration = & (Join-Path $root 'scripts/Invoke-IsolatedGlobalExperienceIteration.ps1') -RepositoryRoot $root -Apply -Replace -ReducedDuplicateValidation:$false | ConvertFrom-Json
     }
     if ($isolatedIteration.result -ne 'completed' -or -not $isolatedIteration.validated -or -not $isolatedIteration.replaced -or -not $isolatedIteration.post_replacement_validated -or -not $isolatedIteration.lifecycle_written_back -or -not $isolatedIteration.rollback_ready -or -not $isolatedIteration.continuous_diagnosis_supported) { throw 'Isolated global iteration did not establish continuous diagnosis, rollback readiness, clean replacement, revalidation, and lifecycle writeback.' }
 }

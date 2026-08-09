@@ -4,43 +4,15 @@
 
 ## English
 
-- Current architecture version: 1.0.0.0
+- Current architecture version: 1.0.1.0
 - Registered active modules: 23
 - Documentation gate: every verified implementation iteration updates this status, `CHANGELOG.md`, the Chinese README and `README.en.md`; a version change also requires its matching bilingual release note and an exact-version `CHANGELOG.md` section.
 - Public conversion gate: portable public skills contain generic workflow only. Recipient-specific provider, path, software, and non-secret preference values stay in a local private profile.
 - Latest verified Agent capability surface: owner-routed document parse pipeline under `codex-office-cli`, exposed through Global Experience Agent state, resources, knowledge, manifests, and validation.
-- Latest verified repair: structural optimization baseline hashing normalizes UTF-8 text line endings, preventing Windows Git checkout from creating false propagation drift.
-- Latest verified learning: distilled the `msitarzewski/agency-agents` specialist-design method into `skills/codex-experience-capture/references/agency-agents-specialist-design.md`, a linked knowledge note, and a deterministic distillation test; raw upstream installers are rejected.
-- Latest verified timing/resource optimization: `scripts/Invoke-HistoricalTimingAnalysis.ps1` reports diversified timing layers and system total time across all past sessions; the GEA runtime now persists the full timing block into session state at every save point; `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` provides safe dry-run-first task-process release.
-- Latest verified Codex-runtime metric: every GEA save records task wall clock from the caller task-start anchor to the accepted save point (`measured-from-caller-task-start`), host-reported worked time when exposed, and the historical timing analysis reports the `codex_runtime` layer with totals and an optimization target.
-- Latest verified hierarchical timing/script control: `Invoke-HistoricalTimingAnalysis.ps1 -Ledger` records every step and functional unit with completion status and duration, computes a composite time metric (external vs internal, capped median-relative index), and feeds `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1` (dry-run-first process/tmp release, advisory workspaces).
-- Latest verified task-end resource cleanup: iteration and verified-Git-commit controllers automatically run `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses` (disposable tmp only) when a task ends and record the result in the iteration proof / commit plan.
-- Latest verified data lifecycle: `config/data-lifecycle-policy.json` plus `skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1` keep temp files, workspaces, backup snapshots, and logs under orderly retention at task end while preserving durable sessions, memory, timing evidence, archives, reports, proofs, gates, envelopes, and release backups.
 
 ## 中文
 
-- 当前架构版本：1.0.0.0
+- 当前架构版本：1.0.1.0
 - 已注册活动模块数：23
 - 说明门禁：每次已验证的实现迭代都必须更新本状态文件、CHANGELOG.md、中文 README 与 README.en.md；版本变化还必须更新对应的双语发布说明，并确保 CHANGELOG.md 存在该精确版本的条目。
 - 公开转化门禁：公开 skill 仅保留通用工作流。接收者的服务商、路径、软件和非秘密偏好必须保留在本地私有配置中。
-- 最新已验证学习：已将 `msitarzewski/agency-agents` 的专业 Agent 设计方法蒸馏为
-  `skills/codex-experience-capture/references/agency-agents-specialist-design.md`、
-  关联知识笔记与确定性蒸馏测试；明确拒绝上游安装器与批量 Agent TOML 安装。
-- 最新已验证计时/资源优化：`scripts/Invoke-HistoricalTimingAnalysis.ps1` 输出覆盖全部历史
-  会话的多样化计时分层与系统全时间；GEA 运行时在每次保存点持久化完整计时块；
-  `skills/codex-runtime-environments/scripts/Release-UsedTaskProcesses.ps1` 提供保守
-  dry-run 优先的任务进程释放。
-- 最新已验证 Codex 运行时间指标：每次 GEA 保存都从调用方任务起始锚点记录到接受的
-  保存点的任务墙钟（`measured-from-caller-task-start`），宿主暴露时记录宿主工作时长；
-  历史计时分析输出 `codex_runtime` 分层与总量及优化目标。
-- 最新已验证全层级计时与脚本控制：`Invoke-HistoricalTimingAnalysis.ps1 -Ledger`
-  记录每个步骤与功能元的完成状态和耗时，计算综合时间指标（外部 vs 内部、封顶中位数
-  相对指数），并供给 `skills/codex-runtime-environments/scripts/Invoke-ScriptResourceRelease.ps1`
-  （默认 dry-run 的进程/临时文件释放，工作区仅建议）。
-- 最新已验证任务结束自动清理：迭代与已验证 Git 提交控制器在任务结束时自动运行
-  `Invoke-ScriptResourceRelease.ps1 -Apply -SkipProcesses`（仅一次性 tmp），
-  并把结果记入迭代证明/提交计划。
-- 最新已验证数据生命周期：`config/data-lifecycle-policy.json` 与
-  `skills/codex-runtime-environments/scripts/Invoke-DataLifecycleCleanup.ps1` 在任务结束时
-  按保留规则管理临时文件、工作区、备份快照与日志，同时永久保留会话、记忆、计时证据、
-  归档、报告、证明、门禁、信封与发布备份。

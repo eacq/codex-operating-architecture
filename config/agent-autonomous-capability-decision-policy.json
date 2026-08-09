@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "model": "global-experience-agent-autonomous-capability-decision-policy",
+  "owner": "codex-self-evolution",
+  "purpose": "Select the smallest sufficient set of learned capabilities from task evidence while preserving independent authority gates.",
+  "contract": {
+    "default_mode": "autonomous-selection-first",
+    "output": "capability_plan",
+    "selection_is_not_authority": true,
+    "smallest_sufficient_set": true,
+    "learned_capability_admission": "A learned capability is model-reachable by default only after it has an owner, trigger evidence, negative trigger, cost class, authority boundary, verification rule, and pressure-test evidence.",
+    "unknown_handling": "Return a bounded StartWork or recommendation instead of guessing a risky capability.",
+    "explicit_operation_precedence": "An explicit operation remains the operation decision; autonomous capability selection may add read-only preparation or verification but may not replace it."
+  },
+  "decision_classes": [
+    {"id": "auto-select", "meaning": "The model may select the capability as a bounded plan or registered low-risk functional unit.", "execution": "plan-only-until-existing-operation-and-owner-gate-allow-execution"},
+    {"id": "recommend-and-wait", "meaning": "The Agent may identify the capability but waits for a consequential human choice.", "execution": "recommendation-only"},
+    {"id": "owner-gated", "meaning": "The capability can be selected, but its side effect remains with the named owner gate.", "execution": "route-to-owner-gate"},
+    {"id": "never-auto", "meaning": "The capability must never be autonomously activated from observed capability or intent labels.", "execution": "typed-boundary-only"}
+  ],
+  "capabilities": [
+    {
+      "id": "memory-context-retrieval",
+      "owner": "codex-conversation-continuity",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["based on previous", "prior context", "continue the previous", "之前", "前面的对话", "历史资料", "曾经给过"],
+      "keywords": ["memory", "context", "记忆", "上下文", "资料"],
+      "negative_phrases": ["do not use previous", "不要读取历史"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "low",
+      "activation": "retrieve only relevant durable context; never inject the whole memory store",
+      "gate": "registered memory operation",
+      "verification": "relevance note or explicit skip reason"
+    },
+    {
+      "id": "expert-contract-mode",
+      "owner": "codex-self-evolution",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["expert contract", "specialist contract", "专家契约", "专家模式", "需要哪些专家", "which experts", "cross-domain", "跨领域", "多专业", "角色契约"],
+      "keywords": ["expert", "specialist", "专家", "专业", "owner", "契约"],
+      "negative_phrases": ["只改一句", "改一个词", "one sentence", "single sentence", "simple typo", "仅校对"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "low",
+      "activation": "compose explicit role, input, output, acceptance, and boundary contracts; delegation remains separately gated",
+      "gate": "registered owner route and child-agent contract",
+      "verification": "selected owner set and acceptance criteria are recorded"
+    },
+    {
+      "id": "expert-template-synthesis",
+      "owner": "codex-experience-capture",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["no matching expert", "missing expert template", "derive a template", "没有这个专家", "缺少专家模板", "没有模板", "从现有模板提炼", "提炼模板"],
+      "keywords": ["template", "profile", "模板", "专家", "提炼", "synthesize", "derive"],
+      "negative_phrases": ["install a new agent", "安装新 agent", "register a new owner", "新增顶层 owner"],
+      "suppress_on_negative": true,
+      "threshold": 0.65,
+      "cost_class": "medium",
+      "activation": "derive a bounded design-only profile from verified local or source evidence; do not register a new top-level owner",
+      "gate": "codex-architecture-iteration for any structure change",
+      "verification": "profile-fit, functional effect, owner alignment, and authority boundary evidence"
+    },
+    {
+      "id": "methodology-distillation",
+      "owner": "codex-experience-capture",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["deep learn", "deep learning", "learn this repository", "study this skill", "重新深度学习", "深度学习", "学习这个仓库", "学习这个 skill", "source repository", "external methodology", "github.com"],
+      "keywords": ["learn", "learning", "methodology", "skill", "repository", "仓库", "方法论", "学习", "github"],
+      "negative_phrases": ["install upstream", "直接安装", "复制上游运行时", "copy the runtime"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "medium",
+      "activation": "ground the source, extract reusable method, pressure-test triggers, and adapt under an existing owner",
+      "gate": "source and owner verification; installation and publication remain independently gated",
+      "verification": "pinned source, evidence map, adapted contract, and regression test"
+    },
+    {
+      "id": "brainstorming-lite",
+      "owner": "codex-requirement-authoring",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["brainstorm", "design alternatives", "explore options", "思维风暴", "头脑风暴", "有哪些方案", "优化建议", "如何设计", "trade-offs", "权衡"],
+      "keywords": ["alternative", "options", "方案", "建议", "设计", "权衡", "取舍", "优化"],
+      "negative_phrases": ["只改一句", "改一个词", "one sentence", "single sentence", "just fix the typo", "直接替换", "仅验证"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "low",
+      "activation": "produce bounded alternatives and a decision-ready recommendation; stop when the decision is clear",
+      "gate": "none for analysis; selected implementation still follows owner gates",
+      "verification": "alternatives, criteria, recommendation, and unresolved decision are explicit"
+    },
+    {
+      "id": "loopx-control-plane",
+      "owner": "codex-self-evolution",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["loopx", "heartbeat", "keep working", "continue until complete", "long-running", "multi-turn", "持续", "循环", "直到完成", "后台", "不能一直守着电脑", "自动优化", "长时间"],
+      "keywords": ["loopx", "heartbeat", "quota", "todo", "lease", "continuation", "循环", "持续", "后台", "多轮", "长期", "自动"],
+      "negative_phrases": ["single quick edit", "快速改一句", "只改一句", "one sentence", "立即停止", "不要循环"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "medium",
+      "activation": "select durable goals, todos, lease, quota, and continuation evidence only when the task is genuinely long-running",
+      "gate": "LoopX control-plane policy; never credentials, publication, destructive work, production writes, or owner-gated actions",
+      "verification": "goal/todo ownership, bounded continuation, quota decision, and settled save point"
+    },
+    {
+      "id": "evidence-review-mode",
+      "owner": "codex-architecture-iteration",
+      "decision_class": "auto-select",
+      "trigger_phrases": ["verify the result", "visual verification", "screenshot", "save and refresh", "check the exported file", "验收", "验证", "截图", "刷新验证", "导出检查", "视觉效果", "是否成功"],
+      "keywords": ["verify", "review", "evidence", "screenshot", "visual", "验证", "检查", "复核", "截图", "验收", "证据"],
+      "negative_phrases": ["do not verify", "无需验证", "不用检查"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "low",
+      "activation": "select the narrowest proving check and require evidence before claiming completion",
+      "gate": "format, Git, release, visual, and owner gates remain independent",
+      "verification": "test or rendered evidence plus residual-risk statement"
+    },
+    {
+      "id": "verified-memory-writeback",
+      "owner": "codex-experience-capture",
+      "decision_class": "recommend-and-wait",
+      "trigger_phrases": ["record this lesson", "write back the experience", "复盘", "经验沉淀", "写回经验", "学习后固化"],
+      "keywords": ["retrospective", "experience", "learning", "复盘", "经验", "沉淀", "写回"],
+      "negative_phrases": ["store private conversation", "保存私密对话", "保存凭据", "store credentials"],
+      "suppress_on_negative": true,
+      "threshold": 0.55,
+      "cost_class": "medium",
+      "activation": "prepare a redacted candidate and write back only after verification and duplicate checks",
+      "gate": "experience-capture and memory authority; private material is excluded",
+      "verification": "source, trigger, action, verification, scope, invalidation, and status are recorded"
+    }
+  ],
+  "conflict_policy": {
+    "negative_trigger_wins": true,
+    "simple_task_floor": "Do not select expert-contract-mode, brainstorming-lite, or loopx-control-plane for a one-line or typo-only task.",
+    "high_risk_override": "evidence-review-mode may be selected, but it never authorizes the high-risk action being reviewed.",
+    "multiple_capabilities": "Select multiple capabilities only when their evidence is independent and the combined plan reduces user effort without hiding a gate."
+  },
+  "verification": {
+    "pressure_tests": [
+      "external source learning selects methodology-distillation without installation",
+      "missing expert template selects expert-template-synthesis as design-only",
+      "long-running continuation selects loopx-control-plane without authority expansion",
+      "one-line edit selects no broad planning capability",
+      "credential or destructive wording never becomes autonomous execution"
+    ],
+    "required_evidence": ["selected capability ids", "matched positive and negative triggers", "confidence and threshold", "owner and gate", "verification rule", "next authority boundary"],
+    "invalidation_conditions": [
+      "a repeated false positive causes unnecessary context or tool work",
+      "a learned capability lacks a maintained owner or verifier",
+      "a deferred capability hides an approval gate",
+      "the runtime plan can be mistaken for permission"
+    ]
+  }
+}

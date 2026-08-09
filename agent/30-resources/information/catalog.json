@@ -25,6 +25,7 @@
                   "knowledge-vault/30-Knowledge/Agent Intent Recognition System.md",
                   "knowledge-vault/30-Knowledge/Cherry Studio Capability Routing and Durable Workflow Learning.md",
                   "config/agent-capability-routing-policy.json",
+                  "config/agent-autonomous-capability-decision-policy.json",
                   "knowledge-vault/30-Knowledge/Agent Document Parse Pipeline.md",
                   "knowledge-vault/30-Knowledge/Agent Chunking Retrieval System.md",
                   "knowledge-vault/30-Knowledge/Agent Loop System.md",

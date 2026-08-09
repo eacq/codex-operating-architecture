@@ -6,7 +6,9 @@ param(
   [switch]$ContinuousDiagnosis,
   [string]$RepairScript = '',
   [ValidateRange(0, 1000)][int]$MaxRepairAttempts = 0,
-  [switch]$InjectPostReplacementFailureForTest
+  [switch]$InjectPostReplacementFailureForTest,
+  [switch]$IncludeAllGitRefs,
+  [switch]$ReducedDuplicateValidation
 )
 
 $ErrorActionPreference = 'Stop'
@@ -210,7 +212,9 @@ if ($Replace) {
   Invoke-Step 'create exact pre-iteration rollback snapshot' {
     $script:rollbackSnapshot = & (Join-Path $root 'skills\codex-file-organization\scripts\New-PreIterationRollbackSnapshot.ps1') -ProjectRoot $root -BackupRoot $backupRoot -Apply | ConvertFrom-Json
     if (-not $rollbackSnapshot.snapshot_root -or -not $rollbackSnapshot.manifest) { throw 'Pre-iteration rollback snapshot is incomplete.' }
-    & git -C $root bundle create (Join-Path $backupRoot "pre-replace-$stamp.bundle") --all
+    $bundleRef = 'HEAD'
+    if ($IncludeAllGitRefs) { $bundleRef = '--all' }
+    & git -C $root bundle create (Join-Path $backupRoot "pre-replace-$stamp.bundle") $bundleRef
     if ($LASTEXITCODE -ne 0) { throw 'Pre-replacement Git bundle failed.' }
   }
   $replacementStarted = $true
@@ -227,9 +231,18 @@ if ($Replace) {
     & (Join-Path $root 'scripts\validate.ps1') | Out-Host
     if (-not $?) { throw 'First post-replacement global validation failed.' }
   }
-  Invoke-Step 'validate replaced global system pass 2' {
-    & (Join-Path $root 'scripts\validate.ps1') | Out-Host
-    if (-not $?) { throw 'Second post-replacement global validation failed.' }
+  if ($ReducedDuplicateValidation) {
+    Invoke-Step 'validate replaced global system balanced stability profile' {
+      $script:reducedValidation = & (Join-Path $root 'scripts\Invoke-CodexVerification.ps1') -RepositoryRoot $root -Mode Balanced | ConvertFrom-Json
+      if ($reducedValidation.result -ne 'passed' -or $reducedValidation.effective_mode -ne 'Balanced') {
+        throw 'Balanced post-replacement stability validation failed.'
+      }
+    }
+  } else {
+    Invoke-Step 'validate replaced global system pass 2' {
+      & (Join-Path $root 'scripts\validate.ps1') | Out-Host
+      if (-not $?) { throw 'Second post-replacement global validation failed.' }
+    }
   }
   Invoke-Step 'remove validation-regenerated disposable artifacts' {
     $script:activeCleanupAfter = & (Join-Path $root 'skills\codex-file-organization\scripts\Remove-UnnecessaryOrganizationArtifacts.ps1') -ProjectRoot $root -BackupRoot $backupRoot -LightweightDirectoryCleanup -Apply | ConvertFrom-Json
@@ -248,6 +261,10 @@ $result = [ordered]@{
   validated = $true
   replaced = [bool]$Replace
   post_replacement_validated = [bool]$Replace
+  post_replacement_validation_profile = if ($ReducedDuplicateValidation) { 'full-plus-balanced-stability' } else { 'full-two-pass' }
+  post_replacement_full_validation_passes = if ($ReducedDuplicateValidation) { 1 } else { 2 }
+  reduced_duplicate_validation = [bool]$ReducedDuplicateValidation
+  full_closeout_required = [bool]$ReducedDuplicateValidation
   lifecycle_written_back = [bool]$Replace
   rollback_ready = [bool]($Replace -and $rollbackSnapshot)
   continuous_diagnosis_supported = (Test-Path -LiteralPath (Join-Path $root 'scripts\Invoke-ContinuousIterationDiagnosis.ps1'))
@@ -283,9 +300,14 @@ if ($Replace) {
     phase = 'post-replacement-global-iteration'
     cleanup = $result.cleanup
     replacement = [ordered]@{ validated = $true; applied = $true }
-    rollback = [ordered]@{ ready = $result.rollback_ready; failure_policy = 'restore-continuous-diagnosis-rerun-or-critical-error' }
+    rollback = [ordered]@{ ready = $result.rollback_ready; git_bundle_scope = if ($IncludeAllGitRefs) { 'all-refs' } else { 'head-only' }; failure_policy = 'restore-continuous-diagnosis-rerun-or-critical-error' }
     diagnostics = [ordered]@{ continuous_mode = $result.continuous_diagnosis_supported; targets = @('file-organization','global-iteration') }
-    validation = [ordered]@{ repository_runs = 2; global_interfaces = 'passed' }
+    validation = [ordered]@{
+      repository_runs = $result.post_replacement_full_validation_passes
+      profile = $result.post_replacement_validation_profile
+      preliminary_only = $result.full_closeout_required
+      global_interfaces = 'passed'
+    }
     step_timings = $result.step_timings
     lifecycle_writeback = 'completed'
     result = 'passed'

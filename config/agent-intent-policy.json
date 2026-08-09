@@ -268,7 +268,8 @@
                                          "confidence",
                                          "layer",
                                          "matched_rule",
-                                         "fallback_needed"
+                                         "fallback_needed",
+                                         "capability_plan"
                                      ]
                },
     "deliberation_rules":  {

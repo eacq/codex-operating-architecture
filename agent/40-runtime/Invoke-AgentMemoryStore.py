@@ -64,6 +64,30 @@ def connect(db_path: Path) -> sqlite3.Connection:
 
 
 def init_db(conn: sqlite3.Connection) -> None:
+    # Existing databases with the current schema do not need to replay the
+    # complete DDL script on every short-lived backend invocation.
+    try:
+        row = conn.execute("SELECT value FROM meta WHERE key = ?", ("schema_version",)).fetchone()
+        expected_objects = {
+            "meta",
+            "memories",
+            "memories_fts",
+            "consolidation_runs",
+            "memories_ai",
+            "memories_ad",
+            "memories_au",
+        }
+        objects = {
+            item[0]
+            for item in conn.execute(
+                "SELECT name FROM sqlite_master WHERE name IN (?, ?, ?, ?, ?, ?, ?)",
+                tuple(expected_objects),
+            ).fetchall()
+        }
+        if row is not None and row[0] == str(SCHEMA_VERSION) and objects == expected_objects:
+            return
+    except sqlite3.OperationalError:
+        pass
     conn.executescript(
         """
         CREATE TABLE IF NOT EXISTS meta (

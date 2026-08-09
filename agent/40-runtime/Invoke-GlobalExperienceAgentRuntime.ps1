@@ -18,6 +18,9 @@ param(
     [string]$HostId = 'compatible-agent-host',
     [datetime]$TaskStartedAt = [datetime]::MinValue,
     [Nullable[double]]$HostWorkedSeconds,
+    [string]$ClientTimingJson,
+    [Nullable[double]]$ExternalElapsedSeconds,
+    [Nullable[double]]$ScreenshotCaptureSeconds,
     [string]$AgentId = 'global-experience-agent',
     [string]$ChildId,
     [string]$Query,
@@ -71,12 +74,20 @@ if (-not (Test-Path -LiteralPath $intentPolicyPath -PathType Leaf)) {
     throw 'Global experience agent runtime requires config/agent-intent-policy.json.'
 }
 $intentPolicy = Get-Content -LiteralPath $intentPolicyPath -Raw -Encoding UTF8 | ConvertFrom-Json
+$autonomousCapabilityPolicyPath = Join-Path $root 'config\agent-autonomous-capability-decision-policy.json'
+if (-not (Test-Path -LiteralPath $autonomousCapabilityPolicyPath -PathType Leaf)) {
+    throw 'Global experience agent runtime requires the autonomous capability decision policy.'
+}
+$autonomousCapabilityPolicy = Get-Content -LiteralPath $autonomousCapabilityPolicyPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $transportRecoveryScriptPath = Join-Path $root 'agent\40-runtime\TransportRecovery.ps1'
 if (-not (Test-Path -LiteralPath $transportRecoveryScriptPath -PathType Leaf)) {
     throw "Global experience agent runtime requires transport recovery classifier: $transportRecoveryScriptPath"
 }
 . $transportRecoveryScriptPath
 $transportRecoveryPolicy = Get-AgentTransportRecoveryPolicy -RepositoryRoot $root
+$codexTimingFunctionsPath = Join-Path $root 'scripts\CodexTimingFunctions.ps1'
+if (-not (Test-Path -LiteralPath $codexTimingFunctionsPath -PathType Leaf)) { throw 'Global experience agent runtime requires Codex timing functions.' }
+. $codexTimingFunctionsPath
 $ownerNetworkPath = Join-Path $root ([string]$manifest.owner_network.source)
 if (-not (Test-Path -LiteralPath $ownerNetworkPath -PathType Leaf)) {
     throw 'Global experience agent runtime requires the canonical owner network.'
@@ -94,21 +105,30 @@ function New-AgentTiming([datetime]$CompletedAt, [string]$SessionStartedAt) {
     if (-not [string]::IsNullOrWhiteSpace($SessionStartedAt)) {
         try { $sessionSeconds = [math]::Round(($CompletedAt.ToUniversalTime() - ([datetime]::Parse($SessionStartedAt).ToUniversalTime())).TotalSeconds, 3) } catch { $sessionSeconds = $null }
     }
+    $assessment = New-CodexTimingAssessment -ClientTimingJson $ClientTimingJson -LifecycleSeconds $taskSeconds -HostWorkedSeconds $HostWorkedSeconds -ExternalElapsedSeconds $ExternalElapsedSeconds -ScreenshotCaptureSeconds $ScreenshotCaptureSeconds
     return [ordered]@{
         task_started_at = if ($taskAvailable) { $taskStart.ToString('o') } else { $null }
         task_completed_at = if ($taskAvailable) { $CompletedAt.ToUniversalTime().ToString('o') } else { $null }
         task_time_available = $taskAvailable
         task_time_status = if ($taskAvailable) { 'measured-from-caller-task-start' } else { 'not-measured; caller-task-start-required' }
         task_wall_clock_seconds = $taskSeconds
+        customer_visible_complete_seconds = $assessment.customer_visible_complete_seconds
+        customer_visible_time_source = $assessment.customer_visible_time_source
         host_reported_worked_seconds = if ($null -ne $HostWorkedSeconds) { [math]::Round([double]$HostWorkedSeconds, 3) } else { $null }
         host_worked_status = if ($null -ne $HostWorkedSeconds) { 'host-reported' } else { 'not-provided' }
+        client_timing = $assessment.client
+        external_monotonic_seconds = $assessment.external_monotonic_seconds
+        screenshot_capture_seconds = $assessment.screenshot_capture_seconds
+        screenshot_timing_status = $assessment.screenshot_timing_status
+        cross_validation = $assessment.cross_validation
+        cross_validation_status = $assessment.cross_validation_status
         operation_started_at = $controllerStartedAt.ToString('o')
         operation_completed_at = $CompletedAt.ToUniversalTime().ToString('o')
         operation_wall_clock_seconds = $operationSeconds
         controller_wall_clock_seconds = $operationSeconds
         agent_session_started_at = $SessionStartedAt
         agent_session_wall_clock_seconds = $sessionSeconds
-        timing_layers = @('task-lifecycle', 'host-worked', 'agent-session', 'controller-operation')
+        timing_layers = @('codex-client-turn', 'codex-client-task-wall-clock', 'external-monotonic', 'screenshot-suboperation', 'task-lifecycle', 'host-worked', 'agent-session', 'controller-operation')
     }
 }
 
@@ -423,12 +443,85 @@ function Get-AgentIntentRouteScore([string]$Text, [object]$Route) {
     }
 }
 
+function Get-AgentCapabilityDecision([string]$RequestedText, [string]$RequestedOperation, [string]$RequestedOwner) {
+    $stopwatch = [Diagnostics.Stopwatch]::StartNew()
+    $text = ConvertTo-AgentIntentText $RequestedText
+    $selected = New-Object System.Collections.Generic.List[object]
+    $considered = New-Object System.Collections.Generic.List[object]
+
+    foreach ($capability in @($autonomousCapabilityPolicy.capabilities)) {
+        $positive = New-Object System.Collections.Generic.List[string]
+        $negative = New-Object System.Collections.Generic.List[string]
+        foreach ($phrase in @($capability.trigger_phrases)) {
+            $needle = ConvertTo-AgentIntentText ([string]$phrase)
+            if ($needle.Length -gt 0 -and $text.Contains($needle)) { $positive.Add([string]$phrase) }
+        }
+        foreach ($keyword in @($capability.keywords)) {
+            $needle = ConvertTo-AgentIntentText ([string]$keyword)
+            if ($needle.Length -gt 0 -and $text.Contains($needle)) { $positive.Add([string]$keyword) }
+        }
+        foreach ($phrase in @($capability.negative_phrases)) {
+            $needle = ConvertTo-AgentIntentText ([string]$phrase)
+            if ($needle.Length -gt 0 -and $text.Contains($needle)) { $negative.Add([string]$phrase) }
+        }
+
+        $score = 0.0
+        if ($positive.Count -gt 0) {
+            $score += [math]::Min(0.62, 0.42 + (($positive | Select-Object -Unique).Count * 0.10))
+        }
+        $keywordCount = @($positive | Select-Object -Unique).Count
+        if ($keywordCount -gt 1) { $score += [math]::Min(0.30, ($keywordCount - 1) * 0.08) }
+        $suppressed = $negative.Count -gt 0 -and [bool]$capability.suppress_on_negative
+        if ($negative.Count -gt 0) { $score = [math]::Max(0.0, $score - 0.40) }
+        if ($score -gt 0.99) { $score = 0.99 }
+        $threshold = [double]$capability.threshold
+        $candidate = [ordered]@{
+            id = [string]$capability.id
+            owner = [string]$capability.owner
+            decision_class = [string]$capability.decision_class
+            activation = [string]$capability.activation
+            cost_class = [string]$capability.cost_class
+            gate = [string]$capability.gate
+            verification = [string]$capability.verification
+            confidence = [math]::Round($score, 3)
+            threshold = $threshold
+            matched_triggers = @($positive | Select-Object -Unique)
+            matched_negative_triggers = @($negative | Select-Object -Unique)
+            suppressed_by_negative_trigger = $suppressed
+            selection = if ($suppressed) { 'not-selected' } elseif ($score -ge $threshold) { 'selected' } else { 'not-selected' }
+            next_authority_boundary = if ([string]$capability.decision_class -eq 'owner-gated') { 'named owner gate' } elseif ([string]$capability.decision_class -eq 'recommend-and-wait') { 'human decision after recommendation' } elseif ([string]$capability.decision_class -eq 'never-auto') { 'typed boundary; no autonomous activation' } else { 'existing operation and registered functional-unit gate' }
+        }
+        $considered.Add($candidate)
+        if ($candidate.selection -eq 'selected') { $selected.Add($candidate) }
+    }
+
+    $stopwatch.Stop()
+    $selectedArray = @($selected | Sort-Object -Property confidence -Descending)
+    $consideredArray = $considered.ToArray()
+    return [ordered]@{
+        schema_version = 1
+        mode = [string]$autonomousCapabilityPolicy.contract.default_mode
+        selected = $selectedArray
+        selected_ids = @($selectedArray | ForEach-Object { [string]$_.id })
+        selected_count = $selectedArray.Count
+        considered_count = $consideredArray.Count
+        suppressed = @($consideredArray | Where-Object { $_.suppressed_by_negative_trigger } | ForEach-Object { [string]$_.id })
+        explicit_operation = if ([string]::IsNullOrWhiteSpace($RequestedOperation)) { 'Auto' } else { $RequestedOperation }
+        explicit_owner = $RequestedOwner
+        fallback = 'bounded StartWork or clarification when no capability reaches its threshold'
+        authority_rule = 'selection labels never grant authority; deferred routing and owner gates remain independent'
+        latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
+        policy = ConvertTo-AgentPath $autonomousCapabilityPolicyPath
+    }
+}
+
 function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [string]$RequestedOwner, [string]$RequestedQuery) {
     $stopwatch = [Diagnostics.Stopwatch]::StartNew()
     $text = ConvertTo-AgentIntentText $(if (-not [string]::IsNullOrWhiteSpace($RequestedQuery)) { $RequestedQuery } else { $RequestedGoal })
+    $capabilityPlan = Get-AgentCapabilityDecision -RequestedText $text -RequestedOperation $Requested -RequestedOwner $RequestedOwner
     if (-not [string]::IsNullOrWhiteSpace($RequestedOwner)) {
         $stopwatch.Stop()
-        return [ordered]@{
+        $result = [ordered]@{
             result = 'intent-classified'
             intent = 'explicit-owner-route'
             operation = 'RouteOwner'
@@ -441,10 +534,12 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
             latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
             policy = ConvertTo-AgentPath $intentPolicyPath
         }
+        $result.capability_plan = $capabilityPlan
+        return $result
     }
     if ($Requested -ne 'Auto') {
         $stopwatch.Stop()
-        return [ordered]@{
+        $result = [ordered]@{
             result = 'intent-classified'
             intent = 'explicit-operation'
             operation = $Requested
@@ -457,11 +552,13 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
             latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
             policy = ConvertTo-AgentPath $intentPolicyPath
         }
+        $result.capability_plan = $capabilityPlan
+        return $result
     }
     foreach ($rule in @($intentPolicy.l0_rules)) {
         if ($text -match [string]$rule.pattern) {
             $stopwatch.Stop()
-            return [ordered]@{
+            $result = [ordered]@{
                 result = 'intent-classified'
                 intent = [string]$rule.intent
                 operation = [string]$rule.operation
@@ -474,6 +571,8 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
                 latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
                 policy = ConvertTo-AgentPath $intentPolicyPath
             }
+            $result.capability_plan = $capabilityPlan
+            return $result
         }
     }
     $bestRoute = $null
@@ -487,7 +586,7 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
     }
     if ($bestRoute -and $bestScore.score -ge [double]$bestRoute.threshold) {
         $stopwatch.Stop()
-        return [ordered]@{
+        $result = [ordered]@{
             result = 'intent-classified'
             intent = [string]$bestRoute.intent
             operation = [string]$bestRoute.operation
@@ -502,9 +601,11 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
             latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
             policy = ConvertTo-AgentPath $intentPolicyPath
         }
+        $result.capability_plan = $capabilityPlan
+        return $result
     }
     $stopwatch.Stop()
-    return [ordered]@{
+    $result = [ordered]@{
         result = 'intent-classified'
         intent = [string]$intentPolicy.fallback.intent
         operation = [string]$intentPolicy.fallback.operation
@@ -519,6 +620,8 @@ function Invoke-AgentIntentRouter([string]$Requested, [string]$RequestedGoal, [s
         latency_ms = [math]::Round($stopwatch.Elapsed.TotalMilliseconds, 3)
         policy = ConvertTo-AgentPath $intentPolicyPath
     }
+    $result.capability_plan = $capabilityPlan
+    return $result
 }
 
 function Get-ChildReference([string]$RequestedChildId) {
@@ -1510,10 +1613,11 @@ if ($Mode -in @('Run', 'Continue')) {
             caller_context = $callerContext
             agent_registry = ConvertTo-AgentPath $agentRegistryPath
             interface_policy = ConvertTo-AgentPath $interfacePolicyPath
-            interface = $Interface
-            authorization_decision = $authorizationDecision
-            turn_snapshot = $snapshot
-            tool_result = $toolResult
+             interface = $Interface
+             authorization_decision = $authorizationDecision
+             turn_snapshot = $snapshot
+             capability_plan = if ($script:lastIntentDecision) { $script:lastIntentDecision.capability_plan } else { $null }
+             tool_result = $toolResult
             save_point = $savePoint
             durable_state = [ordered]@{
                 state = ConvertTo-AgentPath $script:statePath

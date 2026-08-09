@@ -54,6 +54,10 @@ Skills should make the Agent's process predictable. The local translation is:
   They can route work but do not become autonomous model triggers.
 - Model-invoked upstream discipline maps to owner-internal functional units
   that an LLM or internal unit may select when the task contract fits.
+- Learned capabilities should be admitted as autonomous-selectable units by
+  default when their triggers, negative triggers, cost, verifier, and authority
+  boundary are recorded. The resulting capability plan is a routing decision,
+  never an authority grant.
 - Router behavior maps to `codex-self-evolution` and requirement/workflow
   owners. The router orients and selects; gated side effects still return to
   their owner gates.

@@ -22,7 +22,7 @@
     "knowledge": "codex-knowledge-system",
     "architecture": "codex-architecture-iteration"
   },
-  "terminal_goal": "按需路由最小可用能力，保留高成本能力为可启用版本，同时减少无效上下文、阻塞启动和误用工具",
+  "terminal_goal": "Route the smallest useful capability on demand while preserving high-cost capabilities as opt-in versions and reducing wasted context, startup blocking, and tool misuse.",
   "catalog": {
     "read_mode": "cache-first",
     "refresh_mode": "explicit-or-background",
@@ -48,17 +48,17 @@
     "pools": [
       {
         "id": "inline",
-        "meaning": "当前任务必需或具有独立审批/权限闸门的能力",
+        "meaning": "current task requires the capability or it has an independent approval and authority gate",
         "defer_mode": "never"
       },
       {
         "id": "deferred",
-        "meaning": "可由命名空间、关键词或 owner 路由按需检索的能力",
+        "meaning": "capability is searched on demand through a namespace, keyword, or owner route",
         "defer_mode": "auto"
       },
       {
         "id": "cold",
-        "meaning": "尚未证明必要、成本高或依赖外部服务的能力",
+        "meaning": "capability is not yet proven necessary, has high cost, or depends on an external service",
         "defer_mode": "always"
       }
     ],
@@ -71,11 +71,7 @@
       "execute-or-return-typed-boundary",
       "record-result-and-refresh-candidate-evidence"
     ],
-    "meta_operations": [
-      "search",
-      "inspect",
-      "invoke"
-    ],
+    "meta_operations": ["search", "inspect", "invoke"],
     "auto_defer_guard": {
       "enabled": true,
       "requires": [
@@ -129,6 +125,7 @@
   "verification": {
     "tests": [
       "scripts/Test-AgentCapabilityRoutingPolicy.ps1",
+      "scripts/Test-AgentAutonomousCapabilityDecision.ps1",
       "skills/codex-experience-capture/scripts/Test-MethodologySkillDistillation.ps1",
       "scripts/Test-AgentHarnessContract.ps1",
       "scripts/validate.ps1"

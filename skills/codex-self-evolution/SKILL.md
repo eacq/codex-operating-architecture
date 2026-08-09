@@ -70,7 +70,10 @@ subskills.
    concept Agents as registered capabilities under the root rather than
    independent global-system entrypoints. `Run StartWork` establishes a durable
    task; `ClassifyIntent` exposes the local four-layer intent funnel used by
-   `Auto` before operation permission evaluation; `Continue` permits another authorized caller/model host to act from an
+   `Auto` before operation permission evaluation and emits the auditable
+   `capability_plan` from `config/agent-autonomous-capability-decision-policy.json`.
+   The Agent selects the smallest sufficient learned capability set from task
+   evidence, while selection labels never grant authority; `Continue` permits another authorized caller/model host to act from an
     idle save point; `Resume` reconstructs records, work, queues, and child state.
     Evaluate the declared interface before side effects. Human, LLM, and
     internal-functional-unit calls may use registered functional units but may

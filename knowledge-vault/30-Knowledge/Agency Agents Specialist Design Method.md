@@ -4,6 +4,7 @@ type: concept
 status: active
 source: https://github.com/msitarzewski/agency-agents at commit ebe9c99acb5c96f9468de368d8bead775387d1a7 (MIT)
 verified: true
+revalidated: 2026-08-09
 learning_audience: codex
 codex_learning: Design specialists as deliverable-focused contracts (trigger-precise description, critical rules, deliverables with evidence, workflow, success metrics), organize them into an indexed roster, and route multi-specialist work through explicit owner handoffs; adapt upstream method only, never bulk-install upstream agents.
 ---
@@ -18,10 +19,26 @@ codex_learning: Design specialists as deliverable-focused contracts (trigger-pre
 - Local clone: `.runtime/work/network-learning/msitarzewski-agency-agents`
 - Local adaptation: `skills/codex-experience-capture/references/agency-agents-specialist-design.md`
 
+## Revalidated findings
+
+- The pinned snapshot contains 17 divisions, 270 source agent files, 16 tool
+  catalog entries, and 4 machine-readable runbooks.
+- Reusable architecture is a catalog-governed specialist contract with
+  format-specific adapters and lazy activation, not a bulk prompt installer.
+- `divisions.json`, `tools.json`, and `strategy/runbooks.json` provide distinct
+  sources of truth for divisions, tools/formats, and stable roster slugs.
+- The agent corpus has contract variants and legacy compact files; the local
+  system must normalize only the required trigger, rules, deliverables,
+  workflow, evidence, and acceptance fields.
+- README counts/tool lists and upstream production or parallel-speed claims are
+  documentation or narrative evidence, not independent runtime proof.
+- Live upstream refresh was blocked by network failure, so the conclusions are
+  verified against the pinned commit only.
+
 ## Local interpretation
 
-The upstream "Agency" is a roster of 230+ specialist agent files. Its reusable
-core for the Global Experience Agent is the specialist contract shape, not the
+The upstream "Agency" is a large roster of specialist agent files. Its
+reusable core for the Global Experience Agent is the specialist contract shape, not the
 personality text or the per-tool installers. A specialist should carry a
 trigger-precise description, mission, critical rules, deliverables with
 concrete examples, a workflow, and measurable success metrics. That shape maps

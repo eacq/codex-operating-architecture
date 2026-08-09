@@ -6,11 +6,15 @@ param(
     [string[]]$ChangedPaths = @(),
     [datetime]$TaskStartedAt = [datetime]::MinValue,
     [Nullable[double]]$HostWorkedSeconds,
+    [string]$ClientTimingJson,
+    [Nullable[double]]$ExternalElapsedSeconds,
+    [Nullable[double]]$ScreenshotCaptureSeconds,
     [switch]$NoRecord
 )
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath $RepositoryRoot).Path
+. (Join-Path $root 'scripts\CodexTimingFunctions.ps1')
 $controllerStartedAt = [DateTime]::UtcNow
 $resourcePolicy = Get-Content -LiteralPath (Join-Path $root 'config\loopx-resource-policy.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $taskTimeAvailable = ($TaskStartedAt -ne [datetime]::MinValue)
@@ -139,10 +143,19 @@ $result = [ordered]@{
 $controllerCompletedAt = [DateTime]::UtcNow
 $taskElapsedSeconds = if ($taskTimeAvailable) { [math]::Round(($controllerCompletedAt - $taskStart).TotalSeconds, 3) } else { $null }
 $controllerElapsedSeconds = [math]::Round(($controllerCompletedAt - $controllerStartedAt).TotalSeconds, 3)
+$timingAssessment = New-CodexTimingAssessment -ClientTimingJson $ClientTimingJson -LifecycleSeconds $taskElapsedSeconds -HostWorkedSeconds $HostWorkedSeconds -ExternalElapsedSeconds $ExternalElapsedSeconds -ScreenshotCaptureSeconds $ScreenshotCaptureSeconds
 $stepSeconds = [math]::Round(((@($timings | ForEach-Object { [double]$_.duration_seconds }) | Measure-Object -Sum).Sum), 3)
 $result.timing.task_completed_at = if ($taskTimeAvailable) { $controllerCompletedAt.ToString('o') } else { $null }
 $result.timing.completed_at = $controllerCompletedAt.ToString('o')
 $result.timing.task_wall_clock_seconds = $taskElapsedSeconds
+$result.timing.customer_visible_complete_seconds = $timingAssessment.customer_visible_complete_seconds
+$result.timing.customer_visible_time_source = $timingAssessment.customer_visible_time_source
+$result.timing.client_timing = $timingAssessment.client
+$result.timing.external_monotonic_seconds = $timingAssessment.external_monotonic_seconds
+$result.timing.screenshot_capture_seconds = $timingAssessment.screenshot_capture_seconds
+$result.timing.screenshot_timing_status = $timingAssessment.screenshot_timing_status
+$result.timing.cross_validation = $timingAssessment.cross_validation
+$result.timing.cross_validation_status = $timingAssessment.cross_validation_status
 $result.timing.operation_wall_clock_seconds = $controllerElapsedSeconds
 $result.timing.controller_wall_clock_seconds = $controllerElapsedSeconds
 $result.timing.elapsed_wall_clock_seconds = $controllerElapsedSeconds

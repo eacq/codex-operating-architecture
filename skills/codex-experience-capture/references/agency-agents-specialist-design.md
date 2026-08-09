@@ -21,14 +21,46 @@ skill and not permission to copy the upstream package.
   pinned clone; upstream branding, personal links, app installers, provider
   assumptions, and per-tool install locations are excluded.
 
+## Revalidation (2026-08-09)
+
+The pinned clone was re-read after a failed live refresh attempt. GitHub
+network access was unavailable (`Failed to connect to github.com port 443`),
+so this is a pinned-commit revalidation, not a claim about the current remote.
+The verified snapshot has `HEAD=ebe9c99acb5c96f9468de368d8bead775387d1a7`, 17
+registered divisions, 270 source agent files, 16 tool catalog entries, and 4
+machine-readable runbooks. `git diff --check` passed in the clean clone.
+
+The deeper reusable pattern is a four-layer system:
+
+1. **Contract layer**: specialist files declare identity, mission, rules,
+   deliverables, workflow, communication, memory, and metrics. Recent gated
+   specialists make stop conditions and evidence artifacts explicit.
+2. **Catalog layer**: `divisions.json` is the division source of truth,
+   `tools.json` is the tool/install-format source of truth, and
+   `strategy/runbooks.json` maps stable filename slugs to phase-based rosters.
+3. **Adapter layer**: `convert.sh` preserves the source body while rendering
+   the smallest host-specific format. `install.sh` supports selective
+   division/agent installation, dry-run, project/user scope, and bounded
+   parallel execution.
+4. **Activation layer**: the Hermes integration keeps the full roster on disk
+   and exposes search/inspect/load/delegate tools, avoiding startup preload.
+
+Observed caveats are part of the lesson: the 270 files are not perfectly
+uniform (header variants and legacy compact agents remain), the README still
+advertises `230+` agents and omits the newest catalog tools, and the upstream
+examples demonstrate multi-specialist orchestration but do not independently
+verify it in the local Codex runtime. Treat upstream production language and
+parallel speed claims as unverified until locally measured.
+
 ## Source philosophy (stated + local synthesis)
 
 The upstream builds specialists as "deliverable-focused" packages: strong
 identity and voice, clear mission, critical rules, technical deliverables with
 concrete before/after examples, a workflow, communication style, learning and
-memory, and **measurable success metrics**. It organizes 230+ agents into
+memory, and **measurable success metrics**. It organizes a large roster into
 divisions (engineering, design, testing, security, ...), publishes multi-agent
-workflow examples, and ships per-tool conversion/install scripts.
+workflow examples, and ships per-tool conversion/install scripts. The README's
+older `230+` statistic is documentation drift, not the verified snapshot count.
 
 Local synthesis: the reusable core is not the personality text and not the
 installers. It is the **specialist contract shape**: every specialist should

@@ -13,6 +13,8 @@ if ($iteration -notmatch 'step_timings') { throw 'Complete global iteration does
 $isolated = Get-Content -LiteralPath (Join-Path $root 'scripts\Invoke-IsolatedGlobalExperienceIteration.ps1') -Raw -Encoding UTF8
 if ($isolated -notmatch 'step_timings') { throw 'Isolated global iteration does not record internal timing telemetry.' }
 if ($isolated -notmatch 'validate replaced global system pass 1') { throw 'Isolated global iteration does not split post-replacement validation timing.' }
+if ($isolated -notmatch 'ReducedDuplicateValidation' -or $isolated -notmatch 'full-plus-balanced-stability') { throw 'Isolated global iteration does not expose the guarded duplicate-validation candidate.' }
+if ($iteration -notmatch 'ReducedDuplicateValidation:\$false') { throw 'Complete global iteration does not force the Full closeout validation profile.' }
 if ($isolated -notmatch 'LightweightDirectoryCleanup') { throw 'Isolated global iteration does not use lightweight active cleanup.' }
 if ($isolated -notmatch 'Copy-ChangedPathOverlay') { throw 'Isolated global iteration does not use changed-path sandbox overlay.' }
 if ($isolated -match 'robocopy \$root \$sandbox') { throw 'Isolated global iteration still overlays the full active tree into the sandbox.' }
@@ -33,6 +35,7 @@ if ($rollback -notmatch 'private-skill-config') { throw 'Rollback snapshot does 
 if ($rollback -notmatch '\(exclude\)\.runtime/\*\*' -or $rollback -notmatch '\(exclude\)\.codex/\*\*') { throw 'Rollback snapshot does not exclude protected roots at the Git pathspec layer.' }
 $gate = Get-Content -LiteralPath (Join-Path $root 'scripts\Test-ExperienceIterationGate.ps1') -Raw -Encoding UTF8
 if ($gate -notmatch 'Candidate-only global iteration proof cannot satisfy the Git publication gate') { throw 'Git publication gate does not reject candidate-only proof.' }
+if ($gate -notmatch 'Reduced duplicate validation is preliminary-only') { throw 'Git publication gate does not reject reduced duplicate-validation proof.' }
 if ($gate -notmatch 'ls-files --others --exclude-standard') { throw 'Git publication gate does not consider untracked paths in non-staged mode.' }
 if ($commit -notmatch '\[switch\]\$CommitOnly') { throw 'Verified private commit does not expose local-only commit mode.' }
 if ($commit -notmatch 'if \(-not \$CommitOnly\)') { throw 'Local-only commit mode does not protect the push boundary.' }

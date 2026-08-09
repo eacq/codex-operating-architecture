@@ -96,7 +96,7 @@ if (-not $hasSection -and $Apply) {
     $title = if ($lines.Count -gt 0) { $lines[0] } else { '# Changelog / Update Log' }
     $rest = if ($lines.Count -gt 1) { ($lines[1..($lines.Count - 1)] -join [Environment]::NewLine).TrimStart() } else { '' }
     $updated = $title + [Environment]::NewLine + [Environment]::NewLine + (($section -join [Environment]::NewLine).TrimEnd()) + [Environment]::NewLine + [Environment]::NewLine + $rest.TrimStart()
-    Set-Content -LiteralPath $changelogPath -Value $updated -Encoding UTF8 -NoNewline
+    [IO.File]::WriteAllText($changelogPath, $updated, [Text.UTF8Encoding]::new($false))
 }
 
 if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
@@ -117,7 +117,7 @@ if ($hasSection -and $Apply -and $ChangeClass -eq 'Release') {
                 1
             )
             $updated = $existing.Substring(0, $sectionMatch.Index) + $value + $existing.Substring($sectionMatch.Index + $sectionMatch.Length)
-            Set-Content -LiteralPath $changelogPath -Value $updated.TrimEnd() -Encoding UTF8 -NoNewline
+            [IO.File]::WriteAllText($changelogPath, $updated.TrimEnd(), [Text.UTF8Encoding]::new($false))
     }
 }
 

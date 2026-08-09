@@ -24,7 +24,12 @@ function Add-Observation([System.Collections.Generic.List[object]]$List, [string
 $observations = New-Object System.Collections.Generic.List[object]
 $task = Read-JsonOrNull (Join-Path $projectPath 'task-timing-last.json')
 if ($task) {
-    Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'task_wall_clock_seconds' $task.task_wall_clock_seconds ([string]$task.timing_status) 'task lifecycle record'
+    Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'customer_visible_complete_seconds' $task.user_visible_complete_seconds ([string]$task.timing_status) ([string]$task.customer_visible_time_source)
+    Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'codex_client_task_wall_clock_seconds' $task.client_timing.client_task_wall_clock_seconds ([string]$task.client_timing.status) 'codex_app__read_thread interval union'
+    Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'client_turn_duration_sum_seconds' $task.client_timing.client_turn_duration_sum_seconds ([string]$task.client_timing.status) 'Codex durationMs active-work sum; not customer wall clock'
+    Add-Observation $observations 'task-timing-last.json' 'external_cross_check' 'external_monotonic_seconds' $task.external_monotonic_seconds 'stopwatch' 'independent monotonic cross-check'
+    Add-Observation $observations 'task-timing-last.json' 'screenshot_suboperation' 'screenshot_capture_seconds' $task.screenshot_capture_seconds ([string]$task.screenshot_timing_status) 'independent screenshot stopwatch'
+    Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'task_wall_clock_seconds' $task.task_wall_clock_seconds ([string]$task.timing_status) 'task lifecycle record; fallback/audit view'
     Add-Observation $observations 'task-timing-last.json' 'user_outcome' 'host_reported_worked_seconds' $task.host_reported_worked_seconds ([string]$task.timing_status) 'Codex host Worked for view'
 }
 $gea = Read-JsonOrNull (Join-Path $projectPath 'global-experience-agent-last-run.json')
@@ -53,6 +58,14 @@ if (Test-Path -LiteralPath $evidenceDir -PathType Container) {
         if ($item -and $item.duration_seconds -ne $null) {
             Add-Observation $observations $file.Name ([string]$item.layer) ([string]$item.metric) $item.duration_seconds ([string]$item.status) ([string]$item.evidence)
         }
+        if ($item -and $item.baseline -and $item.candidate -and $item.metric) {
+            foreach ($row in @($item.baseline)) {
+                Add-Observation $observations $file.Name ([string]$item.layer) ([string]$item.metric) $row.seconds 'baseline' ([string]$item.source + '; baseline')
+            }
+            foreach ($row in @($item.candidate)) {
+                Add-Observation $observations $file.Name ([string]$item.layer) ([string]$item.metric) $row.seconds 'candidate' ([string]$item.source + '; candidate')
+            }
+        }
     }
 }
 
@@ -61,7 +74,7 @@ $hotspots = @($observations | Where-Object { $_.layer -ne 'agent_session' } | So
 $recommendations = New-Object System.Collections.Generic.List[object]
 foreach ($hotspot in $hotspots) {
     $action = switch ($hotspot.layer) {
-        'user_outcome' { 'retain lifecycle and host views in parallel; evidence is insufficient to change user-visible flow' }
+        'user_outcome' { 'use Codex client interval union as customer time; keep duration sum, lifecycle, external Stopwatch, and screenshot as separate cross-checks' }
         'agent_session' { 'reduce repeated wakeups and idle waits; reuse only within the same save point and evidence boundary' }
         'controller_operation' { 'batch independent read-only checks and reduce repeated controller round trips' }
         'validation_writeback' { 'use equivalent Fast/Auto paths during preliminary work; retain Full for global closeout' }

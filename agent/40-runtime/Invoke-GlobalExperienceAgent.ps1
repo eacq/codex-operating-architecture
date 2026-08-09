@@ -16,6 +16,9 @@ param(
     [string]$HostId = 'compatible-agent-host',
     [datetime]$TaskStartedAt = [datetime]::MinValue,
     [Nullable[double]]$HostWorkedSeconds,
+    [string]$ClientTimingJson,
+    [Nullable[double]]$ExternalElapsedSeconds,
+    [Nullable[double]]$ScreenshotCaptureSeconds,
     [string]$AgentId = 'global-experience-agent',
     [string]$ChildId,
     [string]$Query,
@@ -54,7 +57,7 @@ if ($Mode -in @('Run', 'Continue', 'Resume', 'Abort')) {
     if (-not (Test-Path -LiteralPath $runtime -PathType Leaf)) {
         throw 'Global experience agent runtime is missing.'
     }
-    & $runtime -RepositoryRoot $root -Mode $Mode -Goal $Goal -Operation $Operation -Owner $Owner -SessionId $SessionId -StateRoot $StateRoot -OutputPath $OutputPath -CallerId $CallerId -ModelProvider $ModelProvider -ModelId $ModelId -HostId $HostId -TaskStartedAt $TaskStartedAt -HostWorkedSeconds $HostWorkedSeconds -AgentId $AgentId -ChildId $ChildId -Query $Query -FilesystemId $FilesystemId -WriteSurface $WriteSurface -AcceptanceCriteria $AcceptanceCriteria -Verification $Verification -ResultSummary $ResultSummary -ResultEvidence $ResultEvidence -MergeDisposition $MergeDisposition -Steer $Steer -FollowUp $FollowUp -NextTurn $NextTurn -PendingWrite $PendingWrite -Interface $Interface -AuthorityScope $AuthorityScope -AuthorizationEvidence $AuthorizationEvidence -RequestedOperation $RequestedOperation -RequestedSurfaces $RequestedSurfaces -MemoryType $MemoryType -MemoryLayer $MemoryLayer -TtlDays $TtlDays -Priority $Priority -Authority $Authority -Apply:$Apply
+    & $runtime -RepositoryRoot $root -Mode $Mode -Goal $Goal -Operation $Operation -Owner $Owner -SessionId $SessionId -StateRoot $StateRoot -OutputPath $OutputPath -CallerId $CallerId -ModelProvider $ModelProvider -ModelId $ModelId -HostId $HostId -TaskStartedAt $TaskStartedAt -HostWorkedSeconds $HostWorkedSeconds -ClientTimingJson $ClientTimingJson -ExternalElapsedSeconds $ExternalElapsedSeconds -ScreenshotCaptureSeconds $ScreenshotCaptureSeconds -AgentId $AgentId -ChildId $ChildId -Query $Query -FilesystemId $FilesystemId -WriteSurface $WriteSurface -AcceptanceCriteria $AcceptanceCriteria -Verification $Verification -ResultSummary $ResultSummary -ResultEvidence $ResultEvidence -MergeDisposition $MergeDisposition -Steer $Steer -FollowUp $FollowUp -NextTurn $NextTurn -PendingWrite $PendingWrite -Interface $Interface -AuthorityScope $AuthorityScope -AuthorizationEvidence $AuthorizationEvidence -RequestedOperation $RequestedOperation -RequestedSurfaces $RequestedSurfaces -MemoryType $MemoryType -MemoryLayer $MemoryLayer -TtlDays $TtlDays -Priority $Priority -Authority $Authority -Apply:$Apply
     return
 }
 

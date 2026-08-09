@@ -29,6 +29,12 @@ $proofPath = Join-Path $root '.codex\project\isolated-global-iteration.json'
 if (-not (Test-Path -LiteralPath $proofPath)) { throw 'A validated isolated global-iteration proof is required before the Git gate can pass.' }
 $organizationProbe = Get-Content -LiteralPath $proofPath -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($organizationProbe.result -ne 'completed' -or -not $organizationProbe.validated -or -not $organizationProbe.replaced -or -not $organizationProbe.post_replacement_validated -or -not $organizationProbe.lifecycle_written_back -or -not $organizationProbe.rollback_ready -or -not $organizationProbe.continuous_diagnosis_supported) { throw 'The isolated continuous-diagnosis, rollback, cleanup, replacement, post-validation, and lifecycle proof is incomplete.' }
+$fullValidationPasses = if ($organizationProbe.PSObject.Properties.Name -contains 'post_replacement_full_validation_passes') {
+    [int]$organizationProbe.post_replacement_full_validation_passes
+} else {
+    @($organizationProbe.step_timings | Where-Object { $_.name -eq 'validate replaced global system pass 2' }).Count + 1
+}
+if ($fullValidationPasses -lt 2 -or [bool]$organizationProbe.full_closeout_required) { throw 'Reduced duplicate validation is preliminary-only and cannot satisfy the Git publication gate.' }
 $completeProofPath = Join-Path $root '.codex\project\global-experience-iteration.json'
 if (Test-Path -LiteralPath $completeProofPath) {
     $completeProof = Get-Content -LiteralPath $completeProofPath -Raw -Encoding UTF8 | ConvertFrom-Json

@@ -5,18 +5,35 @@
   "purpose": "Choose an evidence-backed LoopX resource level on a local desktop without discarding higher-cost capabilities.",
   "speed_quality_contract": {
     "principle": "Optimize speed only by selecting among function-preserving execution versions; never trade away required capability, safety, evidence, rollback, or authority.",
-    "primary_metric": "time_to_decidable_next_action",
-    "secondary_metrics": ["elapsed_turn_time", "model_and_tool_round_trips", "user_wait_time", "quota_consumption"],
-    "additional_metrics": ["task_wall_clock_time", "operation_wall_clock_time", "host_reported_worked_time", "agent_session_wall_clock_time", "child_agent_wall_clock_time", "controller_wall_clock_time", "tool_wait_time", "recovery_retry_time", "validation_writeback_time"],
+    "primary_metric": "customer_visible_complete_seconds",
+    "secondary_metrics": ["task_wall_clock_seconds", "time_to_decidable_next_action", "elapsed_turn_time", "model_and_tool_round_trips", "user_wait_time", "quota_consumption"],
+    "optimization_objective": {
+      "customer_visible_outcome": {
+        "weight": 0.65,
+        "metrics": ["customer_visible_complete_seconds", "codex_client_task_wall_clock_seconds", "time_to_decidable_next_action"],
+        "rule": "Minimize the Codex client task wall clock when client turn metadata is available; use independent monotonic timing and lifecycle wall clock only as cross-checks or explicit fallbacks."
+      },
+      "execution_efficiency": {
+        "weight": 0.20,
+        "metrics": ["agent_session_wall_clock_seconds", "controller_wall_clock_seconds", "tool_wait_time", "model_and_tool_round_trips"],
+        "rule": "Use internal timing to explain and reduce customer-visible delay, not as a replacement objective."
+      },
+      "quality_and_safety": {
+        "weight": 0.15,
+        "metrics": ["required_validation_result", "rollback_ready", "privacy_redaction", "typed_exit"],
+        "rule": "Hard floor: quality, privacy, rollback, authority, and validation gates cannot be traded for speed."
+      }
+    },
+    "additional_metrics": ["customer_visible_complete_seconds", "codex_client_task_wall_clock_seconds", "external_monotonic_seconds", "screenshot_capture_seconds", "task_wall_clock_time", "operation_wall_clock_time", "host_reported_worked_time", "agent_session_wall_clock_time", "child_agent_wall_clock_time", "controller_wall_clock_time", "tool_wait_time", "recovery_retry_time", "validation_writeback_time"],
     "measurement_contract": {
-      "clock": "UTC wall clock",
-      "start_event": "host-task-accepted-when-available; otherwise operation-start-with-explicit-incomplete-task-status",
-      "end_event": "accepted-save-point-or-final-verified-result",
-      "required_dimensions": ["requested_mode", "effective_mode", "step_timings", "task_started_at", "task_completed_at", "task_wall_clock_seconds", "task_time_status", "operation_started_at", "operation_completed_at", "operation_wall_clock_seconds", "host_reported_worked_seconds", "agent_session_started_at", "agent_session_wall_clock_seconds", "child_agent_wall_clock_seconds", "controller_wall_clock_seconds", "step_time_sum_seconds", "unaccounted_time_seconds"],
+      "clock": "Codex client turn metadata when available; monotonic Stopwatch and UTC wall clock as cross-checks",
+      "start_event": "Codex client turn startedAt for customer timing; caller task anchor only as lifecycle fallback",
+      "end_event": "Codex client turn completedAt for customer timing; accepted-save-point-or-final-verified-result for lifecycle timing",
+      "required_dimensions": ["requested_mode", "effective_mode", "step_timings", "task_started_at", "task_completed_at", "task_wall_clock_seconds", "task_time_status", "customer_visible_complete_seconds", "customer_visible_time_source", "client_timing", "client_task_wall_clock_seconds", "client_turn_duration_sum_seconds", "external_monotonic_seconds", "screenshot_capture_seconds", "cross_validation_status", "operation_started_at", "operation_completed_at", "operation_wall_clock_seconds", "host_reported_worked_seconds", "agent_session_started_at", "agent_session_wall_clock_seconds", "child_agent_wall_clock_seconds", "controller_wall_clock_seconds", "step_time_sum_seconds", "unaccounted_time_seconds"],
       "equivalence_key": ["required_function_set", "acceptance_criteria", "authority_scope", "validation_profile"],
       "comparison_rule": "Compare only equivalent function and acceptance envelopes; keep step and end-to-end metrics together.",
       "metric_selection_by_goal": {
-        "user_outcome": ["time_to_decidable_next_action", "task_wall_clock_time", "host_reported_worked_time", "user_visible_complete_time"],
+        "user_outcome": ["customer_visible_complete_seconds", "codex_client_task_wall_clock_seconds", "task_wall_clock_time", "host_reported_worked_time"],
         "agent_session": ["agent_session_wall_clock_time", "child_agent_wall_clock_time", "handoff_time", "tool_wait_time", "recovery_retry_time"],
         "agent_coordination": ["handoff_time", "tool_wait_time", "recovery_retry_time"],
         "controller": ["controller_wall_clock_time", "model_and_tool_round_trips", "unaccounted_time_seconds"],
