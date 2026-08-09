@@ -1,11 +1,10 @@
-﻿{
+{
     "schema_version":  1,
     "version":  "2.0.0.0",
     "mode":  "Public",
     "release_note":  "docs/release-notes/v2.0.0.0.md",
     "impact_areas":  [
                          "Release documentation",
-                         "Automation gates",
                          "Skill architecture"
                      ],
     "visual_action":  "reuse-approved-raster-release-visual",

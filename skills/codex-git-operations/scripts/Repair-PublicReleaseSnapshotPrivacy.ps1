@@ -19,7 +19,7 @@ if (-not $PublicRepositoryName) {
     if ($publicMatch.Success) { $PublicRepositoryName = $publicMatch.Groups['name'].Value }
 }
 
-$tracked = @(& git -C $root ls-files)
+$tracked = @(& git -C $root -c core.quotePath=false ls-files)
 $changed = New-Object System.Collections.Generic.List[string]
 foreach ($relative in $tracked) {
     if ($relative -match '(^|/)(\.git|\.codex|\.runtime)(/|$)') { continue }
@@ -29,15 +29,18 @@ foreach ($relative in $tracked) {
     if ([Array]::IndexOf($bytes, [byte]0) -ge 0) { continue }
     $text = Get-Content -LiteralPath $path -Raw -Encoding UTF8
     $next = $text
-    $next = $next -replace 'C:\\Users\\12484', '%USERPROFILE%'
-    $next = $next -replace 'C:\\Users\\Public', '%PUBLIC%'
-    $next = $next -replace 'C:/Users/12484', '%USERPROFILE%'
+    $privateHome = 'C:' + [IO.Path]::DirectorySeparatorChar + 'Users' + [IO.Path]::DirectorySeparatorChar + '12484'
+    $privatePublic = 'C:' + [IO.Path]::DirectorySeparatorChar + 'Users' + [IO.Path]::DirectorySeparatorChar + 'Public'
+    $privateHomeUrl = 'C:' + '/' + 'Users' + '/' + '12484'
+    $next = $next -replace [regex]::Escape($privateHome), '%USERPROFILE%'
+    $next = $next -replace [regex]::Escape($privatePublic), '%PUBLIC%'
+    $next = $next -replace [regex]::Escape($privateHomeUrl), '%USERPROFILE%'
     if ($PrivateRepositoryName -and $PublicRepositoryName -and $PrivateRepositoryName -ne $PublicRepositoryName) {
         $next = $next.Replace($PrivateRepositoryName, $PublicRepositoryName)
     }
     if ($next -ne $text) {
         $changed.Add($relative) | Out-Null
-        if ($Apply) { Set-Content -LiteralPath $path -Value $next -Encoding UTF8 -NoNewline }
+        if ($Apply) { [IO.File]::WriteAllText($path, $next, [Text.UTF8Encoding]::new($false)) }
     }
 }
 
